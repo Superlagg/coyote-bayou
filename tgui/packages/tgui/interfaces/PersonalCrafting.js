@@ -1,7 +1,21 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Dimmer, Flex, Icon, LabeledList, Section, Tabs } from '../components';
+import { Button, Dimmer, Flex, Icon, LabeledList, Input, Section, Tabs } from '../components';
 import { Window } from '../layouts';
+import { flow } from 'common/fp';
+import { createSearch } from 'common/string';
+
+const filterRecipes = (recipes, searchText = '') => {
+  const testSearch = createSearch(searchText, recipe => recipe.name);
+  return flow([
+    // Null camera filter
+    filter(recipe => recipe?.name),
+    // Optional search term
+    searchText && filter(testSearch),
+    // Slightly expensive, but way better than sorting in BYOND
+    sortBy(recipe => recipe.name),
+  ])(recipes);
+};
 
 export const PersonalCrafting = (props, context) => {
   const { act, data } = useBackend(context);
@@ -10,6 +24,10 @@ export const PersonalCrafting = (props, context) => {
     display_craftable_only,
     display_compact,
   } = data;
+  const [
+    searchText,
+    setSearchText,
+  ] = useLocalState(context, 'searchText', '');
   const crafting_recipes = data.crafting_recipes || {};
   // Sort everything into flat categories
   const categories = [];
@@ -29,12 +47,7 @@ export const PersonalCrafting = (props, context) => {
         });
         // Push recipes
         const _recipes = subcategories[subcategory];
-        for (let recipe of _recipes) {
-          recipes.push({
-            ...recipe,
-            category: subcategory,
-          });
-        }
+        recipes.push(filterRecipes(_recipes, searchText));
       }
       continue;
     }
@@ -74,6 +87,12 @@ export const PersonalCrafting = (props, context) => {
           title="Personal Crafting"
           buttons={(
             <Fragment>
+              <Input
+                autoFocus
+                fluid
+                mb={1}
+                placeholder="Search for a recipe"
+                onInput={(e, value) => setSearchText(value)} />
               <Button.Checkbox
                 content="Compact"
                 checked={display_compact}
