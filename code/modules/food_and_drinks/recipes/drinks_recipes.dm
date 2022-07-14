@@ -1389,41 +1389,41 @@
 /datum/chemical_reaction/broctea
 	name = "Broc Tea"
 	id = "broctea"
-	results = list(/datum/reagent/consumable/tea/broctea = 3)
-	required_reagents = list(/datum/reagent/consumable/brocjuice = 1, /datum/reagent/water = 2)
+	results = list(/datum/reagent/consumable/tea/broctea = 5)
+	required_reagents = list(/datum/reagent/consumable/brocjuice = 1, /datum/reagent/water = 4)
 	required_temp = 315
 
 /datum/chemical_reaction/xandertea
 	name = "Xander Tea"
 	id = "xandertea"
-	results = list(/datum/reagent/consumable/tea/xandertea = 3)
-	required_reagents = list(/datum/reagent/consumable/xanderjuice = 1, /datum/reagent/water = 2)
+	results = list(/datum/reagent/consumable/tea/xandertea = 5)
+	required_reagents = list(/datum/reagent/consumable/xanderjuice = 1, /datum/reagent/water = 4)
 	required_temp = 315
 
 /datum/chemical_reaction/agavetea
 	name = "Agave Tea"
 	id = "agavetea"
-	results = list(/datum/reagent/consumable/tea/agavetea = 3)
-	required_reagents = list(/datum/reagent/consumable/agavejuice = 1, /datum/reagent/water = 2)
+	results = list(/datum/reagent/consumable/tea/agavetea = 5)
+	required_reagents = list(/datum/reagent/consumable/agavejuice = 1, /datum/reagent/water = 4)
 	required_temp = 315
 
 /datum/chemical_reaction/feratea
 	name = "Barrel Tea"
 	id = "feratea"
-	results = list(/datum/reagent/consumable/tea/feratea = 3)
-	required_reagents = list(/datum/reagent/consumable/ferajuice = 1, /datum/reagent/water = 2)
+	results = list(/datum/reagent/consumable/tea/feratea = 5)
+	required_reagents = list(/datum/reagent/consumable/ferajuice = 1, /datum/reagent/water = 4)
 	required_temp = 315
 
 /datum/chemical_reaction/daturatea
 	name = "Datura Tea"
 	id = "daturatea"
-	results = list(/datum/reagent/consumable/ethanol/daturatea = 3)
-	required_reagents = list(/datum/reagent/consumable/daturajuice = 1, /datum/reagent/water = 2)
+	results = list(/datum/reagent/consumable/ethanol/daturatea = 5)
+	required_reagents = list(/datum/reagent/consumable/daturajuice = 1, /datum/reagent/water = 4)
 	required_temp = 315
 
 /datum/chemical_reaction/coyotetea
 	name = "Coyote Tea"
 	id = "coyotetea"
-	results = list(/datum/reagent/consumable/tea/coyotetea = 3)
-	required_reagents = list(/datum/reagent/consumable/coyotejuice = 1, /datum/reagent/water = 2)
+	results = list(/datum/reagent/consumable/tea/coyotetea = 5)
+	required_reagents = list(/datum/reagent/consumable/coyotejuice = 1, /datum/reagent/water = 4)
 	required_temp = 315
