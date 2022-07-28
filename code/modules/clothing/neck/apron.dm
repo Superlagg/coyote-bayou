@@ -28,7 +28,7 @@
 
 /obj/item/clothing/neck/apron/chef
 	name = "chef's apron"
-	desc = "A white apron for kitchenwork, or for some improvised surgery. Has robust loops for bottles and snacks, sheathes for kitchen trinkets, and a discrete little holster under a flap. Order up!"
+	desc = "A white apron for kitchenwork, or for some improvised surgery. Has robust loops for bottles and snacks, sheaths for kitchen trinkets, and a discrete little holster under a flap. Order up!"
 	icon_state = "chef"
 	pocket_storage_component_path = /datum/component/storage/concrete/pockets/service
 
