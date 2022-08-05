@@ -173,25 +173,20 @@
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
 		for(var/A in tile)
-			if (is_type_in_typecache(A, STR.can_hold))
-				B = A
-				if(B.is_pickable)
-					if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
-						show_message = TRUE
-					else
-						if(!spam_protection)
-							to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
-							spam_protection = TRUE
-							continue
-				else
-					continue
-			else
+			if(!is_type_in_typecache(A, STR.can_hold))
 				continue
+			B = A
+			if(!B.is_pickable)
+				continue
+			if(SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, A, user, TRUE))
+				show_message = TRUE
+			else
+				to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+				break
 	if(show_message)
 		playsound(user, "rustle", 50, TRUE)
 		user.visible_message("<span class='notice'>[user] scoops up the casings beneath [user.p_them()].</span>", \
 			"<span class='notice'>You scoop up the casings beneath you with your [name].</span>")
-	spam_protection = FALSE
 
 /obj/item/storage/bag/tribe_quiver
 	name = "tribal quiver"
