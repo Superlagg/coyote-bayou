@@ -1842,7 +1842,8 @@ obj/effect/spawner/bundle/f13/combat_rifle
 				/obj/item/stack/crafting/goodparts/five,
 				/obj/item/stack/crafting/electronicparts/three,
 				/obj/item/stack/crafting/electronicparts/five,
-				/obj/item/reagent_containers/glass/bottle/blackpowder)
+				/obj/item/reagent_containers/glass/bottle/blackpowder,
+				/obj/item/reagent_containers/glass/bottle/gunpowder)
 
 /obj/effect/spawner/lootdrop/f13/crafting/Initialize(mapload) //on mapload, pick how many shit to spawn
 	lootcount = pick(1, 2)

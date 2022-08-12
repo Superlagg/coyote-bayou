@@ -816,6 +816,7 @@ GLOBAL_LIST_INIT(loot_craft_basic, list(
 	/obj/item/stack/crafting/electronicparts/three,
 	/obj/item/stack/crafting/electronicparts/five,
 	/obj/item/reagent_containers/glass/bottle/blackpowder,
+	/obj/item/reagent_containers/glass/bottle/gunpowder,
 	/obj/item/crafting/wonderglue,
 	/obj/item/crafting/duct_tape
 ))

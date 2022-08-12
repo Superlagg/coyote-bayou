@@ -33,6 +33,7 @@
 	caliber = list(CALIBER_762)
 	max_ammo = 7
 	multiple_sprites = 2
+	materials = list(/datum/material/iron = 50000, /datum/material/plastic = 10000)
 
 /obj/item/ammo_box/magazine/w308/empty
 	start_empty = 1
@@ -44,6 +45,7 @@
 	caliber = list(CALIBER_556)
 	max_ammo = 60
 	multiple_sprites = 2
+	materials = list(/datum/material/iron = 50000, /datum/material/plastic = 10000)
 
 /obj/item/ammo_box/magazine/lmg/empty
 	start_empty = 1

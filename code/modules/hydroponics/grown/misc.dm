@@ -198,7 +198,7 @@
 	plantname = "Cherry Bomb Tree"
 	product = /obj/item/reagent_containers/food/snacks/grown/cherry_bomb
 	mutatelist = list()
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/blackpowder = 0.7)
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.1, /datum/reagent/consumable/sugar = 0.1, /datum/reagent/blackpowder = 0.7, /datum/reagent/blackpowder/gunpowder = 0.3)
 	rarity = 60 //See above
 
 /obj/item/reagent_containers/food/snacks/grown/cherry_bomb

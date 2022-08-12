@@ -92,20 +92,8 @@
 	refined_type = /obj/item/stack/sheet/lead
 	merge_type = /obj/item/stack/ore/lead
 
-/obj/item/stack/ore/glass
-	name = "sand pile"
-	icon_state = "Glass ore"
-	item_state = "Glass ore"
-	singular_name = "sand pile"
-	points = 1
-	custom_materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
-	refined_type = /obj/item/stack/sheet/glass
-	w_class = WEIGHT_CLASS_TINY
-	merge_type = /obj/item/stack/ore/glass
-	grind_results = list(/datum/reagent/silicon = 20,)
-
 /obj/item/stack/ore/blackpowder
-	name = "gunpowder"
+	name = "blackpowder"
 	icon_state = "Blackpowder ore"
 	item_state = "Blackpowder ore"
 	singular_name = "blackpowder"
@@ -126,6 +114,42 @@
 
 /obj/item/stack/ore/blackpowder/five
 	amount = 5
+
+/obj/item/stack/ore/gunpowder
+	name = "gunpowder"
+	icon_state = "Blackpowder ore"
+	item_state = "Blackpowder ore"
+	singular_name = "gunpowder"
+	points = 2
+	color = "#c2fdff"
+	merge_type = /obj/item/stack/ore/gunpowder
+	custom_materials = list(/datum/material/gunpowder=50)
+	grind_results = list(/datum/reagent/blackpowder/gunpowder = 50)
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/stack/ore/gunpowder/fifty
+	amount = 50
+
+/obj/item/stack/ore/gunpowder/twenty
+	amount = 20
+
+/obj/item/stack/ore/gunpowder/two
+	amount = 2
+
+/obj/item/stack/ore/gunpowder/five
+	amount = 5
+
+/obj/item/stack/ore/glass
+	name = "sand pile"
+	icon_state = "Glass ore"
+	item_state = "Glass ore"
+	singular_name = "sand pile"
+	points = 1
+	custom_materials = list(/datum/material/glass=MINERAL_MATERIAL_AMOUNT)
+	refined_type = /obj/item/stack/sheet/glass
+	w_class = WEIGHT_CLASS_TINY
+	merge_type = /obj/item/stack/ore/glass
+	grind_results = list(/datum/reagent/silicon = 20,)
 
 GLOBAL_LIST_INIT(sand_recipes, list(\
 	new/datum/stack_recipe("sandstone", /obj/item/stack/sheet/mineral/sandstone, 1, 1, 50),\

@@ -440,6 +440,12 @@
 	volume = 60
 	list_reagents = list(/datum/reagent/blackpowder = 60)
 
+/obj/item/reagent_containers/glass/bottle/gunpowder
+	name = "gunpowder bottle"
+	desc = "A large bottle containing smokeless gunpowder."
+	volume = 60
+	list_reagents = list(/datum/reagent/blackpowder/gunpowder = 60)
+
 // FEV
 /obj/item/reagent_containers/glass/bottle/FEV_solution
 	name = "FEV bottle"

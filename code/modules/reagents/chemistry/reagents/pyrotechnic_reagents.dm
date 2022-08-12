@@ -118,6 +118,16 @@
 	e.start()
 	holder.clear_reagents()
 
+/datum/reagent/blackpowder/gunpowder
+	name = "Gunpowder"
+	description = "Explodes. Just as violently as blackpowder. But it makes bullets shoot better"
+	reagent_state = LIQUID
+	color = "#383838"
+	metabolization_rate = 0.05
+	taste_description = "smokeless salt"
+	value = REAGENT_VALUE_RARE
+	ghoulfriendly = TRUE
+
 /datum/reagent/flash_powder
 	name = "Flash Powder"
 	description = "Makes a very bright flash."

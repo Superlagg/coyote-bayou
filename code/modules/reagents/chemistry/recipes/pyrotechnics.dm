@@ -103,6 +103,12 @@
 	var/turf/T = get_turf(holder.my_atom)
 	..(holder, multiplier, T)
 
+/datum/chemical_reaction/blackpowder/gunpowder
+	name = "Gunpowder"
+	id = /datum/reagent/blackpowder/gunpowder
+	results = list(/datum/reagent/blackpowder/gunpowder = 12)
+	required_reagents = list(/datum/reagent/blackpowder = 5, /datum/reagent/cellulose = 4, /datum/reagent/nitrogen = 3)
+
 /datum/chemical_reaction/thermite
 	name = "Thermite"
 	id = /datum/reagent/thermite

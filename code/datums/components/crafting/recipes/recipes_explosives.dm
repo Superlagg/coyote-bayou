@@ -5,6 +5,13 @@
 	reqs = list(/datum/reagent/blackpowder = 50)
 	category = CAT_EXPLOSIVE
 
+/datum/crafting_recipe/compressedpowder/gunpowder
+	name = "Turn liquid gunpowder into sheets"
+	result = /obj/item/stack/ore/gunpowder
+	time = 5
+	reqs = list(/datum/reagent/blackpowder/gunpowder = 50)
+	category = CAT_EXPLOSIVE
+
 /datum/crafting_recipe/explosive/explosive_collar
 	name = "Explosive Collar"
 	result = /obj/item/electropack/shockcollar/explosive
