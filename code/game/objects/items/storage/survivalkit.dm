@@ -1,5 +1,5 @@
 /// Survival pouch
-/obj/item/storage/survivalkit // 3 slots, suffer
+/obj/item/storage/survivalkit
 	name = "pocket pouch"
 	desc = "A robust leather pocket pouch for all the essentials for wasteland survival."
 	icon_state = "survivalkit"
@@ -10,6 +10,10 @@
 	new /obj/item/flashlight(src)
 	new /obj/item/flashlight/glowstick(src)
 	new /obj/item/melee/onehanded/knife/hunting(src)
+	new /obj/item/reagent_containers/hypospray/medipen/stimpak/epipak(src)
+	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
+	new /obj/item/stack/medical/gauze(src)
+	new /obj/item/stack/medical/ointment(src)
 
 /// Empty kit!
 /obj/item/storage/survivalkit/empty/PopulateContents()
@@ -34,6 +38,10 @@
 	new /obj/item/flashlight/flare/torch(src)
 	new /obj/item/flashlight/flare/torch(src)
 	new /obj/item/melee/onehanded/knife/bone(src)
+	new /obj/item/reagent_containers/pill/healingpowder(src)
+	new /obj/item/reagent_containers/pill/healingpowder(src)
+	new /obj/item/stack/medical/gauze/improvised(src)
+	new /obj/item/stack/medical/mesh/aloe(src)
 
 /obj/item/storage/survivalkit/tribal/empty/PopulateContents()
 	return
@@ -54,6 +62,10 @@
 	new /obj/item/flashlight(src)
 	new /obj/item/flashlight/glowstick(src)
 	new /obj/item/melee/onehanded/knife/bowie(src)
+	new /obj/item/reagent_containers/hypospray/medipen/stimpak/epipak(src)
+	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
+	new /obj/item/stack/medical/gauze(src)
+	new /obj/item/stack/medical/ointment(src)
 	
 /obj/item/storage/survivalkit/outlaw/empty/PopulateContents()
 	return
@@ -63,7 +75,7 @@
 	name = "combat kit"
 	desc = "A robust leather kit for combat equipment."
 	icon_state = "survivalkit_bullet"
-	component_type = /datum/component/storage/concrete/box/survivalkit/specialized/combat
+	//component_type = /datum/component/storage/concrete/box/survivalkit/specialized/combat
 
 /obj/item/storage/survivalkit/combat/empty/PopulateContents()
 	return
@@ -73,13 +85,13 @@
 	name = "survival medkit"
 	desc = "A robust leather medipouch for quick-access medical equipment."
 	icon_state = "survivalkit_medical"
-	component_type = /datum/component/storage/concrete/box/survivalkit/specialized/medical
+	//component_type = /datum/component/storage/concrete/box/survivalkit/specialized/medical
 
-/obj/item/storage/survivalkit/medical/PopulateContents()
+/* /obj/item/storage/survivalkit/medical/PopulateContents()
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak/epipak(src)
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
 	new /obj/item/stack/medical/gauze(src)
-	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/stack/medical/ointment(src) */
 
 /obj/item/storage/survivalkit/medical/empty/PopulateContents()
 	return
@@ -90,7 +102,7 @@
 	desc = "A robust leather pouch containing the essentials for trauma care."
 	icon_state = "survivalkit_medical"
 	color = "#5dc9ff"
-	component_type = /datum/component/storage/concrete/box/survivalkit/specialized/medical
+	//component_type = /datum/component/storage/concrete/box/survivalkit/specialized/medical
 
 /obj/item/storage/survivalkit/medical/follower/PopulateContents()
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak/epipak(src)
@@ -104,14 +116,14 @@
 	desc = "A robust leather pouch containing the essentials for tribal trauma care."
 	icon_state = "survivalkit_tribal"
 	color = "#d1ffb3"
-	component_type = /datum/component/storage/concrete/box/survivalkit/specialized/medical
+	//component_type = /datum/component/storage/concrete/box/survivalkit/specialized/medical
 
-/obj/item/storage/survivalkit/medical/tribal/PopulateContents()
+/* /obj/item/storage/survivalkit/medical/tribal/PopulateContents()
 	new /obj/item/reagent_containers/pill/healingpowder(src)
 	new /obj/item/reagent_containers/pill/healingpowder(src)
 	new /obj/item/stack/medical/gauze/improvised(src)
 	new /obj/item/stack/medical/mesh/aloe(src)
-
+ */
 /obj/item/storage/survivalkit/medical/tribal/empty/PopulateContents()
 	return
 

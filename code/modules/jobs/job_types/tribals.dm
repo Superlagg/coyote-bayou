@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(tribal_job_recipes, list(
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	id = null
 	box = /obj/item/storage/survivalkit/tribal
-	box_two = /obj/item/storage/survivalkit/medical/tribal
+	//box_two = /obj/item/storage/survivalkit/medical/tribal
 	ears = null
 
 /datum/outfit/job/tribal/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

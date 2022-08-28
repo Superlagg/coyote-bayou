@@ -24,7 +24,7 @@
 /obj/item/storage/backpack/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
+	STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
 	STR.max_combined_w_class = 21
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_items = 21

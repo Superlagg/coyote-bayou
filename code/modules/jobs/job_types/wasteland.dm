@@ -68,7 +68,7 @@ Raider
 	gloves = /obj/item/clothing/gloves/f13/handwraps
 	r_pocket = /obj/item/flashlight/flare
 	box = /obj/item/storage/survivalkit/outlaw
-	box_two = /obj/item/storage/survivalkit/medical
+	//box_two = /obj/item/storage/survivalkit/medical
 	backpack_contents = list(
 		/obj/item/restraints/handcuffs = 2,
 		/obj/item/melee/onehanded/club = 1,
@@ -336,7 +336,7 @@ Raider
 	belt = /obj/item/storage/backpack/spearquiver
 	back = /obj/item/storage/backpack/satchel/explorer
 	box = /obj/item/storage/survivalkit/tribal
-	box_two = /obj/item/storage/survivalkit/medical/tribal
+	//box_two = /obj/item/storage/survivalkit/medical/tribal
 	backpack_contents = list(
 		/obj/item/book/granter/trait/tribaltraditions =1,
 		/obj/item/clothing/mask/cigarette/pipe = 1,
@@ -983,8 +983,8 @@ Raider
 	r_pocket = /obj/item/flashlight/flare
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
-	box = /obj/item/storage/survivalkit/tribal
-	box_two = /obj/item/storage/survivalkit/medical/tribal
+	box = /obj/item/storage/survivalkit
+	//box_two = /obj/item/storage/survivalkit/medical
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/medipen/stimpak,
 		/obj/item/reagent_containers/hypospray/medipen/stimpak,
@@ -1939,7 +1939,7 @@ datum/job/wasteland/f13dendoctor
 	backpack = /obj/item/storage/backpack/satchel/explorer
 	satchel = /obj/item/storage/backpack/satchel/explorer
 	box = /obj/item/storage/survivalkit/tribal
-	box_two = /obj/item/storage/survivalkit/medical/tribal
+	//box_two = /obj/item/storage/survivalkit/medical/tribal
 	backpack_contents = list(
 		/obj/item/reagent_containers/pill/healingpowder = 2,
 		/obj/item/flashlight/lantern = 1,
@@ -1974,7 +1974,7 @@ datum/job/wasteland/f13dendoctor
 	name = "Far-Land Shaman"
 	suit = /obj/item/clothing/suit/hooded/cloak/desert
 	box = /obj/item/storage/survivalkit/tribal
-	box_two = /obj/item/storage/survivalkit/medical/tribal
+	//box_two = /obj/item/storage/survivalkit/medical/tribal
 	backpack_contents = list(
 		/obj/item/storage/bag/plants=1,
 		/obj/item/cultivator=1,

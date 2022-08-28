@@ -37,7 +37,7 @@ Weapons		Service Rifle, Grease Gun, 9mm pistol, all good.
 	shoes = /obj/item/clothing/shoes/f13/military/ncr
 	l_pocket = /obj/item/book/manual/ncr/jobguide
 	box = /obj/item/storage/survivalkit
-	box_two = /obj/item/storage/survivalkit/medical
+	//box_two = /obj/item/storage/survivalkit/medical
 
 /datum/outfit/job/ncr/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
@@ -573,7 +573,7 @@ Weapons		Service Rifle, Grease Gun, 9mm pistol, all good.
 	ears = /obj/item/radio/headset/headset_ranger
 	mask = /obj/item/clothing/mask/gas/ranger
 	box = /obj/item/storage/survivalkit
-	box_two = /obj/item/storage/survivalkit/medical
+	//box_two = /obj/item/storage/survivalkit/medical
 	r_pocket = /obj/item/binoculars
 	backpack_contents = list(
 		/obj/item/melee/onehanded/knife/bowie = 1,
@@ -987,7 +987,7 @@ Weapons		Service Rifle, Grease Gun, 9mm pistol, all good.
 	accessory = /obj/item/clothing/accessory/armband/med/ncr
 	suit_store = /obj/item/gun/ballistic/automatic/m1carbine/compact
 	box = /obj/item/storage/survivalkit
-	box_two = /obj/item/storage/survivalkit/medical
+	//box_two = /obj/item/storage/survivalkit/medical
 	backpack_contents = list(
 		/obj/item/ammo_box/magazine/m10mm/adv/simple = 2,
 		/obj/item/storage/bag/money/small/ncrenlisted = 1,
@@ -1294,7 +1294,7 @@ Weapons		Service Rifle, Grease Gun, 9mm pistol, all good.
 	r_hand = /obj/item/storage/backpack/duffelbag/med/surgery
 	mask = /obj/item/clothing/mask/surgical
 	box = /obj/item/storage/survivalkit
-	box_two = /obj/item/storage/survivalkit/medical
+	//box_two = /obj/item/storage/survivalkit/medical
 	backpack_contents = list(
 		/obj/item/gun/ballistic/automatic/pistol/m1911/custom = 1,
 		/obj/item/ammo_box/magazine/m45 = 2,

@@ -692,21 +692,21 @@ GLOBAL_LIST_INIT(storage_tray_can_hold, typecacheof(list(
  * * * * * * * * * * * * * * */
 
 /// How many items total fit in a specialized neckpron
-#define STORAGE_NECKPRON_SPECIALIZED_MAX_ITEMS 4
+#define STORAGE_NECKPRON_SPECIALIZED_MAX_ITEMS 5
 /// How big a thing can fit in a specialized neckpron
 #define STORAGE_NECKPRON_SPECIALIZED_MAX_SIZE WEIGHT_CLASS_SMALL
 /// How much volume fits in a specialized neckpron
 #define STORAGE_NECKPRON_SPECIALIZED_MAX_TOTAL_SPACE STORAGE_NECKPRON_SPECIALIZED_MAX_SIZE * STORAGE_NECKPRON_SPECIALIZED_MAX_ITEMS
 
 /// How many items total fit in a generic neckpron
-#define STORAGE_NECKPRON_GENERIC_MAX_ITEMS 3
+#define STORAGE_NECKPRON_GENERIC_MAX_ITEMS 4
 /// How big a thing can fit in a generic neckpron
 #define STORAGE_NECKPRON_GENERIC_MAX_SIZE WEIGHT_CLASS_TINY
 /// How much volume fits in a generic neckpron
 #define STORAGE_NECKPRON_GENERIC_MAX_TOTAL_SPACE STORAGE_NECKPRON_GENERIC_MAX_SIZE * STORAGE_NECKPRON_GENERIC_MAX_ITEMS
 
 /// How many items total fit in a holster neckpron
-#define STORAGE_NECKPRON_HOLSTER_MAX_ITEMS 3
+#define STORAGE_NECKPRON_HOLSTER_MAX_ITEMS 7
 /// How big a thing can fit in a holster neckpron
 #define STORAGE_NECKPRON_HOLSTER_MAX_SIZE WEIGHT_CLASS_NORMAL
 /// How much volume fits in a holster neckpron
@@ -724,28 +724,28 @@ GLOBAL_LIST_INIT(storage_tray_can_hold, typecacheof(list(
 #define STORAGE_SUIT_SPECIALIZED_MAX_TOTAL_SPACE STORAGE_SUIT_SPECIALIZED_MAX_SIZE * STORAGE_SUIT_SPECIALIZED_MAX_ITEMS
 
 /// How many items total fit in a generic suit
-#define STORAGE_SUIT_GENERIC_MAX_ITEMS 2
+#define STORAGE_SUIT_GENERIC_MAX_ITEMS 3
 /// How big a thing can fit in a generic suit
 #define STORAGE_SUIT_GENERIC_MAX_SIZE WEIGHT_CLASS_SMALL
 /// How much volume fits in a generic suit
 #define STORAGE_SUIT_GENERIC_MAX_TOTAL_SPACE STORAGE_SUIT_GENERIC_MAX_SIZE * STORAGE_SUIT_GENERIC_MAX_ITEMS
 
 /// How many items total fit in a jacket suit
-#define STORAGE_SUIT_JACKET_MAX_ITEMS 4
+#define STORAGE_SUIT_JACKET_MAX_ITEMS 5
 /// How big a thing can fit in a jacket suit
 #define STORAGE_SUIT_JACKET_MAX_SIZE WEIGHT_CLASS_SMALL
 /// How much volume fits in a jacket suit
 #define STORAGE_SUIT_JACKET_MAX_TOTAL_SPACE STORAGE_SUIT_JACKET_MAX_SIZE * STORAGE_SUIT_JACKET_MAX_ITEMS
 
 /// How many items total fit in a duster suit
-#define STORAGE_SUIT_DUSTER_MAX_ITEMS 4
+#define STORAGE_SUIT_DUSTER_MAX_ITEMS 5
 /// How big a thing can fit in a duster suit
 #define STORAGE_SUIT_DUSTER_MAX_SIZE WEIGHT_CLASS_SMALL
 /// How much volume fits in a duster suit
 #define STORAGE_SUIT_DUSTER_MAX_TOTAL_SPACE STORAGE_SUIT_DUSTER_MAX_SIZE * STORAGE_SUIT_DUSTER_MAX_ITEMS
 
 /// How many items total fit in a duster armor
-#define STORAGE_SUIT_DUSTER_ARMOR_MAX_ITEMS 3
+#define STORAGE_SUIT_DUSTER_ARMOR_MAX_ITEMS 4
 /// How big a thing can fit in a duster armor
 #define STORAGE_SUIT_DUSTER_ARMOR_MAX_SIZE WEIGHT_CLASS_SMALL
 /// How much volume fits in a duster armor
@@ -788,14 +788,14 @@ GLOBAL_LIST_INIT(storage_tray_can_hold, typecacheof(list(
 #define STORAGE_BOX_DEFAULT_MAX_TOTAL_SPACE STORAGE_BOX_DEFAULT_MAX_ITEMS * STORAGE_BOX_DEFAULT_MAX_SIZE
 
 /// How many items total fit in a generic survival kit
-#define STORAGE_BOX_SURVIVAL_GENERIC_DEFAULT_MAX_ITEMS 3
+#define STORAGE_BOX_SURVIVAL_GENERIC_DEFAULT_MAX_ITEMS 7
 /// How big a thing can fit in a generic survival kit
 #define STORAGE_BOX_SURVIVAL_GENERIC_MAX_SIZE WEIGHT_CLASS_SMALL
 /// How much volume fits in a generic survival kit
 #define STORAGE_BOX_SURVIVAL_GENERIC_MAX_TOTAL_SPACE STORAGE_BOX_SURVIVAL_GENERIC_DEFAULT_MAX_ITEMS * STORAGE_BOX_SURVIVAL_GENERIC_MAX_SIZE
 
 /// How many items total fit in a specialized survival kit
-#define STORAGE_BOX_SURVIVAL_SPECIALIZED_DEFAULT_MAX_ITEMS 4
+#define STORAGE_BOX_SURVIVAL_SPECIALIZED_DEFAULT_MAX_ITEMS 7
 /// How big a thing can fit in a specialized survival kit
 #define STORAGE_BOX_SURVIVAL_SPECIALIZED_MAX_SIZE WEIGHT_CLASS_SMALL
 /// How much volume fits in a specialized survival kit
