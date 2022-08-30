@@ -1,3 +1,52 @@
+GLOBAL_LIST_INIT(carpet_recipes, list (
+	new/datum/stack_recipe("drab carpet", /obj/item/stack/tile/carpet, 1),
+	new/datum/stack_recipe("darkred carpet", /obj/item/stack/tile/carpet/blackred, 1),
+	new/datum/stack_recipe("black carpet", /obj/item/stack/tile/carpet/black, 1),
+	new/datum/stack_recipe("blue carpet", /obj/item/stack/tile/carpet/blue, 1),
+	new/datum/stack_recipe("cyan carpet", /obj/item/stack/tile/carpet/cyan, 1),
+	new/datum/stack_recipe("green carpet", /obj/item/stack/tile/carpet/green, 1),
+	new/datum/stack_recipe("orange carpet", /obj/item/stack/tile/carpet/orange, 1),
+	new/datum/stack_recipe("purple carpet", /obj/item/stack/tile/carpet/purple, 1),
+	new/datum/stack_recipe("red carpet", /obj/item/stack/tile/carpet/red, 1),
+	new/datum/stack_recipe("royal black carpet", /obj/item/stack/tile/carpet/royalblack, 1),
+	new/datum/stack_recipe("royal blue carpet", /obj/item/stack/tile/carpet/royalblue, 1),
+	new/datum/stack_recipe("arcade carpet", /obj/item/stack/tile/carpet/arcade, 1),
+	new/datum/stack_recipe("monochrome carpet", /obj/item/stack/tile/carpet/monochrome, 1),
+	))
+
+GLOBAL_LIST_INIT(tile_recipes, list (
+	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1),
+	null,
+	new/datum/stack_recipe("pod floor", /obj/item/stack/tile/pod, 1),
+	new/datum/stack_recipe("light pod floor", /obj/item/stack/tile/pod/light, 1),
+	new/datum/stack_recipe("dark pod floor", /obj/item/stack/tile/pod/dark, 1),
+	))
+
+GLOBAL_LIST_INIT(wood_tile_recipes, list (
+	new/datum/stack_recipe("wood tile", /obj/item/stack/tile/wood, 1),
+	null,
+	new/datum/stack_recipe("common wood tile", /obj/item/stack/tile/wood/common, 1),
+	new/datum/stack_recipe("common light wood tile", /obj/item/stack/tile/wood/common/light, 1),
+	new/datum/stack_recipe("common dark wood tile", /obj/item/stack/tile/wood/common/dark, 1),
+	null,
+	new/datum/stack_recipe("worn wood tile", /obj/item/stack/tile/wood/worn, 1),
+	new/datum/stack_recipe("worn light wood tile", /obj/item/stack/tile/wood/worn/light, 1),
+	new/datum/stack_recipe("worn dark wood tile", /obj/item/stack/tile/wood/worn/dark, 1),
+	null,
+	new/datum/stack_recipe("fancy wood tile", /obj/item/stack/tile/wood/fancy, 1),
+	new/datum/stack_recipe("fancy light wood tile", /obj/item/stack/tile/wood/fancy/light, 1),
+	new/datum/stack_recipe("fancy dark wood tile", /obj/item/stack/tile/wood/fancy/dark, 1),
+	null,
+	new/datum/stack_recipe("wide wood tile", /obj/item/stack/tile/wood/wide, 1),
+	new/datum/stack_recipe("wide light wood tile", /obj/item/stack/tile/wood/wide/light, 1),
+	new/datum/stack_recipe("wide dark wood tile", /obj/item/stack/tile/wood/wide/dark, 1),
+	null,
+	new/datum/stack_recipe("mosaic wood tile", /obj/item/stack/tile/wood/mosaic, 1),
+	new/datum/stack_recipe("mosaic light wood tile", /obj/item/stack/tile/wood/mosaic/light, 1),
+	new/datum/stack_recipe("mosaic dark wood tile", /obj/item/stack/tile/wood/mosaic/dark, 1),
+	))
+
+
 /obj/item/stack/tile
 	name = "broken tile"
 	singular_name = "broken tile"
@@ -13,6 +62,7 @@
 	var/mineralType = null
 	novariants = TRUE
 	var/human_maxHealth = 100
+	var/tile_can_change = FALSE
 
 /obj/item/stack/tile/Initialize(mapload, amount)
 	. = ..()
@@ -83,6 +133,10 @@
 					user.put_in_hands(new_item)
 	else
 		return ..()
+
+/obj/item/stack/tile/get_main_recipes()
+	if(tile_can_change)
+		. += GLOB.tile_recipes
 
 //Grass
 /obj/item/stack/tile/grass
@@ -171,6 +225,149 @@
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/tile/wood
 
+/obj/item/stack/tile/wood/get_main_recipes()
+	. += GLOB.wood_tile_recipes
+
+// Common wood tiles
+/obj/item/stack/tile/wood/common
+	name = "common wooden floor tile"
+	singular_name = "common wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood"
+	turf_type = /turf/open/floor/wood_common
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/common
+
+/obj/item/stack/tile/wood/common/light
+	name = "common light wooden floor tile"
+	singular_name = "common light wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood"
+	turf_type = /turf/open/floor/wood_common/wood_common_light
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/common/light
+
+/obj/item/stack/tile/wood/common/dark
+	name = "common dark wooden floor tile"
+	singular_name = "wooden dark floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood"
+	turf_type = /turf/open/floor/wood_common/wood_common_dark
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/common/dark
+
+// worn wood tiles
+/obj/item/stack/tile/wood/worn
+	name = "worn wooden floor tile"
+	singular_name = "worn wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood"
+	turf_type = /turf/open/floor/wood_worn
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/worn
+
+/obj/item/stack/tile/wood/worn/light
+	name = "worn light wooden floor tile"
+	singular_name = "worn light wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood"
+	turf_type = /turf/open/floor/wood_worn/wood_worn_light
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/worn/light
+
+/obj/item/stack/tile/wood/worn/dark
+	name = "worn dark wooden floor tile"
+	singular_name = "wooden dark floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood"
+	turf_type = /turf/open/floor/wood_worn/wood_worn_dark
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/worn/dark
+
+// fancy wood tiles
+/obj/item/stack/tile/wood/fancy
+	name = "fancy wooden floor tile"
+	singular_name = "fancy wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_diagonal"
+	turf_type = /turf/open/floor/wood_fancy
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/fancy
+
+/obj/item/stack/tile/wood/fancy/light
+	name = "fancy light wooden floor tile"
+	singular_name = "fancy light wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_diagonal"
+	turf_type = /turf/open/floor/wood_fancy/wood_fancy_light
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/fancy/light
+
+/obj/item/stack/tile/wood/fancy/dark
+	name = "fancy dark wooden floor tile"
+	singular_name = "wooden dark floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_diagonal"
+	turf_type = /turf/open/floor/wood_fancy/wood_fancy_dark
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/fancy/dark
+
+// wide wood tiles
+/obj/item/stack/tile/wood/wide
+	name = "wide wooden floor tile"
+	singular_name = "wide wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_large"
+	turf_type = /turf/open/floor/wood_wide
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/wide
+
+/obj/item/stack/tile/wood/wide/light
+	name = "wide light wooden floor tile"
+	singular_name = "wide light wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_large"
+	turf_type = /turf/open/floor/wood_wide/wood_wide_light
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/wide/light
+
+/obj/item/stack/tile/wood/wide/dark
+	name = "wide dark wooden floor tile"
+	singular_name = "wooden dark floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_large"
+	turf_type = /turf/open/floor/wood_wide/wood_wide_dark
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/wide/dark
+
+// mosaic wood tiles
+/obj/item/stack/tile/wood/mosaic
+	name = "mosaic wooden floor tile"
+	singular_name = "mosaic wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_tile"
+	turf_type = /turf/open/floor/wood_mosaic
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/mosaic
+
+/obj/item/stack/tile/wood/mosaic/light
+	name = "mosaic light wooden floor tile"
+	singular_name = "mosaic light wooden floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_tile"
+	turf_type = /turf/open/floor/wood_mosaic/wood_mosaic_light
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/mosaic/light
+
+/obj/item/stack/tile/wood/mosaic/dark
+	name = "mosaic dark wooden floor tile"
+	singular_name = "wooden dark floor tile"
+	desc = "An easy to fit wood floor tile."
+	icon_state = "tile-wood_tile"
+	turf_type = /turf/open/floor/wood_mosaic/wood_mosaic_dark
+	resistance_flags = FLAMMABLE
+	merge_type = /obj/item/stack/tile/wood/mosaic/dark
+
 
 //Cloth Floors
 
@@ -200,6 +397,9 @@
 	resistance_flags = FLAMMABLE
 	tableVariant = /obj/structure/table/wood/fancy
 	merge_type = /obj/item/stack/tile/carpet
+
+/obj/item/stack/tile/carpet/get_main_recipes()
+	. += GLOB.carpet_recipes
 
 /obj/item/stack/tile/carpet/black
 	name = "black carpet"
@@ -484,6 +684,7 @@
 	icon_state = "tile_bcircuit"
 	turf_type = /turf/open/floor/circuit
 	merge_type = /obj/item/stack/tile/circuit
+	tile_can_change = TRUE
 
 /obj/item/stack/tile/circuit/green
 	name = "green circuit tile"
@@ -517,6 +718,7 @@
 	icon_state = "tile_pod"
 	turf_type = /turf/open/floor/pod
 	merge_type = /obj/item/stack/tile/pod
+	tile_can_change = TRUE
 
 /obj/item/stack/tile/pod/light
 	name = "light pod floor tile"
@@ -549,6 +751,7 @@
 	armor = ARMOR_VALUE_GENERIC_ITEM
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/tile/plasteel
+	tile_can_change = TRUE
 
 /obj/item/stack/tile/plasteel/cyborg
 	custom_materials = null // All other Borg versions of items have no Metal or Glass - RR

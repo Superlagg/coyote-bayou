@@ -22,6 +22,7 @@
 GLOBAL_LIST_INIT(metal_recipes, list ( \
 	new/datum/stack_recipe("wall girders", /obj/structure/girder, 2, time = 40, one_per_turf = TRUE, on_floor = TRUE, trait_booster = TRAIT_QUICK_BUILD, trait_modifier = 0.75), \
 	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20), \
+	new/datum/stack_recipe("carpet", /obj/item/stack/tile/carpet, 1, 4, 20), \
 	null, \
 	new/datum/stack_recipe("heavy iron door", /obj/structure/simple_door/metal/iron, 20, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("simple metal door", /obj/structure/simple_door/metal, 10, one_per_turf = TRUE, on_floor = TRUE), \
@@ -290,7 +291,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("fancy chair", /obj/structure/chair/wood/fancy, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("antique chair", /obj/structure/chair/wood/wings, 3, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("deckchair", /obj/structure/chair/comfy/plywood, 4, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
-	new/datum/stack_recipe("table frame", /obj/structure/table_frame/wood, 2, time = 10), \
+	new/datum/stack_recipe("table frame", /obj/structure/table_frame/wood, 2, time = 10, one_per_turf = TRUE), \
+	new/datum/stack_recipe("junk table", /obj/structure/table/wood/junk, 4, time = 10, one_per_turf = TRUE), \
+	new/datum/stack_recipe("booth table", /obj/structure/table/booth, 4, time = 10, one_per_turf = TRUE), \
 	new/datum/stack_recipe("bed", /obj/structure/bed/wooden, 2, one_per_turf = TRUE, on_floor = TRUE), \
 		)), \
 	null, \

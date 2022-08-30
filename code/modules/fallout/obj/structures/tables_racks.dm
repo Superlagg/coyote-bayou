@@ -15,6 +15,9 @@
 	icon = 'icons/obj/smooth_structures/booth_table.dmi'
 	icon_state = "boothtable"
 	flags_1 = NODECONSTRUCT_1
+	frame = /obj/structure/table_frame
+	framestack = /obj/item/stack/rods
+	buildstack = /obj/item/stack/sheet/mineral/wood
 	canSmoothWith = list(/obj/structure/table/booth)
 
 /obj/structure/table/booth/Initialize()
