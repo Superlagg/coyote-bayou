@@ -134,9 +134,9 @@ GLOBAL_LIST_INIT(wood_tile_recipes, list (
 	else
 		return ..()
 
-/obj/item/stack/tile/get_main_recipes()
+/* /obj/item/stack/tile/get_main_recipes()
 	if(tile_can_change)
-		. += GLOB.tile_recipes
+		. += GLOB.tile_recipes */
 
 //Grass
 /obj/item/stack/tile/grass
@@ -225,8 +225,8 @@ GLOBAL_LIST_INIT(wood_tile_recipes, list (
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/tile/wood
 
-/obj/item/stack/tile/wood/get_main_recipes()
-	. += GLOB.wood_tile_recipes
+///obj/item/stack/tile/wood/get_main_recipes() // doesnt work yet
+//	. += GLOB.wood_tile_recipes
 
 // Common wood tiles
 /obj/item/stack/tile/wood/common
@@ -398,8 +398,8 @@ GLOBAL_LIST_INIT(wood_tile_recipes, list (
 	tableVariant = /obj/structure/table/wood/fancy
 	merge_type = /obj/item/stack/tile/carpet
 
-/obj/item/stack/tile/carpet/get_main_recipes()
-	. += GLOB.carpet_recipes
+/* /obj/item/stack/tile/carpet/get_main_recipes()
+	. += GLOB.carpet_recipes */
 
 /obj/item/stack/tile/carpet/black
 	name = "black carpet"
