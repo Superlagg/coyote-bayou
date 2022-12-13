@@ -158,8 +158,8 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/improvised_any
 	fire_sound = 'sound/weapons/magrifle.ogg'
 
-	damage_multiplier = GUN_LESS_DAMAGE_T5
-	projectile_speed_multiplier = 0.1
+	damage_multiplier = GUN_LESS_DAMAGE_T4
+	projectile_speed_multiplier = 0.2
 	misfire_possibilities = list()
 
 /obj/item/gun/ballistic/revolver/hobo/piperifle/romckit/update_icon_state()
