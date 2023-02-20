@@ -12,8 +12,8 @@
 	icon_dead = "deathclaw_dead"
 	icon_gib = "deathclaw_gib"
 	mob_armor = ARMOR_VALUE_DEATHCLAW_COMMON
-	maxHealth = 250 
-	health = 250
+	maxHealth = 350 
+	health = 350
 	reach = 2
 	speed = 1
 	obj_damage = 200
@@ -86,7 +86,7 @@
 	wound_bonus += 25
 	bare_wound_bonus += 50
 	sound_pitch = -50
-	alternate_attack_prob = 75
+	alternate_attack_prob = 100
 	is_low_health = TRUE
 
 /// Override this with what should happen when going from low health to high health
@@ -115,15 +115,15 @@
 	throwee.safe_throw_at(throw_target, 10, 1, src, TRUE)
 
 /mob/living/simple_animal/hostile/deathclaw/Move()
-	if(is_low_health)
+	if(is_low_health && !stat && health > 0)
 		new /obj/effect/temp_visual/decoy/fading(loc,src)
 		DestroySurroundings()
 	. = ..()
 
 /mob/living/simple_animal/hostile/deathclaw/Bump(atom/A)
-	if(is_low_health)
+	if(is_low_health && !stat && health > 0)
 		if(isturf(A) || isobj(A) && A.density)
-			A.ex_act(EXPLODE_HEAVY)
+			A.ex_act(EXPLODE_LIGHT)
 			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
 		DestroySurroundings()
 	..()
@@ -133,9 +133,8 @@
 	name = "mother deathclaw"
 	desc = "A massive, reptilian creature with powerful muscles, razor-sharp claws, and aggression to match. This one is an angry mother."
 	gender = FEMALE
-	mob_armor = ARMOR_VALUE_DEATHCLAW_MOTHER
-	maxHealth = 300 
-	health = 300
+	maxHealth = 450 
+	health = 450
 	stat_attack = CONSCIOUS
 	melee_damage_lower = 25
 	melee_damage_upper = 55
@@ -149,11 +148,10 @@
 /mob/living/simple_animal/hostile/deathclaw/legendary
 	name = "legendary deathclaw"
 	desc = "A massive, reptilian creature with powerful muscles, razor-sharp claws, and aggression to match. This one is a legendary enemy."
-	mob_armor = ARMOR_VALUE_DEATHCLAW_MOTHER
-	maxHealth = 400 
-	health = 400
+	maxHealth = 500 
+	health = 500
 	color = "#FFFF00"
-	color_mad = rgb(133, 98, 87)
+	color_mad = rgb(168, 92, 68)
 	stat_attack = CONSCIOUS
 	melee_damage_lower = 25
 	melee_damage_upper = 55

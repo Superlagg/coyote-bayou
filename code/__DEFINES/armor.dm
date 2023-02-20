@@ -370,14 +370,10 @@
 		"damage_threshold" = 11)
 
 /* Deathclaw Commonboy
- * Just about impervious to bullets
- * Melee is... okay ish
- * Lasers also kinda pathetic
- * Plasma fucks em to death
  * Lot of DT
  * * * * * * * * * * * */
 #define ARMOR_VALUE_DEATHCLAW_COMMON list(\
-		"melee" = 0, \
+		"melee" = 15, \
 		"bullet" = 0, \
 		"laser" = 0, \
 		"energy" = 0, \
@@ -387,7 +383,7 @@
 		"fire" = 0, \
 		"acid" = 0, \
 		"wound" = 0, \
-		"damage_threshold" = 15)
+		"damage_threshold" = 20)
 
 /* Deathclaw Mommy
  * Just about impervious to bullets
