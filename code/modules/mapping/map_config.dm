@@ -32,9 +32,9 @@
 						ZTRAIT_BASETURF = /turf/open/indestructible/ground/inside/mountain
 						)
 					)
-	var/space_ruin_levels = 0
-	var/space_empty_levels = 0
-	var/station_ruin_budget = 0 // can be set to manually override the station ruins budget on maps that don't support station ruins, stopping the error from being unable to place the ruins.
+	var/space_ruin_levels = 3
+	var/space_empty_levels = 3
+	var/station_ruin_budget = 100 // can be set to manually override the station ruins budget on maps that don't support station ruins, stopping the error from being unable to place the ruins.
 
 	var/minetype// = "lavaland" // we don't want lavaland
 

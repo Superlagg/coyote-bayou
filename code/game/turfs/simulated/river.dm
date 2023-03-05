@@ -6,7 +6,7 @@
 
 #define RIVERGEN_SAFETY_LOCK 1000000
 
-/proc/spawn_rivers(target_z, nodes = 4, turf_type = /turf/open/lava/smooth/lava_land_surface, whitelist_area = /area/lavaland/surface/outdoors/unexplored, min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs)
+/proc/spawn_rivers(target_z, nodes = 4, turf_type = /turf/open/lava/smooth/lava_land_surface, whitelist_area /* = /area/lavaland/surface/outdoors/unexplored*/ , min_x = RANDOM_LOWER_X, min_y = RANDOM_LOWER_Y, max_x = RANDOM_UPPER_X, max_y = RANDOM_UPPER_Y, new_baseturfs)
 	var/list/river_nodes = list()
 	var/num_spawned = 0
 	var/list/possible_locs = block(locate(min_x, min_y, target_z), locate(max_x, max_y, target_z))
@@ -14,7 +14,7 @@
 	while(num_spawned < nodes && possible_locs.len && (safety++ < RIVERGEN_SAFETY_LOCK))
 		var/turf/T = pick(possible_locs)
 		var/area/A = get_area(T)
-		if(!istype(A, whitelist_area) || (T.flags_1 & NO_LAVA_GEN_1))
+		if((whitelist_area && !istype(A, whitelist_area)) || (T.flags_1 & NO_LAVA_GEN_1))
 			possible_locs -= T
 		else
 			river_nodes += new /obj/effect/landmark/river_waypoint(T)
@@ -51,7 +51,7 @@
 
 			cur_turf = get_step(cur_turf, cur_dir)
 			var/area/new_area = get_area(cur_turf)
-			if(!istype(new_area, whitelist_area) || (cur_turf.flags_1 & NO_LAVA_GEN_1)) //Rivers will skip ruins
+			if((whitelist_area && !istype(new_area, whitelist_area)) || (cur_turf.flags_1 & NO_LAVA_GEN_1)) //Rivers will skip ruins
 				detouring = 0
 				cur_dir = get_dir(cur_turf, target_turf)
 				cur_turf = get_step(cur_turf, cur_dir)

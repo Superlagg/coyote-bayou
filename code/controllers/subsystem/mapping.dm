@@ -22,6 +22,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/ice_ruins_templates = list()
 	var/list/ice_ruins_underground_templates = list()
 	var/list/station_ruins_templates = list()
+	var/list/test_templates = list()
 	var/datum/space_level/isolated_ruins_z //Created on demand during ruin loading.
 
 	var/list/shuttle_templates = list()
@@ -86,25 +87,46 @@ SUBSYSTEM_DEF(mapping)
 	preloadTemplates()
 #ifndef LOWMEMORYMODE
 	// Create space ruin levels
-	while (space_levels_so_far < config.space_ruin_levels)
+/* 	while (space_levels_so_far < config.space_ruin_levels)
 		++space_levels_so_far
-		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
+		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAIT_SPACE_RUINS)
 	// and one level with no ruins
 	for (var/i in 1 to config.space_empty_levels)
 		++space_levels_so_far
 		empty_space = add_new_zlevel("Empty Area [space_levels_so_far]", list(ZTRAIT_LINKAGE = CROSSLINKED))
-	// and the transit level
+	*/
+	// and the transit level 
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
-
+	/*
 	// Pick a random away mission.
 	if(CONFIG_GET(flag/roundstart_away))
 		createRandomZlevel()
 	// Pick a random VR level.
 	if(CONFIG_GET(flag/roundstart_vr))
-		createRandomZlevel(VIRT_REALITY_NAME, list(ZTRAIT_AWAY = TRUE, ZTRAIT_VR = TRUE), GLOB.potential_vr_levels)
+		createRandomZlevel(VIRT_REALITY_NAME, list(ZTRAIT_AWAY = TRUE, ZTRAIT_VR = TRUE), GLOB.potential_vr_levels) */
+
+	for(var/i in 1 to 3)
+		++space_levels_so_far
+		add_new_zlevel("Empty Area [space_levels_so_far]", ZTRAITS_SPACE)
 
 	// Generate mining ruins
 	loading_ruins = TRUE
+
+	var/list/testing_ruins = levels_by_trait(ZTRAIT_SPACE_RUINS)
+	if (testing_ruins.len)
+		seedRuins(testing_ruins, 200, null, test_templates)
+		for (var/testy_z in testing_ruins)
+			spawn_rivers(testy_z, 10, /turf/closed/wall/r_wall/rust, null, new_baseturfs = TRUE)
+			spawn_rivers(testy_z, 5, /turf/closed/wall/mineral/brick, null, new_baseturfs = TRUE)
+	
+	var/list/more_testing = COMMON_Z_LEVELS
+	if (more_testing.len)
+		seedRuins(more_testing, 200, null, test_templates)
+		for (var/testy_z in more_testing)
+			spawn_rivers(testy_z, 10, /turf/closed/wall/r_wall/rust, null, new_baseturfs = TRUE)
+			spawn_rivers(testy_z, 5, /turf/closed/wall/mineral/brick, null, new_baseturfs = TRUE)
+	
+/*
 	var/list/lava_ruins = levels_by_trait(ZTRAIT_LAVA_RUINS)
 	if (lava_ruins.len)
 		seedRuins(lava_ruins, CONFIG_GET(number/lavaland_budget), list(/area/lavaland/surface/outdoors/unexplored), lava_ruins_templates)
@@ -133,6 +155,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/station_ruins = levels_by_trait(ZTRAIT_STATION)
 	if (station_ruins.len)
 		seedRuins(station_ruins, (SSmapping.config.station_ruin_budget < 0) ? CONFIG_GET(number/station_space_budget) : SSmapping.config.station_ruin_budget, list(/area/space/station_ruins), station_ruins_templates)
+ */
 	SSmapping.seedStation()
 	loading_ruins = FALSE
 #endif
@@ -430,6 +453,8 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 			station_room_templates[R.id] = R
 		else if(istype(R, /datum/map_template/ruin/spacenearstation))
 			station_ruins_templates[R.id] = R
+		else if(istype(R, /datum/map_template/ruin/test))
+			test_templates[R.id] = R
 
 /datum/controller/subsystem/mapping/proc/preloadShuttleTemplates()
 	var/list/unbuyable = generateMapList("[global.config.directory]/unbuyableshuttles.txt")

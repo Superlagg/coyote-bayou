@@ -1,0 +1,19 @@
+"a" = (/turf/closed/indestructible/sandstone,/area/f13/wasteland)
+"f" = (/turf/closed/indestructible/syndicate,/area/f13/wasteland)
+"l" = (/mob/living/carbon/monkey/angry,/turf/open/indestructible/ground/outside/desert,/area/f13/wasteland)
+"n" = (/turf/open/indestructible/ground/outside/desert,/area/f13/wasteland)
+"s" = (/turf/closed/indestructible/abductor,/area/f13/wasteland)
+"P" = (/turf/closed/indestructible/vaultdoor,/area/f13/wasteland)
+
+(1,1,1) = {"
+anannaanaa
+nannnannan
+nanalaaPaa
+nasananPan
+nanasanPan
+nnnnssnPnn
+nfnnffsffn
+fnfnfnPfnn
+fffPPfPPfn
+fnfnffnffn
+"}

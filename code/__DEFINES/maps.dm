@@ -109,7 +109,7 @@ require only minor tweaks.
 
 //Ruin Generation
 
-#define PLACEMENT_TRIES 0 //How many times we try to fit the ruin somewhere until giving up (really should just swap to some packing algo)
+#define PLACEMENT_TRIES 100 //How many times we try to fit the ruin somewhere until giving up (really should just swap to some packing algo)
 
 #define PLACE_DEFAULT "random"
 #define PLACE_SAME_Z "same" //On same z level as original ruin
