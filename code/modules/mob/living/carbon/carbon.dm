@@ -532,6 +532,24 @@
 		chat_color_darkened = "#[new_runecolor]"
 		to_chat(src, "<span style'color=#[new_runecolor]'>Your runechat color is now #[new_runecolor]!</span>")
 
+/mob/living/carbon/verb/change_runechat_font()
+	set category = "IC"
+	set name = "Runechat Font"
+	set desc = "Lets you change your runechat font!"
+	change_chat_font()
+
+/mob/living/carbon/proc/change_chat_font()
+	if(!client)
+		return
+	var/my_chat_font = dna.features["chat_font"]
+	var/new_runefont = input(src, "Choose your character's runechat font:", "Character Preference","[my_chat_font]") as null|anything in GLOB.cool_fonts
+	if(new_runefont)
+		dna.features["chat_font"] = new_runefont
+		client.prefs.features["chat_font"] = new_runefont
+		client.prefs.save_preferences()
+		chat_font = new_runefont
+		to_chat(src, "<span style='font-family:[new_runefont]'>Your runechat font is now [new_runefont]!</span>")
+
 /mob/living/carbon/fall(forced)
 	loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
 

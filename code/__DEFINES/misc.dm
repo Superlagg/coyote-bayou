@@ -1,4 +1,4 @@
-// Byond direction defines, because I want to put them somewhere.
+// Byond direction defines,because I want to put them somewhere.
 // #define NORTH 1
 // #define SOUTH 2
 // #define EAST 4
@@ -14,41 +14,41 @@
 /// world.icon_size
 #define PIXELS 32
 
-//These get to go at the top, because they're special
+//These get to go at the top,because they're special
 //You can use these defines to get the typepath of the currently running proc/verb (yes procs + verbs are objects)
 /* eg:
 /mob/living/carbon/human/death()
-	to_chat(world, THIS_PROC_TYPE_STR) //You can only output the string versions
+	to_chat(world,THIS_PROC_TYPE_STR) //You can only output the string versions
 Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a string with () (eg: the _WITH_ARGS defines) to make it look nicer)
 */
 #define THIS_PROC_TYPE .....
-#define THIS_PROC_TYPE_STR "[THIS_PROC_TYPE]" //Because you can only obtain a string of THIS_PROC_TYPE using "[]", and it's nice to just +/+= strings
+#define THIS_PROC_TYPE_STR "[THIS_PROC_TYPE]" //Because you can only obtain a string of THIS_PROC_TYPE using "[]",and it's nice to just +/+= strings
 #define THIS_PROC_TYPE_STR_WITH_ARGS "[THIS_PROC_TYPE]([args.Join(",")])"
-#define THIS_PROC_TYPE_WEIRD ...... //This one is WEIRD, in some cases (When used in certain defines? (eg: ASSERT)) THIS_PROC_TYPE will fail to work, but THIS_PROC_TYPE_WEIRD will work instead
+#define THIS_PROC_TYPE_WEIRD ...... //This one is WEIRD,in some cases (When used in certain defines? (eg: ASSERT)) THIS_PROC_TYPE will fail to work,but THIS_PROC_TYPE_WEIRD will work instead
 //define THIS_PROC_TYPE_WEIRD_STR "[THIS_PROC_TYPE_WEIRD]" //Included for completeness
 //define THIS_PROC_TYPE_WEIRD_STR_WITH_ARGS "[THIS_PROC_TYPE_WEIRD]([args.Join(",")])" //Ditto
 
 #define NOT_IMPLEMENTED "NOT_IMPLEMENTED"
 
 //Human Overlays Indexes/////////
-//"LOTS OF CIT CHANGES HERE. BE CAREFUL WHEN UPSTREAM ADDS MORE LAYERS" said the downstream, bottomly
-#define MUTATIONS_LAYER							41	//mutations. Tk headglows, cold resistance glow, etc
-#define GENITALS_BEHIND_LAYER					40	//The behind portion of genitals, mostly for north-facing sprites being behind everything. Not used by butts!
+//"LOTS OF CIT CHANGES HERE. BE CAREFUL WHEN UPSTREAM ADDS MORE LAYERS" said the downstream,bottomly
+#define MUTATIONS_LAYER							41	//mutations. Tk headglows,cold resistance glow,etc
+#define GENITALS_BEHIND_LAYER					40	//The behind portion of genitals,mostly for north-facing sprites being behind everything. Not used by butts!
 #define BODY_BEHIND_LAYER						39	//certain mutantrace features (tail when looking south) that must appear behind the body parts
-#define BODYPARTS_LAYER							38	//Initially "AUGMENTS", this was repurposed to be a catch-all bodyparts flag
+#define BODYPARTS_LAYER							38	//Initially "AUGMENTS",this was repurposed to be a catch-all bodyparts flag
 #define MARKING_LAYER							37	//Matrixed body markings because clashing with snouts?
 #define ARMS_PART_LAYER							35	//the arms themselves
-#define MARKING_LAYER_ARMS						34	//Markings that should show up over a butt, like arms
-#define BODY_ADJ_LAYER							33	//certain mutantrace features (snout, body markings) that must appear above the body parts
+#define MARKING_LAYER_ARMS						34	//Markings that should show up over a butt,like arms
+#define BODY_ADJ_LAYER							33	//certain mutantrace features (snout,body markings) that must appear above the body parts
 #define GENITAL_UNDER_UNDERWEAR_MID_LAYER 		32	// Genitals set to be visible over everything else
 #define GENITAL_UNDER_UNDERWEAR_FRONT_LAYER 	31	// Genitals set to be visible over everything else
-#define BODY_LAYER								30	//underwear, undershirts, socks, eyes, lips(makeup)
+#define BODY_LAYER								30	//underwear,undershirts,socks,eyes,lips(makeup)
 #define BODY_ADJ_UPPER_LAYER					29	//Taur lowernesses
-#define FRONT_MUTATIONS_LAYER					28	//mutations that should appear above body, body_adj and bodyparts layer (e.g. laser eyes)
+#define FRONT_MUTATIONS_LAYER					28	//mutations that should appear above body,body_adj and bodyparts layer (e.g. laser eyes)
 #define DAMAGE_LAYER							27	//damage indicators (cuts and burns)
 #define GENITAL_OVER_UNDERWEAR_MID_LAYER 		26	// Genitals set to be visible over everything else
 #define GENITAL_OVER_UNDERWEAR_FRONT_LAYER 		25	// Genitals set to be visible over everything else
-#define GENITALS_FRONT_LAYER					24	//Genitals that go over the body, but under the hands and arms
+#define GENITALS_FRONT_LAYER					24	//Genitals that go over the body,but under the hands and arms
 #define UNIFORM_LAYER							23
 #define HANDS_PART_LAYER						22	//Hands
 #define ID_LAYER								21
@@ -74,13 +74,13 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define FIRE_LAYER								1	//If you're on fire
 #define TOTAL_LAYERS							41	//KEEP THIS UP-TO-DATE OR SHIT WILL BREAK ;_;
 
-//Human Overlay Index Shortcuts for alternate_worn_layer, layers
+//Human Overlay Index Shortcuts for alternate_worn_layer,layers
 //Because I *KNOW* somebody will think layer+1 means "above"
-//IT DOESN'T OK, IT MEANS "UNDER"
+//IT DOESN'T OK,IT MEANS "UNDER"
 #define UNDER_SUIT_LAYER			(SUIT_LAYER+1)
 #define UNDER_HEAD_LAYER			(HEAD_LAYER+1)
 
-//AND -1 MEANS "ABOVE", OK?, OK!?!
+//AND -1 MEANS "ABOVE",OK?,OK!?!
 #define ABOVE_SHOES_LAYER			(SHOES_LAYER-1)
 #define ABOVE_BODY_FRONT_LAYER		(BODY_FRONT_LAYER-1)
 
@@ -95,8 +95,8 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 
 #define TRANSITIONEDGE			0 //Distance from edge to move to another z-level
 
-#define BE_CLOSE TRUE		//in the case of a silicon, to select if they need to be next to the atom
-#define NO_DEXTERY TRUE	//if other mobs (monkeys, aliens, etc) can use this
+#define BE_CLOSE TRUE		//in the case of a silicon,to select if they need to be next to the atom
+#define NO_DEXTERY TRUE	//if other mobs (monkeys,aliens,etc) can use this
 #define NO_TK TRUE
 //used by canUseTopic()
 
@@ -126,6 +126,36 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 #define PRINTER_FONT "Times New Roman"
 #define SIGNFONT "Times New Roman"
 #define CHARCOAL_FONT "Candara"
+// fuck you i made it, i name it
+GLOBAL_LIST_INIT(cool_fonts,list(
+	"Arial",
+	"Arial Black",
+	"Book Antiqua",
+	"Century Gothic",
+	"Century Schoolbook",
+	"Candara",
+	"Calibri",
+	"Comic Sans MS",
+	"Courier New",
+	"Garamond",
+	"Georgia",
+	"Impact",
+	"Lucida Console",
+	"Lucida Sans Unicode",
+	"MS Sans Serif",
+	"MS Serif",
+	"Palatino Linotype",
+	"Segoe Script",
+	"Tahoma",
+	"Times New Roman",
+	"Trebuchet MS",
+	"Verdana",
+	"Symbol",
+	"Webdings",
+	"Wingdings",
+	"Wingdings 2",
+	"Wingdings 3"
+	)) // if you set your runechat to wingdings, you're valid
 
 #define RESIZE_DEFAULT_SIZE 1
 
@@ -194,7 +224,7 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 
 #define IS_WET_OPEN_TURF(O) O.GetComponent(/datum/component/wet_floor)
 
-//Maximum amount of time, (in deciseconds) a tile can be wet for.
+//Maximum amount of time,(in deciseconds) a tile can be wet for.
 #define MAXIMUM_WET_TIME 5 MINUTES
 
 //unmagic-strings for types of polls
@@ -206,14 +236,14 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 
 
 
-//subtypesof(), typesof() without the parent path
+//subtypesof(),typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
 
 //Gets the turf this atom inhabits
-#define get_turf(A) (get_step(A, 0))
+#define get_turf(A) (get_step(A,0))
 
 //Same as above except gets the area instead
-#define get_area(A) (isarea(A) ? A : get_step(A, 0)?.loc)
+#define get_area(A) (isarea(A) ? A : get_step(A,0)?.loc)
 
 //Ghost orbit types:
 #define GHOST_ORBIT_CIRCLE		"circle"
@@ -233,7 +263,7 @@ GLOBAL_LIST_EMPTY(bloody_footprints_cache)
 
 #define GHOST_ACCS_DEFAULT_OPTION	GHOST_ACCS_FULL
 
-GLOBAL_LIST_INIT(ghost_accs_options, list(GHOST_ACCS_NONE, GHOST_ACCS_DIR, GHOST_ACCS_FULL)) //So save files can be sanitized properly.
+GLOBAL_LIST_INIT(ghost_accs_options,list(GHOST_ACCS_NONE,GHOST_ACCS_DIR,GHOST_ACCS_FULL)) //So save files can be sanitized properly.
 
 #define GHOST_OTHERS_SIMPLE 			1
 #define GHOST_OTHERS_DEFAULT_SPRITE		50
@@ -249,7 +279,7 @@ GLOBAL_LIST_INIT(ghost_accs_options, list(GHOST_ACCS_NONE, GHOST_ACCS_DIR, GHOST
 #define GHOST_MAX_VIEW_RANGE_MEMBER 14
 
 
-GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DEFAULT_SPRITE, GHOST_OTHERS_THEIR_SETTING)) //Same as ghost_accs_options.
+GLOBAL_LIST_INIT(ghost_others_options,list(GHOST_OTHERS_SIMPLE,GHOST_OTHERS_DEFAULT_SPRITE,GHOST_OTHERS_THEIR_SETTING)) //Same as ghost_accs_options.
 
 //pda fonts
 #define MONO		"Monospaced"
@@ -257,12 +287,12 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 #define ORBITRON	"Orbitron"
 #define SHARE		"Share Tech Mono"
 
-GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
+GLOBAL_LIST_INIT(pda_styles,list(MONO,VT,ORBITRON,SHARE))
 
 //pda icon reskins
 #define PDA_SKIN_CLASSIC "Classic"
 
-GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
+GLOBAL_LIST_INIT(pda_reskins,list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
 
 /////////////////////////////////////
 // atom.appearence_flags shortcuts //
@@ -322,24 +352,24 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
 
 //debug printing macros
-#define debug_world(msg) if (GLOB.Debug2) to_chat(world, "<span class=\"filter_debuglog\">DEBUG: [msg]</span>")
-#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr, "<span class=\"filter_debuglog\">DEBUG: [msg]</span>")
-#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins, "<span class=\"filter_debuglog\">DEBUG: [msg]</span>")
+#define debug_world(msg) if (GLOB.Debug2) to_chat(world,"<span class=\"filter_debuglog\">DEBUG: [msg]</span>")
+#define debug_usr(msg) if (GLOB.Debug2&&usr) to_chat(usr,"<span class=\"filter_debuglog\">DEBUG: [msg]</span>")
+#define debug_admins(msg) if (GLOB.Debug2) to_chat(GLOB.admins,"<span class=\"filter_debuglog\">DEBUG: [msg]</span>")
 #define debug_world_log(msg) if (GLOB.Debug2) log_world("DEBUG: [msg]")
 
-#define INCREMENT_TALLY(L, stat) if(L[stat]){L[stat]++}else{L[stat] = 1}
+#define INCREMENT_TALLY(L,stat) if(L[stat]){L[stat]++}else{L[stat] = 1}
 
 //TODO Move to a pref
 #define STATION_GOAL_BUDGET  1
 
-//Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
+//Luma coefficients suggested for HDTVs. If you change these,make sure they add up to 1.
 #define LUMA_R 0.213
 #define LUMA_G 0.715
 #define LUMA_B 0.072
 
 //different types of atom colorations
 #define ADMIN_COLOUR_PRIORITY 		1 //only used by rare effects like greentext coloring mobs and when admins varedit color
-#define TEMPORARY_COLOUR_PRIORITY 	2 //e.g. purple effect of the revenant on a mob, black effect when mob electrocuted
+#define TEMPORARY_COLOUR_PRIORITY 	2 //e.g. purple effect of the revenant on a mob,black effect when mob electrocuted
 #define WASHABLE_COLOUR_PRIORITY 	3 //color splashed onto an atom (e.g. paint on turf)
 #define FIXED_COLOUR_PRIORITY 		4 //color inherent to the atom (e.g. blob color)
 #define COLOUR_PRIORITY_AMOUNT 4 //how many priority levels there are.
@@ -412,7 +442,7 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
 #define PR_ANNOUNCEMENTS_PER_ROUND 5 //The number of unique PR announcements allowed per round
 									//This makes sure that a single person can only spam 3 reopens and 3 closes before being ignored
 
-#define MAX_PROC_DEPTH 195 // 200 proc calls deep and shit breaks, this is a bit lower to give some safety room
+#define MAX_PROC_DEPTH 195 // 200 proc calls deep and shit breaks,this is a bit lower to give some safety room
 
 #define SYRINGE_DRAW 0
 #define SYRINGE_INJECT 1
@@ -450,11 +480,11 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
 #define SUMMON_GUNS "guns"
 #define SUMMON_MAGIC "magic"
 
-#define TELEPORT_CHANNEL_BLUESPACE "bluespace"	//Classic bluespace teleportation, requires a sender but no receiver
-#define TELEPORT_CHANNEL_QUANTUM "quantum"		//Quantum-based teleportation, requires both sender and receiver, but is free from normal disruption
-#define TELEPORT_CHANNEL_WORMHOLE "wormhole"	//Wormhole teleportation, is not disrupted by bluespace fluctuations but tends to be very random or unsafe
-#define TELEPORT_CHANNEL_MAGIC "magic"			//Magic teleportation, does whatever it wants (unless there's antimagic)
-#define TELEPORT_CHANNEL_CULT "cult"			//Cult teleportation, does whatever it wants (unless there's holiness)
+#define TELEPORT_CHANNEL_BLUESPACE "bluespace"	//Classic bluespace teleportation,requires a sender but no receiver
+#define TELEPORT_CHANNEL_QUANTUM "quantum"		//Quantum-based teleportation,requires both sender and receiver,but is free from normal disruption
+#define TELEPORT_CHANNEL_WORMHOLE "wormhole"	//Wormhole teleportation,is not disrupted by bluespace fluctuations but tends to be very random or unsafe
+#define TELEPORT_CHANNEL_MAGIC "magic"			//Magic teleportation,does whatever it wants (unless there's antimagic)
+#define TELEPORT_CHANNEL_CULT "cult"			//Cult teleportation,does whatever it wants (unless there's holiness)
 #define TELEPORT_CHANNEL_FREE "free"			//Anything else
 
 //Force the log directory to be something specific in the data/logs folder
@@ -467,42 +497,42 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
 #define EGG_LAYING_MESSAGES list("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")
 
 // list of all null rod weapons
-#define HOLY_WEAPONS /obj/item/nullrod, /obj/item/dualsaber/hypereutactic/chaplain, /obj/item/multitool/chaplain, /obj/item/clothing/gloves/fingerless/pugilist/chaplain
+#define HOLY_WEAPONS /obj/item/nullrod,/obj/item/dualsaber/hypereutactic/chaplain,/obj/item/multitool/chaplain,/obj/item/clothing/gloves/fingerless/pugilist/chaplain
 
 // Used by PDA and cartridge code to reduce repetitiveness of spritesheets
 #define PDAIMG(what) {"<span class="pda16x16 [#what]"></span>"}
 
 //Filters
-#define AMBIENT_OCCLUSION(_size, _color) list("type"="drop_shadow","x"=0,"y"=-2,"size"=_size,"color"=_color)
-#define EYE_BLUR(size) list("type"="blur", "size"=size)
+#define AMBIENT_OCCLUSION(_size,_color) list("type"="drop_shadow","x"=0,"y"=-2,"size"=_size,"color"=_color)
+#define EYE_BLUR(size) list("type"="blur","size"=size)
 #define GRAVITY_MOTION_BLUR list("type"="motion_blur","x"=0,"y"=0)
 
-#define STANDARD_GRAVITY 1 //Anything above this is high gravity, anything below no grav
+#define STANDARD_GRAVITY 1 //Anything above this is high gravity,anything below no grav
 #define GRAVITY_DAMAGE_TRESHOLD 3 //Starting with this value gravity will start to damage mobs
 
 #define CAMERA_NO_GHOSTS 0
 #define CAMERA_SEE_GHOSTS_BASIC 1
 #define CAMERA_SEE_GHOSTS_ORBIT 2
 
-#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : (istype(I, /datum/mind) ? I:current?:client : null)))
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I,/client) ? I : (istype(I,/datum/mind) ? I:current?:client : null)))
 
 #define AREASELECT_CORNERA "corner A"
 #define AREASELECT_CORNERB "corner B"
 
-#define VARSET_FROM_LIST(L, V) if(L && L[#V]) V = L[#V]
-#define VARSET_FROM_LIST_IF(L, V, C...) if(L && L[#V] && (C)) V = L[#V]
-#define VARSET_TO_LIST(L, V) if(L) L[#V] = V
-#define VARSET_TO_LIST_IF(L, V, C...) if(L && (C)) L[#V] = V
+#define VARSET_FROM_LIST(L,V) if(L && L[#V]) V = L[#V]
+#define VARSET_FROM_LIST_IF(L,V,C...) if(L && L[#V] && (C)) V = L[#V]
+#define VARSET_TO_LIST(L,V) if(L) L[#V] = V
+#define VARSET_TO_LIST_IF(L,V,C...) if(L && (C)) L[#V] = V
 
 #define PREF_SAVELOAD_COOLDOWN 5
 
 #define VOMIT_TOXIC 1
 #define VOMIT_PURPLE 2
 
-// possible bitflag return values of intercept_zImpact(atom/movable/AM, levels = 1) calls
+// possible bitflag return values of intercept_zImpact(atom/movable/AM,levels = 1) calls
 #define FALL_INTERCEPTED		(1<<0) //Stops the movable from falling further and crashing on the ground
-#define FALL_NO_MESSAGE			(1<<1) //Used to suppress the "[A] falls through [old_turf]" messages where it'd make little sense at all, like going downstairs.
-#define FALL_STOP_INTERCEPTING	(1<<2) //Used in situations where halting the whole "intercept" loop would be better, like supermatter dusting (and thus deleting) the atom.
+#define FALL_NO_MESSAGE			(1<<1) //Used to suppress the "[A] falls through [old_turf]" messages where it'd make little sense at all,like going downstairs.
+#define FALL_STOP_INTERCEPTING	(1<<2) //Used in situations where halting the whole "intercept" loop would be better,like supermatter dusting (and thus deleting) the atom.
 
 //Misc text define. Does 4 spaces. Used as a makeshift tabulator.
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -520,8 +550,8 @@ GLOBAL_LIST_INIT(pda_reskins, list(PDA_SKIN_CLASSIC = 'icons/obj/pda.dmi'))
 //Nightshift levels.
 #define NIGHTSHIFT_AREA_FORCED				0		//ALWAYS nightshift if nightshift is enabled
 #define NIGHTSHIFT_AREA_PUBLIC				1		//hallways
-#define NIGHTSHIFT_AREA_RECREATION			2		//dorms common areas, etc
-#define NIGHTSHIFT_AREA_DEPARTMENT_HALLS	3		//interior hallways, etc
+#define NIGHTSHIFT_AREA_RECREATION			2		//dorms common areas,etc
+#define NIGHTSHIFT_AREA_DEPARTMENT_HALLS	3		//interior hallways,etc
 #define NIGHTSHIFT_AREA_NONE				4		//default/highest.
 
 #define UNTIL(X) while(!(X)) stoplag()

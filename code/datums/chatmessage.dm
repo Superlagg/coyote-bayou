@@ -125,6 +125,15 @@
 
 	if(prefixes)
 		text = "[prefixes.Join("&nbsp;")][text]"
+	
+	if(!target.chat_font)
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
+			var/font = C.dna.features["chat_font"]
+			if(font && (font in GLOB.cool_fonts))
+				target.chat_font = C.dna.features["chat_font"]
+		if(!target.chat_font)
+			target.chat_font = "Verdana"
 
 	// We dim italicized text to make it more distinguishable from regular text
 	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
@@ -134,7 +143,7 @@
 	// BYOND Bug #2563917
 	// Construct text
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
-	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color]'>[owner.say_emphasis(text)]</span>"
+	var/complete_text = "<span class='center maptext [extra_classes.Join(" ")]' style='color: [tgt_color];font-family:[target.chat_font]'>[owner.say_emphasis(text)]</span>"
 	var/mheight = WXH_TO_HEIGHT(owned_by?.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
 	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 

@@ -550,7 +550,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		"body_model" = MALE,
 		"body_size" = RESIZE_DEFAULT_SIZE,
 		"color_scheme" = OLD_CHARACTER_COLORING,
-		"chat_color" = "whoopsie")
+		"chat_color" = "whoopsie",
+		"chat_font" = "Verdana" // idk what the default font is
+		)
 
 	S.cd = "/"
 	if(!slot)
@@ -632,6 +634,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["feature_wings_color"]			>> features["wings_color"]
 	S["feature_color_scheme"]			>> features["color_scheme"]
 	S["feature_chat_color"]				>> features["chat_color"]
+	S["feature_chat_font"]				>> features["chat_font"]
 	S["persistent_scars"] 				>> persistent_scars
 	S["scars1"]							>> scars_list["1"]
 	S["scars2"]							>> scars_list["2"]
@@ -868,6 +871,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["insect_fluff"]		= sanitize_inlist(features["insect_fluff"], GLOB.insect_fluffs_list)
 	features["insect_markings"] 	= sanitize_inlist(features["insect_markings"], GLOB.insect_markings_list, "None")
 	features["insect_wings"] 		= sanitize_inlist(features["insect_wings"], GLOB.insect_wings_list)
+	features["chat_font"]			= sanitize_inlist(features["chat_font"], GLOB.cool_fonts, "Verdana")
+	features["chat_color"]			= sanitize_hexcolor(features["chat_color"], 6, FALSE, initial(features["chat_color"]))
 
 	var/static/size_min
 	if(!size_min)
