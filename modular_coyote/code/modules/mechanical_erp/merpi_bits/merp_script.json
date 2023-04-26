@@ -10,9 +10,9 @@
 			],
 			"merpi_flowery" : [
 				"%USER pulls their head back suddenly, slamming it down on %TARGET's %T_PART without any hesitation like some sort of enraged sheep!!"
-			],
+			]
 		},
-		"merpi_help" : {
+		"merpi_intent_help" : {
 			"merpi_held" : {
 				"merpi_normal" : [
 					"%USER pushes their head against %TARGET's %T_PART like a cat."
@@ -33,8 +33,80 @@
 				],
 				"merpi_repeat" : [
 					"%USER pulls their head back suddenly, slamming it down on %TARGET's %T_PART without any hesitation like some sort of enraged sheep!!"
-				],
-			},
+				]
+			}
 		},		
+		"merpi_intent_disarm" : {
+			"merpi_held" : {
+				"merpi_normal" : [
+					"%USER pushes their head against %TARGET's %T_PART aggressively, moving it about playfully!"
+				],
+				"merpi_flowery" : [
+					"%USER presses their face in towards %TARGET's %T_PART, first touching it and then pushing on. It seems they're trying to playfully move the %T_PART around with their face."
+				],
+				"merpi_repeat" : [
+					"%USER nuzzles %TARGET's %T_PART!"
+				]
+			},
+			"merpi_wielded" : {
+				"merpi_normal" : [
+					"%USER softly baps their forehead to %TARGET's %T_PART!"
+				],
+				"merpi_flowery" : [
+					"%USER baps their forehead to %TARGET's %T_PART in a manner similar to how a small goat might play with another. It's hard enough to be noticable, but not really aggressive."
+				],
+				"merpi_repeat" : [
+					"%USER baps %TARGET's %T_PART with their head softly!"
+				]
+			}
+		},		
+		"merpi_intent_grab" : {
+			"merpi_held" : {
+				"merpi_normal" : [
+					"%USER applies a gentle bit of pressure with the head on %TARGET's %T_PART."
+				],
+				"merpi_flowery" : [
+					"%USER head presses down on %TARGET's %T_PART, for whatever reason applying a bit of pressure to the %T_PART to keep it next to their face."
+				],
+				"merpi_repeat" : [
+					"%USER pushes on %TARGET's %T_PART with their head."
+				]
+			},
+			"merpi_wielded" : {
+				"merpi_normal" : [
+					"%USER suddenly donks %TARGET's %T_PART with their forehead, that hurt a little!"
+				],
+				"merpi_flowery" : [
+					"%USER leans back from %TARGET's %T_PART, getting just enough space for them to bull in and bap their forehead against the %T_PART aggressively!"
+				],
+				"merpi_repeat" : [
+					"%USER really headbutts %TARGET's %T_PART!"
+				]
+			}
+		},		
+		"merpi_intent_harm" : {
+			"merpi_held" : {
+				"merpi_normal" : [
+					"%USER puts a lot of pressure on %TARGET's %T_PART with their face!"
+				],
+				"merpi_flowery" : [
+					"%USER digs their forehead into %TARGET's %T_PART hard, grinding against it painfully as they let out a noise of exertion!"
+				],
+				"merpi_repeat" : [
+					"%USER digs their head into %TARGET's %T_PART hard!"
+				]
+			},
+			"merpi_wielded" : {
+				"merpi_normal" : [
+					"%USER rebounds their head off of %TARGET's %T_PART exactly like a pair of mountain goats fighting!"
+				],
+				"merpi_flowery" : [
+					"%USER pulls their head back a full foot and change, lowers their forehead and SLAMS their face foreward towards %TARGET's %T_PART!"
+				],
+				"merpi_repeat" : [
+					"%USER slams their face into %TARGET's %T_PART!"
+				]
+			}
+		}
 	},
 }
