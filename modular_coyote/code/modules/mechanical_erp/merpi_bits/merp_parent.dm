@@ -6,6 +6,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "merpi_bit"
 	/// The following are keys to the merpi_bit's dictionary. (get it? dictionary?)
+	var/merp_key = "default"
 	
 
 
