@@ -7,6 +7,14 @@
 	icon_state = "merpi_bit"
 	/// The following are keys to the merpi_bit's dictionary. (get it? dictionary?)
 	var/merp_key = "default"
+
+/obj/item/merpi_bit/Initialize()
+	. = ..()
+	merpify()
+
+/// Dives into the merpi_bit's dictionary and pulls out the appropriate merp function.
+/obj/item/merpi_bit/merpify()
+	
 	
 
 
