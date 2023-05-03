@@ -599,8 +599,6 @@
 // Requests the core's brain's operation modifier
 #define COMSIG_BB_HOST_TO_PC_AMOUR_MOD "persona_core_amour_mod" // (datum/source, mob/user)
 
-
-
 /// When they look back and see that some fuckin nerd componentized vore, will they be proud? or rightfully confused why someone would spend their time on this?
 /// I know one thing for sure though, and that is that I won't regret any second of it
 /// Vore signals
