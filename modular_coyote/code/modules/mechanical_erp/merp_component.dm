@@ -83,12 +83,12 @@
 		reset_merp()
 		return
 	MERP_MASTER
-	if(auto_plapper_active)
+	if(autoplapper_active)
 		autoplap()
 	handle_arousal()
 
 /datum/component/merp/proc/autoplap()
-	for(var/datum/autoplap/plap in autoplapper_merpi_bits)
+	for(var/datum/autoplap/plap in autoplappers)
 		plap.plap() // plap plap plap
 
 /// Automatic arousal handling
@@ -113,10 +113,10 @@
 		return
 	if(!COOLDOWN_FINISHED(src, autoemote_cooldown))
 		return
-	var/emote = emote_list[random(1, emote_list.len)]
+	var/emote = emote_list[rand(1, emote_list.len)]
 	if(emote)
 		to_chat(master, emote)
-	COOLDOWN_SET(src, autoemote_cooldown, arousal_emote_low_delay)
+	COOLDOWN_START(src, autoemote_cooldown, arousal_emote_low_delay)
 
 /datum/autoplap
 	var/coolname = "plap"
