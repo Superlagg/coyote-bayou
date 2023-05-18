@@ -347,7 +347,6 @@
 	if(do_after(user, 40, target = user))
 		to_chat(user, span_notice("Your lifeforce is now linked to the pendant! You feel like removing it would kill you, and yet you instinctively know that until then, you won't die."))
 		ADD_TRAIT(user, TRAIT_NODEATH, "memento_mori")
-		ADD_TRAIT(user, TRAIT_NOHARDCRIT, "memento_mori")
 		ADD_TRAIT(user, TRAIT_NOCRITDAMAGE, "memento_mori")
 		icon_state = "memento_mori_active"
 		active_owner = user
@@ -983,7 +982,7 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/random = rand(1,4)
+	var/random = rand(3,3)
 
 	switch(random)
 		if(1)

@@ -282,14 +282,14 @@
 	damage_multiplier = GUN_LESS_DAMAGE_T1
 	init_recoil = HANDGUN_RECOIL(1)
 	init_firemodes = list(
-		/datum/firemode/semi_auto/faster
+		/datum/firemode/semi_auto/fast
 	)
 	fire_sound = 'sound/f13weapons/policepistol.ogg'
 	gun_accuracy_zone_type = ZONE_WEIGHT_AUTOMATIC // limbfucker2000
 
 /obj/item/gun/ballistic/revolver/police/webley
 	name = "Webley Revolver"
-	desc = "The Webley Revolver was the pre standard issue service pistol for the armed forces of the United Kingdom, and countries of the British Empire."
+	desc = "The Webley Revolver was the pre-war standard issue service pistol for the armed forces of the United Kingdom, and countries of the British Empire."
 	icon = 'icons/fallout/objects/guns/ballistic.dmi'
 	icon_state = "webley"
 	item_state = "police"
@@ -299,7 +299,7 @@
 	damage_multiplier = GUN_LESS_DAMAGE_T1
 	init_recoil = HANDGUN_RECOIL(1)
 	init_firemodes = list(
-		/datum/firemode/semi_auto/fastest
+		/datum/firemode/semi_auto/faster
 	)
 	fire_sound = 'sound/f13weapons/policepistol.ogg'
 	gun_accuracy_zone_type = ZONE_WEIGHT_AUTOMATIC // limbfucker2000

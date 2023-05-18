@@ -744,11 +744,11 @@ obj/effect/landmark/start/f13/ncrlogisticsofficer
 // Oasis
 
 /obj/effect/landmark/start/f13/mayor
-	name = "Mayor"
+	name = "High Alderperson"
 	icon_state = "Banker"
 
 /obj/effect/landmark/start/f13/secretary
-	name = "Secretary"
+	name = "Councilperson"
 	icon_state = "Lawyer"
 
 /obj/effect/landmark/start/f13/sheriff
@@ -803,6 +803,10 @@ obj/effect/landmark/start/f13/ncrlogisticsofficer
 
 /obj/effect/landmark/start/f13/wastelander
 	name = "Wastelander"
+	icon_state = "Wastelander"
+
+/obj/effect/landmark/start/f13/wastelander/ashdown
+	name = "Ashdown Wastelander"
 	icon_state = "Wastelander"
 
 /obj/effect/landmark/start/f13/raider
@@ -952,5 +956,5 @@ obj/effect/landmark/start/f13/ncrlogisticsofficer
 	icon_state = "Assistant"
 
 /obj/effect/landmark/start/f13/biker_boss
-	name = "Hells Nomad Boss"
+	name = "Overbiker"
 	icon_state = "Captain"

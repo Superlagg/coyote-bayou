@@ -215,7 +215,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/beretta/automatic
 	name = "Beretta M93R"
-	desc = "A rare select fire variant of the M93R."
+	desc = "An uncommon model of the M9 pistol that's capable of burst fire. It has a built in foregrip allowing for incredibly accurate shots."
 	icon_state = "m93r"
 	init_mag_type = /obj/item/ammo_box/magazine/m9mm/doublestack
 	mag_type = /obj/item/ammo_box/magazine/m9mm // load any 9mm pistol ammos
@@ -491,7 +491,6 @@
 	desc = "An obscure pistol that fits a 10mm magazine and is capable of full auto. Fires from an open bolt. Innacurate on the first shot, but it doesn't get much worse. Or better."
 	icon_state = "bornheim"
 	item_state = "pistolchrome"
-	icon_prefix = "bornheim"
 	fire_sound = 'sound/f13weapons/10mm_fire_02.ogg'
 	init_mag_type = /obj/item/ammo_box/magazine/m10mm/adv/simple
 	mag_type = /obj/item/ammo_box/magazine/m10mm // load any 10mm pistol ammos
@@ -515,6 +514,7 @@
  * Less melee force
  * More accurate
  * Common
+ * Muh three world wars
  * * * * * * * * * * */
 
 /obj/item/gun/ballistic/automatic/pistol/m1911

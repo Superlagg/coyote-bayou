@@ -126,6 +126,8 @@
 	#define COMPONENT_RAD_WAVE_HANDLED (1<<0)
 ///from internal loop in the base of /atom/movable/proc/get_locs(): (list/locs)
 #define COMSIG_ATOM_GET_LOCS "atom_get_locs"
+///When a thing is adminspawned, signal
+#define COMSIG_ATOM_POST_ADMIN_SPAWN "atom_post_admin_spawn"
 
 #define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"		//from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
 #define COMSIG_ATOM_INTERCEPT_TELEPORT "intercept_teleport"		//called when teleporting into a protected turf: (channel, turf/origin, turf/destination)
@@ -241,6 +243,7 @@
 	#define COMPONENT_BLOCK_MAGIC 1
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 #define COMSIG_MOB_ATTACK_HAND "mob_attack_hand"				//from base of
+#define COMSIG_ITEM_ATTACKCHAIN "mob_item_attack_chain"			//from base of /obj/item/attack(): (mob/M, mob/user)
 #define COMSIG_MOB_ITEM_ATTACK "mob_item_attack"				//from base of /obj/item/attack(): (mob/M, mob/user)
 	#define COMPONENT_ITEM_NO_ATTACK 1
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
@@ -428,6 +431,11 @@
 	// Uncovered information
 	#define COMPONENT_DEEPSCAN_UNCOVERED_INFORMATION		1
 #define COMSIG_ITEM_MINE_TRIGGERED "itemineboom"						///from [/obj/item/mine/proc/triggermine]:
+#define COMSIG_ITEM_RESKINNABLE "can_reskin"						///from [/obj/item/mine/proc/triggermine]:
+#define COMSIG_ITEM_GET_CURRENT_RESKIN "get_state" // (datum/source, list/my_iconstate)
+
+/// datum/source, mob/spawner
+#define COMSIG_ITEM_MOB_DROPPED "mobdropped"	/// from [/mob/living/simple_animal/proc/drop_loot()]
 
 // /obj/item/grenade signals
 #define COMSIG_GRENADE_PRIME "grenade_prime"					//called in /obj/item/gun/process_fire (user, target, params, zone_override)
@@ -675,6 +683,8 @@
 #define COMSIG_VORE_DO_MESSAGE "vore_message" // (datum/source, obj/vore_belly/belly, message_type, pref_type)
 /// Asks if the componentholder can eat a certain item
 #define COMSIG_VORE_CHECK_EDIBILITY "can_i_eat_item" // (datum/source, obj/item/thing)
+/// Asks the mob if their vore is set up
+#define COMSIG_VORE_EXISTS "is_vore_time"
 
 /// Vore defines specifically for a belly
 /// Tells the belly trash happened
