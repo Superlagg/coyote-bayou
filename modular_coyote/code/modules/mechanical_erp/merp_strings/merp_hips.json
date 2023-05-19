@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Hips",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's hips. Wide or not they sure look nice, maybe you could just reach out and...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to absolutely obliterate %TARGET's %T_PART with their hips!!"],
+		"merpi_flowery" : ["%USER is trying to absolutely obliterate %TARGET's %T_PART with their hips!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER teases their hips softly against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER teases their hips softly against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER hip-touches %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER takes %TARGET's %T_PART in hand and teases it against their hips."],
+			"merpi_flowery" : ["%USER takes %TARGET's %T_PART in hand and teases it against their hips."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART to their hip softly."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses their hips against %TARGET's %T_PART playfully."],
+			"merpi_flowery" : ["%USER presses their hips against %TARGET's %T_PART playfully."],
+			"merpi_repeat" : ["%USER presses their hips into %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART into their hips comfortingly."],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART into their hips comfortingly."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART into their hips."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes their hips firmly against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER pushes their hips firmly against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER pushes their hips into %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER pushes %TARGET's %T_PART into their hips needingly."],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART into their hips needingly."],
+			"merpi_repeat" : ["%USER pushes %TARGET's %T_PART into their hips."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smashes their hips against %TARGET's %T_PART like a wrecking ball!"],
+			"merpi_flowery" : ["%USER smashes their hips against %TARGET's %T_PART like a wrecking ball!"],
+			"merpi_repeat" : ["%USER hip-smashes into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER crashes %TARGET's %T_PART into their hips!"],
+			"merpi_flowery" : ["%USER crashes %TARGET's %T_PART into their hips!"],
+			"merpi_repeat" : ["%USER crashes their hips into %TARGET's %T_PART!"]
+		}
+	}
+}

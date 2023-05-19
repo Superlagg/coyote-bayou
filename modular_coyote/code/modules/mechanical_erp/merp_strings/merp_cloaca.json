@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Cloaca",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's cloaca. That's a slit, innit. You could just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to shove %TARGET's %T_PART so hard up into their cloaca they might be trying to unlay it like an egg!!"],
+		"merpi_flowery" : ["%USER is trying to shove %TARGET's %T_PART so hard up into their cloaca they might be trying to unlay it like an egg!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses their genital slit to %TARGET's %T_PART enticingly!"],
+			"merpi_flowery" : ["%USER presses their genital slit to %TARGET's %T_PART enticingly!"],
+			"merpi_repeat" : ["%USER presses their genital slit to %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grinds their genital slit against %TARGET's %T_PART gently!"],
+			"merpi_flowery" : ["%USER grinds their genital slit against %TARGET's %T_PART gently!"],
+			"merpi_repeat" : ["%USER grinds their genital slit to %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes %TARGET's %T_PART into their genital slit softly!"],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART into their genital slit softly!"],
+			"merpi_repeat" : ["%USER pushes %TARGET's %T_PART into their cloaca!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER forces %TARGET's %T_PART to penetrate their slit!"],
+			"merpi_flowery" : ["%USER forces %TARGET's %T_PART to penetrate their slit!"],
+			"merpi_repeat" : ["%USER forces %TARGET's %T_PART to penetrate their cloaca!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER uses their genital slit like a sleeve around %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER uses their genital slit like a sleeve around %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER sleeves %TARGET's %T_PART in their genital slit!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER uses their cloaca like a psuedo-pussy, letting %TARGET's %T_PART fuck them!"],
+			"merpi_flowery" : ["%USER uses their cloaca like a psuedo-pussy, letting %TARGET's %T_PART fuck them!"],
+			"merpi_repeat" : ["%USER uses their cloaca to let %TARGET's %T_PART fuck them!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER buries %TARGET's %T_PART in their slit needily!"],
+			"merpi_flowery" : ["%USER buries %TARGET's %T_PART in their slit needily!"],
+			"merpi_repeat" : ["%USER slit-fucks %TARGET's %T_PART needily!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER slit-fucks %TARGET's %T_PART like they want it bad!"],
+			"merpi_flowery" : ["%USER slit-fucks %TARGET's %T_PART like they want it bad!"],
+			"merpi_repeat" : ["%USER slit fucks %TARGET's %T_PART greedily!"]
+		}
+	}
+}

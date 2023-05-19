@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Thick Flared Cock",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's twitching thick flared cock. Whew, that thing sure is just sitting there. Maybe you could...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to turn %TARGET's %T_PART into quivering goo with their thick flared cock!!"],
+		"merpi_flowery" : ["%USER is trying to turn %TARGET's %T_PART into quivering goo with their thick flared cock!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses the tip of their thick flared cock to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses the tip of their thick flared cock to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER teases their thick flared cocktip to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses down deep on %TARGET's %T_PART with their thick flared cock!"],
+			"merpi_flowery" : ["%USER presses down deep on %TARGET's %T_PART with their thick flared cock!"],
+			"merpi_repeat" : ["%USER presses their thick flared cock down on %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently humps %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER gently humps %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER humps %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER repeatedly hilts %TARGET's %T_PART with their thick flared cock!"],
+			"merpi_flowery" : ["%USER repeatedly hilts %TARGET's %T_PART with their thick flared cock!"],
+			"merpi_repeat" : ["%USER's thick flared cock is really fucking %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER plaps against %TARGET's %T_PART, noisily slapping down into them repeatedly!"],
+			"merpi_flowery" : ["%USER plaps against %TARGET's %T_PART, noisily slapping down into them repeatedly!"],
+			"merpi_repeat" : ["%USER's thick flared cock is fucking %TARGET's %T_PART noisily!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is using %TARGET's %T_PART like a thick flared cocksock for their own enjoyment!"],
+			"merpi_flowery" : ["%USER is using %TARGET's %T_PART like a thick flared cocksock for their own enjoyment!"],
+			"merpi_repeat" : ["%USER's thick flared cock is using %TARGET's %T_PART like a thick flared cocksock!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drills down on %TARGET's %T_PART, absolutely fucking the shit out of them!"],
+			"merpi_flowery" : ["%USER drills down on %TARGET's %T_PART, absolutely fucking the shit out of them!"],
+			"merpi_repeat" : ["%USER fucks the shit out of %TARGET's %T_PART with their thick flared cock!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER repeatedly buries their thick flared cock in %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER repeatedly buries their thick flared cock in %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER drills their thick flared cock down into %TARGET's %T_PART!"]
+		}
+	}
+}

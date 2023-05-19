@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Clit",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's clitoris. The legendary pleasure button. Many have heard of it, some don't even believe it's real. You can just reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER clitter-beats the shit out of %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER clitter-beats the shit out of %TARGET's %T_PART!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER softly teases %TARGET's %T_PART to their clit."],
+			"merpi_flowery" : ["%USER softly teases %TARGET's %T_PART to their clit."],
+			"merpi_repeat" : ["%USER teases %TARGET's %T_PART to their clit."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER sosftly grinds their clit against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER sosftly grinds their clit against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER grinds their clit against %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER grinds their clit against %TARGET's %T_PART needily."],
+			"merpi_flowery" : ["%USER grinds their clit against %TARGET's %T_PART needily."],
+			"merpi_repeat" : ["%USER grinds their clit against %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grabs %TARGET and rubs their clit on their %T_PART needily!"],
+			"merpi_flowery" : ["%USER grabs %TARGET and rubs their clit on their %T_PART needily!"],
+			"merpi_repeat" : ["%USER grabs %TARGET's %T_PART and rubs their clit against it!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER needily ruts their clit against %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER needily ruts their clit against %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER needily ruts their clit on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER ruts against %TARGET's %T_PART like they've given into their instincts!"],
+			"merpi_flowery" : ["%USER ruts against %TARGET's %T_PART like they've given into their instincts!"],
+			"merpi_repeat" : ["%USER ruts against %TARGET's %T_PART like they're losing it!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER is trying to grind their clit against %TARGET's %T_PART like their life depends on it!"],
+			"merpi_flowery" : ["%USER is trying to grind their clit against %TARGET's %T_PART like their life depends on it!"],
+			"merpi_repeat" : ["%USER is clit-grinding %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART down into their clit hard!"],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART down into their clit hard!"],
+			"merpi_repeat" : ["%USER presses their clit down hard on %TARGET's %T_PART!"]
+		}
+	}
+}

@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Hands",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's hands. Soft or rough, they'll probably throw them if you do something ridiculous, but maybe you could get away with..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is definitely trying to choke %TARGET's %T_PART like it owes them money!!"],
+		"merpi_flowery" : ["%USER is definitely trying to choke %TARGET's %T_PART like it owes them money!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently touches %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently touches %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER touches %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gently grasps %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently grasps %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER grasps %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER intimately touches %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER intimately touches %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER touches %TARGET's %T_PART sweetly."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER fondles %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER fondles %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER fondles %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER grabs and squeezes %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER grabs and squeezes %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART in hand."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grasps hold of %TARGET's %T_PART firmly."],
+			"merpi_flowery" : ["%USER grasps hold of %TARGET's %T_PART firmly."],
+			"merpi_repeat" : ["%USER firmly squeezes %TARGET's %T_PART in hand."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET %T_PART in hand!"],
+			"merpi_flowery" : ["%USER squishes %TARGET %T_PART in hand!"],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART in hand!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER absolutely throttles %TARGET's %T_PART, working it!"],
+			"merpi_flowery" : ["%USER absolutely throttles %TARGET's %T_PART, working it!"],
+			"merpi_repeat" : ["%USER chokes %TARGET's %T_PART!"]
+		}
+	}
+}

@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "anus",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's anus. The starfish itself. Did it just wink? You could just reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER stuffs %TARGET's %T_PART up their bum like they want it gone!!"],
+		"merpi_flowery" : ["%USER absolutely shoves %TARGET's %T_PART so deep and far into their bum they might find the HFS!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER teasingly rims %TARGET's %T_PART around their back ends entrance."],
+			"merpi_flowery" : ["%USER eases their bottom down to softly tease their pucker around %TARGET's %T_PART, trying to entice them with the back entrance."],
+			"merpi_repeat" : ["%USER rims %TARGET's %T_PART about their butthole!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rolls their butthole around %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER impishly circles their butthole around %TARGET's %T_PART, letting them feel its softness as they roll their hips."],
+			"merpi_repeat" : ["%USER rolls their butthole around on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER carefully lets %TARGET's %T_PART take their behind."],
+			"merpi_flowery" : ["%USER brings their behind down slowly, letting %TARGET's %T_PART gently penetrate into their rump."],
+			"merpi_repeat" : ["%USER takes it in the butt from %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART into their butt just a bit!"],
+			"merpi_flowery" : ["%USER presses their behind down a little bit more firmly on %TARGET's %T_PART taking them fairly deep into their needy hole!"],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART into their butt teasingly."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER bounces their rear on %TARGET's %T_PART needily!"],
+			"merpi_flowery" : ["%USER rear jiggles as they force their butthole down on %TARGET's %T_PART over and over again!"],
+			"merpi_repeat" : ["%USER bounces their butthole on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bounces on %TARGET's %T_PART, flushing in the face!"],
+			"merpi_flowery" : ["%USER is bouncing their ass on %TARGET's %T_PART, the pleasure of it causing to flush in the face slightly and gasp!"],
+			"merpi_repeat" : ["%USER bounces on %TARGET's %T_PART while flushing!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER is trying to squeeze %TARGET's %T_PART half to death with their butthole!"],
+			"merpi_flowery" : ["%USER clenches their butthole around %TARGET's %T_PART, squishing and squeezing around it!"],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART with their butthole!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is squeezing at %TARGET's %T_PART like they're trying to milk it!"],
+			"merpi_flowery" : ["%USER's butthole puckers tightly around %TARGET's %T_PART, it's almost like they're trying to milk it!"],
+			"merpi_repeat" : ["%USER is trying to milk %TARGET's %T_PART with their butthole!"]
+		}
+	}
+}

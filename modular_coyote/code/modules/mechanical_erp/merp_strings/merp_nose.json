@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Nose",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's nose. It might be wet or dry, but either way it's a sniffer for snoofing."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to breath the life out of %TARGET through their %T_PART!!"],
+		"merpi_flowery" : ["%USER takes a deep breath of %TARGET's %T_PART like they're trying to snort cocaine off of it!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER softly sniffs at %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER sniffs softly, inhaling the scent of %TARGET's %T_PART without really meaning to."],
+			"merpi_repeat" : ["%USER sniffs %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gasps before inhaling %TARGET's %T_PART deeply!"],
+			"merpi_flowery" : ["%USER immediatly notices the smell of %TARGET's %T_PART and can't stop themselves from taking in a deep whiff!"],
+			"merpi_repeat" : ["%USER takes a whiffs %TARGET's %T_PART"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER takes a solid whiff of %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER takes a solid whiff of %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER inhales %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER inhales as much of %TARGET's %T_PART as they can, shuddering from the pleasure of it!"],
+			"merpi_flowery" : ["%USER inhales as much of %TARGET's %T_PART as they can, shuddering from the pleasure of it!"],
+			"merpi_repeat" : ["%USER huffs %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER takes a deep smell of %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER takes a deep smell of %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER deeply inhales %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER practically buries their nose against %TARGET's %T_PART, reveling in the scent!"],
+			"merpi_flowery" : ["%USER practically buries their nose against %TARGET's %T_PART, reveling in the scent!"],
+			"merpi_repeat" : ["%USER buries their nose into %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER deep sniffs %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER deep sniffs %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER deep snifs %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER slightly opens their mouth, and scrunges from the sheer excitement of the smell!"],
+			"merpi_flowery" : ["%USER slightly opens their mouth, and scrunges from the sheer excitement of the smell!"],
+			"merpi_repeat" : ["%USER scrunges on %TARGET's %T_PART!"]
+		}
+	}
+}

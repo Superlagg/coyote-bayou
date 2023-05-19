@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Throat",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's throat, you probably can't actually see inside it all that well. But the thought of it sure is nice, maybe you could...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is for sure trying to use their throat as a portal to the afterlife on %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER has recited the ancient rituals and mastered the art of being a soul sucking monster.  %TARGET's %T_PART won't last long before %USER pulls their soul out through it!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently teases %TARGET's %T_PART into their throat!"],
+			"merpi_flowery" : ["%USER slowly presses %TARGET's %T_PART back further and further in their mouth before finally easing them past the throat barrier for a moment!"],
+			"merpi_repeat" : ["%USER throats %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gacks softly as %TARGET's %T_PART fills the back of their throat!"],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART deep into the back of their mouth but can't stop themselves from making a loud gacking noise as their throat barrier is teased!"],
+			"merpi_repeat" : ["%USER gacks on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes %TARGET's %T_PART into %THIER throat, massaging it comfortably."],
+			"merpi_flowery" : ["%USER takes %TARGET's %T_PART into their throat fully, their necks muscles massaging it comfortably as they do so."],
+			"merpi_repeat" : ["%USER gets throatfucked by %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER heaves, %TARGET's %T_PART being pushed to %USER's limit as they drool on the %T_PART"],
+			"merpi_flowery" : ["%USER heaves before %TARGET's %T_PART even makes it all the way fully into their throat, their mouth generating more saliva in an attempt to help.  The reality is they're making a mess on the %T_PART."],
+			"merpi_repeat" : ["%USER is throatfucked messily by %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER slurps on %TARGET's %T_PART noisly, drool seeping out of their mouth."],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART deeper, growing more and more comfortable with having their throat invaded.  Meanwhile their mouth decided more spit is clearly need to solve this issue, and %TARGET's %T_PART is soaked in drool because of it!"],
+			"merpi_repeat" : ["%USER gacks as they're throatfucked by %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rolls their eyes into thier head from %TARGET's %T_PART in their throat!"],
+			"merpi_flowery" : ["%USER suddenly presses %TARGET's %T_PART down their throat hard, the wet suction sound of their throat trying to accomodate the intrustion filling the room as their eyes roll partially into their skull. "],
+			"merpi_repeat" : ["%USER really is shoving %TARGET's %T_PART down their throat!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER chokes on %TARGET's %T_PART fitfully, eyes rolling into their head!"],
+			"merpi_flowery" : ["%USER surrenders completely to %TARGET's %T_PART, forcing it down their throat repeatedly.  Like it was made to fit in their wet hole.  Losing themselves in the action as their eyes roll up into their head!"],
+			"merpi_repeat" : ["%USER chokes on %TARGET's %T_PART as their eyes roll up!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER audibly chokes on %TARGET's %T_PART, pressing their own head down for more! "],
+			"merpi_flowery" : ["%USER just can't stop themselves from choking noisily on %TARGET's %T_PART, pressing themselves down for more and more of %TARGET's %T_PART!  No matter how much their body resists!"],
+			"merpi_repeat" : ["%USER forces%TARGET's %T_PART down their throat!"]
+		}
+	}
+}

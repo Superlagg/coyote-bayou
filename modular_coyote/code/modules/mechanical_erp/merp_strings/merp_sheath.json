@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Sheath",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's sheath. It's hiding something, or maybe its not. Either way you could just...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER absolutely assaults %TARGET's %T_PART with their sheath!!"],
+		"merpi_flowery" : ["%USER absolutely assaults %TARGET's %T_PART with their sheath!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rubs their sheath against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER rubs their sheath against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER sheath-rubs %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER drags their sheath against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER drags their sheath against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER sheath-drags %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses their sheath to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their sheath to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER sheath-presses %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grinds their sheath against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER grinds their sheath against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER sheath-grinds %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes their sheath up against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER squeezes their sheath up against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER sheath-presses %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER buries their sheath against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER buries their sheath against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER buries their sheath against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER dry humps %TARGET's %T_PART with their sheath!"],
+			"merpi_flowery" : ["%USER dry humps %TARGET's %T_PART with their sheath!"],
+			"merpi_repeat" : ["%USER sheath-humps %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gets really hot and heavy grinding against %TARGET's %T_PART with their sheath!"],
+			"merpi_flowery" : ["%USER gets really hot and heavy grinding against %TARGET's %T_PART with their sheath!"],
+			"merpi_repeat" : ["%USER sheath-grinds %TARGET's %T_PART!"]
+		}
+	}
+}

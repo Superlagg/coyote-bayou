@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Saliva",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's drool. Slick and wet, it will probably get everywhere. Maybe that's a good thing though...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER dribbles spit onto %TARGET's %T_PART."],
+		"merpi_flowery" : ["%USER lazily opens their mouth, urging a little dribble of spit onto %TARGET's %T_PART."]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER dribbles spit onto %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER lazily opens their mouth, urging a little dribble of spit onto %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER dribbles on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER holds %TARGET's %T_PART while softly dribbling spit on it."],
+			"merpi_flowery" : ["%USER keeps %TARGET's %T_PART in hand as they work their tongue for a moment so as to drip a line of warm saliva across the appendage."],
+			"merpi_repeat" : ["%USER slops spit on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER spits quietly on %TARGET's %T_PART, trying to get it nice and wet."],
+			"merpi_flowery" : ["%USER quietly moves their tongue for a second before dropping a dab of spit onto %TARGET's %T_PART, getting it nice and wet."],
+			"merpi_repeat" : ["%USER spits quietly on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER spits loudly on %TARGET's %T_PART, trying to get it nice and wet!"],
+			"merpi_flowery" : ["%USER works their tongue and makes a funny noise before they spit a large amount of saliva onto %TARGET's %T_PART, getting it very wet in the process."],
+			"merpi_repeat" : ["%USER spits loudly on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drools on %TARGET's %T_PART, coating it in their drool."],
+			"merpi_flowery" : ["%USER opens their mouth with a soft sound before letting their drool drip down onto %TARGET's %T_PART, giving it a bit of sheen from the spit."],
+			"merpi_repeat" : ["%USER drools on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER slobbers all over %TARGET's %T_PART, soaking it in drool!"],
+			"merpi_flowery" : ["%USER takes %TARGET's %T_PART in hand and just goes wild for a few moments, slobbering all over the appendage as they do!"],
+			"merpi_repeat" : ["%USER slobbers on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER is salivating an unbelievable amount on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER seems to be just absolutely salivating like a maniac, and one way or another they're getting it ALL OVER %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER soaks %TARGET's %T_PART in spit!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER soaks %TARGET's %T_PART with their drool!"],
+			"merpi_flowery" : ["%USER is drooling like crazy all over %TARGET's %T_PART, they seem to be entirely unable to stop themselves at this point!"],
+			"merpi_repeat" : ["%USER drowns %TARGET's %T_PART in drool!"]
+		}
+	}
+}

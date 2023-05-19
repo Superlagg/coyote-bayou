@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Eyes",
+	"merpi_private" : false,
+	"smell" : "",
+	"taste" : "",
+	"merpi_desc" : ["%USER's eyes, big or small. Any color of the rainbow. They really are the window into the soul, even if they might be eyeing up your butt."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["[player_a]'s deathglare really might melt %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER stares at %TARGET's %T_PART with nothing but scorn, it's clear from the look they're giving it that it is so far beneath them!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER glances at %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER dances their eyes over %TARGET's %T_PART like a shy creature trying to not let them notice the look."],
+			"merpi_repeat" : ["%USER glances at %TARGET's %T_PART again!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER hovers their glance a bit longer on %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER definitely gets caught staring at %TARGET's %T_PART, their eyes lingering for just a little too long.  On purpose."],
+			"merpi_repeat" : ["%USER leers at %TARGET's %T_PART again!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER really takes a long look at %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER lingers their sight on %TARGET's %T_PART, clear that whatever it is it's having an effect on them."],
+			"merpi_repeat" : ["%USER looks at %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER eyes seem to be swimming at the sight of %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER doesn't even try to hide the fact that they're taking in the sight of %TARGET's %T_PART like the family dog eyeing the thanksgiving turkey."],
+			"merpi_repeat" : ["%USER oogles %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER eyes have really been grabbed by %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER just can't drag their eyes away from %TARGET's %T_PART, and looks miserable for it.  Like they wish they could stop themselves."],
+			"merpi_repeat" : ["%USER can't look away from %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER just can't keep their eyes off of %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER is one hundred percent visually locked on to %TARGET's %T_PART, they aren't going to look away, and don't want to.  They also don't care if they get noticed."],
+			"merpi_repeat" : ["%USER doesn't want to look away from %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER eyes up %TARGET's %T_PART hungrily."],
+			"merpi_flowery" : ["%USER eyes glaze over, the thought of %TARGET's %T_PART is just too much for them to handle right now.  Call back later."],
+			"merpi_repeat" : ["%USER eyes up %TARGET's %T_PART again!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER eyes are on fire with lust for %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER eyes are one thing, but the rest of them looks like they're about to leap on %TARGET to take %T_PART wether they want it or not."],
+			"merpi_repeat" : ["%USER is eyeing up %TARGET's %T_PART hungrily!"]
+		}
+	}
+}

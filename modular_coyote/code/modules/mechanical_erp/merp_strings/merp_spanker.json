@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Spanker",
+	"merpi_private" : true,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's spanker. All your years whacking things with your hand have culminted in this skill. You could probably use it on..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER slaps the ever loving fuck out of %TARGET %T_PART!!"],
+		"merpi_flowery" : ["%USER slaps the ever loving fuck out of %TARGET %T_PART!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER lightly taps %TARGET %T_PART."],
+			"merpi_flowery" : ["%USER lightly taps %TARGET %T_PART."],
+			"merpi_repeat" : ["%USER taps %TARGET's %T_PART softly."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER pets %TARGET %T_PART!"],
+			"merpi_flowery" : ["%USER pets %TARGET %T_PART!"],
+			"merpi_repeat" : ["%USER pets %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER slaps %TARGET %T_PART playfully!"],
+			"merpi_flowery" : ["%USER slaps %TARGET %T_PART playfully!"],
+			"merpi_repeat" : ["%USER slaps %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER ruffles %TARGET %T_PART!"],
+			"merpi_flowery" : ["%USER ruffles %TARGET %T_PART!"],
+			"merpi_repeat" : ["%USER ruffles %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smacks %TARGET %T_PART!"],
+			"merpi_flowery" : ["%USER smacks %TARGET %T_PART!"],
+			"merpi_repeat" : ["%USER smacks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER paddles %TARGET %T_PART repeatedly!"],
+			"merpi_flowery" : ["%USER paddles %TARGET %T_PART repeatedly!"],
+			"merpi_repeat" : ["%USER paddles %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER whacks %TARGET %T_PART so hard the sound reverbs!"],
+			"merpi_flowery" : ["%USER whacks %TARGET %T_PART so hard the sound reverbs!"],
+			"merpi_repeat" : ["%USER whacks %TARGET's %T_PART hard!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rapid fire spanks %TARGET %T_PART!"],
+			"merpi_flowery" : ["%USER rapid fire spanks %TARGET %T_PART!"],
+			"merpi_repeat" : ["%USER rapidly spanks %TARGET's %T_PART!"]
+		}
+	}
+}

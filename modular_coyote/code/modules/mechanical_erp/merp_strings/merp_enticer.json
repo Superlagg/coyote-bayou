@@ -1,0 +1,83 @@
+{
+	"merpi_name" : "Enticer",
+	"merpi_private" : true,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's enticing touch, be that approach soft or hard. It was learned from many failed attempts at getting what they wanted, but now you could use it to..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	],
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to wraps %TARGET's mind so far up in their touches and words that there's no way that their %T_PART will ever escape!!"],
+		"merpi_flowery" : ["%USER pulls deeply on their skills as an enticer, trying to fake out and penetrate the defences of %TARGET's %T_PART entirely and take what they want from them!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER eases a soft touch to %TARGET, trying to entice them into giving up their %T_PART."],
+			"merpi_flowery" : ["%USER softly presses a touch to %TARGET's body, drawing a line towards what it is they really want. %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER urges %TARGET' softly to give them their %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER reaches out and tries to grab %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER reaches out and just flat out tries to grab %TARGET's %T_PART! All shyness left at the curb as they do so!"],
+			"merpi_repeat" : ["%USER tries to grab %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER lets out a soft noise as they gently try to motion %TARGET to give them their %T_PART"],
+			"merpi_flowery" : ["%USER quietly coos at %TARGET while their hands, eyes, and everything else seem to be trying to guide them into giving them their %T_PART"],
+			"merpi_repeat" : ["%USER softly entices %TARGET to give them their %T_PART"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER makes a sharp noise as they reach for %TARGET's %T_PART, trying to take it in hand for them to enjoy!"],
+			"merpi_flowery" : ["%USER growls softly as they reach their hand out for %TARGET's %T_PART!  They're going to take it in hand for themselves to enjoy if %TARGET doesn't stop them!"],
+			"merpi_repeat" : ["%USER gropes for %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pleads softly at %TARGET, hoping their sounds and body posture will entice them into giving the whiner their %T_PART."],
+			"merpi_flowery" : ["%USER practically whimpers for %TARGET to give them every bit of their %T_PART. Their eyes are needy, mouth even a little pouty, and they look like they REALLY want it!"],
+			"merpi_repeat" : ["%USER whimpers for %TARGET to give them %T_PART"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is trying to basically snatch %TARGET's %T_PART up like a bandit!"],
+			"merpi_flowery" : ["%USER reaches out aggressively, their brows furrowing from focus and desire as they try to get a grip on %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER is aggressively trying to get a hold of %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER has given into their urges entirely, every ounce of their being trying to beg %TARGET for their %T_PART!"],
+			"merpi_flowery" : ["%USER no longer has full control over themselves, softly reaching for and urging %TARGET to let them have %T_PART while they whimper and beg!"],
+			"merpi_repeat" : ["%USER begs for %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER has stopped fucking around entirely. Their hands are moving to try and avoid %TARGET's defenses. They're trying very hard to get a grip on their %T_PART!"],
+			"merpi_flowery" : ["%USER hands move like snakes, striking out like lightning as they attempt to penetrate %TARGET's defenses. It's very much beyond clear at this point that they are going to try nearly anything to get %T_PART!"],
+			"merpi_repeat" : ["%USER is trying to make %TARGET's %T_PART theirs!"]
+		}
+	}
+}

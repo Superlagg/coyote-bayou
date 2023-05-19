@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Spade",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's spade. The fortune cookie of the canine world, perhaps you could reach out and...? "],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to tie %TARGET's %T_PART with their cookie like they're trying to make it fill them with a litter!!"],
+		"merpi_flowery" : ["%USER squeezes their spade around %TARGET's %T_PART hard, potentially locking it in place if it's built for it. All the while squeezing them tightly as if trying to milk a litter into themselves!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER teases their cookie across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER teases their cookie across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs their cookie against %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART across their cookie."],
+			"merpi_flowery" : ["%USER rubs %TARGET's %T_PART across their cookie."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART to their cookie."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently presses their cookie to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently presses their cookie to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER teases their cookie to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER teasingly presses %TARGET's %T_PART to their cookie."],
+			"merpi_flowery" : ["%USER teasingly presses %TARGET's %T_PART to their cookie."],
+			"merpi_repeat" : ["%USER teases %TARGET's %T_PART with their cookie."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART into their cookie."],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART into their cookie."],
+			"merpi_repeat" : ["%USER lets %TARGET's %T_PART into their cookie."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER eases %TARGET's %T_PART past their cookie."],
+			"merpi_flowery" : ["%USER eases %TARGET's %T_PART past their cookie."],
+			"merpi_repeat" : ["%USER eases %TARGET's %T_PART into their cookie."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smothers %TARGET's %T_PART with their cookie."],
+			"merpi_flowery" : ["%USER smothers %TARGET's %T_PART with their cookie."],
+			"merpi_repeat" : ["%USER smothers %TARGET's %T_PART with their cookie!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their cookie down, letting %TARGET's %T_PART penetrate them fully."],
+			"merpi_flowery" : ["%USER presses their cookie down, letting %TARGET's %T_PART penetrate them fully."],
+			"merpi_repeat" : ["%USER presses their cookie down, letting %TARGET's %T_PART penetrate!"]
+		}
+	}
+}

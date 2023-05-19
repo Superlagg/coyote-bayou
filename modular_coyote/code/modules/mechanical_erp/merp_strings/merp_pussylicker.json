@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Pussylicker",
+	"merpi_private" : true,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's pussy seeking tongue missle. *slaps roof of mouth, This bad boy has been greeted the hole that smells like fish and tastes like chicken in ways you wouldn't believe."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to eat out %TARGET's %T_PART like its made out of candy!!"],
+		"merpi_flowery" : ["%USER is doing all sorts of magic shit with thier tongue to %TARGET's %T_PART, but it honestly just kind of looks like they're trying to eat their way to freedom!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER teases %TARGET's %T_PART, rolling their tongue around in circles!"],
+			"merpi_flowery" : ["%USER teases their tongue to %TARGET's %T_PART, working it around in small circles.  Clearly they're trying to see what is the most effective, and if they find it they'll probably keep at it!"],
+			"merpi_repeat" : ["%USER teases their tongue across %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER takes a small amount of %TARGET's %T_PART into their mouth for gentle nibbles!"],
+			"merpi_flowery" : ["%USER gently takes %TARGET's %T_PART into their mouth, using their lips to rub against the senstive parts of the %T_PART as they gently give %TARGET the oral affection they deserve!"],
+			"merpi_repeat" : ["%USER gently suckles %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drags their tongue across %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER sticks their tongue out and drags it across %TARGET's %T_PART from top to bottom, lapping like they're trying to find the center of a tootsie roll pop!"],
+			"merpi_repeat" : ["%USER laps at %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER suckles on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER takes %TARGET's %T_PART into their mouth, sealing their lips about the part they've chosen and using the closeness to rapidly lick at the bit they've latched onto!"],
+			"merpi_repeat" : ["%USER suckles firmly on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes their tongue against %TARGET's %T_PART, the strong muscle drawing circles as it explores!"],
+			"merpi_flowery" : ["%USER presses their head into %TARGET, tongue playing out towards the the exposed %T_PART strongly.  As the lick connects it's clear they plan on using it to apply a noticable amount of pressure as it explores!"],
+			"merpi_repeat" : ["%USER rolls their tongue about on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER seals their mouth around %TARGET's %T_PART, tongue sinking deep!"],
+			"merpi_flowery" : ["%USER turns their head slightly as they press their mouth to %TARGET's %T_PART.  Sealing it in their mouth with a soft suckling sound before the press their tongue out and deeply lick %TARGET."],
+			"merpi_repeat" : ["%USER really gets into eating out %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rapidly licks at %TARGET's %T_PART, urging them onwards!"],
+			"merpi_flowery" : ["%USER lets go of sense, licking %TARGET's %T_PART as fast as they can.  The touches are small and fast, but they're non-stop and absolutely incessant!"],
+			"merpi_repeat" : ["%USER speedlicks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER practically grinds their tongue against %TARGET's %T_PART, trying to force them higher into their pleasure!"],
+			"merpi_flowery" : ["%USER gets into a good spot, tongue able to angle perfectly at %TARGET's %T_PART.  %TARGET probably can't tell what it is they're doing, lick or grind it's impossible to know.  The fact is it's just GOOD!"],
+			"merpi_repeat" : ["%USER grinds their tongue against %TARGET's %T_PART mercilessly!"]
+		}
+	}
+}

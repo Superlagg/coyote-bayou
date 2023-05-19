@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Vagina",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's vagina. Axe wound or kitty cat, it's there for the taking. You could just reach out and...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to send %TARGET's %T_PART into the pussy dimension!!"],
+		"merpi_flowery" : ["%USER is trying to send %TARGET's %T_PART into the pussy dimension!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER inserts %TARGET's %T_PART just a little into their pussy."],
+			"merpi_flowery" : ["%USER inserts %TARGET's %T_PART just a little into their pussy."],
+			"merpi_repeat" : ["%USER lets %TARGET's %T_PART fuck their pussy just a little."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their vagina down, letting %TARGET's %T_PART penetrate them fully."],
+			"merpi_flowery" : ["%USER presses their vagina down, letting %TARGET's %T_PART penetrate them fully."],
+			"merpi_repeat" : ["%USER presses down on %TARGET's %T_PART with their pussy, driving it in."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART with the walls of their pussy."],
+			"merpi_flowery" : ["%USER squeezes %TARGET's %T_PART with the walls of their pussy."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART with their pussy!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER works their hips, trying to please %TARGET's %T_PART as their pussy squeezes around it."],
+			"merpi_flowery" : ["%USER works their hips, trying to please %TARGET's %T_PART as their pussy squeezes around it."],
+			"merpi_repeat" : ["%USER works their pussy on %TARGET's %T_PART, squeezing tightly!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER milks %TARGET's %T_PART with their pussy."],
+			"merpi_flowery" : ["%USER milks %TARGET's %T_PART with their pussy."],
+			"merpi_repeat" : ["%USER's pussy squeezes %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squeezes their keegels, trying to milk %TARGET's %T_PART for all its worth!"],
+			"merpi_flowery" : ["%USER squeezes their keegels, trying to milk %TARGET's %T_PART for all its worth!"],
+			"merpi_repeat" : ["%USER's pussy really squeezes down on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes down on %TARGET's %T_PART like they're trying to steal it!"],
+			"merpi_flowery" : ["%USER squeezes down on %TARGET's %T_PART like they're trying to steal it!"],
+			"merpi_repeat" : ["%USER's pussy tightly squeezes down on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bucks their hips greedily, working their pussy on %TARGET's %T_PART like they're in a rodeo!"],
+			"merpi_flowery" : ["%USER bucks their hips greedily, working their pussy on %TARGET's %T_PART like they're in a rodeo!"],
+			"merpi_repeat" : ["%USER throws it back, giving %TARGET's %T_PART everything their pussy has!"]
+		}
+	}
+}

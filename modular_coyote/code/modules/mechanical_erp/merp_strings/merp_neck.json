@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Neck",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's neck. It may be long or short, but it reaches all the way to their torso from their head. Hopefully that's not too surprising!"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER smashes %TARGET's %T_PART to their neck!!"],
+		"merpi_flowery" : ["%USER slaps their neck against %TARGET's %T_PART like an enraged diplocodus or something!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER caresses %TARGET's %T_PART to their neck."],
+			"merpi_flowery" : ["%USER moves carefully, pressing %TARGET's %T_PART to their neck in a soft caress."],
+			"merpi_repeat" : ["%USER caresses %TARGET's %T_PART with their neck."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART against their neck firmly!"],
+			"merpi_flowery" : ["%USER moves their neck to rub %TARGET's %T_PART against it lovingly.  "],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART to their neck."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER lightly bounces %TARGET's %T_PART on their neck."],
+			"merpi_flowery" : ["%USER bounces %TARGET's %T_PART off their neck gently, it's a teasing sort of motion and they seem to be smiling as they do it."],
+			"merpi_repeat" : ["%USER bounces %TARGET's %T_PART against their neck."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bounces %TARGET's %T_PART against their neck!"],
+			"merpi_flowery" : ["%USER bounces %TARGET's %T_PART against their neck teasingly, it's clear they're enjoying themselves from the grin they have."],
+			"merpi_repeat" : ["%USER teases %TARGET's %T_PART against their neck."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART to their neck snugly."],
+			"merpi_flowery" : ["%USER really presses %TARGET's %T_PART to their neck snugly, it seems they're quite content with having it so close to them."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART to their neck."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER digs %TARGET's %T_PART into their neck."],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART against their neck warmly, perhaps they're trying to imply something?"],
+			"merpi_repeat" : ["%USER digs %TARGET's %T_PART into their neck."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET's %T_PART to their neck!"],
+			"merpi_flowery" : ["%USER's neck squishes slightly as they press %TARGET's %T_PART firmly against it."],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART to their neck."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bashes %TARGET's %T_PART to their neck!"],
+			"merpi_flowery" : ["%USER thwacks %TARGET's %T_PART against their neck like they're trying to swat a mosquito that isn't there."],
+			"merpi_repeat" : ["%USER thwacks %TARGET's %T_PART against their neck!"]
+		}
+	}
+}

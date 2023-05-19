@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Butt",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's butt. The holy rump, round and within reach. You could just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER careens their ass into %TARGET's %T_PART like they're trying to make them into a pancake!!"],
+		"merpi_flowery" : ["%USER careens their ass into %TARGET's %T_PART like they're trying to make them into a pancake!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER teasingly presses their butt to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER teasingly presses their butt to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER presses their butt to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART to their butt teasingly."],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART to their butt teasingly."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART to their butt."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes their butt against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER pushes their butt against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER pushes their butt against %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER pushes %TARGET's %T_PART up to their butt, squishing against it softly."],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART up to their butt, squishing against it softly."],
+			"merpi_repeat" : ["%USER pushes %TARGET's %T_PART to their butt."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET's %T_PART into their butt."],
+			"merpi_flowery" : ["%USER squishes %TARGET's %T_PART into their butt."],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART into their butt."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squishes %TARGET's %T_PART between their butt cheeks like a hotdog!"],
+			"merpi_flowery" : ["%USER squishes %TARGET's %T_PART between their butt cheeks like a hotdog!"],
+			"merpi_repeat" : ["%USER hotdogs %TARGET's %T_PART with their butt."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER absolutely smashes %TARGET's %T_PART with their butt!"],
+			"merpi_flowery" : ["%USER absolutely smashes %TARGET's %T_PART with their butt!"],
+			"merpi_repeat" : ["%USER smashes %TARGET's %T_PART with their butt!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER claps their ass cheeks around %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER claps their ass cheeks around %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER claps %TARGET's %T_PART with their buttcheeks!"]
+		}
+	}
+}

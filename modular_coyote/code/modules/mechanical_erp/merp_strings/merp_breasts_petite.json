@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Petite Breasts",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's petite breasts. Maybe they aren't the biggest, but they certainly have a grace to them. You know, you could just reach out and...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER performs the ancient art of small titty magic, summoning from deep inside their soul the reserves needed to make %TARGET's %T_PART disappear for good in the cleavage dimension!!"],
+		"merpi_flowery" : ["%USER is trying hard to make %TARGET's %T_PART disappear for good in the cleavage dimension. They perform the ritual of small titty magic that only the most ancient of flat chested combatants know!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER caresses %TARGET's %T_PART to their petite breasts."],
+			"merpi_flowery" : ["%USER caresses %TARGET's %T_PART to their petite breasts. The tender mounds easing smallly agianst the task at hand"],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART to their petite breasts!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER wraps their petite breasts mostly around %TARGET's %T_PART, squeezing gently."],
+			"merpi_flowery" : ["%USER wraps their petite breasts mostly around %TARGET's %T_PART, the small mounds squeezing gently."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART with their solid palmful of breasts"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER baps %TARGET's %T_PART to their handful of tit, making them jiggle enticingly."],
+			"merpi_flowery" : ["%USER baps %TARGET's %T_PART to against their petite breasts, making the small mounds jiggle enticingly."],
+			"merpi_repeat" : ["%USER baps %TARGET's %T_PART to their petite breasts!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER urges onwards, tittyfucking %TARGET's %T_PART and gasping smallly with each bounce!"],
+			"merpi_flowery" : ["%USER urges onwards, trying to wrap their petite mounds around %TARGET's %T_PART while they gasping softly with each bounce!"],
+			"merpi_repeat" : ["%USER lightly tittyfucks %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER comforts %TARGET's %T_PART with their petite breasts, their cleavage trying enveloping it!"],
+			"merpi_flowery" : ["%USER gives warm comfort to %TARGET's %T_PART with their petite breasts, their mounds of cleavage enveloping it!"],
+			"merpi_repeat" : ["%USER warmly presses %TARGET's %T_PART to their tit-mounds!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bounces vivaciously as their petite breasts squeeze %TARGET's %T_PART between them!"],
+			"merpi_flowery" : ["%USER bounces vivaciously on %TARGET's %T_PART with their petite breasts, the small mounds squeezing smallly to the attention of their affection with warm pleasure!"],
+			"merpi_repeat" : ["%USER bounces %TARGET's %T_PART between their petite breasts!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes %TARGET's %T_PART down between their breasts, trying to smother them in their cleavage!"],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART down into their cleavage, sighing for a second because smothering just isn't in the cards, but they still try!"],
+			"merpi_repeat" : ["%USER smothers %TARGET's %T_PART with their petitties!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their petite breasts together tightly and tries to fully hide %TARGET's %T_PART as they bounce aggressively!"],
+			"merpi_flowery" : ["%USER presses their breasts together and begins aggressively rubbing them against %TARGET's %T_PART as they bounce! They really are just going full tilt tittyfuck at this point!"],
+			"merpi_repeat" : ["%USER just tittyfucking the hell out of %TARGET's %T_PART with their petite breasts !"]
+		}
+	}
+}

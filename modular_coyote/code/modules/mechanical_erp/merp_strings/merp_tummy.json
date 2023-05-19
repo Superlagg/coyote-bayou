@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Tummy",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's tummy. Big or not, it's right there and you could just reach out and...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is clearly trying to smother %TARGET's %T_PART for the last time with their tummy!!"],
+		"merpi_flowery" : ["%USER is clearly trying to smother %TARGET's %T_PART for the last time with their tummy!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART against their belly softly."],
+			"merpi_flowery" : ["%USER rubs %TARGET's %T_PART against their belly softly."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART against their belly."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs their tummy to %TARGET's %T_PART softly."],
+			"merpi_flowery" : ["%USER rubs their tummy to %TARGET's %T_PART softly."],
+			"merpi_repeat" : ["%USER rubs their tummy against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART into their tummy."],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART into their tummy."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART into their tummy."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their tummy into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their tummy into %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER presses their tummy into %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET's %T_PART into their tum."],
+			"merpi_flowery" : ["%USER squishes %TARGET's %T_PART into their tum."],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART into their tummy."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squishes their tummy to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER squishes their tummy to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER squishes their tummy against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smacks %TARGET's %T_PART into their belly."],
+			"merpi_flowery" : ["%USER smacks %TARGET's %T_PART into their belly."],
+			"merpi_repeat" : ["%USER smacks %TARGET's %T_PART with their tummy."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER smacks their tummy against %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER smacks their tummy against %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER smacks their tummy with %TARGET's %T_PART."]
+		}
+	}
+}

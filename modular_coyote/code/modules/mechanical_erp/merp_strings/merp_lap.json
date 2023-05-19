@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Lap",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's lap. Soft and inviting, you could take a seat on it or maybe reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to push %TARGET's %T_PART down into their lap like they want it to never be seen again!!"],
+		"merpi_flowery" : ["%USER is trying to push %TARGET's %T_PART down into their lap like they want it to never be seen again!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER softly rubs %TARGET's %T_PART against their lap."],
+			"merpi_flowery" : ["%USER softly rubs %TARGET's %T_PART against their lap."],
+			"merpi_repeat" : ["%USER softly rubs %TARGET's %T_PART against their lap."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART against their lap teasingly."],
+			"merpi_flowery" : ["%USER rubs %TARGET's %T_PART against their lap teasingly."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART against their lap."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER eases %TARGET's %T_PART down agianst their lap reassuringly."],
+			"merpi_flowery" : ["%USER eases %TARGET's %T_PART down agianst their lap reassuringly."],
+			"merpi_repeat" : ["%USER eases %TARGET's %T_PART into their lap."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER shoves %TARGET's %T_PART down against their lap needily."],
+			"merpi_flowery" : ["%USER shoves %TARGET's %T_PART down against their lap needily."],
+			"merpi_repeat" : ["%USER shoves %TARGET's %T_PART into their lap."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER puts %TARGET's %T_PART into their lap."],
+			"merpi_flowery" : ["%USER puts %TARGET's %T_PART into their lap."],
+			"merpi_repeat" : ["%USER puts %TARGET's %T_PART in their lap."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gets their lap all up into %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER gets their lap all up into %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER gets their lap all up on %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART against their lap hard, not letting it get away easily!"],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART against their lap hard, not letting it get away easily!"],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART down hard into their lap!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their lap into %TARGET's %T_PART aggressively!"],
+			"merpi_flowery" : ["%USER presses their lap into %TARGET's %T_PART aggressively!"],
+			"merpi_repeat" : ["%USER presses their lap into %TARGET's %T_PART hard!"]
+		}
+	}
+}

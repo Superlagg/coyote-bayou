@@ -1,0 +1,85 @@
+{
+	"merpi_name" : "Cervix",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's cervix. You probably can't actually see it, but it's up in there. You could get up in there to with..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+		
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to push %TARGET's %T_PART into their womb like they never want to see it again!!"],
+		"merpi_flowery" : ["%USER is trying to push %TARGET's %T_PART into their womb like they never want to see it again!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER softly teases %TARGET's %T_PART with their cervix, like a gentle kiss."],
+			"merpi_flowery" : ["%USER softly teases %TARGET's %T_PART with their cervix, like a gentle kiss."],
+			"merpi_repeat" : ["%USER teases %TARGET's %T_PART to their cervix."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER softly grinds %TARGET's %T_PART against their wombs entrance, enticing!"],
+			"merpi_flowery" : ["%USER softly grinds %TARGET's %T_PART against their wombs entrance, enticing!"],
+			"merpi_repeat" : ["%USER grinds their cervix against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes their cervix against %TARGET's %T_PART, letting them know that they're knocking on the door to their womb."],
+			"merpi_flowery" : ["%USER pushes their cervix against %TARGET's %T_PART, letting them know that they're knocking on the door to their womb."],
+			"merpi_repeat" : ["%USER pushes their cervix against %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART into their cervix hard, clearly trying to force a penetration!"],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART into their cervix hard, clearly trying to force a penetration!"],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART into their cervix."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER eases %TARGET's %T_PART past their cervix, and into their womb!"],
+			"merpi_flowery" : ["%USER eases %TARGET's %T_PART past their cervix, and into their womb!"],
+			"merpi_repeat" : ["%USER relaxes and lets %TARGET's %T_PART penetrate their cervix!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grinds down so hard on %TARGET's %T_PART that it's forced past their cervix, and into their womb!"],
+			"merpi_flowery" : ["%USER grinds down so hard on %TARGET's %T_PART that it's forced past their cervix, and into their womb!"],
+			"merpi_repeat" : ["%USER forces %TARGET's %T_PART past their cervix!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently bucks their hips, letting %TARGET's %T_PART fuck their cervix!"],
+			"merpi_flowery" : ["%USER gently bucks their hips, letting %TARGET's %T_PART fuck their cervix!"],
+			"merpi_repeat" : ["%USER cervix fucks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART so hard with their cervix it might as well be a second pussy milking them!"],
+			"merpi_flowery" : ["%USER squeezes %TARGET's %T_PART so hard with their cervix it might as well be a second pussy milking them!"],
+			"merpi_repeat" : ["%USER is basically letting %TARGET's %T_PART use their cervix as a second pussy!"]
+		}
+	}
+}

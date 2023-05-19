@@ -18,25 +18,32 @@ GLOBAL_VAR(string_filename_current_key)
 	else
 		CRASH("strings list not found: strings/[filename], index=[key]")
 
-/proc/strings(filename as text, key as text)
-	load_strings_file(filename)
-	if((filename in GLOB.string_cache) && (key in GLOB.string_cache[filename]))
-		return GLOB.string_cache[filename][key]
+/proc/strings(filename, key, custom_path)
+	load_strings_file(filename, custom_path)
+	if(filename in GLOB.string_cache)
+		if(key && (key in GLOB.string_cache[filename]))
+			return GLOB.string_cache[filename][key]
+		if(!key)
+			return GLOB.string_cache[filename]
 	else
 		CRASH("strings list not found: strings/[filename], index=[key]")
 
 /proc/strings_subkey_lookup(match, group1)
 	return pick_list(GLOB.string_filename_current_key, group1)
 
-/proc/load_strings_file(filename)
+/proc/load_strings_file(filename, custom_path)
 	GLOB.string_filename_current_key = filename
 	if(filename in GLOB.string_cache)
 		return //no work to do
 
 	if(!GLOB.string_cache)
 		GLOB.string_cache = new
-
-	if(fexists("strings/[filename]"))
-		GLOB.string_cache[filename] = json_load("strings/[filename]")
+	var/fullpath
+	if(custom_path)
+		fullpath = filename // custom_path lets us load from a different directory
 	else
-		CRASH("file not found: strings/[filename]")
+		fullpath = "strings/[filename]"
+	if(fexists("[fullpath]"))
+		GLOB.string_cache[filename] = json_load("[fullpath]")
+	else
+		CRASH("file not found: [fullpath]")

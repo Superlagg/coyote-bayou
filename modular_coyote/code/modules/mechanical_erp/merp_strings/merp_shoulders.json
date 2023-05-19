@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Shoulders",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's shoulders, wide or petite. They sure do look like something you could...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER shoulder checks the shit out of %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER shoulder checks the shit out of %TARGET's %T_PART!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses their shoulder carefully into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their shoulder carefully into %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER shoulder rubs %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER REALLY pushes their shoulder into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER REALLY pushes their shoulder into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER shoulder presses %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smooshes their shoulder down into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER smooshes their shoulder down into %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER shoulder smooshes %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rolls their shoulder blade across %TARGET's %T_PART firmly!"],
+			"merpi_flowery" : ["%USER rolls their shoulder blade across %TARGET's %T_PART firmly!"],
+			"merpi_repeat" : ["%USER shoulder rolls against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER realy digs their shoulder into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER realy digs their shoulder into %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER digs their shoulder into %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER digs that shoulder of theirs into %TARGET's %T_PART haaaaard!"],
+			"merpi_flowery" : ["%USER digs that shoulder of theirs into %TARGET's %T_PART haaaaard!"],
+			"merpi_repeat" : ["%USER presses hard on %TARGET's %T_PART with their shoulder."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER shoulder checks %TARGET in the %T_PART"],
+			"merpi_flowery" : ["%USER shoulder checks %TARGET in the %T_PART"],
+			"merpi_repeat" : ["%USER shoulder checks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER basically tackles %TARGET's %T_PART like some sort of sexual quarterback!"],
+			"merpi_flowery" : ["%USER basically tackles %TARGET's %T_PART like some sort of sexual quarterback!"],
+			"merpi_repeat" : ["%USER basically tackles %TARGET's %T_PART!"]
+		}
+	}
+}

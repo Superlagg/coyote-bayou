@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Claws",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's claws. Sharp and menacing or little scritchers, you could easily reach out and just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER rakes their claws hard against %TARGET's %T_PART, that'll leave a mark!!"],
+		"merpi_flowery" : ["%USER rakes their claws hard against %TARGET's %T_PART, that'll leave a mark!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently runs their claw across%TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently runs their claw across%TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER gently claws at %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER runs both of their sets of claws gently across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER runs both of their sets of claws gently across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER gently rakes at %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER teases their claw across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER teases their claw across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER teases %TARGET's %T_PART with their claw!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER teases both sets of claws across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER teases both sets of claws across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER teases %TARGET's %T_PART with their claws!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER grasps %TARGET's %T_PART gently with their claw."],
+			"merpi_flowery" : ["%USER grasps %TARGET's %T_PART gently with their claw."],
+			"merpi_repeat" : ["%USER holds %TARGET's %T_PART with their claw."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grasps %TARGET's %T_PART with both sets of their claws."],
+			"merpi_flowery" : ["%USER grasps %TARGET's %T_PART with both sets of their claws."],
+			"merpi_repeat" : ["%USER holds %TARGET's %T_PART with their claws."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART with their claw, not quite drawing blood!"],
+			"merpi_flowery" : ["%USER squeezes %TARGET's %T_PART with their claw, not quite drawing blood!"],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART with their claw!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER clasps %TARGET's %T_PART with their claws, not quick moves!"],
+			"merpi_flowery" : ["%USER clasps %TARGET's %T_PART with their claws, not quick moves!"],
+			"merpi_repeat" : ["%USER clasps %TARGET's %T_PART with their claws!"]
+		}
+	}
+}

@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Cocksucker",
+	"merpi_private" : true,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's cocksucking skills. Gained from licking, slurping, suckling, and gagging a lot! They're probably proud of them."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER stuffs %TARGET's %T_PART so far down their throat they might puke!!"],
+		"merpi_flowery" : ["%USER is throatfucking %TARGET's %T_PART so hard that their body fights back, back arching as they gag loudly around the intrusion.  They honestly look like they might puke!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER quietly slurps on %TARGET's %T_PART, leaving behind excess spit that dribbles down!"],
+			"merpi_flowery" : ["%USER softly presses their head down on %TARGET's %T_PART, excess saliva running down the intruding appendage as they moan pleasantly from their filled mouth!"],
+			"merpi_repeat" : ["%USER slurps on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER noisily slurps on %TARGET's %T_PART, coating it in their drool as they salivate from desire!"],
+			"merpi_flowery" : ["%USER drags their tongue repeatedly around %TARGET's %T_PART as they slurp it noisily.  They're not even trying to stop their own saliva from dribbling down the appendage as they slurp needily!"],
+			"merpi_repeat" : ["%USER noisily slurps on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently pushes %TARGET's %T_PART into the back of their throat with no effort, glurking softly and dribbling onto their own chin!"],
+			"merpi_flowery" : ["%USER pushes their own head down on %TARGET's %T_PART to press them into the back of their throat. The action takes next to no effort on their part as they stick their tongue out to give space and drool onto their own chin."],
+			"merpi_repeat" : ["%USER throats %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER greedily shoves %TARGET's %T_PART down their throat, gacking loudly and drooling everywhere!"],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART so far down their throat that they can't stop from drooling all over it and themselves to some degree.  As they hold it in place they swirl their tongue about instinctually, trying to tease the %T_PART!"],
+			"merpi_repeat" : ["%USER messily throats %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER holds %TARGET's %T_PART in the back of their throat, looking up at them with tears in their eyes as they swallow instinctually!"],
+			"merpi_flowery" : ["%USER doesn't need any urging to hold %TARGET's %T_PART in the back of their throat.  As they do so they swallow instinctually as if trying to milk the appendage.  Meanwhile it's clear that no matter how easy this seems to come to them their eyes are tearing up a bit!"],
+			"merpi_repeat" : ["%USER gurgles on %TARGET's %T_PART lewdly!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER pushes %TARGET's %T_PART so deep into their throat that they gag around it, spittle spraying out as their eyes roll into their head!"],
+			"merpi_flowery" : ["%USER shows zero restraint for %TARGET's %T_PART, pushing it so fast and deep down their throat that they gag loudly around it.  Unable to seal their mouth fully as they do so spit coats the %T_PART from their oral fixation while their eyes roll into the back of [player_a]'s head!"],
+			"merpi_repeat" : ["%USER throats themselves hard on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER bounces their own head on %TARGET's %T_PART like a basketball, soft wet sounds filling the space as they salivate all over it!"],
+			"merpi_flowery" : ["%USER shows no hesitation on letting %TARGET's %T_PART use their mouth as much as they want.  Bouncing it on %TARGET's %T_PART in a manner similar to a basketball without %TARGET even needing to help.  All the while filling the space with their soft wet gurgling sounds as they fail entirely to stop themselves from drooling on the %T_PART."],
+			"merpi_repeat" : ["%USER facefucks themself with %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER facefucks themselves, using their own mouth and throat like a pussy to milk %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER gives into their desires entirely and allows %TARGET's %T_PART to use their mouth exactly like a fleshlight.  Their pace is unreal, the mess of their saliva soaking %TARGET's %T_PART entirely as they try and race for the goal of being filled!"],
+			"merpi_repeat" : ["%USER urgently facefucks themself with %TARGET's %T_PART!"]
+		}
+	}
+}

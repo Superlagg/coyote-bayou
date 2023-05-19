@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Horns",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's horns. Round or pointy, long or curled. They're made for doing something rough when there's no point being sheepish about it."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER smashes %THEIR horns into %TARGET's %T_PART like an angry goat!!"],
+		"merpi_flowery" : ["%USER rears back, pushing their horns out in front of them before slamming them into %TARGET's %T_PART like a savage animal!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER softly pushes %THEIR horns against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their horns into %TARGET's %T_PART gently, easing the protuberances back and forth as they do so."],
+			"merpi_repeat" : ["%USER presses their horns to %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER playfully taps %THEIR horns against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER pops their horns against %TARGET's %T_PART playfully, teasing the %T_PART with the protuberances."],
+			"merpi_repeat" : ["%USER bops their horns playfully to %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER puts pressure on %TARGET's %T_PART with %THEIR horns."],
+			"merpi_flowery" : ["%USER presses their horns down against %TARGET's %T_PART fully, it's not a hard pressure.  Instead it feels like they're just resting against the %T_PART."],
+			"merpi_repeat" : ["%USER really presses on %TARGET's %T_PART with their horns!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER baps %TARGET's %T_PART with %THEIR horns!"],
+			"merpi_flowery" : ["%USER rears back slightly and slaps their horns against %TARGET's %T_PART as if giving a warning!"],
+			"merpi_repeat" : ["%USER baps %TARGET's %T_PART with their horns!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses down hard on %TARGET's %T_PART with %THEIR horns!"],
+			"merpi_flowery" : ["%USER pushes their horns down hard against %TARGET's %T_PART, grinding the things back and forth across the %T_PART almost uncomfortably."],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART with their horns!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER slams down on %TARGET's %T_PART with %THEIR horns!"],
+			"merpi_flowery" : ["%USER pulls their head back all the way before bearing their horns down hard on %TARGET's %T_PART, that probably hurt!"],
+			"merpi_repeat" : ["%USER slams %TARGET's %T_PART with their horns!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER is just flat out trying to shove %TARGET's %T_PART out of the way with %THEIR horns!"],
+			"merpi_flowery" : ["%USER bulls against %TARGET's %T_PART with their horns, trying to shove the %T_PART around without really holding back!"],
+			"merpi_repeat" : ["%USER painfully squishes %TARGET's %T_PART with their horns!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bludgeons the shit out of %TARGET's %T_PART with %THEIR horns!"],
+			"merpi_flowery" : ["%USER full on hornbutts %TARGET's %T_PART, the sound of their horns and the %T_PART colliding reverbing slightly as they dig the horns in viciously!"],
+			"merpi_repeat" : ["%USER slams their horns painfully into %TARGET's %T_PART!"]
+		}
+	}
+}

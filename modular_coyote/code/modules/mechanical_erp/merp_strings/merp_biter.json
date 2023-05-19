@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Biter",
+	"merpi_private" : true,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's biter, it's used for biting, nibbling, gnawing and nomming!"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER bites the fuck out of  %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER puts %TARGET's %T_PART into their jaws, sinking a bite down into it firmly as if latching on for dear life like they're going for the kill!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER nibbles %TARGET on the %T_PART"],
+			"merpi_flowery" : ["%USER teases nibbles across %TARGET's %T_PART, leaving small affectionate pressure pricks along the %T_PART as they explore their body!"],
+			"merpi_repeat" : ["%USER nibbles %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bites %TARGET's %T_PART playfuly!"],
+			"merpi_flowery" : ["%USER bites into %TARGET's %T_PART playfully, a soft laugh escaping from their mouth as they do so.  It's clear they're enjoying the tasty snack!"],
+			"merpi_repeat" : ["%USER bites %TARGET's %T_PART"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER softly bites %TARGET on the %T_PART"],
+			"merpi_flowery" : ["%USER softly sinks their teeth into %TARGET's %T_PART, looking towards their face to gauge the reaction as they impishly shake the %T_PART!"],
+			"merpi_repeat" : ["%USER softly bites %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER chomps on %TARGET's %T_PART possesively."],
+			"merpi_flowery" : ["%USER chomps down hard on %TARGET's %T_PART, their sharp teeth pressing into the %T_PART noticably as they let out a soft laugh of pleasure!"],
+			"merpi_repeat" : ["%USER chomps %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER latches onto %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their bite down into %TARGET's %T_PART, holding on firmly to the %T_PART as if their life depends on it!"],
+			"merpi_repeat" : ["%USER bites onto %TARGET's %T_PART! "]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gnaws on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER repeatedly gnaws on %TARGET's %T_PART, like an dog chewing on a bone.  Over and over they sink their teeth into the %T_PART relentlessly!"],
+			"merpi_repeat" : ["%USER gnaws on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER bites %TARGET hard on the %T_PART"],
+			"merpi_flowery" : ["%USER breaks the skin, a small trickle of blood coming from %TARGET's %T_PART as the biter breaths through their nostrils!"],
+			"merpi_repeat" : ["%USER nyomphs %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER bites down hard on %TARGET's %T_PART, nearly drawing blood!"],
+			"merpi_flowery" : ["%USER downright CHOMPS into %TARGET's %T_PART, breaking skin and latching on like an animal seeking a meal! That'll leave a mark!"],
+			"merpi_repeat" : ["%USER chomps %TARGET's %T_PART!"]
+		}
+	}
+}

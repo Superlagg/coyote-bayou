@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Tongue",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's tongue. Whatever length it is this wet muscle spends most of its time in a mouth. Theirs, yours, someones."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER's tongue is trying to lick the life out of %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER's is dragging their tongue across %TARGET's %T_PART like they are trying to speed run a tootsie pop!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently licks %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER sticks their tongue out and gently runs it across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER licks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER drags their tongue across %TARGET's %T_PART greedily!"],
+			"merpi_flowery" : ["%USER sticks their tongue out cutely before dragging it across %TARGET's %T_PART like a greedy creature!"],
+			"merpi_repeat" : ["%USER licks %TARGET's %T_PART cutely!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER laps at %TARGET's %T_PART, leaving behind a little bit of drool."],
+			"merpi_flowery" : ["%USER mlems, sticking their tongue out before dragging slowly across %TARGET's %T_PART and leaving behind a thin layer of their drool!"],
+			"merpi_repeat" : ["%USER laps at %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER slurps at %TARGET's %T_PART, clearly chasing after a taste of some sort!"],
+			"merpi_flowery" : ["%USER sticks their tongue out and pushes it at %TARGET's %T_PART, clearly they've got a taste for something it has and are trying to get all of it!"],
+			"merpi_repeat" : ["%USER slurps at %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER mlems at %TARGET's %T_PART heavily, coating it with %THIER spit."],
+			"merpi_flowery" : ["%USER flops their tongue out fully and slowly drags it across %TARGET's %T_PART, leaving behind a heavy coating of their drool!"],
+			"merpi_repeat" : ["%USER wetly mlems %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER suckles at %TARGET's %T_PART, clearly swallowing something as they do so!"],
+			"merpi_flowery" : ["%USER has sealed %TARGET's %T_PART into their mouth and is lapping at it greedily, swallowing either something it's giving them or their own excess saliva!"],
+			"merpi_repeat" : ["%USER suckles %TARGET's %T_PART, swallowing anything that comes out!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drags their tongue across %TARGET's %T_PART a bit too hard!"],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART to their tongue a bit too hard, dragging it across the wet appendage roughly!"],
+			"merpi_repeat" : ["%USER drags their licker across %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER uses their tongue to milk %TARGET's %T_PART for every ounce of whatever its offering!"],
+			"merpi_flowery" : ["%USER is absolutely suckling in full tilt from %TARGET's %T_PART, milking it with their oral attention and swallowing anything it gives them!"],
+			"merpi_repeat" : ["%USER suckles %TARGET's %T_PART "]
+		}
+	}
+}

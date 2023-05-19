@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Nipples",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's nippes. Hard or soft, they are certainly at hand. You could just...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER uses their nipples like nunchucks, trying to slay %TARGET's %T_PART where it lays!!"],
+		"merpi_flowery" : ["%USER uses their nipples like nunchucks, trying to slay %TARGET's %T_PART where it lays!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER carefully rubs a nipple across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER carefully rubs a nipple across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs a nipple to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER takes both of their nipples and rubs them gently against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER takes both of their nipples and rubs them gently against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs their nipples against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses a nipple firmly to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses a nipple firmly to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER presses a nipple to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses both nipples firmly to %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER presses both nipples firmly to %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER presses both nipples to %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER inserts a nipple into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER inserts a nipple into %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER puts a nipple into %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER puts %TARGET's %T_PART between their nipples while rubbing them to and fro!"],
+			"merpi_flowery" : ["%USER puts %TARGET's %T_PART between their nipples while rubbing them to and fro!"],
+			"merpi_repeat" : ["%USER puts both nipples into %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER nipple-whacks %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER nipple-whacks %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER nipple-whacks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER uses both of their nipples to assault %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER uses both of their nipples to assault %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER is nipple-saulting %TARGET's %T_PART!"]
+		}
+	}
+}

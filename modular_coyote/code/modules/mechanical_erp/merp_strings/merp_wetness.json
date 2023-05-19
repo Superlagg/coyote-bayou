@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Wetness",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's wetness. Slip'n and slidin. There's moisture to spare. You could just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER has an absolute swimming pool between their legs, and is trying to drown %TARGET's %T_PART in it!!"],
+		"merpi_flowery" : ["%USER has an absolute swimming pool between their legs, and is trying to drown %TARGET's %T_PART in it!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER is clearly moist with wetness from %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER is clearly moist with wetness from %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER is moist from %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is slick from %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER is slick from %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER is slick from %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER would ruin a pair of panties at this point from the wetness that %TARGET's %T_PART has caused!"],
+			"merpi_flowery" : ["%USER would ruin a pair of panties at this point from the wetness that %TARGET's %T_PART has caused!"],
+			"merpi_repeat" : ["%USER is oozing wetnes on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER crotch is absolutely drooling from the wetness %TARGET's %T_PART caused!"],
+			"merpi_flowery" : ["%USER crotch is absolutely drooling from the wetness %TARGET's %T_PART caused!"],
+			"merpi_repeat" : ["%USER is drooling from their crotch and onto %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER can barely contain themselves, their wetness is almost too much from %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER can barely contain themselves, their wetness is almost too much from %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER can't contain themselves, wetness covering %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is soaking %TARGET's %T_PART with moisture from their arousal!"],
+			"merpi_flowery" : ["%USER is soaking %TARGET's %T_PART with moisture from their arousal!"],
+			"merpi_repeat" : ["%USER is soaking %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER is starting to squirt uncontrolably from %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER is starting to squirt uncontrolably from %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER squirts from %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is pushing %TARGET's %T_PART down into their wetness so hard they almost squeal!"],
+			"merpi_flowery" : ["%USER is pushing %TARGET's %T_PART down into their wetness so hard they almost squeal!"],
+			"merpi_repeat" : ["%USER grinds %TARGET's %T_PART into their wetness!"]
+		}
+	}
+}

@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Barbs",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's barbs. The spiny bits of a feline cock. You could just reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER absolutely buries their spiny kitty cock in %TARGET's %T_PART, yowling like a stray!!"],
+		"merpi_flowery" : ["%USER presses their hips down roughly burying their spined feline cock into %TARGET's %T_part while yowling like an enraged tomcat!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently rubs their spines agianst %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their cock spines softly against %TARGET's %T_PART, dragging them across it gently."],
+			"merpi_repeat" : ["%USER rubs their spines to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their feline cock to %TARGET's %T_PART spines and all."],
+			"merpi_flowery" : ["%USER forces their hips forward, pressing their barbed feline cock to %TARGET's %T_PART as they apply pressure."],
+			"merpi_repeat" : ["%USER grinds their cat-dick on %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER brushes their barbs across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER takes their cock in hand and guides their barbs along %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs barbs on %TARGET's %T_PART"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER penetrates %TARGET's %T_PART with their cat-dick. Their barbs teasing at the entrance."],
+			"merpi_flowery" : ["%USER drives their hips forwards, pushing their cat-dick into %TARGET's %T_PART, letting their barbs tickle the entrance!"],
+			"merpi_repeat" : ["%USER cat-dicks %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER slides their cat-cock into %TARGET's %T_PART, gently easing their barbs in."],
+			"merpi_flowery" : ["%USER pushes their hips forwards against %TARGET's %T_PART. Their cat-wang penetrating deeper alongside their barbs!"],
+			"merpi_repeat" : ["%USER softly cat-dicks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is giving %TARGET's %T_PART the rough side of their feline babymaker!"],
+			"merpi_flowery" : ["%USER drills their hips forward agianst %TARGET's %T_PART rapidly burying their feline cock over and over again!"],
+			"merpi_repeat" : ["%USER kitty fucks %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER buries their feline cock deeply into %TARGET's %T_PART, their barbs working their magic!"],
+			"merpi_flowery" : ["%USER draws their hips back slowly before ramming their feline rod home into %TARGET's %T_PART. Holding steady for just a moment before they pull their hips back to repeat the action!"],
+			"merpi_repeat" : ["%USER is giving %TARGET's %T_PART all of their feline fucking attention!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rapidly sinks their hips down repeatedly into %TARGET's  %T_PART, their feline cock hilting over and over again as their barbs give maximum stimulation!"],
+			"merpi_flowery" : ["%USER's legs are shaking from the sheer amount of effort they're putting forward to push their feline cock into %TARGET's  %T_PART at a very rapid pace. All while their barbs work to pass along the utmost of stimulation!"],
+			"merpi_repeat" : ["%USER is definitely trying to put kittens into %TARGET's  %T_PART!"]
+		}
+	}
+}

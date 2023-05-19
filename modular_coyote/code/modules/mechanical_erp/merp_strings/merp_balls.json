@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Balls",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's balls. Do they hang low? Do they wobble to and fro? Probably shouldn't tie them in a knot, but you could reach out and do something else instead..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER uses their balls like a mallet on %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER swings their hips back suddenly and violently, their scrote swinging like a pendulum on the backwards motion before they bring it around with a whipcrack smash against %TARGET's %T_PART!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drags their balls across %TARGET's %T_PART playfully."],
+			"merpi_flowery" : ["%USER playfully squats their scrote onto %TARGET's %T_PART. Dragging the slightly cooler ball-package across it."],
+			"merpi_repeat" : ["%USER drags their balls across %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER drags %TARGET's %T_PART along their balls."],
+			"merpi_flowery" : ["%USER drags their balls along %TARGET's %T_PART like they're going on a merry trip."],
+			"merpi_repeat" : ["%USER drags %TARGET's %T_PART across their balls."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drapes their balls on %TARGET's %T_PART like a shelf."],
+			"merpi_flowery" : ["%USER plops their testicles onto %TARGET's %T_PART, using it to hold up the heavy sack."],
+			"merpi_repeat" : ["%USER teabags %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER lays %TARGET's %T_PART against their balls."],
+			"merpi_flowery" : ["%USER rests their balls on %TARGET's %T_PART like they plan on using it as a second home."],
+			"merpi_repeat" : ["%USER drapes their balls on %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER stuffs their balls into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER stuffs their balls into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER stuffs their balls into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER uses %TARGET's %T_PART as a sack holder."],
+			"merpi_flowery" : ["%USER uses %TARGET's %T_PART as a sack holder."],
+			"merpi_repeat" : ["%USER uses %TARGET's %T_PART as a sack holder."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER clacks their balls off of %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER clacks their balls off of %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER ball-clacks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER uses %TARGET's %T_PART to smack themselves in the balls!"],
+			"merpi_flowery" : ["%USER uses %TARGET's %T_PART to smack themselves in the balls!"],
+			"merpi_repeat" : ["%USER ball-smacks themself with %TARGET's %T_PART!"]
+		}
+	}
+}

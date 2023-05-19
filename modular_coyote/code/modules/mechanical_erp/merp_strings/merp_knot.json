@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Knot",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's knot. Inflated or knot, it's still there for you to ponder the orb. Or you could always just reach out and...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER buries their knot in %TARGET's %T_PART, trying to lock them together!!"],
+		"merpi_flowery" : ["%USER buries their knot in %TARGET's %T_PART, trying to lock them together!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently drags their knot across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently drags their knot across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER eases their knot across %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gently pushes their knot to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently pushes their knot to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER teases their knot against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drags their knot across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER drags their knot across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER drags their knot across %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their knot to %TARGET's %T_PART firmly."],
+			"merpi_flowery" : ["%USER presses their knot to %TARGET's %T_PART firmly."],
+			"merpi_repeat" : ["%USER presses their knot to %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes their knot into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER pushes their knot into %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER pushes their knot into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER slips their knot into %TARGET's %T_PART momentarily before it pulling it out again!"],
+			"merpi_flowery" : ["%USER slips their knot into %TARGET's %T_PART momentarily before it pulling it out again!"],
+			"merpi_repeat" : ["%USER slips their knot in and out of %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER eases their knot into place for %TARGET's %T_PART, holding it there for a long moment!"],
+			"merpi_flowery" : ["%USER eases their knot into place for %TARGET's %T_PART, holding it there for a long moment!"],
+			"merpi_repeat" : ["%USER almost ties their knot in place for %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER jams their knot into %TARGET's %T_PART like they're trying to bury the bone!"],
+			"merpi_flowery" : ["%USER jams their knot into %TARGET's %T_PART like they're trying to bury the bone!"],
+			"merpi_repeat" : ["%USER jams their knot in place for %TARGET's %T_PART!"]
+		}
+	}
+}

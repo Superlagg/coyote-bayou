@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Long Front Legs",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's long front legs. Considering they have legs for days its a wonder they reach all the way to the ground. You could reach them too and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to send %TARGET's %T_PART to hell with a scissor squeeze!!"],
+		"merpi_flowery" : ["%USER is trying to send %TARGET's %T_PART to hell with a scissor squeeze!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently caresses %TARGET's %T_PART with their long front legs."],
+			"merpi_flowery" : ["%USER gently caresses %TARGET's %T_PART with their long front legs."],
+			"merpi_repeat" : ["%USER caresses %TARGET's %T_PART with their long front legs!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER lovingly caresses their long front legs with %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER lovingly caresses their long front legs with %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER lovingly caresses %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART with their long front legs."],
+			"merpi_flowery" : ["%USER rubs %TARGET's %T_PART with their long front legs."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART with their long front legs."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs their long front legs against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER rubs their long front legs against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs their long front legs against %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART with their long front legs."],
+			"merpi_flowery" : ["%USER squeezes %TARGET's %T_PART with their long front legs."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART with their long front legs."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squeezes their long front legs around %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER squeezes their long front legs around %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER squeezes their long front legs around %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET's %T_PART a bit too hard with their long front legs!"],
+			"merpi_flowery" : ["%USER squishes %TARGET's %T_PART a bit too hard with their long front legs!"],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART a bit too hard with their long front legs!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squishes their long front legs around %TARGET's %T_PART a bit too hard!"],
+			"merpi_flowery" : ["%USER squishes their long front legs around %TARGET's %T_PART a bit too hard!!"],
+			"merpi_repeat" : ["%USER squishes their long front legs around %TARGET's %T_PART a bit too hard!"]
+		}
+	}
+}

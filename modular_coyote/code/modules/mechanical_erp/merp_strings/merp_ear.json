@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Ear",
+	"merpi_private" : false,
+	"smell" : "",
+	"taste" : "",
+	"merpi_desc" : ["%USER's ears, be they short or long, big or small. Made for listening, here or there."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to use %THEIR ears like switches against  %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER rears back, using their ears like weapons against %TARGET's %T_PART!  The aggression is clear and it's almost like they're using their ears like switches!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently rubs %THEIR ear across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their ears softly to %TARGET's %T_PART, it's a soft and sweet action."],
+			"merpi_repeat" : ["%USER ear rubs %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER aggressively rubs %THEIR ears across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER leans into %TARGET's %T_PART, rubbing their ears too and fro across the %T_PART somewhat aggressively.  Almost like they're trying to smear it across them."],
+			"merpi_repeat" : ["%USER ear rubs %TARGET's %T_PART aggressively!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER flicks %THEIR ear on %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER twitches their ears on %TARGET's %T_PART, the listening devices moving rapidly for a moment as they adjust themselves."],
+			"merpi_repeat" : ["%USER flicks %TARGET's %T_PART with their ear!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rapidly brushes %THEIR ears on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER brushes their ears against %TARGET's %T_PART repeatedly, they seem pretty focused on doing so!"],
+			"merpi_repeat" : ["%USER assaults %TARGET's %T_PART with their ears!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER swats %THEIR ear on %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER swings their ears back and forth, flopping them back and forth against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER swats %TARGET's %T_PART with their ear."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER wraps %THEIR ears around %TARGET's %T_PART. Or tries to, at least."],
+			"merpi_flowery" : ["%USER does their best to tie their ears around %TARGET's %T_PART. Only their anatomy will be able to tell if this succeeds."],
+			"merpi_repeat" : ["%USER wraps their ears around %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER whacks their ear on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER twists their head, putting energy into the whacks they're giving %TARGET's %T_PART with their ears!"],
+			"merpi_repeat" : ["%USER whacks %TARGET's %T_PART with their ear!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART with their ears!"],
+			"merpi_flowery" : ["%USER tightly pulls their ears around %TARGET's %T_PART, tightening the knot they've tied with them!"],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART tightly with their ears!"]
+		}
+	}
+}

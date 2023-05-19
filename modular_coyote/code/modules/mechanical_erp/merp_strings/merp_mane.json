@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Mane",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's mane, thick and regal. It wraps around their neck, but maybe you could...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to smother %TARGET's %T_PART with their mane!!"],
+		"merpi_flowery" : ["%USER is trying to smother %TARGET's %T_PART with their mane!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER brushes their mane against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER brushes their mane against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs their mane on %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER lovingly rubs their mane against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER lovingly rubs their mane against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER softly rubs their mane on %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER mushes their mane against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER mushes their mane against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER presses their mane to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER hides %TARGET's %T_PART in their mane, warm!"],
+			"merpi_flowery" : ["%USER hides %TARGET's %T_PART in their mane, warm!"],
+			"merpi_repeat" : ["%USER hides %TARGET's %T_PART in their mane."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER covers %TARGET's %T_PART with their mane."],
+			"merpi_flowery" : ["%USER covers %TARGET's %T_PART with their mane."],
+			"merpi_repeat" : ["%USER's mane is covering %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER digs %TARGET's %T_PART deep down into their mane!"],
+			"merpi_flowery" : ["%USER digs %TARGET's %T_PART deep down into their mane!"],
+			"merpi_repeat" : ["%USER buries %TARGET's %T_PART in their mane."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER whacks %TARGET's %T_PART with their mane!"],
+			"merpi_flowery" : ["%USER whacks %TARGET's %T_PART with their mane!"],
+			"merpi_repeat" : ["%USER whacks %TARGET's %T_PART with their mane!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER really just whacks at %TARGET's %T_PART with their mane!"],
+			"merpi_flowery" : ["%USER really just whacks at %TARGET's %T_PART with their mane!"],
+			"merpi_repeat" : ["%USER assaults %TARGET's %T_PART with their mane!"]
+		}
+	}
+}

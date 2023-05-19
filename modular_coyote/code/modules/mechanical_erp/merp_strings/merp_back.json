@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's back. Bare, broken, covered or a mountain. It's there to keep the front from falling off. Either way it's right there and you could just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["[players] throws it back, OG style. Trying to whiplash %TARGET's %T_PART with their back. That can't be comfortable!!"],
+		"merpi_flowery" : ["[players] throws it back, OG style. Trying to whiplash %TARGET's %T_PART with their back. That can't be comfortable!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER carefully presses %TARGET's %T_PART to their back."],
+			"merpi_flowery" : ["%USER carefully presses %TARGET's %T_PART to their back."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART to their back."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER carefully presses their back to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER carefully presses their back to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER pushes their back to %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART to their back."],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART to their back."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART to their back."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their back to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their back to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER presses their back to %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER firmly presses %TARGET's %T_PART into their back."],
+			"merpi_flowery" : ["%USER firmly presses %TARGET's %T_PART into their back."],
+			"merpi_repeat" : ["%USER firmly presses %TARGET's %T_PART to thier back."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their back firmly to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their back firmly to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER presses their back firmly to %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER flops their back against %TARGET's %T_PART painfully!"],
+			"merpi_flowery" : ["%USER flops their back against %TARGET's %T_PART painfully!"],
+			"merpi_repeat" : ["%USER flops their back against %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER flops %TARGET's %T_PART against their back painfully!"],
+			"merpi_flowery" : ["%USER flops %TARGET's %T_PART against their back painfully!"],
+			"merpi_repeat" : ["%USER flops %TARGET's %T_PART against their back."]
+		}
+	}
+}

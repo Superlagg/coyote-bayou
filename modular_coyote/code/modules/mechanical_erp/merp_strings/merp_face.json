@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Face",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's face, beautiful or handsome. It's right there, so close. You could just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER headbutts the shit out of %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER pushes their head forwards and bashes it agianst %TARGET's %T_PART, rapidly, and aggressively!  Oh god!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER nuzzles their face against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER brings their face in close to %TARGET's %T_PART, nuzzling it softly and affectionately. "],
+			"merpi_repeat" : ["%USER nuzzles their face into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs their face against %TARGET's %T_PART like a cat!"],
+			"merpi_flowery" : ["%USER nuzzles their face gently against %TARGET's %T_PART, the motions fairly similar to a cat rubbings it's face on something."],
+			"merpi_repeat" : ["%USER rubs their face against %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes their face warmly to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER brings their face up to %TARGET's %T_PART, pushing against it in a warm and affectionate manner."],
+			"merpi_repeat" : ["%USER pushes their face into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER pushes their face lovingly to %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER just heaps affection on %TARGET's %T_PART with their face, rubbing it all over themselves!"],
+			"merpi_repeat" : ["%USER lovingly pushes their face into %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smacks %TARGET's %T_PART to their face playfully."],
+			"merpi_flowery" : ["%USER reaches out and smacks %TARGET's %T_PART against their face in an overly playful manner!"],
+			"merpi_repeat" : ["%USER smacks %TARGET's %T_PART against their face!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER smooshes %TARGET's %T_PART to their face!"],
+			"merpi_flowery" : ["%USER reaches out and smooshes %TARGET's %T_PART directly to their face, dragging it around for fun!"],
+			"merpi_repeat" : ["%USER smooshes %TARGET's %T_PART to their face!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smushes %TARGET's %T_PART to their face a bit too hard!"],
+			"merpi_flowery" : ["%USER really pushes %TARGET's %T_PART into their face, maybe even a little bit too hard!"],
+			"merpi_repeat" : ["%USER smushes %TARGET's %T_PART to their face!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER really gets their face all sorts of up into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER just can't get their face off of %TARGET's %T_PART, they've basically buried their face in it at this point!"],
+			"merpi_repeat" : ["%USER buries their face in %TARGET's %T_PART!"]
+		}
+	}
+}

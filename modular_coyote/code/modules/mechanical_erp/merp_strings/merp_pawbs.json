@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Pawbs",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's pawbs. One bean, two bean, jumping beans. These beans are just in reach and you could just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to knead on %TARGET's %T_PART like they plan on baking it later!!"],
+		"merpi_flowery" : ["%USER is trying to knead on %TARGET's %T_PART like they plan on baking it later!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER teases their toe beans against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER teases their toe beans against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER toes %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER dances their toe beans across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER dances their toe beans across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER dances their toe beans on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER touches %TARGET's %T_PART intimately with their pawb."],
+			"merpi_flowery" : ["%USER touches %TARGET's %T_PART intimately with their pawb."],
+			"merpi_repeat" : ["%USER touches %TARGET's %T_PART with their pawb!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER drags their toe beans across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER drags their toe beans across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER drags their toe beans across %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER grasps at %TARGET's %T_PART with their toe beans."],
+			"merpi_flowery" : ["%USER grasps at %TARGET's %T_PART with their toe beans."],
+			"merpi_repeat" : ["%USER pinches %TARGET's %T_PART with their toe beans!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grabs at %TARGET's %T_PART with both sets of their toe beans."],
+			"merpi_flowery" : ["%USER grabs at %TARGET's %T_PART with both sets of their toe beans."],
+			"merpi_repeat" : ["%USER grabs %TARGET's %T_PART with both pawbs!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER steps on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER steps on %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER gives %TARGET's %T_PART the steppies!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is kneading %TARGET's %T_PART with their toe beans like they plan on making it a nest!"],
+			"merpi_flowery" : ["%USER is kneading %TARGET's %T_PART with their toe beans like they plan on making it a nest!"],
+			"merpi_repeat" : ["%USER kneads %TARGET's %T_PART with their pawbs!"]
+		}
+	}
+}

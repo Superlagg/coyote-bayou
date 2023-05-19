@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Huge Breasts",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's gigantic mammary calamaties. You could kill a man with these things if you put enough speed behind them. Or maybe you could...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER sinks %TARGET's %T_PART down into their cleavge, trying to make it forgtten to the very sands of time!!"],
+		"merpi_flowery" : ["%USER is squeezing their fat milk bags around %TARGET's %T_PART, risking losing it in their cleavage much the same way one loses change in a couch, or socks in the dryer!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER caresses %TARGET's %T_PART to their massive breasts."],
+			"merpi_flowery" : ["%USER caresses %TARGET's %T_PART to their massive breasts. Letting them feel just how large and comforting they are."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART to their gigantic breasts!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER wraps their insane amounts cleavage around %TARGET's %T_PART, squeezing gently."],
+			"merpi_flowery" : ["%USER wraps their insane cleavage around %TARGET's %T_PART, sinking it into the depths of the unknown that they call the space between their tits."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART with their gigantic breasts"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER collides %TARGET's %T_PART to their gravity bending bosom, jostling the soft flesh from the impact."],
+			"merpi_flowery" : ["%USER collides %TARGET's %T_PART to their event horizon level breasts, causing the massive soft mammaries to ripple out a jiggle like the surface of a lake that had a pebble thrown in it."],
+			"merpi_repeat" : ["%USER collides %TARGET's %T_PART to their heavy breasts!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER urges onwards, tittyfucking %TARGET's %T_PART with their big tits!"],
+			"merpi_flowery" : ["%USER urges onwards, tittyfucking %TARGET's %T_PART with their heavy breasts! Gasping with the exertion of the action as they work it!"],
+			"merpi_repeat" : ["%USER mega tittyfucks %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER hides %TARGET's %T_PART under their massively heavy cleavage!"],
+			"merpi_flowery" : ["%USER hides %TARGET's %T_PART with their massive breasts. The gigantic heavy mammaries cleavage working to entirely block line of sight to it while trying to hold it in place!"],
+			"merpi_repeat" : ["%USER envelopes %TARGET's %T_PART in their heaving cleavage!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER tries to bounce vivaciously with their massive breasts as they hold %TARGET's %T_PART between them!"],
+			"merpi_flowery" : ["%USER squishes their cleavage together tightly and sure does try to bounce vivaciously with massive heaving breasts wrapped fully around %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER titjiggles %TARGET's %T_PART between their massive breasts!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smothers %TARGET's %T_PART with their massive breasts!"],
+			"merpi_flowery" : ["%USER puts their massive breasts over %TARGET's %T_PART! It's almost like the moon itself is trying to blot out the sky over them as the massive heavy breasts try to come down to their new resting place!"],
+			"merpi_repeat" : ["%USER smothers %TARGET's %T_PART with massive amounts titty supreme!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their massive breasts together and doesn't even have to try hard to fully hide %TARGET's %T_PART as they bounce!"],
+			"merpi_flowery" : ["%USER presses their massive breasts together as tightly as they can while trying to fully hide %TARGET's %T_PART in the ocean that is their weighty voluptous cleavage!"],
+			"merpi_repeat" : ["%USER is trying to hide %TARGET's %T_PART between their massive breasts!"]
+		}
+	}
+}

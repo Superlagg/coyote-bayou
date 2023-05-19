@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Cockhead",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's cockhead. It is, after all. Just the tip. You could reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER pushes their prick so far into %TARGET's %T_PART that it may get lost!!"],
+		"merpi_flowery" : ["%USER pushes their prick so far into %TARGET's %T_PART that it may get lost!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently moves the tip of their cock across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently moves the tip of their cock across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER teases their cockhead across %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gently presses just the tip to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER gently presses just the tip to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER teases their cockhead to %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drags the end of their cock along %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER drags the end of their cock along %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER drags their cockhead against %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER pushes the tip of their cock into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER pushes the tip of their cock into %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER presses their cockhead into %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER slaps %TARGET's %T_PART with their cockhead!"],
+			"merpi_flowery" : ["%USER slaps %TARGET's %T_PART with their cockhead!"],
+			"merpi_repeat" : ["%USER slaps %TARGET's %T_PART with their cockhead!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER pushes their cockhead deep into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER pushes their cockhead deep into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER pushes their %TARGET's %T_PART deep into %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER jams their prick down against %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER jams their prick down against %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER jams their prick against %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER digs deep, their prick grinding against %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER digs deep, their prick grinding against %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER buries their prick in %TARGET's %T_PART!"]
+		}
+	}
+}

@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Ovipositor",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's ovipositor. Egg layings the game and this things the tool for it. You could just reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER buries their ovipositor in %TARGET's %T_PART, forcing eggs into them like they fucking MEAN it!!"],
+		"merpi_flowery" : ["%USER buries their ovipositor in %TARGET's %T_PART, forcing eggs into them like they fucking MEAN it!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER drags their egg layer across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER drags their egg layer across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER drags their ovipositor across %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER teasingly presses their ovipositor to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER teasingly presses their ovipositor to %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER softly presses their egg layer to %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER slaps their ovipositor agianst %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER slaps their ovipositor agianst %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER slaps their ovipostior against %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER sinks their egg layer into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER sinks their egg layer into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER sinks their egg layer into %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER suddenly stabs their ovipositor down into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER suddenly stabs their ovipositor down into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER stabs %TARGET's %T_PART with their ovipositor!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER hilts their egg layer in %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER hilts their egg layer in %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER hilts their egg layer in %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER's body shakes, pumping a single egg into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER's body shakes, pumping a single egg into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER lays a single egg into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER shakes %TARGET's %T_PART as they leave an egg behind!"],
+			"merpi_flowery" : ["%USER shakes %TARGET's %T_PART as they leave an egg behind!"],
+			"merpi_repeat" : ["%USER lays a single egg into %TARGET's %T_PART!"]
+		}
+	}
+}

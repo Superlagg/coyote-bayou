@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Hair",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's hair. Long or short, well taken care of or messy. It's the mop on their top. Be it bald, beautiful, or bewitching."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER hair smacks the shit out of %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER runs their hair around %TARGET's %T_PART until they have it tied around tightly.  Then they yank!! OH NO!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently brushes [player_a]'s hair across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER swings their hair about and allows it to gather around %TARGET's %T_PART, the locks landing just so."],
+			"merpi_repeat" : ["%USER brushes hair against %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER swishes %THEIR massive amount of hair across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER softly piles their hair around %TARGET's %T_PART, swishing back and forth to tease the %T_PART with the soft touches."],
+			"merpi_repeat" : ["%USER teases their hair about %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER swings %THEIR hair about in a playful manner across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER playfully twists their head back and forth, sweeping their hair across %TARGET's %T_PART in a playfull manner."],
+			"merpi_repeat" : ["%USER swishes their hair against %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER drapes %THEIR hair across %TARGET's %T_PART like they're trying to hide it."],
+			"merpi_flowery" : ["%USER swings their hair over their shoulders, draping it over %TARGET's %T_PART in a playful attempt to hide the %T_PART from sight."],
+			"merpi_repeat" : ["%USER buries %TARGET's %T_PART in their hair!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER strokes %TARGET's %T_PART with %THEIR hair."],
+			"merpi_flowery" : ["%USER gently wraps their hair around %TARGET's %T_PART before moving it to and fro in a teasing sort of motion."],
+			"merpi_repeat" : ["%USER strokes %TARGET's %T_PART with their hair!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER wraps %THEIR hair about %TARGET's %T_PART, trapping it."],
+			"merpi_flowery" : ["%USER tightly wraps their hair about %TARGET's %T_PART.  The %T_PART clearly trapped in its confines as %USER moves their hair to and fro."],
+			"merpi_repeat" : ["%USER ties their hair around %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER whacks %TARGET's %T_PART with their hair!"],
+			"merpi_flowery" : ["%USER swings their hair about behind them like a cat flicking its tail, whacking it into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER whacks %TARGET's %T_PART with their hair!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER strangles %TARGET's %T_PART with their hair!"],
+			"merpi_flowery" : ["%USER tightens the wrap around %TARGET's %T_PART, holding it truly captive in their curls as they continue to tease it."],
+			"merpi_repeat" : ["%USER strangles %TARGET's %T_PART with their hair!"]
+		}
+	}
+}

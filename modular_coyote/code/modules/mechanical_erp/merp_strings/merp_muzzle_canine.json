@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Canine Muzzle",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's canine muzzle. It sure is a face of all time. Maybe you should...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER muzzlebutts the shit out of %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER pulls their head back for a moment before slamming their canine muzzle into %TARGET's %T_PART violently!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER nuzzles their canine muzzle against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their canine muzzle close to %TARGET's %T_PART, nuzzling and showing desire."],
+			"merpi_repeat" : ["%USER canine muzzle nuzzles %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs their canine muzzle warmly against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER presses their canine muzzle in close to %TARGET's %T_PART, warmly and lovingly pressing it to themselves."],
+			"merpi_repeat" : ["%USER lovingly canine muzzle nuzzles %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes their canine muzzle to %TARGET's %T_PART, letting them feel how heated it is."],
+			"merpi_flowery" : ["%USER rubs their canine muzzle against %TARGET's %T_PART, the clear warmth radiating from it should make it clear that they're either in heat, or deeply desire %TARGET!"],
+			"merpi_repeat" : ["%USER warmly canine muzzle nuzzles %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER affectionately presses their canine muzzle to %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER rubs lovingly against %TARGET's %T_PART with their canine muzzle, obviously showing them deep amounts of love and affection."],
+			"merpi_repeat" : ["%USER affectionately canine muzzle nuzzles %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smacks %TARGET's %T_PART to their canine muzzle playfully."],
+			"merpi_flowery" : ["%USER very gently headbutts %TARGET's %T_PART, it's a playful motion but also more than a bit needy as they don't pull away after connecting while seeming a bit flushed!"],
+			"merpi_repeat" : ["%USER acosts their canine muzzle with %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART firmly to their canine muzzle!"],
+			"merpi_flowery" : ["%USER holds their canine muzzle still against %TARGET's %T_PART, savoring the moment between the two in full."],
+			"merpi_repeat" : ["%USER pushes their canine muzzle to %TARGET's %T_PART with love!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smushes %TARGET's %T_PART to their canine muzzle a bit too hard!"],
+			"merpi_flowery" : ["%USER seems to lose control of their senses a bit, warmth radiating from their canine muzzle as it gets near %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER smushes %TARGET's %T_PART into their canine muzzle!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rests %TARGET's %T_PART against their canine muzzle!"],
+			"merpi_flowery" : ["%USER rests their canine muzzle so gently on %TARGET's %T_PART that it seems they don't even want to move, reveling in the closeness of the other person."],
+			"merpi_repeat" : ["%USER rests their canine muzzle on %TARGET's %T_PART!"]
+		}
+	}
+}

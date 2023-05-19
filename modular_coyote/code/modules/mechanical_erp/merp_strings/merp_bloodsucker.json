@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Bloodsucker",
+	"merpi_private" : true,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's bloodsucker! Be it vampire fangs or something more grim, they are predatory and vicious. Maybe that's a good time...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER sinks their bloodsucking fangs into %TARGET's %T_PART, trying to turn it into a empty capri sun package!"],
+		"merpi_flowery" : ["%USER makes a very silly 'bleh' noise as they open their mouth wide and sink their bloodsucking fangs into %TARGET's %T_PART, GET THE STAKE!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER draws %TARGET's %T_PART across their vampire fangs!"],
+			"merpi_flowery" : ["%USER teases their bloodsucking fangs across %TARGET's %T_PART's skin, tracing a noticible line across the affected area! "],
+			"merpi_repeat" : ["%USER teases their vampire fangs across %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER agressively draws their bloodsucking fangs across %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER draws their bloodsucking fangs across %TARGET's %T_PART like a knife, leaving a small and broken line of blood droplets across the marked area!"],
+			"merpi_repeat" : ["%USER draws their vampire fangs acrsos %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER lightly sinks their bloodsucking fangs into %TARGET's %T_PART, sipping silently!"],
+			"merpi_flowery" : ["%USER presses their jaws closed around %TARGET's %T_PART, sinking their bloodsucking fangs into them just enough to get a steady flow from %TARGET as they sip their essence quietly."],
+			"merpi_repeat" : ["%USER sinks their vampire fangs into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER sinks their fangs into %TARGET's %T_PART, slurping noisily!"],
+			"merpi_flowery" : ["%USER digs their bloodsucking fangs into %TARGET's %T_PART just deep enough to get a steady flow of %TARGET's blood, slurpingly noisily as they do so!"],
+			"merpi_repeat" : ["%USER digs their vampire fangs into %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER eases their fangs down into %TARGET's %T_PART, feeding quietly on their essence!"],
+			"merpi_flowery" : ["%USER coaxes their fangs down into %TARGET's %T_PART in an attempt to feed.  They're quiet in their approach, and %TARGET may not even notice that they're being used as a human sized juice box."],
+			"merpi_repeat" : ["%USER suckles with their vampire fangs on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER jams their fangs down into %TARGET's %T_PART, feeding from them like a predator!"],
+			"merpi_flowery" : ["%USER shows no hesitation in jamming their fangs down hard into %TARGET's %T_PART, feeding off them like a predator that seeks to engorge itself on the meal at hand."],
+			"merpi_repeat" : ["%USER feeds greedily with their vampire fangs on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER holds %TARGET's %T_PART to their bloodsucking fangs, starting to drain them!"],
+			"merpi_flowery" : ["%USER holds %TARGET's %T_PART firmly to their bloodsucking fangs, it's clear that while they may be quiet about this whole ordeal they're not shy to empty %TARGET of all their vital liquids!"],
+			"merpi_repeat" : ["%USER is sucking the life out of %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER growls around %TARGET's %T_PART, their bloodsucking fangs drawing deep from them! "],
+			"merpi_flowery" : ["%USER growls like a deranged monster, bloodsucking fangs pressed deep into %TARGET's %T_PART as they pull deeply on %TARGET's blood.  Some of the precious liquid even dribbling out of their mouth as they do so!"],
+			"merpi_repeat" : ["%USER is sucking hte life out of %TARGET's %T_PART like a monster!"]
+		}
+	}
+}

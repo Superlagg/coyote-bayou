@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Cheeks",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's cheeks. Even now you have to stop yourself from pinching them. Or do you...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is trying to use their faces cheeks like a club against %TARGET's %T_PART!"],
+		"merpi_flowery" : ["%USER whomps %TARGET's %T_PART against their faces cheeks violently, like they're trying to beat themselves senseless!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER taps %TARGET's %T_PART to their faces cheek playfully."],
+			"merpi_flowery" : ["%USER grasps %TARGET's %T_PART in hand and lightly taps it their own faces cheek, causing said cheek to jiggle."],
+			"merpi_repeat" : ["%USER taps %TARGET's %T_PART to their cheek!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gently caresses %TARGET's %T_PART to their faces cheeks."],
+			"merpi_flowery" : ["%USER caresses %TARGET's %T_PART directly to their cheeks, dragging the %T_PART back and forth between their faces soft cheeks!"],
+			"merpi_repeat" : ["%USER caresses %TARGET's %T_PART with their cheek!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pops %TARGET's %T_PART against their faces cheek."],
+			"merpi_flowery" : ["%USER grasps %TARGET's %T_PART and slaps it against their faces cheeks with a slight popping motion.  Playful!"],
+			"merpi_repeat" : ["%USER pops %TARGET's %T_PART against their cheek!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART against their faces cheeks cutely."],
+			"merpi_flowery" : ["%USER holds %TARGET's %T_PART in hand as they rub it to their faces cheeks in a cute sort of manner."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART against their cheek!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER pushes %TARGET's %T_PART into their faces cheek."],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART directly at their faces cheek, pushing it in some as they do so."],
+			"merpi_repeat" : ["%USER pushes %TARGET's %T_PART into their cheek!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses %TARGET's %T_PART against their faces cheeks, implying something much naughtier."],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART down into their faces cheeks as they open their mouth some, this allows the %T_PART to cave the cheek in a fair amount.  Are they trying to imply something?"],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART against their cheek!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER whacks %TARGET's %T_PART into their faces cheek!"],
+			"merpi_flowery" : ["%USER wields %TARGET's %T_PART like a whacker as they slap themseves in their own faces cheek!"],
+			"merpi_repeat" : ["%USER whacks %TARGET's %T_PART against their cheek!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART roughly against their faces cheeks!"],
+			"merpi_flowery" : ["%USER presses %TARGET's %T_PART to their face, rubbing the %T_PART to their face in a rough sort of manner!"],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART against their cheek roughly!"]
+		}
+	}
+}

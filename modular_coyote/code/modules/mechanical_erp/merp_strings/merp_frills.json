@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Frills",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's frills. Wavy or straight, these things would be great for draping something over, or maybe...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER beats %TARGET's %T_PART with their frills, what the hell?!!"],
+		"merpi_flowery" : ["%USER beats %TARGET's %T_PART with their frills, what the hell?!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rubs their frill against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER rubs their frill against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART with their frill!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their frill to %TARGET's %T_PART lovingly."],
+			"merpi_flowery" : ["%USER presses their frill to %TARGET's %T_PART lovingly."],
+			"merpi_repeat" : ["%USER presses their frill to %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER caresses their frill against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER caresses their frill against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER caresses %TARGET's %T_PART with their frill!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER flaps their frill against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER flaps their frill against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER flaps their frill against %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER brushes their frill against %TARGET's %T_PART lovingly."],
+			"merpi_flowery" : ["%USER brushes their frill against %TARGET's %T_PART lovingly."],
+			"merpi_repeat" : ["%USER frill-brushes %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER traps %TARGET's %T_PART with their frill, sort of like a hug."],
+			"merpi_flowery" : ["%USER traps %TARGET's %T_PART with their frill, sort of like a hug."],
+			"merpi_repeat" : ["%USER frill-traps %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER whacks %TARGET's %T_PART with their frill!"],
+			"merpi_flowery" : ["%USER whacks %TARGET's %T_PART with their frill!"],
+			"merpi_repeat" : ["%USER frill-whacks %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER turns into a dilophosaur and does not fetch the stick for %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER turns into a dilophosaur and does not fetch the stick for %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER frill-jiggles %TARGET's %T_PART!"]
+		}
+	}
+}

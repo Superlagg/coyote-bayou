@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Precum",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's precum. A drip, a drop, slopped on top, you could just reach out and...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is oozing buckets into %TARGET's %T_PART, they're probably about to cum!!"],
+		"merpi_flowery" : ["%USER is oozing buckets into %TARGET's %T_PART, they're probably about to cum!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER forms a drop of precum on their cock for %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER forms a drop of precum on their cock for %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER drips precum for %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER dribbles precum for %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER dribbles precum for %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER dribbles precum for %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER leaks a solid drop of precum out for %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER leaks a solid drop of precum out for %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER leaks precum for %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is supplying a steady stream of %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER is supplying a steady stream of %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER streams precum for %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER throbs steadily, supplying a steady stream of precum for %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER throbs steadily, supplying a steady stream of precum for %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER throbs precum steadily for %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is basically already climaxing, precum dribbling out excessively for %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER is basically already climaxing, precum dribbling out excessively for %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER is basically already climaxing, precum dribbling out for %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gasps as %TARGET's %T_PART forces more and more precum out of them!"],
+			"merpi_flowery" : ["%USER gasps as %TARGET's %T_PART forces more and more precum out of them!"],
+			"merpi_repeat" : ["%USER gasps as %TARGET's %T_PART milks precum out of them!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER really can only barely contain themselves, %TARGET's %T_PART is milking precum out of them like a machine!"],
+			"merpi_flowery" : ["%USER really can only barely contain themselves, %TARGET's %T_PART is milking precum out of them like a machine!"],
+			"merpi_repeat" : ["%USER is being used as a precum dispenser %TARGET's %T_PART! "]
+		}
+	}
+}

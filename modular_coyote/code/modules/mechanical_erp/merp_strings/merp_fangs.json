@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Fangs",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's fangs! Big or small you're very sure they'd hurt if they sank into your bits, but maybe that's the plan?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER sinks their fangs into %TARGET's %T_PART like its the Discovery Channel!"],
+		"merpi_flowery" : ["%USER doesn't see the Discovery Channel camera man and host in the background as they sink their fangs down into %TARGET's %T_PART like a wild animal seeking a meal!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently bites into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER bites into %TARGET's %T_PART gently, scraping their teeth playfully along the %T_PART as they do so."],
+			"merpi_repeat" : ["%USER softly bites %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER playfully bites into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER sinks their teeth playfully into %TARGET's %T_PART, squeezing at the %T_PART in a gentle and playful manner!"],
+			"merpi_repeat" : ["%USER playfully bites %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER bites down possively into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER nyomfs into %TARGET's %T_PART like it's a steak that belongs to them!"],
+			"merpi_repeat" : ["%USER bites down on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER growls around their fangs as they sink into %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER can't help but animalistically growl around the fants they have stuck in %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER growls as they bite %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER draws a little bit of blood from %TARGET's %T_PART with their fangs!"],
+			"merpi_flowery" : ["%USER presses their teeth in just a little too hard for the skin on %TARGET's %T_PART, drawing a very small drop of blood from their tips!"],
+			"merpi_repeat" : ["%USER bites %TARGET's %T_PART just a little too hard!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER shakes %TARGET's %T_PART with their fangs!"],
+			"merpi_flowery" : ["%USER shakes %TARGET's %T_PART like a polaroid picture, yanking it too and fro like a wild animal!"],
+			"merpi_repeat" : ["%USER shakes %TARGET's %T_PART with their bite!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER fully sinks their teeth into the flesh of %TARGET's %T_PART, ow!"],
+			"merpi_flowery" : ["%USER bares their fangs in full before sinking them directly into %TARGET's %T_PART, they've definitely broken the skin at this point and they don't seem super willing to release their hold!"],
+			"merpi_repeat" : ["%USER sinks their fangs into %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER deathgrips %TARGET's %T_PART in their fangs!"],
+			"merpi_flowery" : ["%USER growls loudly as they bare their fangs and sink them directly into %TARGET's %T_PART.  The look in their eyes screams defiance as they do so, drawing blood from the bitemark as they hold on like a beartrap!"],
+			"merpi_repeat" : ["%USER deathgrips %TARGET's %T_PART with their fangs!"]
+		}
+	}
+}

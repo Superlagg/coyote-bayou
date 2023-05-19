@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Mouth",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's something"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER is definitely trying to suck the soul out of %TARGET through their %T_PART!!"],
+		"merpi_flowery" : ["%USER basically grows horns and a little squiggly demon tail as they attempt to straight up suck the soul out of %TARGET through their %T_PART!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER mouths %TARGET's %T_PART playfully."],
+			"merpi_flowery" : ["%USER places %TARGET's %T_PART into their mouth, letting the warmth envelop it!"],
+			"merpi_repeat" : ["%USER mouths %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER swirls %TARGET's %T_PART in their mouth, making a soft slurping sound!"],
+			"merpi_flowery" : ["%USER takes %TARGET's %T_PART in hand before placing it into their mouth, where they softly slurp on the %T_PART."],
+			"merpi_repeat" : ["%USER swirls %TARGET's %T_PART in their mouth!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER suckles on %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER puts %TARGET's %T_PART into their mouth and suckles on it needily!"],
+			"merpi_repeat" : ["%USER suckles %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER works their mouth on %TARGET's %T_PART lewdly!"],
+			"merpi_flowery" : ["%USER places %TARGET's %T_PART directly into their mouth before pressing the appendage to the cheek.  Clearly they're trying to say something."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART into their cheek!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gurks on %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER urges %TARGET's %T_PART into the back of their mouth, gurking softly on the appendage before backing off some!"],
+			"merpi_repeat" : ["%USER gurks on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is really going at %TARGET's %T_PART, leaving behind drool and making some very lewd sounds!"],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART directly into the back of their mouth, teasing the entrance of their throat as they make some very wet slurping sounds around the appendage!"],
+			"merpi_repeat" : ["%USER squealches on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gacks themselves loudly on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART a bit too deep into the back of their mouth, gacking loudly and pulling it free as they regain their composure!"],
+			"merpi_repeat" : ["%USER gacks on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gags themself on %TARGET's %T_PART, drool dribbling down as they do!"],
+			"merpi_flowery" : ["%USER pushes %TARGET's %T_PART deep into their mouth, and while they don't quite get them into their throat it's clear that they might can if they try a little harder.  Either way it's causing %USER to drool all over %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER gags themself on %TARGET's %T_PART!"]
+		}
+	}
+}

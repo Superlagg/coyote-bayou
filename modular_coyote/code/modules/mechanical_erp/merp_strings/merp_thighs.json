@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Thighs",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's thighs, turkey legs and drumsticks. All of these have something in common. You could just..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER has decided that their thighs are %TARGET's %T_PART's demise!!"],
+		"merpi_flowery" : ["%USER has decided that their thighs are %TARGET's %T_PART's demise!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rubs their thighs softly against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER rubs their thighs softly against %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs their thighs against %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squeezes their thighs together around %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER squeezes their thighs together around %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER thigh squeezes %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART between their thighs playfully."],
+			"merpi_flowery" : ["%USER squeezes %TARGET's %T_PART between their thighs playfully."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART between their thighs!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER shakes theirs around %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER shakes theirs around %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER shakes their thighs around %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET's %T_PART with their thighs comfortably."],
+			"merpi_flowery" : ["%USER squishes %TARGET's %T_PART with their thighs comfortably."],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART with their thighs!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER crushes %TARGET's %T_PART with their thighs tightly!"],
+			"merpi_flowery" : ["%USER crushes %TARGET's %T_PART with their thighs tightly!"],
+			"merpi_repeat" : ["%USER crushes %TARGET's %T_PART with their thighs!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER crushes %TARGET's %T_PART like a watermelon!"],
+			"merpi_flowery" : ["%USER crushes %TARGET's %T_PART like a watermelon!"],
+			"merpi_repeat" : ["%USER crushes %TARGET's %T_PART like a watermelon!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER shakes from the effort of trying to crush %TARGET's %T_PART with their thighs!"],
+			"merpi_flowery" : ["%USER shakes from the effort of trying to crush %TARGET's %T_PART with their thighs!"],
+			"merpi_repeat" : ["%USER smushes %TARGET's %T_PART mercilessly!"]
+		}
+	}
+}

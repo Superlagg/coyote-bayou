@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Paws",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's paws. Big or small these really do track with the rest of them. You could just reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER beats %TARGET's %T_PART with their beans like it owes them money!!"],
+		"merpi_flowery" : ["%USER beats %TARGET's %T_PART with their beans like it owes them money!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER's beans gently touches %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER's beans gently touches %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER bean-touches %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER gently grasps %TARGET's %T_PART with their beans."],
+			"merpi_flowery" : ["%USER gently grasps %TARGET's %T_PART with their beans."],
+			"merpi_repeat" : ["%USER bean-grasps %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER intimately touches %TARGET's %T_PART with their beans."],
+			"merpi_flowery" : ["%USER intimately touches %TARGET's %T_PARTwith their beans."],
+			"merpi_repeat" : ["%USER bean-touches %TARGET's %T_PART sweetly."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER fondles %TARGET's %T_PART with their beans."],
+			"merpi_flowery" : ["%USER fondles %TARGET's %T_PART with their beans."],
+			"merpi_repeat" : ["%USER bean-fondles %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER grabs and squeezes %TARGET's %T_PART with their beans."],
+			"merpi_flowery" : ["%USER grabs and squeezes %TARGET's %T_PART with their beans."],
+			"merpi_repeat" : ["%USER bean-squeezes %TARGET's %T_PART in hand."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER grasps hold of %TARGET's %T_PART firmly with their beans."],
+			"merpi_flowery" : ["%USER grasps hold of %TARGET's %T_PART firmly with their beans."],
+			"merpi_repeat" : ["%USER firmly bean-squeezes %TARGET's %T_PART in hand."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET %T_PART with their beans!"],
+			"merpi_flowery" : ["%USER squishes %TARGET %T_PART with their beans!"],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART with their beans!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER kneads their beans into %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER kneads their beans into %TARGET's %T_PART!"],
+			"merpi_repeat" : ["%USER kneads %TARGET's %T_PART!"]
+		}
+	}
+}

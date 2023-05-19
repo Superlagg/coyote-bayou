@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Lips",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's lips, soft and kissable. They sure do look nice in this light, maybe you should...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER kisses might just steal the soul out of %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER plants a deep kiss to %TARGET's %T_PART like some sort of love succubus, it's almost like they're trying to steal %TARGET's soul out of the %T_PART!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER presses a light kiss against %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER leans their face in to place a very light kiss on %TARGET's %T_PART.  Sweet and gentle. "],
+			"merpi_repeat" : ["%USER softly kisses %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER plants a full lipped kiss to %TARGET's %T_PART, leaving a bit of slight sheen behind."],
+			"merpi_flowery" : ["%USER leans into %TARGET's %T_PART and plants a deep full lipped kill directly to it, they linger long enough that it leaves behind a sheen.  Be it lipstick or just a thin coating of %USER's saliva, who knows."],
+			"merpi_repeat" : ["%USER full kisses %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER lovingly kisses %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER presses a very loving kiss directly to %TARGET's %T_PART, their soft lips leaving behind a soft imprint of either their lipstick or a little bit of saliva from the contact."],
+			"merpi_repeat" : ["%USER lovingly kisses %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER wraps their lips around %TARGET's %T_PART, teasing with their own softness!"],
+			"merpi_flowery" : ["%USER deeply kisses %TARGET's %T_PART, wrapping their lips around it entirely as they gently tease with their lips softness!"],
+			"merpi_repeat" : ["%USER deeply kisses %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER sloppily kisses %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER presss their lips to %TARGET's %T_PART, sloppily kissing it as they do so!"],
+			"merpi_repeat" : ["%USER sloppily kisses %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER sinks %TARGET's %T_PART just past their lips, sealing around the %T_PART and suckling needily!"],
+			"merpi_flowery" : ["%USER takes %TARGET's %T_PART in hand and guides it towards their mouth before letting it sink just past their lips.  Once within their mouth they suckle on the %T_PART much like a piece of candy!"],
+			"merpi_repeat" : ["%USER gently suckles on %TARGET's %T_PART!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER tries to leave a hickie on %TARGET's %T_PART!"],
+			"merpi_flowery" : ["%USER seals their lips around %TARGET's %T_PART in a kiss for a soft moment before suddenly suckling hard on the %T_PART, trying to leave a hickie on them!"],
+			"merpi_repeat" : ["%USER is trying to leave hickies on %TARGET's %T_PART!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER sloppily wraps their lips about %TARGET's %T_PART, making a soft sucking noise as they do!"],
+			"merpi_flowery" : ["%USER gets their lips around %TARGET's %T_PART, sloppily suckling on the appendage as they do so.  It's clear that they're trying to either imitate, or perform, felatio on whatever they're suckling!"],
+			"merpi_repeat" : ["%USER suckles intimately on %TARGET's %T_PART!"]
+		}
+	}
+}

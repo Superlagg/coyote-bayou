@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Chest",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's chest. Bare or covered, it's just right there and you cold totally just...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER careens their chest into %TARGET's %T_PART!!"],
+		"merpi_flowery" : ["%USER careens their chest into %TARGET's %T_PART!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER caresses %TARGET's %T_PART on their chest."],
+			"merpi_flowery" : ["%USER caresses %TARGET's %T_PART on their chest."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART chestwards."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER playfully slaps %TARGET's %T_PART against their chest."],
+			"merpi_flowery" : ["%USER playfully slaps %TARGET's %T_PART against their chest."],
+			"merpi_repeat" : ["%USER plaps %TARGET's %T_PART to their chest."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART on their chest playfully."],
+			"merpi_flowery" : ["%USER rubs %TARGET's %T_PART on their chest playfully."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART to their chest."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER drags %TARGET's %T_PART back and forth on their chest."],
+			"merpi_flowery" : ["%USER drags %TARGET's %T_PART back and forth on their chest."],
+			"merpi_repeat" : ["%USER teases %TARGET's %T_PART to against their chest."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART against their chest."],
+			"merpi_flowery" : ["%USER squeezes %TARGET's %T_PART against their chest."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART to their chest."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER softly baps %TARGET's %T_PART against their chest."],
+			"merpi_flowery" : ["%USER softly baps %TARGET's %T_PART against their chest."],
+			"merpi_repeat" : ["%USER softly baps %TARGET's %T_PART to their chest."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER smacks %TARGET's %T_PART against their chest!"],
+			"merpi_flowery" : ["%USER smacks %TARGET's %T_PART against their chest!"],
+			"merpi_repeat" : ["%USER smacks %TARGET's %T_PART to their chest."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER baps %TARGET's %T_PART harshly against their chest!"],
+			"merpi_flowery" : ["%USER baps %TARGET's %T_PART harshly against their chest!"],
+			"merpi_repeat" : ["%USER slaps %TARGET's %T_PART against their chest."]
+		}
+	}
+}

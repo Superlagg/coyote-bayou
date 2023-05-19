@@ -1,0 +1,83 @@
+{
+	"merpi_name" : "",
+	"merpi_private" : true,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's something"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	],
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER %TARGET's %T_PART"],
+		"merpi_flowery" : ["%USER %TARGET's %T_PART"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER %TARGET's %T_PART"],
+			"merpi_flowery" : ["%USER %TARGET's %T_PART"],
+			"merpi_repeat" : ["%USER %TARGET's %T_PART"]
+		}
+	}
+}

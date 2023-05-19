@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's arms, strong or gentle they're there just waiting for you to...?"],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER puts %TARGET's %T_PART into a fucking chokehold! Look out, look out, look out!!"],
+		"merpi_flowery" : ["%USER wraps their arms tightly around %TARGET's %T_PART, hand locking to wrist and putting it in a chokehold! Look out, look out, look out!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER gently takes %TARGET's %T_PART into their arms."],
+			"merpi_flowery" : ["%USER takes %TARGET's %T_PART into their arms. It's a gentle hold, maybe even sweet."],
+			"merpi_repeat" : ["%USER softly squeezes %TARGET's %T_PART in a hug."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER presses their elbow into %TARGET's %T_PART, firmly but carefully."],
+			"merpi_flowery" : ["%USER leans in and presses the tip of their elbow into %TARGET's %T_PART. As they do so they begin to apply a steady pressure to try and remove tension."],
+			"merpi_repeat" : ["%USER elbow rubs %TARGET's %T_PART."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER claims %TARGET's %T_PART between their arms."],
+			"merpi_flowery" : ["%USER wraps their arms around %TARGET's %T_PART claiming clear ownership."],
+			"merpi_repeat" : ["%USER holds %TARGET's %T_PART posesively."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER digs their elbow into %TARGET's %T_PART, rubbing it deep."],
+			"merpi_flowery" : ["%USER rolls their elbow firmly against %TARGET's %T_PART, the pressure digging in deep to try and ease tension."],
+			"merpi_repeat" : ["%USER massages %TARGET's %T_PART with their elbow."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART between their arms."],
+			"merpi_flowery" : ["%USER uses their arms to give %TARGET's %T_PART a big hug!"],
+			"merpi_repeat" : ["%USER squishes %TARGET's %T_PART in their arms!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is trying to crush %TARGET's %T_PART with their elbow like Arnie!"],
+			"merpi_flowery" : ["%USER presses their elbow down so hard into %TARGET's %T_PART that it almost certainly hurts like hell!"],
+			"merpi_repeat" : ["%USER is giving %TARGET's %T_PART the swedish touch!"]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER squishes %TARGET's %T_PART between their arms painfully!"],
+			"merpi_flowery" : ["%USER tightly squeezes their arms around %TARGET's %T_PART. Putting every ounce of their strength into the action as they squish it!"],
+			"merpi_repeat" : ["%USER throttles %TARGET's %T_PART with their arms squeeze!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER absolutely cranks %TARGET's %T_PART with their elbow, cracking something!"],
+			"merpi_flowery" : ["%USER finally gets the angle just right with their elbow against %TARGET's %T_PART. They then press down deeply and sharply, causing it to crack loudly!"],
+			"merpi_repeat" : ["%USER cracks something in %TARGET's %T_PART!"]
+		}
+	}
+}

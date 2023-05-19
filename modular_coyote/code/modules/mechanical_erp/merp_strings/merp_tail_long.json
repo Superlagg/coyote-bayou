@@ -1,0 +1,84 @@
+{
+	"merpi_name" : "Long Tail",
+	"merpi_private" : false,
+	"smell" : "%USER's %SRC sure smells like %SRC.",
+	"taste" : "%USER's %SRC sure is %SRClike in taste.",
+	"merpi_desc" : ["%USER's long tail, you probably shouldn't snort it. You could reach out and..."],
+	"bit_used_male" : [
+		"",
+		""
+	],
+	"bit_used_female" : [
+		"",
+		""
+	],
+	"bit_used_nonbinary" : [
+		"",
+		""
+	],
+	"bit_climax_male" : [
+		"",
+		""
+	],
+	"bit_climax_female" : [
+		"",
+		""
+	],
+	"bit_climax_nonbinary" : [
+		"",
+		""
+	]
+	,
+	"merpi_ci" : {
+		"merpi_normal" : ["%USER just starts beating the absolute hell out of %TARGET's %T_PART with their long tail!!"],
+		"merpi_flowery" : ["%USER just starts beating the absolute hell out of %TARGET's %T_PART with their long tail!!"]
+	},
+	"merpi_intent_help" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER softly caresses their long tail across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER softly caresses their long tail across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER brushes their long tail to %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER guides %TARGET's %T_PART to their long tail with soft caresses."],
+			"merpi_flowery" : ["%USER guides %TARGET's %T_PART to their long tail with soft caresses."],
+			"merpi_repeat" : ["%USER presses %TARGET's %T_PART into their long tail."]
+		}
+	},		
+	"merpi_intent_disarm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER rubs their long tail across %TARGET's %T_PART."],
+			"merpi_flowery" : ["%USER rubs their long tail across %TARGET's %T_PART."],
+			"merpi_repeat" : ["%USER rubs their long tail across %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER rubs %TARGET's %T_PART against their long tail."],
+			"merpi_flowery" : ["%USER rubs %TARGET's %T_PART against their long tail."],
+			"merpi_repeat" : ["%USER rubs %TARGET's %T_PART against their long tail."]
+		}
+	},		
+	"merpi_intent_grab" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER wraps %TARGET's %T_PART with their long tail, squeezing comfortably."],
+			"merpi_flowery" : ["%USER wraps %TARGET's %T_PART with their long tail, squeezing comfortably."],
+			"merpi_repeat" : ["%USER wraps their long tail around %TARGET's %T_PART."]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER squeezes %TARGET's %T_PART with their long tail maybe a bit too hard."],
+			"merpi_flowery" : ["%USER squeezes %TARGET's %T_PART with their long tail maybe a bit too hard."],
+			"merpi_repeat" : ["%USER squeezes %TARGET's %T_PART with their long tail."]
+		}
+	},		
+	"merpi_intent_harm" : {
+		"merpi_held" : {
+			"merpi_normal" : ["%USER whacks %TARGET's %T_PART with their long tail, ow!"],
+			"merpi_flowery" : ["%USER whacks %TARGET's %T_PART with their long tail, ow!"],
+			"merpi_repeat" : ["%USER smacks %TARGET's %T_PART with their long tail!"]
+		},
+		"merpi_wielded" : {
+			"merpi_normal" : ["%USER is really just choking the shit out of %TARGET's %T_PART with their long tail!"],
+			"merpi_flowery" : ["%USER is really just choking the shit out of %TARGET's %T_PART with their long tail!"],
+			"merpi_repeat" : ["%USER squeezes the mess out of %TARGET's %T_PART with their long tail!"]
+		}
+	}
+}
