@@ -1,0 +1,68 @@
+Welcome to MERP, Coyote Bayou's Mechanical ERP system!
+Designed to be a simple, easy to use, and powerful ERP system for small businesses, as well as easy to install.
+If all goes well, you should be able to install MERP in a few minutes, simply paste in the module, tweak some paths, and you're good to go!
+
+## Overview of systems
+MERP as a whole uses a few different systems to accomplish its goals. These are:
+ * SSmerp - The subsystem reponsible for loading, cataloguing, and building MERP output, as well as processing arousal.
+ * /datum/component/merp - The component responsible for handling player-specific MERP interactions, such as the (auto)plap, tracking arousal, saving/loading preferences, and so on.
+ * /obj/item/merpi_bit - The item used plap other merpi bits, the primary method of interacting with MERP.
+
+## SSmerp
+SSmerp is a processing subsystem, used by the MERP Component to tick its arousal, autoplappers, and so on.
+It also loads all of the MERP scripts from the /merp_strings/ directory, and builds a list of all of the available MERP scripts.
+This list of scripts is comprised of a series of /datum/merp_script objects. When a MERP line is requested, it will fetch and parse
+the appropriate line from the specified script, and return it to the caller.
+
+## /datum/merp_script
+A /datum/merp_script is a representation of a MERP script, and contains all of the information needed to build, parse, and return a MERP line.
+When a MERP line is requested from a /datum/merp_script, it will, depending on the kind of line requested, return the appropriate line.
+It is also responsible for transforming a blank merpi_bit into the proper kind of merpi_bit, getting it ready to plap other merpi_bits.
+
+## /obj/item/merpi_bit
+A /obj/item/merpi_bit is a physical item that is intended to be used on other merpi_bits, to plap them. It is the primary method of interacting with MERP.
+When a merpi_bit is plapped on another merpi_bit, it will, depending on the kind of merpi_bit, perform a 'plap'.
+
+## Plaps
+A plap is a MERP interaction, and is the primary method of interacting with MERP. A plap is performed by using a merpi_bit on another merpi_bit.
+When a plap happens, it will output an emote and play a sound, both pulled from the appropriate /datum/merp_script, as well as adjust the arousal
+of both the plapper and the plappee. Depending on the plapper's intent, wielded state of the plapper, and quality state,
+the output text and sound will be different.
+
+## Quality
+Quality refers to the output description 'floweriness' of a plap. Currently, a plap can be: Flowery, Normal, or Repeated.
+	Flowery plaps are more lovingly detailed, useful for when the plapper wants to put a lot more emphasis on the plap.
+	Normal plaps have a more standard description, useful for your every-day plaps.
+	Repeated plaps have a much shorter description, and are typically used by the autoplapper so it doesn't flood the chat with plaps.
+Quality can be changed by [THING I HAVENT DECIDED YET].
+
+## Intent
+Depending on the plapper's intent at the time of plapping, whether help, disarm, grab, or harm the output text and sound will be different.
+	Help plaps are typically more loving, gentle, generally good for foreplay and the like. Usually presses the part against another.
+	Disarm plaps are a bit firmer, involving more penetration and humping, generally good for getting into the meat of a scene.
+	Grab plaps are rougher, involving more grabbing and pulling, generally good for when you want to get right to the point.
+	Harm plaps are more aggressive, vigorous, and intense, generally good for giving someone a MERP with a little chest hair.
+
+## Wielded state
+If a merpi_bit is wielded, it will typically make the plapper use the plappee's part on the merpi_bit, rather than the other way around.
+So instead of you rubbing your huge butt on someone's breasts, you'd be rubbing their breasts on your huge butt.
+
+## Autoplapper
+The autoplapper is a system that automatically plaps a merpi_bit on another merpi_bit after a set delay. This is useful for when you want to
+have a MERP scene with someone, where there's a repeated action going on, and want that to happen without having to manually plap every time.
+The autoplapper can be toggled on and off, and the delay can be adjusted. Multiple autoplappers can be active at once, and each one can be
+a different intent and wielded state.
+
+#### DEFINITION OF TERMS
+ - Plapper - The player-mob doing a plap
+ - Plappee - The player-mob being plapped
+ - user_bit - The merpi_bit the Plapper is using to plap
+ - user_bit_script - The merp script for the user_bit
+ - user_bit_key - The relevant merp script key for the user_bit
+ - target_bit - The merpi_bit the Plapper is plapping
+ - target_bit_script - The merp script for the target_bit
+ - target_bit_key - The relevant merp script key for the target_bit
+ - merpi_bit - A physical item that is used to plap other merpi_bits
+ - plap - A MERP interaction, performed by using a merpi_bit on another merpi_bit
+
+

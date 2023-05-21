@@ -31,7 +31,7 @@
 	,
 	"merpi_ci" : {
 		"merpi_normal" : ["%USER absolutely buries their spiny kitty cock in %TARGET's %T_PART, yowling like a stray!!"],
-		"merpi_flowery" : ["%USER presses their hips down roughly burying their spined feline cock into %TARGET's %T_part while yowling like an enraged tomcat!!"]
+		"merpi_flowery" : ["%USER presses their hips down roughly burying their spined feline cock into %TARGET's %T_PART while yowling like an enraged tomcat!!"]
 	},
 	"merpi_intent_help" : {
 		"merpi_held" : {

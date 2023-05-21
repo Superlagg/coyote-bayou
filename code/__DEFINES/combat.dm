@@ -145,6 +145,7 @@
 #define INTENT_GRAB   "grab"
 #define INTENT_DISARM "disarm"
 #define INTENT_HARM   "harm"
+#define ALL_INTENTS list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
 //NOTE: INTENT_HOTKEY_* defines are not actual intents!
 //they are here to support hotkeys
 #define INTENT_HOTKEY_LEFT  "left"
