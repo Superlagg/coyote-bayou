@@ -30,3 +30,24 @@
  * @param ci - If the plapping bit is used with CI on
  */
 #define COMSIG_MERP_GET_PLAPPED "merp_get_plapped" // (datum/source, mob/living/plapper, user_bit_key, target_bit_key, intent, wielded, quality = MERP_QUALITY_NORMAL, ci)
+
+/* 
+ * When a combo is determined to be old or irrelevant or something
+ * @param datum/source - The object that is using the bit, unused
+ * @param datum/merp_combo/combo - The combo that is being killed
+ */
+#define COMSIG_MERP_KILL_COMBO "merp_kill_combo" // (datum/source, datum/merp_combo/combo)
+
+/* 
+ * When a plap is determined to be old or irrelevant or something
+ * @param datum/source - The object that is using the bit, unused
+ * @param datum/merp_plap_record/plap - The plap that is being killed
+ */
+#define COMSIG_MERP_PLAP_EXPIRED "merp_plap_expired" // (datum/source, datum/merp_plap_record/plap)
+
+/* 
+ * Another magic signal list nabbinator
+ * @param datum/source - The object that is using the bit, unused
+ * @param list/combos - The list that will be reference-returned with all the currentmost combos
+ */
+#define COMSIG_MERP_GET_OTHER_COMBOS "merp_get_other_combos" // (datum/source, list/combos)

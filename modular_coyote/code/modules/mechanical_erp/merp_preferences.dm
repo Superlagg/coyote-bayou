@@ -15,7 +15,7 @@
 	if(!theirclient)
 		return FALSE
 	var/ckey = theirclient.ckey
-	return = "[MERP_SAVE_DIRECTORY][ckey[1]]/[ckey]/[MERP_SAVEFILE_NAME]"
+	return "[MERP_SAVE_DIRECTORY][ckey[1]]/[ckey]/[MERP_SAVEFILE_NAME]"
 
 /datum/component/merp/proc/save_prefs(mob/living/user)
 	var/datum/preferences/pref = user?.client?.prefs
