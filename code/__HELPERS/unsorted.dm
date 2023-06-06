@@ -1615,14 +1615,14 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	return TRUE
 
 /// REcursively searches through the atom's loc, looking for a specific atom, aborting if it hits a turf
-/proc/recursive_loc_search(atom/haystack, atom/movable/needle, max_depth = 5)
+/proc/recursive_loc_search(atom/haystack, atom/movable/needle, max_depth = 5, just_path = FALSE)
 	if(max_depth <= 0)
 		return // we've gone too deep
 	if(!istype(haystack))
 		return
 	if(isturf(haystack))
 		return
-	if(haystack == needle)
+	if(haystack == needle || (just_path && ispath(haystack, needle)))
 		return haystack
 	if(haystack.loc)
 		return recursive_loc_search(haystack.loc, needle, max_depth - 1)

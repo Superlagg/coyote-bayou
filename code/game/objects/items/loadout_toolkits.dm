@@ -45,10 +45,10 @@
 	new /obj/item/reagent_containers/glass/bottle/nutrient/ez(src)
 	new /obj/item/reagent_containers/glass/bottle/nutrient/rh(src)
 
-/datum/loadout_box/farming
-	entry_tag = "farming tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/farming
+	key = "farming tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/farming
 
 /obj/item/storage/box/tools/ranching
@@ -62,10 +62,10 @@
 	new /obj/item/brahminbrand(src)
 	new /obj/item/choice_beacon/pet/mountable(src)
 
-/datum/loadout_box/ranching
-	entry_tag = "riding tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/ranching
+	key = "riding tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/ranching
 
 /obj/item/storage/box/tools/groundskeeping
@@ -82,10 +82,10 @@
 	new /obj/item/soap(src)
 	new /obj/item/paint/paint_remover(src)
 
-/datum/loadout_box/groundskeeping
-	entry_tag = "groundskeeping tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/groundskeeping
+	key = "groundskeeping tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/groundskeeping
 
 /obj/item/storage/box/tools/salvage
@@ -98,10 +98,10 @@
 	new /obj/item/weldingtool/largetank(src)
 	new /obj/item/storage/bag/salvage(src)
 
-/datum/loadout_box/salvage
-	entry_tag = "salvaging tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/salvage
+	key = "salvaging tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/salvage
 
 /obj/item/storage/box/tools/mining
@@ -115,10 +115,10 @@
 	new /obj/item/storage/bag/ore(src)
 	new /obj/item/storage/bag/ore(src)
 
-/datum/loadout_box/mining
-	entry_tag = "mining tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/mining
+	key = "mining tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/mining
 	
 /obj/item/storage/box/tools/merchant
@@ -130,10 +130,10 @@
 	new /obj/item/storage/box/vendingmachine
 
 
-/datum/loadout_box/merchant
-	entry_tag = "merchant tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/merchant
+	key = "merchant tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/merchant
 
 /obj/item/storage/box/tools/smithing
@@ -147,10 +147,10 @@
 	new /obj/item/stack/sheet/metal/fifty(src)
 	new /obj/item/stack/sheet/mineral/titanium/twentyfive(src)
 
-/datum/loadout_box/smithing
-	entry_tag = "smithing tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/smithing
+	key = "smithing tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/smithing
 
 /obj/item/storage/box/tools/chemist
@@ -167,10 +167,10 @@
 	new /obj/item/reagent_containers/glass/beaker/plastic(src)
 	new /obj/item/clothing/glasses/science(src)
 
-/datum/loadout_box/chemist
-	entry_tag = "chemistry tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_MEDICAL
+/datum/loadout_kit/chemist
+	key = "chemistry tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_MEDICAL
 	spawn_thing = /obj/item/storage/box/tools/chemist
 
 /obj/item/storage/box/tools/surgery
@@ -185,10 +185,10 @@
 	new /obj/item/tele_iv(src)
 	new /obj/item/reagent_containers/blood/OMinus(src)
 
-/datum/loadout_box/surgery
-	entry_tag = "surgery tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_MEDICAL
+/datum/loadout_kit/surgery
+	key = "surgery tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_MEDICAL
 	spawn_thing = /obj/item/storage/box/tools/surgery
 
 /obj/item/storage/box/tools/triage
@@ -202,10 +202,10 @@
 	new /obj/item/reagent_containers/glass/bottle/salglu_solution(src)
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak/epipak(src)
 
-/datum/loadout_box/triage
-	entry_tag = "triage tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_MEDICAL
+/datum/loadout_kit/triage
+	key = "triage tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_MEDICAL
 	spawn_thing = /obj/item/storage/box/tools/triage
 
 /obj/item/storage/box/tools/wealth
@@ -214,10 +214,10 @@
 /obj/item/storage/box/tools/wealth/PopulateContents() //sellout.
 	new /obj/item/stack/f13Cash/caps/onezerozero(src)
 
-/datum/loadout_box/wealth
-	entry_tag = "personal savings"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_OTHER
+/datum/loadout_kit/wealth
+	key = "personal savings"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_OTHER
 	spawn_thing = /obj/item/storage/box/tools/wealth
 
 /obj/item/storage/box/tools/guns
@@ -228,10 +228,10 @@
 	new /obj/item/kit_spawner/townie(src)
 	new /obj/item/kit_spawner/townie(src)
 
-/datum/loadout_box/guns
-	entry_tag = "weapon collection"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/guns
+	key = "weapon collection"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/guns
 
 /obj/item/storage/box/tools/settler
@@ -245,10 +245,10 @@
 	new /obj/item/toy/crayon/spraycan(src)
 	new /obj/item/stack/sheet/glass/fifty(src)
 
-/datum/loadout_box/settler
-	entry_tag = "settler's tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/settler
+	key = "settler's tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/settler
 
 /obj/item/storage/box/tools/thief
@@ -262,10 +262,10 @@
 	new /obj/item/lockpick_set(src)
 	new /obj/item/lockpick_set(src)
 
-/datum/loadout_box/thief
-	entry_tag = "thief's tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/thief
+	key = "thief's tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/thief
 
 /obj/item/storage/box/tools/stealth
@@ -278,10 +278,10 @@
 	new /obj/item/clothing/mask/chameleon(src)
 	new /obj/item/lockpick_set(src)
 
-/datum/loadout_box/stealth
-	entry_tag = "stealth tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/stealth
+	key = "stealth tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/stealth
 
 /obj/item/storage/box/tools/entertainer //hybrid erp/musical
@@ -295,10 +295,10 @@
 	new /obj/item/restraints/handcuffs/fake/kinky(src)
 	new /obj/item/reagent_containers/food/snacks/grown/fever_blossom(src)
 
-/datum/loadout_box/entertainer
-	entry_tag = "entertainer's tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/entertainer
+	key = "entertainer's tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/entertainer
 
 /obj/item/storage/box/tools/radiation
@@ -315,10 +315,10 @@
 	new /obj/item/crafting/abraxo(src)
 	new /obj/item/crafting/abraxo(src)
 
-/datum/loadout_box/radiation
-	entry_tag = "radiation gear"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/radiation
+	key = "radiation gear"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/radiation
 
 //your standardized adventuring kits. one useful item, some melee or ballistic armor, and a smol bit of triage gear
@@ -333,10 +333,10 @@
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
 	new /obj/item/stack/medical/suture/emergency/five(src)
 
-/datum/loadout_box/melee
-	entry_tag = "melee gear"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/melee
+	key = "melee gear"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/melee
 
 /obj/item/storage/box/tools/marksman
@@ -350,10 +350,10 @@
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
 	new /obj/item/stack/medical/suture/emergency/five(src)
 
-/datum/loadout_box/marksman
-	entry_tag = "marksman gear"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/marksman
+	key = "marksman gear"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/marksman
 
 /obj/item/storage/box/tools/energy
@@ -367,10 +367,10 @@
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
 	new /obj/item/stack/medical/suture/emergency/five(src)
 
-/datum/loadout_box/energy
-	entry_tag = "energy gear"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/energy
+	key = "energy gear"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/energy
 
 /obj/item/storage/box/tools/military
@@ -384,10 +384,10 @@
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
 	new /obj/item/stack/medical/suture/emergency/five(src)
 
-/datum/loadout_box/military
-	entry_tag = "military gear"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/military
+	key = "military gear"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/military
 
 /obj/item/storage/box/tools/hunter
@@ -402,10 +402,10 @@
 	new /obj/item/reagent_containers/hypospray/medipen/stimpak(src)
 	new /obj/item/stack/medical/suture/emergency/five(src)
 
-/datum/loadout_box/hunter
-	entry_tag = "hunting gear"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/hunter
+	key = "hunting gear"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/hunter
 
 /obj/item/storage/box/tools/trapper
@@ -419,10 +419,10 @@
 	new /obj/item/restraints/legcuffs/beartrap(src)
 	new /obj/item/storage/box/mousetraps(src)
 
-/datum/loadout_box/tools
-	entry_tag = "trapper's tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/tools
+	key = "trapper's tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/trapper
 
 /obj/item/storage/box/tools/demolition
@@ -436,10 +436,10 @@
 	new /obj/item/bottlecap_mine(src)
 	new /obj/item/storage/box/dynamite_box(src)
 
-/datum/loadout_box/demolition
-	entry_tag = "demolition ordnance"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/demolition
+	key = "demolition ordnance"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/demolition
 
 /obj/item/storage/box/tools/pyrotechnics
@@ -455,10 +455,10 @@
 	new /obj/item/shishkebabpack(src) //might be much for a roundstart iunno.
 	new /obj/item/extinguisher/mini(src) //creator and destroyer of fire
 
-/datum/loadout_box/pyrotechnics
-	entry_tag = "pyrotechnic devices"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/pyrotechnics
+	key = "pyrotechnic devices"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/pyrotechnics
 
 /obj/item/storage/box/tools/drugs
@@ -476,10 +476,10 @@
 	new /obj/item/reagent_containers/pill/patch/jet(src)
 	new /obj/item/storage/pill_bottle/random(src)
 
-/datum/loadout_box/drugs
-	entry_tag = "drug stash"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/drugs
+	key = "drug stash"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/drugs
 
 /obj/item/storage/box/tools/mancatcher
@@ -496,10 +496,10 @@
 	new /obj/item/restraints/legcuffs/beartrap(src)
 	new /obj/item/restraints/legcuffs(src)
 
-/datum/loadout_box/mancatcher
-	entry_tag = "mancatcher tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/mancatcher
+	key = "mancatcher tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/mancatcher
 
 /obj/item/storage/box/tools/kidnapper
@@ -514,10 +514,10 @@
 	new /obj/item/restraints/legcuffs/beartrap(src)
 	new /obj/item/restraints/legcuffs(src)
 
-/datum/loadout_box/kidnapper
-	entry_tag = "kidnapper tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/kidnapper
+	key = "kidnapper tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/kidnapper
 
 /obj/item/storage/box/tools/quack
@@ -531,10 +531,10 @@
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/storage/pill_bottle/random(src)
 
-/datum/loadout_box/quack
-	entry_tag = "fake medical tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/quack
+	key = "fake medical tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/quack
 
 /obj/item/storage/box/tools/slave //soft implimentation of the ol slave roles. unsure if we need this
@@ -547,10 +547,10 @@
 //	new /obj/item/clothing/under/f13/rag(src) //can add cosmetics if we really need, but they should be selectable in the character creator
 //	new /obj/item/clothing/shoes/f13/rag(src)
 
-/datum/loadout_box/slave
-	entry_tag = "servant's tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/slave
+	key = "servant's tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/slave
 
 /obj/item/storage/box/tools/carp
@@ -566,10 +566,10 @@
 	new /obj/item/toy/plush/carpplushie/dehy_carp(src)
 	new /obj/item/toy/plush/carpplushie/dehy_carp(src)
 
-/datum/loadout_box/carp
-	entry_tag = "carp cult tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_SINISTER
+/datum/loadout_kit/carp
+	key = "carp cult tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_SINISTER
 	spawn_thing = /obj/item/storage/box/tools/carp
 
 /obj/item/storage/box/tools/beastmaster
@@ -581,10 +581,10 @@
 	new /obj/item/lazarus_injector(src)
 	new /obj/item/lazarus_injector(src)
 
-/datum/loadout_box/beastmaster
-	entry_tag = "beastmaster's tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_ADVENTURE
+/datum/loadout_kit/beastmaster
+	key = "beastmaster's tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_ADVENTURE
 	spawn_thing = /obj/item/storage/box/tools/beastmaster
 
 /obj/item/storage/box/tools/animal
@@ -599,8 +599,8 @@
 	new /obj/item/seeds/wheat/oat(src)
 	new /obj/item/pitchfork(src)
 
-/datum/loadout_box/animal
-	entry_tag = "animal husbandry tools"
-	entry_flags = LOADOUT_FLAG_TOOL_WASTER
-	entry_class = LOADOUT_CAT_WORKER
+/datum/loadout_kit/animal
+	key = "animal husbandry tools"
+	flags = LOADOUT_FLAG_TOOL_WASTER
+	kit_category = LOADOUT_CAT_WORKER
 	spawn_thing = /obj/item/storage/box/tools/animal

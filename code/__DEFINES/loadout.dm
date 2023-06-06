@@ -116,3 +116,86 @@
 #define QUIRK_POSITIVE	"Positive"
 #define QUIRK_NEGATIVE	"Negative"
 #define QUIRK_NEUTRAL	"Neutral"
+
+/////////////////////////////////////////////////////////////////
+///////////////////////////////hi~///////////////////////////////
+/////////////////////////////////////////////////////////////////
+/// yeah i know its for a different loadout system, eat me
+#define LOADOUT_FLAG_WASTER (1<<0)
+#define LOADOUT_FLAG_LAWMAN (1<<1)
+#define LOADOUT_FLAG_PREMIUM (1<<2)
+#define LOADOUT_FLAG_TRIBAL (1<<3)
+#define LOADOUT_FLAG_PREACHER (1<<4)
+#define LOADOUT_FLAG_TOOL_WASTER (1<<5)
+
+/// Loadout Coins
+#define LOADOUT_COIN_PREMIUM "Exquisite"
+#define LOADOUT_COIN_LAWMAN "Lawman"
+#define LOADOUT_COIN_STANDARD "Standard" // Any non-specialized loadout
+#define LOADOUT_COIN_WASTER "Waster"
+#define LOADOUT_COIN_TRIBAL "Tribal"
+#define LOADOUT_COIN_PREACHER "Preacher"
+#define LOADOUT_COIN_SECONDARY "Secondary" // Any non-specialized sidearm thing (knives, pans, etc)
+#define LOADOUT_COIN_TOOL "Tool"
+
+/// Loadout price lists
+/// These are the coins that are accepted for each loadout
+#define LOADOUT_PRICE_PREMIUM list(LOADOUT_COIN_PREMIUM)
+#define LOADOUT_PRICE_LAWMAN list(LOADOUT_COIN_LAWMAN)
+#define LOADOUT_PRICE_TRIBAL list(LOADOUT_COIN_TRIBAL)
+#define LOADOUT_PRICE_PREACHER list(LOADOUT_COIN_PREACHER)
+#define LOADOUT_PRICE_STANDARD list(\
+	LOADOUT_COIN_STANDARD,\
+	LOADOUT_COIN_PREACHER,\
+	LOADOUT_COIN_TRIBAL,\
+	LOADOUT_COIN_LAWMAN,\
+	LOADOUT_COIN_PREMIUM)
+#define LOADOUT_PRICE_SECONDARY list(\
+	LOADOUT_COIN_SECONDARY,\
+	LAODOUT_COIN_PRIMARY,\
+	LOADOUT_COIN_PREACHER,\
+	LOADOUT_COIN_TRIBAL,\
+	LOADOUT_COIN_LAWMAN,\
+	LOADOUT_COIN_PREMIUM)
+
+#define LOADOUT_KIT_KEY "kit_key"
+#define LOADOUT_KIT_NAME "kit_name"
+#define LOADOUT_KIT_PRICE "kit_price"
+#define LOADOUT_KIT_CONTENTS "kit_contents"
+
+#define LOADOUT_COIN_KEY "coin_key"
+#define LOADOUT_COIN_NAME "coin_name"
+#define LOADOUT_COIN_TOOLTIP "coin_tooltip"
+#define LOADOUT_COIN_AWESOME_ICON "coin_awesome_icon"
+#define LOADOUT_COIN_COLOR "coin_color"
+#define LOADOUT_COIN_SUBSTITUTE_COINS "coin_substitute_coins"
+
+#define LOADOUT_BITFIELD "loadout_bitfield"
+#define LOADOUT_CLASS "loadout_class"
+#define LOADOUT_PATH "loadout_path"
+
+#define LOADOUT_CAT_PREMIUM "Fancy Weapons"
+#define LOADOUT_CAT_LAWMAN "Law Weapons"
+#define LOADOUT_CAT_MELEE_ONE "One Handed Melee"
+#define LOADOUT_CAT_MELEE_TWO "Two Handed Melee"
+#define LOADOUT_CAT_PISTOL "Pistols"
+#define LOADOUT_CAT_REVOLVER "Revolvers"
+#define LOADOUT_CAT_LONGGUN "Long Guns"
+#define LOADOUT_CAT_HOBO "Improvised Guns"
+#define LOADOUT_CAT_MUSKET "Blackpowder Guns"
+#define LOADOUT_CAT_MISC "Misc Things"
+#define LOADOUT_CAT_BOW "Bows"
+#define LOADOUT_CAT_NULLROD "Spiritual Device"
+#define LOADOUT_CAT_SHIELD "Shields"
+#define LOADOUT_CAT_ENERGY "Energy Weapons"
+#define LOADOUT_CAT_WORKER "Worker Tools"
+#define LOADOUT_CAT_ADVENTURE "Adventure Tools"
+#define LOADOUT_CAT_MEDICAL "Medical Tools"
+#define LOADOUT_CAT_SINISTER "Sinister Tools"
+#define LOADOUT_CAT_OTHER "Other Things"
+
+#define LOADOUT_ROOT_ENTRIES list(LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO, LOADOUT_CAT_PISTOL, LOADOUT_CAT_REVOLVER, LOADOUT_CAT_LONGGUN, LOADOUT_CAT_HOBO, LOADOUT_CAT_MISC, LOADOUT_CAT_BOW, LOADOUT_CAT_ENERGY, LOADOUT_CAT_NULLROD, LOADOUT_CAT_SHIELD, LOADOUT_FLAG_TOOL_WASTER, LOADOUT_CAT_MUSKET)
+#define LOADOUT_ALL_ENTRIES list(LOADOUT_CAT_PREMIUM, LOADOUT_CAT_LAWMAN, LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO, LOADOUT_CAT_PISTOL, LOADOUT_CAT_REVOLVER, LOADOUT_CAT_LONGGUN, LOADOUT_CAT_HOBO, LOADOUT_CAT_MISC, LOADOUT_CAT_BOW, LOADOUT_CAT_ENERGY, LOADOUT_CAT_NULLROD, LOADOUT_CAT_SHIELD, LOADOUT_CAT_WORKER, LOADOUT_CAT_ADVENTURE, LOADOUT_CAT_MEDICAL, LOADOUT_CAT_SINISTER, LOADOUT_CAT_OTHER, LOADOUT_CAT_MUSKET)
+
+
+

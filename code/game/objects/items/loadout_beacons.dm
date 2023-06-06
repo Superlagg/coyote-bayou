@@ -1,39 +1,6 @@
 /* LIST STRUCTURELOADOUT_ROOT
  * list encodes "tag" = list(LOADOUT_BITFIELD = a bitfield, LOADOUT_CLASS = melee, LOADOUT_PATH = the path)
  */
-#define LOADOUT_FLAG_WASTER (1<<0)
-#define LOADOUT_FLAG_LAWMAN (1<<1)
-#define LOADOUT_FLAG_PREMIUM (1<<2)
-#define LOADOUT_FLAG_TRIBAL (1<<3)
-#define LOADOUT_FLAG_PREACHER (1<<4)
-#define LOADOUT_FLAG_TOOL_WASTER (1<<5)
-
-#define LOADOUT_BITFIELD "loadout_bitfield"
-#define LOADOUT_CLASS "loadout_class"
-#define LOADOUT_PATH "loadout_path"
-
-#define LOADOUT_CAT_PREMIUM "Fancy Weapons"
-#define LOADOUT_CAT_LAWMAN "Law Weapons"
-#define LOADOUT_CAT_MELEE_ONE "One Handed Melee"
-#define LOADOUT_CAT_MELEE_TWO "Two Handed Melee"
-#define LOADOUT_CAT_PISTOL "Pistols"
-#define LOADOUT_CAT_REVOLVER "Revolvers"
-#define LOADOUT_CAT_LONGGUN "Long Guns"
-#define LOADOUT_CAT_HOBO "Improvised Guns"
-#define LOADOUT_CAT_MUSKET "Blackpowder Guns"
-#define LOADOUT_CAT_MISC "Misc Things"
-#define LOADOUT_CAT_BOW "Bows"
-#define LOADOUT_CAT_NULLROD "Spiritual Device"
-#define LOADOUT_CAT_SHIELD "Shields"
-#define LOADOUT_CAT_ENERGY "Energy Weapons"
-#define LOADOUT_CAT_WORKER "Worker Tools"
-#define LOADOUT_CAT_ADVENTURE "Adventure Tools"
-#define LOADOUT_CAT_MEDICAL "Medical Tools"
-#define LOADOUT_CAT_SINISTER "Sinister Tools"
-#define LOADOUT_CAT_OTHER "Other Things"
-
-#define LOADOUT_ROOT_ENTRIES list(LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO, LOADOUT_CAT_PISTOL, LOADOUT_CAT_REVOLVER, LOADOUT_CAT_LONGGUN, LOADOUT_CAT_HOBO, LOADOUT_CAT_MISC, LOADOUT_CAT_BOW, LOADOUT_CAT_ENERGY, LOADOUT_CAT_NULLROD, LOADOUT_CAT_SHIELD, LOADOUT_FLAG_TOOL_WASTER, LOADOUT_CAT_MUSKET)
-#define LOADOUT_ALL_ENTRIES list(LOADOUT_CAT_PREMIUM, LOADOUT_CAT_LAWMAN, LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO, LOADOUT_CAT_PISTOL, LOADOUT_CAT_REVOLVER, LOADOUT_CAT_LONGGUN, LOADOUT_CAT_HOBO, LOADOUT_CAT_MISC, LOADOUT_CAT_BOW, LOADOUT_CAT_ENERGY, LOADOUT_CAT_NULLROD, LOADOUT_CAT_SHIELD, LOADOUT_CAT_WORKER, LOADOUT_CAT_ADVENTURE, LOADOUT_CAT_MEDICAL, LOADOUT_CAT_SINISTER, LOADOUT_CAT_OTHER, LOADOUT_CAT_MUSKET)
 
 GLOBAL_LIST_EMPTY(loadout_datums)
 GLOBAL_LIST_EMPTY(loadout_boxes)
@@ -47,13 +14,307 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	lefthand_file = 'icons/mob/inhands/equipment/briefcase_lefthand.dmi' //taken from briefcase code, should look okay for an inhand
 	righthand_file = 'icons/mob/inhands/equipment/briefcase_righthand.dmi'
 	slot_flags = ITEM_SLOT_BELT
-	/// these flags plus whatever's picked in the root menu = what we're allowed to spawn, easy peasy
-	/// MUST be set
-	var/allowed_flags
-	/// What kits are inside this kit? If blank, just show a list of everything set to be allowed
-	var/list/multiple_choice = list()
-	/// Just to limit how many things can be taken out, cus apparently thats a thing
-	var/max_items
+	/// these flags define what show up in the kit spawner menu thing
+	var/allowed_flags = NONE
+	/// What loadout coins we have left to spend
+	/// format: list("coin_name", ...)
+	var/list/loadout_coins = list(LOADOUT_COIN_STANDARD)
+	/// Currently chosen category
+	var/current_category
+	/// Currently chosen loadout
+	var/current_loadout_key
+	/// Our contents have been spent, time to return to our home planet
+	var/my_home_planet_needs_me
+
+/obj/item/kit_spawner/Initialize()
+	. = ..()
+	/// We'll access this later
+	SSloadouts.get_formatted_loadout_list(src)
+
+/obj/item/kit_spawner/proc/get_user()
+	var/mob/living/user = recursive_loc_search(src, /mob/living, 5, TRUE)
+	return user
+
+/obj/item/kit_spawner/proc/purchase_kit(kit_key, coin)
+	var/mob/living/user = get_user()
+	if(my_home_planet_needs_me)
+		return FALSE
+	if(!loadout_is_accessible(kit_key))
+		if(user)
+			to_chat(user, span_alert("That loadout is not available!"))
+		return
+	if(!spend_coin(user, coin, kit_key))
+		return
+	var/turf/spawn_here = get_turf(src)
+	var/obj/item/cool_thing = SSloadouts.spawn_item(kit_key, spawn_here)
+	if(!cool_thing)
+		give_coin(coin) // cool refund
+		return FALSE
+	give_receipt(user, cool_thing, coin)
+	current_loadout_key = null
+	INVOKE_ASYNC(src, .proc/return_to_home_planet)
+	return TRUE
+
+/// I have to go now, my planet needs me
+/obj/item/kit_spawner/proc/return_to_home_planet()
+	if(!my_home_planet_needs_me)
+		return
+	/// Make it travel up and away
+	disappear_up_and_away(delete_on_end = TRUE)
+	/// my stupid kit spawner died on its way back to its home planet
+
+/obj/item/kit_spawner/proc/spend_coin(mob/living/user, coin, kit_key)
+	if(!(coin in loadout_coins))
+		if(user)
+			to_chat(user, span_alert("You don't have that coin!"))
+		return FALSE
+	if(!can_afford(kit_key, coin))
+		if(user)
+			to_chat(user, span_alert("You can't afford that loadout!"))
+		return FALSE
+	loadout_coins -= coin
+	if(!loadout_coins)
+		my_home_planet_needs_me = TRUE
+
+/obj/item/kit_spawner/proc/give_coin(coin)
+	loadout_coins += coin
+	if(LAZYLEN(loadout_coins))
+		my_home_planet_needs_me = FALSE
+
+/obj/item/kit_spawner/proc/give_receipt(turf/right_here, obj/item/bought, coin_spent = "broke-ass penny")
+	if(!bought)
+		return
+	var/list/my_coin = SSloadouts.get_coin_data(coin_spent)
+	var/coiname = LAZYACCESS(my_coin, LOADOUT_COIN_NAME)
+	if(!right_here)
+		right_here = get_turf(src)
+	if(!coiname)
+		coiname = span_phobia("2521 Double-Nullref Imcoder Quarter")
+	var/mob/living/buyer = get_user()
+	if(buyer)
+		to_chat(buyer, span_green("You bought \a [bought] with \a [coiname]!"))
+
+/obj/item/kit_spawner/proc/can_afford(kitkey, coin)
+	if(!kitkey || !coin || !(coin in loadout_coins))
+		return FALSE
+	var/list/coin_data = SSloadouts.get_coin_data(coin)
+	if(!LAZYLEN(coin_data))
+		return FALSE
+	var/list/suitable_subs = LAZYACCESS(coin_data, LOADOUT_COIN_SUBSTITUTE_COINS)
+	if(!LAZYLEN(suitable_subs))
+		return FALSE
+	return (coin in suitable_subs)
+
+/obj/item/kit_spawner/proc/get_cats(list/mybiglist)
+	if(LAZYLEN(mybiglist))
+		return list()
+	var/list/cats = list()
+	for(var/loadya in mybiglist)
+		cats += loadya
+	return cats
+
+/obj/item/kit_spawner/proc/loadout_is_accessible(loadout_key)
+	if(!current_category)
+		return FALSE
+	var/list/loadout_table = SSloadouts.get_formatted_loadout_list(src)
+	if(LAZYACCESSASSOC(loadout_table, current_category, loadout_key))
+		return TRUE
+	return FALSE
+
+/obj/item/kit_spawner/proc/get_loadout_coins()
+	var/list/shiny_coins = list()
+	for(var/coin in loadout_coins)
+		shiny_coins += SSloadouts.get_coin_data(coin)
+	return shiny_coins
+
+/obj/item/kit_spawner/ui_status(mob/user, datum/ui_state/state)
+	//bye!
+	if(my_home_planet_needs_me)
+		return UI_CLOSE
+	if(loc != user)
+		return UI_CLOSE
+	return ..()
+
+/obj/item/kit_spawner/can_interact(mob/user)
+	if(loc != user)
+		return FALSE
+	return ..()
+
+/obj/item/kit_spawner/ui_interact(mob/user, datum/tgui/ui)
+	// Update the UI
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "LoadoutKitMain", name)
+		ui.open()
+
+/obj/item/kit_spawner/ui_data()
+	if(my_home_planet_needs_me)
+		return
+	var/list/data = list()
+	data["KitName"] = name
+	var/list/my_table = SSloadouts.get_formatted_loadout_list(src)
+	var/list/categories = get_cats(my_table)
+	data["AllCategories"] = categories
+	data["CurrentCategory"] = current_category // if null, it'll show the list of categories
+	data["CurrentLoadout"] = current_loadout_key
+	data["LoadoutTable"] = my_table
+	data["Coins"] = get_loadout_coins()
+	return data
+
+/obj/item/kit_spawner/ui_act(action, params)
+	if(..())
+		return
+	if(my_home_planet_needs_me)
+		return
+	var/mob/living/user = usr
+	if(!Adjacent(user))
+		return
+	var/list/my_table = SSloadouts.get_formatted_loadout_list(src)
+	switch(action)
+		if("SetCategory")
+			if(params["KitCategory"] in get_cats(my_table))
+				current_category = params["KitCategory"]
+			else
+				current_category = null
+			. = TRUE
+		if("ClearCategory")
+			current_category = null
+			. = TRUE
+		if("SetLoadout")
+			var/my_loadout = params["KitKey"]
+			if(loadout_is_accessible(my_loadout))
+				current_loadout_key = params["KitKey"]
+			. = TRUE
+		if("ClearLoadout")
+			current_loadout_key = null
+			. = TRUE
+		if("BuyLoadout")
+			var/my_loadout = params["BuyKey"]
+			var/pay_with = params["CoinToSpend"]
+			if(!purchase_kit(my_loadout, pay_with))
+				to_chat(user, span_alert("Something went wrong!"))
+			current_loadout_key = null
+
+
+// /obj/item/kit_spawner/proc/build_loadout_list()
+// 	if(LAZYLEN(GLOB.loadout_datums))
+// 		return
+// 	for(var/some_box in subtypesof(/datum/loadout_kit))
+// 		var/datum/loadout_kit/loadybox = some_box
+// 		GLOB.loadout_datums[initial(loadybox.key)] = list(LOADOUT_BITFIELD = initial(loadybox.flags), LOADOUT_CLASS = initial(loadybox.kit_category), LOADOUT_PATH = initial(loadybox.spawn_thing))
+
+// /obj/item/kit_spawner/proc/build_output_list()
+// 	if(!LAZYLEN(GLOB.loadout_datums))
+// 		build_loadout_list()
+// 		return
+// 	if(LAZYLEN(GLOB.loadout_boxes[type])) // already init'd!
+// 		return
+// 	var/list/list_of_stuff = list()
+// 	for(var/loadya in LOADOUT_ALL_ENTRIES)
+// 		var/list/list2add = list()
+// 		for(var/loadies in GLOB.loadout_datums)
+// 			if(GLOB.loadout_datums[loadies][LOADOUT_CLASS] == loadya && CHECK_BITFIELD(GLOB.loadout_datums[loadies][LOADOUT_BITFIELD], allowed_flags))
+// 				list2add[loadies] = GLOB.loadout_datums[loadies][LOADOUT_PATH]
+// 		if(LAZYLEN(list2add))
+// 			if(!islist(list_of_stuff[loadya]))
+// 				list_of_stuff[loadya] = list()
+// 			list2add = sort_list(list2add)
+// 			list_of_stuff[loadya] |= list2add
+// 	if(LAZYLEN(list_of_stuff))
+// 		GLOB.loadout_boxes[type] = list_of_stuff
+// 		log_admin("[src] initialized successfully!")
+// 	else
+// 		message_admins(span_phobia("Hey Lagg, [src] didnt initialize right. The list is empty! point and laugh"))
+
+// /obj/item/kit_spawner/attack_self(mob/user)
+// 	if(can_use_kit(user))
+// 		use_the_kit(user)
+
+// /obj/item/kit_spawner/proc/can_use_kit(mob/living/user)
+// 	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+// 		return TRUE
+// 	playsound(src, 'sound/machines/synth_no.ogg', 40, 1)
+// 	return FALSE
+
+// /obj/item/kit_spawner/proc/use_the_kit(mob/living/user)
+// 	if(!LAZYLEN(GLOB.loadout_boxes[type]))
+// 		build_output_list()
+// 		if(!LAZYLEN(GLOB.loadout_boxes[type]))
+// 			message_admins(span_phobia("Hey Lagg, [src] didnt set up its lists, like, at all. And cant!. The list is empty! point and laugh"))
+// 	var/first_key
+// 	var/list/first_list
+// 	if(LAZYLEN(loadout_coins))
+// 		first_key = input(user, "Pick a category!", "Pick a category!") as null|anything in loadout_coins
+// 		if(!first_key)
+// 			user.show_message(span_alert("Invalid selection!"))
+// 			return
+// 		if(!LAZYLEN(loadout_coins[first_key]))
+// 			user.show_message(span_phobia("Whoever set up [src] didn't set up the multiple choice list right! there should be a list here, and there isnt one! this is a bug~"))
+// 			return
+// 		first_list = loadout_coins[first_key]
+// 		// Filter out anything from the first list that isnt in the second list. & might work, were I cleverer
+// 		for(var/in_it in first_list)
+// 			if(!(in_it in GLOB.loadout_boxes[type]))
+// 				first_list -= in_it
+// 	else
+// 		first_list = GLOB.loadout_boxes[type]
+// 	var/one_only
+// 	//first, show the player the root menu! ROOT is just a list of strings
+// 	var/second_key
+// 	if(LAZYLEN(first_list) > 1)
+// 		second_key = input(user, "Pick a category!", "Pick a category!") as null|anything in first_list
+// 	else
+// 		for(var/choosething in first_list)
+// 			if(choosething)
+// 				second_key = choosething
+// 		one_only = TRUE
+// 	if(!second_key)
+// 		user.show_message(span_alert("Invalid selection!"))
+// 		return
+// 	user.show_message("[second_key] selected!")
+// 	/// now the actual gunweapon! entries are formatted as "thingname" = path
+// 	var/final_key
+// 	if(LAZYLEN(GLOB.loadout_boxes[type][second_key]) == 1 && one_only)
+// 		for(var/choosethinge in GLOB.loadout_boxes[type][second_key])
+// 			if(choosethinge)
+// 				final_key = choosethinge
+// 	else
+// 		final_key = input(user, "Pick a weapon!", "Pick a weapon!") as null|anything in GLOB.loadout_boxes[type][second_key]
+// 	if(!check_choice(GLOB.loadout_boxes[type][second_key][final_key]))
+// 		user.show_message(span_alert("Invalid selection!"))
+// 		return
+// 	//user.show_message("[final_key] selected!")
+// 	if(!spawn_the_thing(user, GLOB.loadout_boxes[type][second_key][final_key]))
+// 		user.show_message(span_alert("Couldn't get the thing out of the case. Try again?"))
+// 		return
+// 	if(first_key && (first_key in loadout_coins))
+// 		loadout_coins[first_key] = null
+// 		loadout_coins -= first_key
+// 	if(LAZYLEN(loadout_coins) < 1)
+// 		qdel(src)
+
+
+// /obj/item/kit_spawner/proc/check_choice(choice_to_check)
+// 	if(!choice_to_check)
+// 		return FALSE
+// 	if(!ispath(choice_to_check))
+// 		return FALSE
+// 	return TRUE
+
+// /obj/item/kit_spawner/proc/hax_check()
+// 	if(max_items <= 0)
+// 		qdel(src)
+// 		return FALSE
+
+// /obj/item/kit_spawner/proc/spawn_the_thing(mob/user, atom/the_thing)
+// 	hax_check()
+// 	max_items--
+// 	var/turf/spawn_here
+// 	spawn_here = user ? get_turf(user) : get_turf(src)
+// 	var/obj/item/new_thing = new the_thing(spawn_here)
+// 	if(istype(new_thing))
+// 		user.show_message(span_green("You pull \a [new_thing.name] out of [src]."))
+// 		return TRUE
 
 /obj/item/kit_spawner/waster
 	name = "Wasteland survival kit"
@@ -79,10 +340,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	name = "Ruggedest survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM | LOADOUT_FLAG_TRIBAL
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/townie
 	name = "Civilian survival kit"
@@ -103,28 +361,19 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	name = "Banker survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/townie/trader
 	name = "Trader survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/townie/mayor
 	name = "Mayoral survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/follower
 	name = "Volunteer survival kit"
@@ -135,10 +384,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	name = "Guard survival kit"
 	desc = "Packed with the essentials: Some kind of weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Secondary" = list(LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_SECONDARY)
 
 /obj/item/kit_spawner/follower/doctor
 	name = "Doctor survival kit"
@@ -154,110 +400,73 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	name = "Science survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/bos
 	name = "Techy survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/bos/boss
 	name = "Techy survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/bos/combat
 	name = "Techy survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_LAWMAN | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Combat" = list(LOADOUT_CAT_LAWMAN)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_LAWMAN)
 
 /obj/item/kit_spawner/bos/scientist
 	name = "Techy survival kit"
 	desc = "Packed with the essentials: Some kind of cool weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Premium" = list(LOADOUT_CAT_PREMIUM)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/preacher
 	name = "Spiritual survival kit"
 	desc = "Packed with the essentials: Some kind of weapon, and a cool holy stick."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL | LOADOUT_FLAG_PREACHER
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Rod" = list(LOADOUT_CAT_NULLROD)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREACHER)
 
 /obj/item/kit_spawner/lawman
 	name = "Lawman equipment kit"
 	desc = "Loaded with two sets of weapon."
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_LAWMAN
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Lawman" = list(LOADOUT_CAT_LAWMAN)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_LAWMAN)
 
 /obj/item/kit_spawner/lawman/sheriff
 	name = "Sheriff equipment kit"
 	desc = "Now with access to better things!"
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_LAWMAN
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Lawman" = list(LOADOUT_CAT_LAWMAN)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_LAWMAN)
 
 /obj/item/kit_spawner/premium
 	name = "Premium equipment kit"
 	desc = "Some of the fanciest guns known to the wastes!"
 	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_PREMIUM
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Secondary" = list(LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_PREMIUM)
 
 /obj/item/kit_spawner/tribal
 	name = "Tribal equipment kit"
 	desc = "Primitive equipment for a primitive person!"
 	allowed_flags = LOADOUT_FLAG_TRIBAL
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Secondary" = list(LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_TRIBAL)
 
 /obj/item/kit_spawner/tribal/farlands
 	name = "Farlands tribal equipment kit"
 	desc = "Primitive equipment for a primitive person!"
 	allowed_flags = LOADOUT_FLAG_TRIBAL | LOADOUT_FLAG_WASTER
-	multiple_choice = list(
-		"Primary" = LOADOUT_ROOT_ENTRIES,
-		"Secondary" = list(LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO)
-	)
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_TRIBAL)
 
 /obj/item/kit_spawner/debug_waster
 	name = "waster kit spawner!"
 	desc = "Some kind of kit spawner!"
-	allowed_flags = LOADOUT_FLAG_WASTER
-	multiple_choice = list(
-		"Bepis Mk 1" = list(LOADOUT_CAT_MELEE_ONE, LOADOUT_CAT_MELEE_TWO),
-		"hobo energy" = list(LOADOUT_CAT_HOBO, LOADOUT_CAT_ENERGY),
-		"all of em" = LOADOUT_ROOT_ENTRIES
-	)
+	allowed_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_LAWMAN | LOADOUT_FLAG_TRIBAL | LOADOUT_FLAG_PREACHER
+	loadout_coins = list(LOADOUT_COIN_STANDARD, LOADOUT_COIN_TRIBAL, LOADOUT_COIN_LAWMAN, LOADOUT_COIN_PREMIUM, LOADOUT_COIN_PREACHER, LOADOUT_COIN_SECONDARY)
 
 /obj/item/kit_spawner/debug_waster_lawman
 	name = "waster kit spawner!"
@@ -271,131 +480,6 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	/// these flags plus whatever's picked in the root menu = what we're allowed to spawn, easy peasy
 	allowed_flags = LOADOUT_FLAG_TRIBAL
 
-/obj/item/kit_spawner/Initialize()
-	. = ..()
-	build_loadout_list()
-	build_output_list()
-	max_items = max(LAZYLEN(multiple_choice), 1)
-
-/obj/item/kit_spawner/proc/build_loadout_list()
-	if(LAZYLEN(GLOB.loadout_datums))
-		return
-	for(var/some_box in subtypesof(/datum/loadout_box))
-		var/datum/loadout_box/loadybox = some_box
-		GLOB.loadout_datums[initial(loadybox.entry_tag)] = list(LOADOUT_BITFIELD = initial(loadybox.entry_flags), LOADOUT_CLASS = initial(loadybox.entry_class), LOADOUT_PATH = initial(loadybox.spawn_thing))
-
-/obj/item/kit_spawner/proc/build_output_list()
-	if(!LAZYLEN(GLOB.loadout_datums))
-		build_loadout_list()
-		return
-	if(LAZYLEN(GLOB.loadout_boxes[type])) // already init'd!
-		return
-	var/list/list_of_stuff = list()
-	for(var/loadya in LOADOUT_ALL_ENTRIES)
-		var/list/list2add = list()
-		for(var/loadies in GLOB.loadout_datums)
-			if(GLOB.loadout_datums[loadies][LOADOUT_CLASS] == loadya && CHECK_BITFIELD(GLOB.loadout_datums[loadies][LOADOUT_BITFIELD], allowed_flags))
-				list2add[loadies] = GLOB.loadout_datums[loadies][LOADOUT_PATH]
-		if(LAZYLEN(list2add))
-			if(!islist(list_of_stuff[loadya]))
-				list_of_stuff[loadya] = list()
-			list2add = sort_list(list2add)
-			list_of_stuff[loadya] |= list2add
-	if(LAZYLEN(list_of_stuff))
-		GLOB.loadout_boxes[type] = list_of_stuff
-		log_admin("[src] initialized successfully!")
-	else
-		message_admins(span_phobia("Hey Lagg, [src] didnt initialize right. The list is empty! point and laugh"))
-
-/obj/item/kit_spawner/attack_self(mob/user)
-	if(can_use_kit(user))
-		use_the_kit(user)
-
-/obj/item/kit_spawner/proc/can_use_kit(mob/living/user)
-	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
-		return TRUE
-	playsound(src, 'sound/machines/synth_no.ogg', 40, 1)
-	return FALSE
-
-/obj/item/kit_spawner/proc/use_the_kit(mob/living/user)
-	if(!LAZYLEN(GLOB.loadout_boxes[type]))
-		build_output_list()
-		if(!LAZYLEN(GLOB.loadout_boxes[type]))
-			message_admins(span_phobia("Hey Lagg, [src] didnt set up its lists, like, at all. And cant!. The list is empty! point and laugh"))
-	var/first_key
-	var/list/first_list
-	if(LAZYLEN(multiple_choice))
-		first_key = input(user, "Pick a category!", "Pick a category!") as null|anything in multiple_choice
-		if(!first_key)
-			user.show_message(span_alert("Invalid selection!"))
-			return
-		if(!LAZYLEN(multiple_choice[first_key]))
-			user.show_message(span_phobia("Whoever set up [src] didn't set up the multiple choice list right! there should be a list here, and there isnt one! this is a bug~"))
-			return
-		first_list = multiple_choice[first_key]
-		// Filter out anything from the first list that isnt in the second list. & might work, were I cleverer
-		for(var/in_it in first_list)
-			if(!(in_it in GLOB.loadout_boxes[type]))
-				first_list -= in_it
-	else
-		first_list = GLOB.loadout_boxes[type]
-	var/one_only
-	//first, show the player the root menu! ROOT is just a list of strings
-	var/second_key
-	if(LAZYLEN(first_list) > 1)
-		second_key = input(user, "Pick a category!", "Pick a category!") as null|anything in first_list
-	else
-		for(var/choosething in first_list)
-			if(choosething)
-				second_key = choosething
-		one_only = TRUE
-	if(!second_key)
-		user.show_message(span_alert("Invalid selection!"))
-		return
-	user.show_message("[second_key] selected!")
-	/// now the actual gunweapon! entries are formatted as "thingname" = path
-	var/final_key
-	if(LAZYLEN(GLOB.loadout_boxes[type][second_key]) == 1 && one_only)
-		for(var/choosethinge in GLOB.loadout_boxes[type][second_key])
-			if(choosethinge)
-				final_key = choosethinge
-	else
-		final_key = input(user, "Pick a weapon!", "Pick a weapon!") as null|anything in GLOB.loadout_boxes[type][second_key]
-	if(!check_choice(GLOB.loadout_boxes[type][second_key][final_key]))
-		user.show_message(span_alert("Invalid selection!"))
-		return
-	//user.show_message("[final_key] selected!")
-	if(!spawn_the_thing(user, GLOB.loadout_boxes[type][second_key][final_key]))
-		user.show_message(span_alert("Couldn't get the thing out of the case. Try again?"))
-		return
-	if(first_key && (first_key in multiple_choice))
-		multiple_choice[first_key] = null
-		multiple_choice -= first_key
-	if(LAZYLEN(multiple_choice) < 1)
-		qdel(src)
-
-
-/obj/item/kit_spawner/proc/check_choice(choice_to_check)
-	if(!choice_to_check)
-		return FALSE
-	if(!ispath(choice_to_check))
-		return FALSE
-	return TRUE
-
-/obj/item/kit_spawner/proc/hax_check()
-	if(max_items <= 0)
-		qdel(src)
-		return FALSE
-
-/obj/item/kit_spawner/proc/spawn_the_thing(mob/user, atom/the_thing)
-	hax_check()
-	max_items--
-	var/turf/spawn_here
-	spawn_here = user ? get_turf(user) : get_turf(src)
-	var/obj/item/new_thing = new the_thing(spawn_here)
-	if(istype(new_thing))
-		user.show_message(span_green("You pull \a [new_thing.name] out of [src]."))
-		return TRUE
 
 /obj/item/storage/box/gun
 	name = "weapon case"
@@ -410,6 +494,8 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 /obj/item/storage/box/gun/update_icon_state()
 	if(contents.len == 0)
 		qdel(src)
+
+
 
 /// Guns for the LAWman
 /obj/item/storage/box/gun/law
@@ -1379,1020 +1465,1047 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 
 //could use a click sound when opened instead of a tear?
 
-/datum/loadout_box
-	var/entry_tag
-	var/entry_flags
-	var/entry_class
+/datum/loadout_kit
+	var/key
+	var/flags
+	var/desc = "A kit full of stuff."
+	var/kit_category
 	var/obj/item/spawn_thing
+	/// Cache of what's in the booooox, so we can access it wuickly later
+	var/list/box_contents
+	/// The cost of this kit, in tokens
+	/// OKAY SO loadout kits have a cost associated with them, right? They cost one token of their 'tier' to buy.
+	/// There are: Premium, Standard, and Secondary tokens
+	/// Also tool tokens, but we dont talk about those
+	var/list/accepted_coins = LOADOUT_PRICE_STANDARD
+
+/datum/loadout_kit/New()
+	if(!spawn_thing)
+		return
+	build_contents()
+
+/datum/loadout_kit/proc/build_contents()
+	/// now to get the contents of my box. or just the thing if it's not a box
+	/// Since storages re built *after* they are spawned, you know what that means?
+	/// We get to play the ~Instantiation-Destruction~ game!
+	/// Player 1 to the stage, please!
+	var/obj/item/thingy = new spawn_thing()
+	var/list/stuff_in_thingy = list()
+	stuff_in_thingy += list(thingy.name, thingy.desc)
+	for(var/obj/item/item in thingy.contents)
+		stuff_in_thingy += list(thingy.name, thingy.desc)
+	qdel(thingy)
+	/// Good game, everyone loses
+	box_contents = stuff_in_thingy
 
 /// Energy Guns
 
-/datum/loadout_box/energy
-	entry_tag = "Compact RCW"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_ENERGY
+/datum/loadout_kit/energy
+	key = "Compact RCW"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_ENERGY
 	spawn_thing = /obj/item/storage/box/gun/energy
 
-/datum/loadout_box/plasma
-	entry_tag = "Plasma Pistol"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/plasma
+	key = "Plasma Pistol"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/energy/plasma
 
-/datum/loadout_box/aer9
-	entry_tag = "AER-9"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/aer9
+	key = "AER-9"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/aer9
 
-/datum/loadout_box/aer92
-	entry_tag = "AER-9"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/aer92
+	key = "AER-9"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/aer9
 
-/datum/loadout_box/stun
-	entry_tag = "Compliance Regulator"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_ENERGY
+/datum/loadout_kit/stun
+	key = "Compliance Regulator"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_ENERGY
 	spawn_thing = /obj/item/storage/box/gun/energy/stun
 
-/datum/loadout_box/compact_rcw
-	entry_tag = "Compact RCW"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_ENERGY
+/datum/loadout_kit/compact_rcw
+	key = "Compact RCW"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_ENERGY
 	spawn_thing = /obj/item/storage/box/gun/energy/compact_rcw
 
-/datum/loadout_box/wattz1000
-	entry_tag = "Wattz 1000"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_ENERGY
+/datum/loadout_kit/wattz1000
+	key = "Wattz 1000"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_ENERGY
 	spawn_thing = /obj/item/storage/box/gun/energy/wattz1000
 
-/datum/loadout_box/wornaep7
-	entry_tag = "Worn AEP-7"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_ENERGY
+/datum/loadout_kit/wornaep7
+	key = "Worn AEP-7"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_ENERGY
 	spawn_thing = /obj/item/storage/box/gun/energy/wornaep7
 
 /// Fancyguns
 
-/datum/loadout_box/maria
-	entry_tag = "Maria"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/maria
+	key = "Maria"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/maria
 
-/datum/loadout_box/beretta_auto
-	entry_tag = "Beretta M93R Burstfire"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/beretta_auto
+	key = "Beretta M93R Burstfire"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/automatic
 
-/datum/loadout_box/executive_10mm
-	entry_tag = "The Executive 10mm pistol"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/executive_10mm
+	key = "The Executive 10mm pistol"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/executive
 
-/datum/loadout_box/crusader
-	entry_tag = "Crusader 10mm pistol"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/crusader
+	key = "Crusader 10mm pistol"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/crusader
 
-/datum/loadout_box/sig
-	entry_tag = "Sig P220"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/sig
+	key = "Sig P220"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/sig
 
-/datum/loadout_box/m1911_custom
-	entry_tag = "M1911 Custom"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/m1911_custom
+	key = "M1911 Custom"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/custom
 
-/datum/loadout_box/mateba
-	entry_tag = "Unica 6"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/mateba
+	key = "Unica 6"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/mateba
 
-/datum/loadout_box/lucky
-	entry_tag = "Lucky Revolver"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/lucky
+	key = "Lucky Revolver"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/lucky
 
-/datum/loadout_box/alt
-	entry_tag = "Pearl .44 Magnum"
-	entry_flags = LOADOUT_FLAG_PREMIUM
-	entry_class = LOADOUT_CAT_PREMIUM
+/datum/loadout_kit/alt
+	key = "Pearl .44 Magnum"
+	flags = LOADOUT_FLAG_PREMIUM
+	kit_category = LOADOUT_CAT_PREMIUM
 	spawn_thing = /obj/item/storage/box/gun/premium/alt
 
-/datum/loadout_box/alt2
-	entry_tag = "Pearl .44 Magnum"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/alt2
+	key = "Pearl .44 Magnum"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/premium/alt
 
-/datum/loadout_box/peacekeeper
-	entry_tag = "Peacekeeper Magnum"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/peacekeeper
+	key = "Peacekeeper Magnum"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/premium/peacekeeper
 
-/datum/loadout_box/desert_ranger
-	entry_tag = "Desert Ranger Magnum"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/desert_ranger
+	key = "Desert Ranger Magnum"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/premium/desert_ranger
 
 /// Lawman guns
 
-/datum/loadout_box/american_180
-	entry_tag = "American 180"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/american_180
+	key = "American 180"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law
 
-/datum/loadout_box/smg10mm
-	entry_tag = "10mm SMG"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/smg10mm
+	key = "10mm SMG"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/smg10mm
 
-/datum/loadout_box/commando
-	entry_tag = "Commando Carbine"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/commando
+	key = "Commando Carbine"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/commando
 
-/datum/loadout_box/combat
-	entry_tag = "Combat Carbine"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/combat
+	key = "Combat Carbine"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/combat
 
-/datum/loadout_box/service
-	entry_tag = "Service Rifle"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/service
+	key = "Service Rifle"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/service
 
-/datum/loadout_box/policerifle
-	entry_tag = "Police Rifle"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/policerifle
+	key = "Police Rifle"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/policerifle
 
-/datum/loadout_box/assault_carbine
-	entry_tag = "Assault Carbine"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/assault_carbine
+	key = "Assault Carbine"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/assault_carbine
 
-/datum/loadout_box/mk23
-	entry_tag = "Tactical MK-23"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/mk23
+	key = "Tactical MK-23"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/mk23
 
 /// Long guns, mostly wasters
 
-/datum/loadout_box/rifle
-	entry_tag = "Cowboy Repeater"
-	entry_flags = LOADOUT_FLAG_WASTER // frontier something something
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/rifle
+	key = "Cowboy Repeater"
+	flags = LOADOUT_FLAG_WASTER // frontier something something
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle
 
-/datum/loadout_box/hunting
-	entry_tag = "Hunting Rifle"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/hunting
+	key = "Hunting Rifle"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/hunting
 
-/datum/loadout_box/caravan_shotgun
-	entry_tag = "Caravan Rifle"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/caravan_shotgun
+	key = "Caravan Rifle"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/caravan_shotgun
 
-/datum/loadout_box/widowmaker
-	entry_tag = "Widowmaker Shotgun"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/widowmaker
+	key = "Widowmaker Shotgun"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/widowmaker
 
-/datum/loadout_box/smg22
-	entry_tag = ".22 Uzi"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/smg22
+	key = ".22 Uzi"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/smg22
 
-/datum/loadout_box/rockwell
-	entry_tag = "9mm Rockwell SMG"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/rockwell
+	key = "9mm Rockwell SMG"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/rockwell
 
-/datum/loadout_box/gras
-	entry_tag = "Gras Rifle"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/gras
+	key = "Gras Rifle"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/gras
 
-/datum/loadout_box/sidewinder
-	entry_tag = "Multicaliber Carbine"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/sidewinder
+	key = "Multicaliber Carbine"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/sidewinder
 
-/* /datum/loadout_box/sidewinder_magnum
-	entry_tag = "Multicaliber Magnum"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/* /datum/loadout_kit/sidewinder_magnum
+	key = "Multicaliber Magnum"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/sidewinder_magnum */
 
-/datum/loadout_box/m1carbine
-	entry_tag = "M1 Carbine"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/m1carbine
+	key = "M1 Carbine"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/m1carbine
 
-/datum/loadout_box/delisle
-	entry_tag = "Delisle Carbine"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/delisle
+	key = "Delisle Carbine"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/delisle
 
-/datum/loadout_box/carbine9mm
-	entry_tag = "9mm Carbine"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/carbine9mm
+	key = "9mm Carbine"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/carbine9mm
 
-/datum/loadout_box/sportcarbine
-	entry_tag = "Sport Carbine"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/sportcarbine
+	key = "Sport Carbine"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/sportcarbine
 
-/datum/loadout_box/varmint
-	entry_tag = "Varmint Rifle"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/varmint
+	key = "Varmint Rifle"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/varmint
 
-/datum/loadout_box/trail
-	entry_tag = "Trail Carbine"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/trail
+	key = "Trail Carbine"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/law/trail
 
-/datum/loadout_box/flintlockmusket
-	entry_tag = "Flintlock Musket"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/flintlockmusket
+	key = "Flintlock Musket"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/rifle/musket
 
-/datum/loadout_box/tanegashima
-	entry_tag = "Tanegashima Musket"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/tanegashima
+	key = "Tanegashima Musket"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/rifle/musket/tanegashima
 
-/datum/loadout_box/flintlockmusketoon
-	entry_tag = "Flintlock Musketoon"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/flintlockmusketoon
+	key = "Flintlock Musketoon"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/rifle/musketoon
 
-/datum/loadout_box/flintlockspingarda
-	entry_tag = "Flintlock Spingarda"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/flintlockspingarda
+	key = "Flintlock Spingarda"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/rifle/musketoon/spingarda
 
-/datum/loadout_box/flintlockmosquete
-	entry_tag = "Flintlock Mosquete"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/flintlockmosquete
+	key = "Flintlock Mosquete"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/rifle/musketoon/mosquete
 
-/datum/loadout_box/flintlockjezail
-	entry_tag = "Jezail Long Rifle"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/flintlockjezail
+	key = "Jezail Long Rifle"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/rifle/jezail
 
 
-/datum/loadout_box/flintlockculverin
-	entry_tag = "Culverin"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/flintlockculverin
+	key = "Culverin"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/rifle/jezail/culverin
 
 
-/datum/loadout_box/junglecarbine
-	entry_tag = "Jungle Carbine"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/junglecarbine
+	key = "Jungle Carbine"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/junglecarbine
 
-/datum/loadout_box/smle
-	entry_tag = "Lee-Enfield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_LONGGUN
+/datum/loadout_kit/smle
+	key = "Lee-Enfield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_LONGGUN
 	spawn_thing = /obj/item/storage/box/gun/rifle/smle
 
 /// Hobo Guns
 
-/datum/loadout_box/hand_shotgun
-	entry_tag = "Hand Shotgun"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/hand_shotgun
+	key = "Hand Shotgun"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo
 
-/datum/loadout_box/zipgun
-	entry_tag = "Zipgun"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/zipgun
+	key = "Zipgun"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/zipgun
 
-/datum/loadout_box/piperifle
-	entry_tag = "Pipe Rifle"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/piperifle
+	key = "Pipe Rifle"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/piperifle
 
-/datum/loadout_box/brick
-	entry_tag = "Brick Launcher"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/brick
+	key = "Brick Launcher"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/brick
 
-/datum/loadout_box/pepperbox
-	entry_tag = "Pepperbox"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/pepperbox
+	key = "Pepperbox"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/pepperbox
 
-/datum/loadout_box/single_shotgun
-	entry_tag = "Shotgun Bat"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/single_shotgun
+	key = "Shotgun Bat"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/single_shotgun
 
-/datum/loadout_box/knifegun
-	entry_tag = "Knife Gun"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/knifegun
+	key = "Knife Gun"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/knifegun
 
-/datum/loadout_box/knucklegun
-	entry_tag = "Knuckle Gun"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/knucklegun
+	key = "Knuckle Gun"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/knucklegun
 
-/datum/loadout_box/winchesterrebored
-	entry_tag = "Rebored Winchester"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/winchesterrebored
+	key = "Rebored Winchester"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/storage/box/gun/hobo/winchesterrebored
 
 /// Revolvers!
 
-/datum/loadout_box/detective
-	entry_tag = ".22LR Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/detective
+	key = ".22LR Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver
 
-/datum/loadout_box/revolver45
-	entry_tag = ".45ACP Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/revolver45
+	key = ".45ACP Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver/revolver45
 
-/datum/loadout_box/colt357
-	entry_tag = ".357 Magnum Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/colt357
+	key = ".357 Magnum Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver/colt357
 
-/datum/loadout_box/police
-	entry_tag = ".357 Snubnose Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/police
+	key = ".357 Snubnose Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver/police
 
-/datum/loadout_box/m29
-	entry_tag = ".44 Magnum Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/m29
+	key = ".44 Magnum Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver/m29
 
-/datum/loadout_box/m29snub
-	entry_tag = ".44 Snubnose Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/m29snub
+	key = ".44 Snubnose Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver/m29snub
 
-/datum/loadout_box/revolver44
-	entry_tag = ".44 Single-Action Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/revolver44
+	key = ".44 Single-Action Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver/revolver44
 
-/datum/loadout_box/thatgun //thotgun
-	entry_tag = ".308 Revolver"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_REVOLVER
+/datum/loadout_kit/thatgun //thotgun
+	key = ".308 Revolver"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_REVOLVER
 	spawn_thing = /obj/item/storage/box/gun/revolver/thatgun
 
 /// Semi-auto pistols!
 
-/datum/loadout_box/pistol
-	entry_tag = ".22 Pistol"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/pistol
+	key = ".22 Pistol"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol
 
-/datum/loadout_box/tec22
-	entry_tag = ".22 Machine Pistol"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/tec22
+	key = ".22 Machine Pistol"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/tec22
 
-/datum/loadout_box/ninemil
-	entry_tag = "Hi-Power Pistol"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/ninemil
+	key = "Hi-Power Pistol"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/ninemil
 
-/datum/loadout_box/auto9mm
-	entry_tag = "9mm Autopistol"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/auto9mm
+	key = "9mm Autopistol"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/auto9mm
 
-/datum/loadout_box/borchardt
-	entry_tag = "9mm Borchardt"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/borchardt
+	key = "9mm Borchardt"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/borchardt
 
-/datum/loadout_box/luger
-	entry_tag = "9mm Luger"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/luger
+	key = "9mm Luger"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/luger
 
-/datum/loadout_box/ruby
-	entry_tag = "9mm Bootgun"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/ruby
+	key = "9mm Bootgun"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/ruby
 
-/datum/loadout_box/beretta
-	entry_tag = "Beretta M9FS"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/beretta
+	key = "Beretta M9FS"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/beretta
 
-/datum/loadout_box/n99
-	entry_tag = "10mm Pistol"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/n99
+	key = "10mm Pistol"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/n99
 
-/datum/loadout_box/flintlock
-	entry_tag = "Flintlock Pistol"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MUSKET
+/datum/loadout_kit/flintlock
+	key = "Flintlock Pistol"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MUSKET
 	spawn_thing = /obj/item/storage/box/gun/pistol/flintlock
 
-/datum/loadout_box/type17
-	entry_tag = "10mm Type17 Pistol"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/type17
+	key = "10mm Type17 Pistol"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/type17
 
-/datum/loadout_box/m1911
-	entry_tag = ".45ACP Pistol"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_PISTOL
+/datum/loadout_kit/m1911
+	key = ".45ACP Pistol"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_PISTOL
 	spawn_thing = /obj/item/storage/box/gun/pistol/m1911
 
 /// Melee!
 
-/datum/loadout_box/melee
-	entry_tag = "Scrap Sabre"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/melee
+	key = "Scrap Sabre"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/melee
 
-/datum/loadout_box/melee/celestia
-	entry_tag = "Plasma Cutter Celestia"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/melee/celestia
+	key = "Plasma Cutter Celestia"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/melee/celestia
 
-/datum/loadout_box/melee/eve
-	entry_tag = "Plasma Cutter Eve"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/melee/eve
+	key = "Plasma Cutter Eve"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/melee/eve
 
-/datum/loadout_box/melee/plasma
-	entry_tag = "Plasma Cutter"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/melee/plasma
+	key = "Plasma Cutter"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/melee/plasma
 
-/datum/loadout_box/bowie
-	entry_tag = "Bowie Knife"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/bowie
+	key = "Bowie Knife"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/melee/bowie
 
-/datum/loadout_box/switchblade
-	entry_tag = "Switchblade"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/switchblade
+	key = "Switchblade"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/melee/switchblade
 
-/datum/loadout_box/throwing
-	entry_tag = "Throwing Knives"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_BOW
+/datum/loadout_kit/throwing
+	key = "Throwing Knives"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_BOW
 	spawn_thing = /obj/item/storage/box/gun/melee/throwing
 
-/datum/loadout_box/brass
-	entry_tag = "Brass Knuckles"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL | LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_MISC
+/datum/loadout_kit/brass
+	key = "Brass Knuckles"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL | LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_MISC
 	spawn_thing = /obj/item/storage/box/gun/melee/brass
 
-/datum/loadout_box/fryingpan
-	entry_tag = "Frying Pan"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/fryingpan
+	key = "Frying Pan"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/melee/fryingpan
 
-/datum/loadout_box/scrapspear
-	entry_tag = "Scrap Spear"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/scrapspear
+	key = "Scrap Spear"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/scrapspear
 
-/datum/loadout_box/baseball
-	entry_tag = "Baseball Bat"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_LAWMAN | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/baseball
+	key = "Baseball Bat"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_LAWMAN | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/baseball
 
-/datum/loadout_box/sledgehammer
-	entry_tag = "Sledgehammer"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/sledgehammer
+	key = "Sledgehammer"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/sledgehammer
 
-/datum/loadout_box/fireaxe
-	entry_tag = "fire axe"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/fireaxe
+	key = "fire axe"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/fireaxe
 
-/datum/loadout_box/pitchfork
-	entry_tag = "pitchfork"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/pitchfork
+	key = "pitchfork"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/pitchfork
 
-/datum/loadout_box/chainsaw
-	entry_tag = "Chainsaw"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/chainsaw
+	key = "Chainsaw"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/chainsaw
 
-/datum/loadout_box/fist_of_the_swampstar // pornstar
-	entry_tag = "Bands of the Swamp Star gloves"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MISC
+/datum/loadout_kit/fist_of_the_swampstar // pornstar
+	key = "Bands of the Swamp Star gloves"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MISC
 	spawn_thing = /obj/item/storage/box/gun/melee/fist_of_the_swampstar
 
-/datum/loadout_box/raging_boar // YEET
-	entry_tag = "Raging Boar Scroll"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MISC
+/datum/loadout_kit/raging_boar // YEET
+	key = "Raging Boar Scroll"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MISC
 	spawn_thing = /obj/item/storage/box/gun/melee/raging_boar
 
-/datum/loadout_box/sleeping_carp // Snippity Snap
-	entry_tag = "Sleeping Carp Scroll"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MISC
+/datum/loadout_kit/sleeping_carp // Snippity Snap
+	key = "Sleeping Carp Scroll"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MISC
 	spawn_thing = /obj/item/storage/box/gun/melee/sleeping_carp
 
-/datum/loadout_box/oldclaymore //FOR SCOTLAND
-	entry_tag = "Old Claymore"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/oldclaymore //FOR SCOTLAND
+	key = "Old Claymore"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/oldclaymore
 
-/datum/loadout_box/harpoon //https://youtu.be/-UhrVpRCOYM ~TK
-	entry_tag = "Harpoon"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/harpoon //https://youtu.be/-UhrVpRCOYM ~TK
+	key = "Harpoon"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/harpoon
 
-/datum/loadout_box/katanaold
-	entry_tag = "Old Katana"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/katanaold
+	key = "Old Katana"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/katanaold
 
-/datum/loadout_box/wakazashiold
-	entry_tag = "Old Wakazashi"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/wakazashiold
+	key = "Old Wakazashi"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/wakazashiold
 
-/datum/loadout_box/tantoold
-	entry_tag = "Old Tanto"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/tantoold
+	key = "Old Tanto"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/tantoold
 
-/datum/loadout_box/combataxe
-	entry_tag = "Combat Axe"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/combataxe
+	key = "Combat Axe"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/combataxe
 
-/datum/loadout_box/smallsword
-	entry_tag = "Small Sword"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/smallsword
+	key = "Small Sword"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/smallsword
 
-/datum/loadout_box/oldcutlass
-	entry_tag = "Old Cutlass"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldcutlass
+	key = "Old Cutlass"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldcutlass
 
-/datum/loadout_box/crudeblade
-	entry_tag = "Crude Blade"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/crudeblade
+	key = "Crude Blade"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/crudeblade
 
-/datum/loadout_box/mauler
-	entry_tag = "Mauler"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/mauler
+	key = "Mauler"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/mauler
 
-/datum/loadout_box/club
-	entry_tag = "Club"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/club
+	key = "Club"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/club
 
-/datum/loadout_box/club/mace
-	entry_tag = "Mace"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/club/mace
+	key = "Mace"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/club/mace
 
 
-/datum/loadout_box/bigclub
-	entry_tag = "Big Club"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/bigclub
+	key = "Big Club"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/bigclub
 
-/datum/loadout_box/oldlongsword
-	entry_tag = "Old Longsword"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldlongsword
+	key = "Old Longsword"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldlongsword
 
-/datum/loadout_box/oldhalberd
-	entry_tag = "Old Halberd"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/oldhalberd
+	key = "Old Halberd"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/oldhalberd
 
-/datum/loadout_box/oldpike
-	entry_tag = "Old Pike"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/oldpike
+	key = "Old Pike"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/oldpike
 
-/datum/loadout_box/oldnaginata
-	entry_tag = "Old Naginata"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/oldnaginata
+	key = "Old Naginata"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/oldnaginata
 
-/datum/loadout_box/oldashandarei
-	entry_tag = "Old Ashandarei"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/oldashandarei
+	key = "Old Ashandarei"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/oldashandarei
 
-/datum/loadout_box/oldkhopesh
-	entry_tag = "Old Khopesh"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldkhopesh
+	key = "Old Khopesh"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldkhopesh
 
-/datum/loadout_box/oldkanobo
-	entry_tag = "Old Kanobo"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/oldkanobo
+	key = "Old Kanobo"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/oldkanobo
 
-/datum/loadout_box/macuahuitl
-	entry_tag = "Macuahuitl"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/macuahuitl
+	key = "Macuahuitl"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/macuahuitl
 
-/datum/loadout_box/militarypolice
-	entry_tag = "Police Baton"
-	entry_flags = LOADOUT_FLAG_LAWMAN
-	entry_class = LOADOUT_CAT_LAWMAN
+/datum/loadout_kit/militarypolice
+	key = "Police Baton"
+	flags = LOADOUT_FLAG_LAWMAN
+	kit_category = LOADOUT_CAT_LAWMAN
 	spawn_thing = /obj/item/storage/box/gun/melee/militarypolice
 
 /// Tribal
 
-/datum/loadout_box/tribal
-	entry_tag = "Bone Spear"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/tribal
+	key = "Bone Spear"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/tribal
 
-/datum/loadout_box/forgedmachete
-	entry_tag = "Machete"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/forgedmachete
+	key = "Machete"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/tribal/forgedmachete
 
-/datum/loadout_box/bmprsword
-	entry_tag = "Bumper Sword"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/bmprsword
+	key = "Bumper Sword"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/tribal/bmprsword
 
-/datum/loadout_box/warmace
-	entry_tag = "Warmace"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/warmace
+	key = "Warmace"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/tribal/warmace
 
-/datum/loadout_box/spear_quiver
-	entry_tag = "Spear Quiver"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_BOW
+/datum/loadout_kit/spear_quiver
+	key = "Spear Quiver"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_BOW
 	spawn_thing = /obj/item/storage/box/gun/tribal/spearquiver
 
-/datum/loadout_box/warclub
-	entry_tag = "War Club"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/warclub
+	key = "War Club"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/tribal/warclub
 
-/datum/loadout_box/boneaxe
-	entry_tag = "Bone Axe"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/boneaxe
+	key = "Bone Axe"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/tribal/boneaxe
 
 /// BOWS
 
-/datum/loadout_box/shortbow
-	entry_tag = "Shortbow"
-	entry_flags = LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_BOW
+/datum/loadout_kit/shortbow
+	key = "Shortbow"
+	flags = LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_BOW
 	spawn_thing = /obj/item/storage/box/gun/bow/shortbow
 
 /*
-/datum/loadout_box/crossbow
-	entry_tag = "Crossbow"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_BOW
+/datum/loadout_kit/crossbow
+	key = "Crossbow"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_BOW
 	spawn_thing = /obj/item/storage/box/gun/bow/crossbow
 */
 
 /// Preacher Stuff
 
-/datum/loadout_box/nullrod
-	entry_tag = "Spiritual Device"
-	entry_flags = LOADOUT_FLAG_PREACHER
-	entry_class = LOADOUT_CAT_NULLROD
+/datum/loadout_kit/nullrod
+	key = "Spiritual Device"
+	flags = LOADOUT_FLAG_PREACHER
+	kit_category = LOADOUT_CAT_NULLROD
 	spawn_thing = /obj/item/storage/box/gun/preacher/nullrod
 
 /// misc Stuff
 
-/datum/loadout_box/dynamite
-	entry_tag = "Box of Dynamite"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MISC
+/datum/loadout_kit/dynamite
+	key = "Box of Dynamite"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MISC
 	spawn_thing = /obj/item/storage/box/dynamite_box
 
-/datum/loadout_box/caps
-	entry_tag = "25 Coins"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MISC
+/datum/loadout_kit/caps
+	key = "25 Coins"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MISC
 	spawn_thing = /obj/item/stack/f13Cash/caps/twofive
 
-/datum/loadout_box/woodenbuckler
-	entry_tag = "Wooden Buckler"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_MISC
+/datum/loadout_kit/woodenbuckler
+	key = "Wooden Buckler"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_MISC
 	spawn_thing = /obj/item/shield/riot/buckler
 
-/datum/loadout_box/stopsign
-	entry_tag = "Stop Sign Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/stopsign
+	key = "Stop Sign Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/riot/buckler/stop
 
 
-/datum/loadout_box/kiteshield
-	entry_tag = "Kite Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/kiteshield
+	key = "Kite Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/kiteshield
 
 
-/datum/loadout_box/bucklertwo
-	entry_tag = "Oak Buckler"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/bucklertwo
+	key = "Oak Buckler"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/bucklertwo
 
-/datum/loadout_box/egyptianshield
-	entry_tag = "Dusty Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/egyptianshield
+	key = "Dusty Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/egyptianshield
 
-/datum/loadout_box/semioval
-	entry_tag = "Semioval Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/semioval
+	key = "Semioval Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/semioval
 
-/datum/loadout_box/romanbuckler
-	entry_tag = "Skirmisher's Buckler"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/romanbuckler
+	key = "Skirmisher's Buckler"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/romanbuckler
 
-/datum/loadout_box/ironshieldfour
-	entry_tag = "Checkered Red Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/ironshieldfour
+	key = "Checkered Red Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/ironshieldfour
 
-/datum/loadout_box/ironshieldthree
-	entry_tag = "Red Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/ironshieldthree
+	key = "Red Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/ironshieldthree
 
-/datum/loadout_box/ironshieldtwo
-	entry_tag = "Oval Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/ironshieldtwo
+	key = "Oval Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/ironshieldtwo
 
-/datum/loadout_box/bronzeshield
-	entry_tag = "Bronze Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/bronzeshield
+	key = "Bronze Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/bronzeshield
 
-/datum/loadout_box/ironshield
-	entry_tag = "Iron Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/ironshield
+	key = "Iron Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/ironshield
 
-/datum/loadout_box/steelshield
-	entry_tag = "Steel Shield"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/steelshield
+	key = "Steel Shield"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/steelshield
 
-/datum/loadout_box/bluebuckler
-	entry_tag = "Blue Buckler"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/bluebuckler
+	key = "Blue Buckler"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/bluebuckler
 
-/datum/loadout_box/redbuckler
-	entry_tag = "Red Buckler"
-	entry_flags = LOADOUT_FLAG_WASTER
-	entry_class = LOADOUT_CAT_SHIELD
+/datum/loadout_kit/redbuckler
+	key = "Red Buckler"
+	flags = LOADOUT_FLAG_WASTER
+	kit_category = LOADOUT_CAT_SHIELD
 	spawn_thing = /obj/item/shield/coyote/redbuckler
 
-/datum/loadout_box/oldquarterstaff
-	entry_tag = "Old Quarterstaff"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldquarterstaff
+	key = "Old Quarterstaff"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/classic_baton/coyote/oldquarterstaff
 
-/datum/loadout_box/oldquarterstaff/bokken
-	entry_tag = "Old Bokken"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldquarterstaff/bokken
+	key = "Old Bokken"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/classic_baton/coyote/oldquarterstaff/oldbokken
 
-/datum/loadout_box/olddervish
-	entry_tag = "Old Dervish Blade"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/olddervish
+	key = "Old Dervish Blade"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/olddervish
 
-/datum/loadout_box/oldpike/sarissa
-	entry_tag = "Old Sarissa"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_TWO
+/datum/loadout_kit/oldpike/sarissa
+	key = "Old Sarissa"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/oldpike/sarissa
 
-/datum/loadout_box/oldlongsword/spadroon
-	entry_tag = "Old Spadroon"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldlongsword/spadroon
+	key = "Old Spadroon"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldlongsword/spadroon
 
-/datum/loadout_box/oldlongsword/broadsword
-	entry_tag = "Old Broadsword"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldlongsword/broadsword
+	key = "Old Broadsword"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldlongsword/broadsword
 
-/datum/loadout_box/oldlongsword/armingsword
-	entry_tag = "Old Arming Sword"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldlongsword/armingsword
+	key = "Old Arming Sword"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldlongsword/armingsword
 
-/datum/loadout_box/oldlongsword/longquan
-	entry_tag = "Old Chinese Sword"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldlongsword/longquan
+	key = "Old Chinese Sword"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldlongsword/longquan
 
-/datum/loadout_box/oldlongsword/xiphos
-	entry_tag = "Old Xiphos"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/oldlongsword/xiphos
+	key = "Old Xiphos"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldlongsword/xiphos
 
-/datum/loadout_box/gar/
-	entry_tag = "Black Gar Glasses"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/gar/
+	key = "Black Gar Glasses"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/clothing/glasses/sunglasses/garb
 
 
-/datum/loadout_box/blackgiggagar/
-	entry_tag = "Black Gigga Gar Glasses"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/blackgiggagar/
+	key = "Black Gigga Gar Glasses"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/clothing/glasses/sunglasses/garb/supergarb
 
-/datum/loadout_box/orangegar/
-	entry_tag = "Orange Gar Glasses"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/orangegar/
+	key = "Orange Gar Glasses"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/clothing/glasses/sunglasses/gar
 
-/datum/loadout_box/giggagar/
-	entry_tag = "Gigga Gar Glasses"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_MELEE_ONE
+/datum/loadout_kit/giggagar/
+	key = "Gigga Gar Glasses"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/clothing/glasses/sunglasses/gar/supergar
 
-/datum/loadout_box/sling
-	entry_tag = "Sling"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/sling
+	key = "Sling"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/gun/ballistic/revolver/sling
 
-/datum/loadout_box/slingstaff
-	entry_tag = "Slingstaff"
-	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
-	entry_class = LOADOUT_CAT_HOBO
+/datum/loadout_kit/slingstaff
+	key = "Slingstaff"
+	flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	kit_category = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/gun/ballistic/revolver/sling/staff
 
 

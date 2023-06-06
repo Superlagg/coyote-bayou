@@ -37,6 +37,15 @@
 	animate(src, transform = m1, time = (full_duration * 0.5), easing = BOUNCE_EASING)
 	animate(transform = og, time = (full_duration * 0.5), easing = BOUNCE_EASING)
 
+/atom/proc/disappear_up_and_away(full_duration = 3 SECONDS, tilt_degrees = 45, shift_up = 3, final_scale = 0.5, delete_on_end = FALSE)
+	if(delete_on_end)
+		QDEL_IN(src, full_duration)
+	var/matrix/my_tf = matrix(transform)
+	my_tf.Translate(0, -shift_up*32)
+	my_tf.Turn(tilt_degrees)
+	my_tf.Scale(final_scale, final_scale)
+	animate(src, 3 SECONDS, alpha = 0, transform = my_tf, easing = SINE_EASING)
+
 /atom/proc/do_double_bounce(move_1 = 3, move_2 = -1, move_3 = 2, move_4 = -2, full_duration = 1 SECONDS)
 	var/matrix/m1 = matrix(transform)
 	var/matrix/m2 = matrix(transform)
