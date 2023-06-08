@@ -1,3 +1,7 @@
+/// Welcome to FATMERP, the File Allocation Table for Mechanical Erotic Role Play.
+#define FATMERP_ROOT "this_is_the_root"
+#define FATMERP_UNSORTED "unsorted"
+
 #define MERP_QUALITY_NORMAL "merp_quality_normal"
 #define MERP_QUALITY_REPEAT "merp_quality_repeat"
 #define MERP_QUALITY_FLOWERY "merp_quality_flowery"

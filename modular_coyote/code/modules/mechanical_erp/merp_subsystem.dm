@@ -14,10 +14,13 @@ PROCESSING_SUBSYSTEM_DEF(merp)
 	/// the master list of all merp scripts
 	/// cus strings() just wasnt hardcore enough
 	var/list/merp_dictionary = list() // heh dictionary
+	/// the master list of all merp folders
+	/// This constitutes the entire MERP tree, despite being flat as a board
+	var/list/merp_folders = list()
 
 /datum/controller/subsystem/processing/merp/Initialize(start_timeofday)
-	build_merp_dictionary()
-	return ..()
+	initialize_fatmerp()
+	. = ..()
 	send_merp_status_report() // tell everyone how much MERP is in store for them
 
 /datum/controller/subsystem/processing/merp/send_merp_status_report()
@@ -28,6 +31,16 @@ PROCESSING_SUBSYSTEM_DEF(merp)
 	var/total_scripts
 	if(LAZYLEN(merp_dictionary))
 		to_chat(world, span_boldannounce("MERP is in full force!"))
+
+
+/// The giant hellproc to construct a giant helllist out of bits and boobs
+/// Takes in all the loaded MERPI datums and cycles through them to build a tree of what bits go in what folder
+/// End result will be a tree of lists
+/// We can't assume anything is anywhere for any reason or whatever, so we're making this list, and checking it (at least) twice
+/datum/controller/subsystem/processing/merp/proc/initialize_fatmerp()
+	if(!LAZYLEN(merp_dictionary))
+		return // no MERP for you
+	var/list/output_list = sort_unsortables(dump_unsortables(structure_flat_folders_into_tree(sort_flat_folder_contents(populate_flat_folder_list(folderize_merp_dictionary(build_merp_dictionary())))))) // hi
 
 /datum/controller/subsystem/processing/merp/proc/build_merp_dictionary()
 	/// Yes, we are using flist to search for all our furry kinks. lets fucking go.
@@ -41,72 +54,56 @@ PROCESSING_SUBSYSTEM_DEF(merp)
 		var/merp_key = split_merp[1]
 		var/list/merp_script = strings("[MERP_PATH(merp_key)]", null, TRUE)
 		if(!LAZYLEN(LAZYACCESS(merp_script, "merpi_intent_help")))
-			message_admins("Invalid MERP script ([merp]) found in [MERP_MASTER_DIRECTORY]. Should probably be removed.")
+			stack_trace("Invalid MERP script ([merp]) found in [MERP_MASTER_DIRECTORY]. Should probably be removed.")
 			continue
 		var/datum/merp_script/ms = new()
 		if(!ms.merpify(merp_script, merp_key))
-			message_admins("Merpify failed for ([merp]).")
+			stack_trace("Merpify failed for ([merp]).")
 			continue
 		merp_dictionary[merp_key] = ms
-		.++
+	return merp_dictionary
 
-/// The giant hellproc to construct a giant helllist out of bits and boobs
-/// Takes in all the loaded MERPI datums and cycles through them to build a tree of what bits go in what folder
-/// End result will be a tree of lists
-/// We can't assume anything is anywhere for any reason or whatever, so we're making this list, and checking it (at least) twice
-/datum/controller/subsystem/processing/merp/proc/build_merp_structure()
-	if(!LAZYLEN(merp_dictionary))
-		return // no MERP for you
-	var/list/all_my_parts = merp_dictionary.Copy()
-	var/list/output_list = list() // Everything stems from the root. The root being the null entry
-	var/list/unsortables = list()
-	var/list/procedure_script = list(
-		MERP_TREE_GET_FOLDERS,
-		MERP_TREE_FILL_FOLDERS,
-		MERP_TREE_SORT_FOLDER_CONTENTS,
-		MERP_TREE_ASSEMBLE_FOLDERS,
-		MERP_TREE_SORT_ASSEMBLED_FOLDERS,
-		MERP_TREE_DUMP_UNSORTABLES,
-		MERP_TREE_SORT_UNSORTABLES,
-	)
-	var/current_procedure = MERP_TREE_GET_FOLDERS
-	var/iterations_left = 10000 // just in case
-	var/inner_loop_iteration = 0
-	var/list/output_list = sort_unsortables(dump_unsortables(structure_flat_folders_into_tree(sort_flat_folder_contents(populate_flat_folder_list(folderize_merp_dictionary()))))) // hi
-
-/datum/controller/subsystem/processing/merp/proc/folderize_merp_dictionary()
-	if(!LAZYLEN(merp_dictionary))
+/datum/controller/subsystem/processing/merp/proc/folderize_merp_dictionary(list/merptionary)
+	if(!LAZYLEN(merptionary))
 		CRASH("No MERP scripts loaded!") // and thus the house of procs came crashing down into a pile of runtimes
-	var/list/all_folders = list(MERP_FOLDER_UNSORTABLES = list())
-	for(var/merp_key in merp_dictionary)
-		var/datum/merp_script/ms = get_merp_script(merp_key)
-		if(!ms.is_container)
+	var/list/all_folders = list()
+	for(var/merp_key in merptionary)
+		var/datum/merp_script/script = get_merp_script(merp_key)
+		if(!script.is_container)
 			continue
-		var/folder_name = ms.index
-		if(!folder_name)
-			continue
-		if(folder_name in all_folders)
+		var/folder_name = script.parent_merpi
+		if(LAZYACCESS(all_folders, script.index))
 			stack_trace("MERP folder [folder_name] already exists! This is a problem! How did this happen?")
 			continue
-		all_folders[folder_name] = list()
-	return all_folders /// At this point, all_folders should look like: list("folder1" = list(), "folder2" = list(), "folder3" = list(), etc...
+		var/datum/merp_folder/folder = new(merp_key, merp_key, script.parent_merpi)
+		all_folders += folder
+	return all_folders /// At this point, all_folders should look like: list(/datum/merp_folder/folder1, /datum/merp_folder/folder2, /datum/merp_folder/folder3, etc...)
 
-/// This is the second step. We're going to take our flat list of folders and fill them with the scripts that belong in them
+/// This is the second step. We're going to take our flat pile of folders and put all the scripts and folders into them
 /datum/controller/subsystem/processing/merp/proc/populate_flat_folder_list(list/all_folders)
 	if(!LAZYLEN(all_folders))
 		CRASH("No MERP folders given! We need at least one!") // oof, still got a ways to go
-	var/list/filled_folders = list()
-	for(var/merp_key in merp_dictionary)
+	var/list/allmerpi = merp_dictionary.Copy()
+	for(var/datum/merp_folder/folder in all_folders)
+		for(var/merp_key in allmerpi)
+			var/datum/merp_script/ms = get_merp_script(merp_key)
+			if(ms.parent_merpi != folder.index)
+				continue
+			if(ms.is_container)
+				folder.add_subfolder(merp_key)
+			else
+				folder.add_merpi(merp_key)
+			allmerpi -= merp_key
+	/// Allmerpi now contains everything that couldnt be sorted into a folder
+	for(var/merp_key in allmerpi)
 		var/datum/merp_script/ms = get_merp_script(merp_key)
-		var/my_destination = ms.parent_merpi
-		if(!parent_merpi)
-			parent_merpi = MERP_FOLDER_UNSORTABLES
+		if(ms.parent_merpi)
 			continue
-		if(!islist(LAZYACCESS(all_folders, folder_name)))
-			stack_trace("MERP folder [folder_name] does not exist! This is a problem! How did this happen?")
-		SANITIZE_LIST(filled_folders[folder_name])
-		filled_folders[folder_name] += merp_key
-	return filled_folders /// At this point, filled_folders should look like: list("folder1" = list("merp1", "merp2", "merp3"), "folder2" = list("merp4", "merp5", "merp6"), "folder3" = list("merp7", "merp8", "merp9"), etc...
+		var/datum/merp_folder/folder = new(merp_key, merp_key, null)
+		folder.add_merpi(merp_key)
+		all_folders += folder
+		allmerpi -= merp_key
+	return all_folders /// all_folders shouldnt have changed, but the contents of its contents are now populated
 
 /// This is the third step. We're going to sort the contents of each folder. Easy peasy
 /datum/controller/subsystem/processing/merp/proc/sort_flat_folder_contents(list/filled_folders)
@@ -183,6 +180,14 @@ PROCESSING_SUBSYSTEM_DEF(merp)
 		CRASH("Invalid MERP script ([merp_key]). Returned a fucking null script. Uh oh!")
 	return ms
 
+/datum/controller/subsystem/processing/merp/proc/get_merp_folder(merp_key)
+	if(!(merp_key in merp_dictionary))
+		CRASH("Invalid MERP folder ([merp_key]). Returned a fucking null folder. Uh oh!")
+	var/datum/merp_folder/mf = LAZYACCESS(merp_dictionary, merp_key)
+	if(!istype(mf))
+		CRASH("Invalid MERP folder ([merp_key]). Returned a fucking null folder. Uh oh!")
+	return mf
+
 /datum/controller/subsystem/processing/merp/proc/merpify_item(obj/item/merpi_bit/plapper_bit, mob/living/plapper, plapper_bit_key)
 	if(!istype(plapper_bit) || !isliving(plapper))
 		CRASH("Invalid arguments passed to [name] merpify_item()! [plapper_bit], [plapper], [plapper_bit_key].")
@@ -208,19 +213,22 @@ PROCESSING_SUBSYSTEM_DEF(merp)
 /datum/merp_folder
 	var/index
 	var/associated_script_key
+	/// The folder index we're in. Or the root. Could be the root
 	var/parent_folder
 	var/list/subfolders = list()
-	var/list/merp_scripts = list()
+	var/list/merpis = list()
 
 /datum/merp_folder/New(index, my_script_key, my_parent)
 	src.index = index
 	associated_script_key = my_script_key
+	if(!my_parent)
+		my_parent = FATMERP_ROOT
 	parent_folder = my_parent
 
-/datum/merp_folder/proc/add_script(script_key)
+/datum/merp_folder/proc/add_merpi(script_key)
 	if(!istext(script_key))
-		CRASH("add_script needs a string. given: [script_key].")
-	merp_scripts[script_key] = script_key
+		CRASH("add_merpi needs a string. given: [script_key].")
+	merpis[script_key] = script_key
 
 /datum/merp_folder/proc/add_subfolder(folder_key)
 	if(!istext(folder_key))
