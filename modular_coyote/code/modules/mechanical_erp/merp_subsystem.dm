@@ -1,6 +1,6 @@
 /// Some would consider making a subsystem for arousal to be a waste of whatever adding on another subsystem would be a waste of
 /// But mama always said, "If you're gonna make horny bullshit for a space station 13 game, put it in a subsystem."
-/// time to make her proud
+/// time to make her proud. All aboard the SS MERP!
 
 //
 // MERP subsystem - Processes arousal and related things, stores a list of all merp scripts
