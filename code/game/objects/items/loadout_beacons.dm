@@ -52,8 +52,8 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	var/allowed_flags
 	/// What kits are inside this kit? If blank, just show a list of everything set to be allowed
 	var/list/multiple_choice = list()
-	/// Just to limit how many things can be taken out, cus apparently thats a thing
-	var/max_items
+	/// One instance of this fuckin thing at a time. ONE. please
+	var/in_use
 
 /obj/item/kit_spawner/waster
 	name = "Wasteland survival kit"
@@ -275,7 +275,6 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	. = ..()
 	build_loadout_list()
 	build_output_list()
-	max_items = max(LAZYLEN(multiple_choice), 1)
 
 /obj/item/kit_spawner/proc/build_loadout_list()
 	if(LAZYLEN(GLOB.loadout_datums))
@@ -309,15 +308,22 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 
 /obj/item/kit_spawner/attack_self(mob/user)
 	if(can_use_kit(user))
-		use_the_kit(user)
+		INVOKE_ASYNC(src, .proc/use_the_kit, user)
+	else
+		playsound(src, 'sound/machines/synth_no.ogg', 40, 1)
+
+/obj/item/kit_spawner/proc/stop_using_the_kit(mob/user)
+	in_use = FALSE
 
 /obj/item/kit_spawner/proc/can_use_kit(mob/living/user)
+	if(in_use)
+		to_chat(user, span_alert("Hold your horses, you're still using this thing!"))
+		return FALSE
 	if(user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
 		return TRUE
-	playsound(src, 'sound/machines/synth_no.ogg', 40, 1)
-	return FALSE
 
 /obj/item/kit_spawner/proc/use_the_kit(mob/living/user)
+	in_use = TRUE
 	if(!LAZYLEN(GLOB.loadout_boxes[type]))
 		build_output_list()
 		if(!LAZYLEN(GLOB.loadout_boxes[type]))
@@ -328,9 +334,11 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 		first_key = input(user, "Pick a category!", "Pick a category!") as null|anything in multiple_choice
 		if(!first_key)
 			user.show_message(span_alert("Invalid selection!"))
+			stop_using_the_kit(user)
 			return
 		if(!LAZYLEN(multiple_choice[first_key]))
 			user.show_message(span_phobia("Whoever set up [src] didn't set up the multiple choice list right! there should be a list here, and there isnt one! this is a bug~"))
+			stop_using_the_kit(user)
 			return
 		first_list = multiple_choice[first_key]
 		// Filter out anything from the first list that isnt in the second list. & might work, were I cleverer
@@ -351,6 +359,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 		one_only = TRUE
 	if(!second_key)
 		user.show_message(span_alert("Invalid selection!"))
+		stop_using_the_kit(user)
 		return
 	user.show_message("[second_key] selected!")
 	/// now the actual gunweapon! entries are formatted as "thingname" = path
@@ -363,17 +372,10 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 		final_key = input(user, "Pick a weapon!", "Pick a weapon!") as null|anything in GLOB.loadout_boxes[type][second_key]
 	if(!check_choice(GLOB.loadout_boxes[type][second_key][final_key]))
 		user.show_message(span_alert("Invalid selection!"))
+		stop_using_the_kit(user)
 		return
 	//user.show_message("[final_key] selected!")
-	if(!spawn_the_thing(user, GLOB.loadout_boxes[type][second_key][final_key]))
-		user.show_message(span_alert("Couldn't get the thing out of the case. Try again?"))
-		return
-	if(first_key && (first_key in multiple_choice))
-		multiple_choice[first_key] = null
-		multiple_choice -= first_key
-	if(LAZYLEN(multiple_choice) < 1)
-		qdel(src)
-
+	INVOKE_ASYNC(src, .proc/spawn_the_thing, user, GLOB.loadout_boxes[type][second_key][final_key], first_key)
 
 /obj/item/kit_spawner/proc/check_choice(choice_to_check)
 	if(!choice_to_check)
@@ -382,20 +384,21 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 		return FALSE
 	return TRUE
 
-/obj/item/kit_spawner/proc/hax_check()
-	if(max_items <= 0)
-		qdel(src)
-		return FALSE
-
-/obj/item/kit_spawner/proc/spawn_the_thing(mob/user, atom/the_thing)
-	hax_check()
-	max_items--
+/obj/item/kit_spawner/proc/spawn_the_thing(mob/user, atom/the_thing, first_key)
 	var/turf/spawn_here
 	spawn_here = user ? get_turf(user) : get_turf(src)
 	var/obj/item/new_thing = new the_thing(spawn_here)
-	if(istype(new_thing))
-		user.show_message(span_green("You pull \a [new_thing.name] out of [src]."))
-		return TRUE
+	stop_using_the_kit(user)
+	if(!istype(new_thing))
+		user.show_message(span_alert("Couldn't get the thing out of the case. Try again?"))
+		return
+	user.show_message(span_green("You pull \a [new_thing.name] out of [src]."))
+	user.put_in_hands(new_thing)
+	if(first_key && (first_key in multiple_choice))
+		multiple_choice[first_key] = null
+		multiple_choice -= first_key
+	if(LAZYLEN(multiple_choice) < 1)
+		qdel(src)
 
 /obj/item/storage/box/gun
 	name = "weapon case"
@@ -780,6 +783,12 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 /obj/item/storage/box/gun/melee/switchblade/PopulateContents()
 	new /obj/item/melee/onehanded/knife/switchblade(src)
 
+/datum/loadout_box/boomerang
+	entry_tag = "Boomerang"
+	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
+	entry_class = LOADOUT_CAT_MELEE_ONE
+	spawn_thing = /obj/item/melee/f13onehanded/boomerang
+
 /obj/item/storage/box/gun/melee/throwing
 	name = "throwing knife case"
 
@@ -817,6 +826,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 /obj/item/storage/box/gun/melee/baseball/PopulateContents()
 	new /obj/item/twohanded/baseball(src)
 
+/*
 /obj/item/storage/box/gun/melee/sledgehammer
 	name = "sledgehammer case"
 	w_class = WEIGHT_CLASS_BULKY
@@ -830,6 +840,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 
 /obj/item/storage/box/gun/melee/fireaxe/PopulateContents()
 	new /obj/item/twohanded/fireaxe(src)
+*/
 
 /obj/item/storage/box/gun/melee/pitchfork
 	name = "pitchfork case"
@@ -838,9 +849,11 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 /obj/item/storage/box/gun/melee/pitchfork/PopulateContents()
 	new /obj/item/pitchfork(src)
 
+/*
 /obj/item/storage/box/gun/melee/chainsaw
 	name = "chainsaw case"
 	w_class = WEIGHT_CLASS_BULKY
+*/
 
 /obj/item/storage/box/gun/melee/chainsaw/PopulateContents()
 	new /obj/item/twohanded/chainsaw(src)
@@ -899,11 +912,13 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 /obj/item/storage/box/gun/melee/crudeblade/PopulateContents()
 	new /obj/item/melee/coyote/crudeblade(src)
 
+/*
 /obj/item/storage/box/gun/melee/oldkanobo/PopulateContents()
 	new /obj/item/melee/coyote/oldkanobo(src)
 
 /obj/item/storage/box/gun/melee/mauler/PopulateContents()
 	new /obj/item/melee/coyote/mauler(src)
+*/
 
 /obj/item/storage/box/gun/melee/club/PopulateContents()
 	new /obj/item/melee/coyote/club(src)
@@ -928,7 +943,6 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 
 /obj/item/storage/box/gun/melee/oldlongsword/spadroon/PopulateContents()
 	new /obj/item/melee/coyote/oldlongsword/spadroon(src)
-
 
 /obj/item/storage/box/gun/melee/oldlongsword/broadsword/PopulateContents()
 	new /obj/item/melee/coyote/oldlongsword/broadsword(src)
@@ -1955,6 +1969,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	entry_class = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/baseball
 
+/*
 /datum/loadout_box/sledgehammer
 	entry_tag = "Sledgehammer"
 	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
@@ -1966,6 +1981,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	entry_flags = LOADOUT_FLAG_WASTER | LOADOUT_FLAG_TRIBAL
 	entry_class = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/fireaxe
+*/
 
 /datum/loadout_box/pitchfork
 	entry_tag = "pitchfork"
@@ -1973,11 +1989,13 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	entry_class = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/pitchfork
 
+/*
 /datum/loadout_box/chainsaw
 	entry_tag = "Chainsaw"
 	entry_flags = LOADOUT_FLAG_WASTER
 	entry_class = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/melee/chainsaw
+*/
 
 /datum/loadout_box/fist_of_the_swampstar // pornstar
 	entry_tag = "Bands of the Swamp Star gloves"
@@ -2045,6 +2063,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	entry_class = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/melee/coyote/oldcutlass
 
+/*
 /datum/loadout_box/crudeblade
 	entry_tag = "Crude Blade"
 	entry_flags = LOADOUT_FLAG_WASTER
@@ -2056,6 +2075,7 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	entry_flags = LOADOUT_FLAG_WASTER
 	entry_class = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/melee/coyote/mauler
+*/
 
 /datum/loadout_box/club
 	entry_tag = "Club"
@@ -2144,11 +2164,13 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	entry_class = LOADOUT_CAT_MELEE_ONE
 	spawn_thing = /obj/item/storage/box/gun/tribal/forgedmachete
 
+/*
 /datum/loadout_box/bmprsword
 	entry_tag = "Bumper Sword"
 	entry_flags = LOADOUT_FLAG_TRIBAL
 	entry_class = LOADOUT_CAT_MELEE_TWO
 	spawn_thing = /obj/item/storage/box/gun/tribal/bmprsword
+*/
 
 /datum/loadout_box/warmace
 	entry_tag = "Warmace"
@@ -2395,6 +2417,14 @@ GLOBAL_LIST_EMPTY(loadout_boxes)
 	entry_class = LOADOUT_CAT_HOBO
 	spawn_thing = /obj/item/gun/ballistic/revolver/sling/staff
 
+/datum/loadout_box/riotweathered
+	entry_tag = "Weathered Riot Shield"
+	entry_flags = LOADOUT_FLAG_WASTER
+	entry_class = LOADOUT_CAT_SHIELD
+	spawn_thing = /obj/item/shield/coyote/riotweathered
 
-
-
+/datum/loadout_box/beserker
+	entry_tag = "Berserker's rites"
+	entry_flags = LOADOUT_FLAG_WASTER
+	entry_class = LOADOUT_CAT_MISC
+	spawn_thing = /obj/item/book/granter/martial/berserker

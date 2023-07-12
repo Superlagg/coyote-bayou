@@ -8,6 +8,16 @@
 	path = /obj/item/clothing/suit/hooded/cloak/david
 	cost = 1
 
+/datum/gear/suit/greyrobes
+	name = "Grey robes"
+	path = /obj/item/clothing/suit/hooded/robes/grey
+	cost = 1
+
+/datum/gear/suit/brownrobes
+	name = "Brown robes"
+	path = /obj/item/clothing/suit/hooded/robes
+	cost = 1
+
 /datum/gear/suit/hoodedmask
 	name = "patched heavy leather cloak"
 	path = /obj/item/clothing/suit/hooded/outcast
@@ -304,6 +314,54 @@
 /datum/gear/suit/coat/slimvest
 	name = "light armor vest"
 	path = /obj/item/clothing/suit/armor/medium/vest
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/coat/chicom
+	name = "Chinese combat armor"
+	path = /obj/item/clothing/suit/armor/medium/combat/chinese
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/armor/ncrkevlar
+	name = "Texas militia vest"
+	path = /obj/item/clothing/suit/armor/texaskevlar
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/armor/ncrlight
+	name = "Texas militia armor"
+	path = /obj/item/clothing/suit/armor/texaslight
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/armor/ncrlight/mantle
+	name = "mantled Texas militia armor"
+	path = /obj/item/clothing/suit/armor/texaslight/mantle
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/armor/ncrmedium
+	name = "Texas militia breastplate"
+	path = /obj/item/clothing/suit/armor/texasmed
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/armor/ncrmedium/mantle
+	name = "mantled Texas militia breastplate"
+	path = /obj/item/clothing/suit/armor/texasmed/mantle
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/armor/ncrheavy
+	name = "heavy Texas militia armor"
+	path = /obj/item/clothing/suit/armor/heavy/texasheavy
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+	cost = 2
+
+/datum/gear/suit/armor/ncrheavy/mantle
+	name = "mantled heavy Texas militia armor"
+	path = /obj/item/clothing/suit/armor/heavy/texasheavy/mantle
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
 	cost = 2
 
@@ -867,6 +925,222 @@
 	name = "rancher puffer jacket"
 	path = /obj/item/clothing/suit/coat/coyote/rancher_puffer
 	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/officercoat
+	name = "black officer coat"
+	path = /obj/item/clothing/suit/aurora/officercoat
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/greatcoatred
+	name = "Red great coat"
+	path = /obj/item/clothing/suit/aurora/greatcoatred
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/greatcoatgold
+	name = "Gold great coat"
+	path = /obj/item/clothing/suit/aurora/greatcoatgold
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/greatcoatblack
+	name = "Black great coat"
+	path = /obj/item/clothing/suit/aurora/greatcoatblack
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/coatred
+	name = "Red short coat"
+	path = /obj/item/clothing/suit/aurora/coatred
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/coatgold
+	name = "Gold short coat"
+	path = /obj/item/clothing/suit/aurora/coatgold
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/coatblack
+	name = "Black short coat"
+	path = /obj/item/clothing/suit/aurora/coatblack
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/bomber
+	name = "Domina Bomber Short"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/bomber
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/bomberlong
+	name = "Domina Bomber Long"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/bomberlong
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/gadpathurcoat
+	name = "Gadpathur Coat"
+	path = /obj/item/clothing/suit/aurora/gadpathurcoat
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/gadpathurcoatleather
+	name = "Gadpathur Coat Leather"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/gadpathurleather
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/gadpathurtrench
+	name = "Gadpathur Coat Trench"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/gadpathurtrench
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/gadpathurthermal
+	name = "Gadpathur Coat Thermal"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/gadpathurthermal
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/coat_himeo
+	name = "Himeo Coat"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/coat_himeo
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/coat_himeogrey
+	name = "Himeo Coat, Grey"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/coat_himeogrey
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_coat
+	name = "Idris Coat"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_coat
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_coatwhite
+	name = "Idris Coat, white"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_coatwhite
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_coatbrown
+	name = "Idris Coat, Brown"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_coatbrown
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_coatlong
+	name = "Idris Long Coat"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_coatlong
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_coatlongwhite
+	name = "Idris Long Coat, white"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_longcoatwhite
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_coatlongbrown
+	name = "Idris Long Coat, brown"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_longcoatbrown
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_trenchcoat
+	name = "Idris Trench Coat"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_trenchcoat
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_trenchcoatwhite
+	name = "Idris Trench Coat, white"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_trenchcoatwhite
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_trenchcoatbrown
+	name = "Idris Trench Coat, brown"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_trenchcoatbrown
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_duster
+	name = "Idris Duster Coat"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_duster
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_dusterwhite
+	name = "Idris Duster Coat, white"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_dusterwhite
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_dusterbrown
+	name = "Idris Duster Coat, brown"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_dusterbrown
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/idris_windbreaker
+	name = "Idris Windbreaker"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/idris_windbreaker
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/dominian_noble
+	name = "Noble Coat red with zipper"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/dominian_noble
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/dominian_noble2
+	name = "Noble Coat red with buttons"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/dominian_noble2
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/dominian_noble3
+	name = "Noble Coat red with clasp"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/dominian_noble3
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/dominian_noble4
+	name = "Noble Coat black with zipper"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/dominian_noble4
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/dominian_noble5
+	name = "Noble Coat black with clasp"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/dominian_noble5
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/dominian_surcoat
+	name = "Noble Coat, long red"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/dominian_surcoat
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/winterchokha
+	name = "Green winter Chokha"
+	path = /obj/item/clothing/suit/aurora/winterchokha
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/winterchokhapurple
+	name = "Purple winter Chokha"
+	path = /obj/item/clothing/suit/aurora/winterchokhapurple
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/winterchokhablue
+	name = "Blue winter Chokha"
+	path = /obj/item/clothing/suit/aurora/winterchokhablue
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/winterchokhared
+	name = "Red winter Chokha"
+	path = /obj/item/clothing/suit/aurora/winterchokhared
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/abbasi
+	name = "Abbasi Armor"
+	path = /obj/item/clothing/suit/aurora/abbasi_carrier
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_ARMOR
+
+/datum/gear/suit/aurora/freedomcoat
+	name = "Freedom Coat"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/freedom_coat
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/ashjacket
+	name = "Ash Jacket"
+	path = /obj/item/clothing/suit/toggle/labcoat/aurora/ashjacket
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/aurora/robesuit
+	name = "Green and Yellow Robe"
+	path = /obj/item/clothing/suit/aurora/robesuit
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
+/datum/gear/suit/detvest
+	name = "Detective Vest, Colorable"
+	path = /obj/item/clothing/suit/toggle/labcoat/detvest
+	subcategory = LOADOUT_SUBCATEGORY_SUIT_JACKETS
+
 
 // BEGIN_INTERNALS
 // END_INTERNALS

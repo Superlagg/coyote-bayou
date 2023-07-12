@@ -44,7 +44,6 @@
 	force = 55
 	throwforce = 10
 	block_chance = 20
-	armour_penetration = 0.00
 	w_class = WEIGHT_CLASS_BULKY
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -140,7 +139,6 @@
 	item_state = "tribalspear"
 	force = 15
 	throwforce = 40 //clears threshholds for trash mobs
-	armour_penetration = 0.00
 	embedding = list("pain_mult" = 2, "embed_chance" = 40, "fall_chance" = 15)
 	w_class = WEIGHT_CLASS_NORMAL
 	weapon_special_component = /datum/component/weapon_special/ranged_spear
@@ -159,7 +157,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	armour_penetration = 0.00
 	throw_speed = 3
 	throw_range = 6
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -252,7 +249,6 @@
 	icon_state = "knife_ritual"
 	item_state = "knife_ritual"
 	force = 25
-	armour_penetration = 0.0
 	custom_materials = null
 
 obj/item/melee/onehanded/knife/switchblade
@@ -305,7 +301,6 @@ obj/item/melee/onehanded/knife/switchblade
 	item_state = "knife"
 	force = 15
 	throwforce = 10
-	armour_penetration = 0.0
 
 // Abraxo my beloved. Can now be used directly to clean the blade.
 /obj/item/melee/onehanded/knife/cosmicdirty/attackby(obj/item/C, mob/user, params)
@@ -329,7 +324,6 @@ obj/item/melee/onehanded/knife/switchblade
 	item_state = "knife"
 	force = 25
 	throwforce = 15
-	armour_penetration = 0.0
 	toolspeed = 0.8
 
 // Heat it with a welder
@@ -351,7 +345,6 @@ obj/item/melee/onehanded/knife/switchblade
 	damtype = BURN
 	force = 35
 	throwforce = 20
-	armour_penetration = 0.0
 	w_class = WEIGHT_CLASS_NORMAL // Its super hot, not comfy to put back in your pocket.
 
 /obj/item/melee/onehanded/knife/throwing
@@ -360,7 +353,6 @@ obj/item/melee/onehanded/knife/switchblade
 	icon_state = "knife_throw"
 	force = 20
 	throwforce = 30
-	armour_penetration = 0.00
 	bare_wound_bonus = 15 //keep your arteries covered
 	throw_speed = 5
 	throw_range = 7
@@ -648,6 +640,37 @@ obj/item/melee/onehanded/knife/switchblade
 	add_fingerprint(user)
 
 
+/obj/item/melee/f13onehanded/boomerang
+	name = "boomerang"
+	desc = "An ancient, primitive weapon used by hunters, able to return when thrown and surprisingly powerful for a piece of wood, this one seems to be equipped with non functioning electronics"
+	icon_state = "boomerang"
+	item_state = "boomerang"
+	force = 30
+	throwforce = 18 //so it can kill weak trash mobs in one throw, a bug causes boomerang type weapons to deal double the intended damage, so this is  a bandaid fix meanwhile
+	throw_speed = 4
+	attack_verb = list("beat", "smacked", "clubbed", "clobbered")
+	sharpness = SHARP_NONE
+	attack_speed = CLICK_CD_MELEE
+	var/throw_hit_chance = 99
+
+/obj/item/melee/f13onehanded/boomerang/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+	if(ishuman(thrower))
+		var/mob/living/carbon/human/H = thrower
+		H.throw_mode_on() //so they can catch it on the return.
+	return ..()
+
+/obj/item/melee/f13onehanded/boomerang/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
+	if(thrownby && !caught)
+		sleep(1)
+		if(!QDELETED(src))
+			throw_at(thrownby, throw_range+2, throw_speed, null, TRUE)
+	else if(!thrownby)
+		return
+	return
+
+
+
 // Slave whip
 /obj/item/melee/onehanded/slavewhip
 	name = "slave whip"
@@ -818,7 +841,6 @@ obj/item/melee/onehanded/knife/switchblade
 	icon_state = "punch_dagger"
 	item_state = "punch_dagger"
 	force = 29
-	armour_penetration = 0.0
 	sharpness = SHARP_POINTY
 	attack_verb = list("stabbed", "sliced", "pierced", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'

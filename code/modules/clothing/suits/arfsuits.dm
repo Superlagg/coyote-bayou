@@ -364,6 +364,7 @@
 	armor_tokens = list(ARMOR_MODIFIER_UP_ENV_T1)
 	body_parts_hidden = CHEST | ARMS
 	toggled_hidden_parts = ARMS
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/suit/toggle/labcoat/cmo
 	name = "chief medical officer's labcoat"
@@ -618,6 +619,7 @@
 	desc = "A worn ballistic vest from Salt Lake, adorned with feathers and turqoise beads, with an ornamental pattern painted over the sides. Commonly worn by the members of the peaceful Sorrows tribe."
 	icon_state = "sorrows_armour"
 	item_state = "sorrows_armour"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/light/tribal/westernwayfarer
 	name = "Western Wayfarer salvaged armor"
@@ -632,6 +634,7 @@
 	desc = "A tribal armor plate, crafted from animal bone."
 	icon_state = "bone_dancer_armor_light"
 	item_state = "bone_dancer_armor_light"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	blood_overlay_type = "armor"
 
 /obj/item/clothing/suit/armor/light/tribal/bone/cool
@@ -646,6 +649,7 @@
 	desc = "A chestplate, pauldron and vambrace that bear a distinct resemblance to a coolant tank, engine valves and an exhaust. Commonly worn by members of the Rustwalkers tribe"
 	icon_state = "rustwalkers_armour_light"
 	item_state = "rustwalkers_armour_light"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = ARMS
 
 /obj/item/clothing/suit/armor/light/tribal/whitelegs
@@ -653,6 +657,7 @@
 	desc = "A series of tan and khaki armour plates, held in place with a considerable amount of strapping. Commonly worn by members of the White Legs tribe."
 	icon_state = "white_legs_armour_light"
 	item_state = "white_legs_armour_light"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = ARMS
 
 /obj/item/clothing/suit/armor/light/tribal/eighties
@@ -660,6 +665,7 @@
 	desc = "A plain, slightly cropped leather jacket with a black lining and neck brace, paired with a set of metal vambraces and a black belt of pouches. Commonly worn by the members of the 80s tribe."
 	icon_state = "80s_armour_light"
 	item_state = "80s_armour_light"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = ARMS
 
 /obj/item/clothing/suit/armor/light/tribal/deadhorses
@@ -667,6 +673,7 @@
 	desc = "A simple leather bandolier and gecko hide chest covering, with an engraved metal pauldron and a pair of black leather straps. Commonly worn by the members of the Dead Horses tribe."
 	icon_state = "dead_horses_armour_light"
 	item_state = "dead_horses_armour_light"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = 0
 
 /obj/item/clothing/suit/armor/light/tribal/geckocloak
@@ -782,6 +789,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_GLOBAL_MULT
 	armor = ARMOR_VALUE_MEDIUM
+	mutantrace_variation = STYLE_DIGITIGRADE
 	armor_tokens = list(ARMOR_MODIFIER_UP_ENV_T2, ARMOR_MODIFIER_UP_MELEE_T2, ARMOR_MODIFIER_DOWN_LASER_T2, ARMOR_MODIFIER_UP_DT_T2)
 	body_parts_hidden = 0
 
@@ -848,6 +856,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_GLOBAL_MULT
 	armor = ARMOR_VALUE_MEDIUM
+	mutantrace_variation = STYLE_DIGITIGRADE
 	armor_tokens = list(ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_BULLET_T2, ARMOR_MODIFIER_UP_DT_T2)
 	body_parts_hidden = 0
 
@@ -1079,6 +1088,13 @@
 	name = "town trenchcoat"
 	desc = "A non-descript black trenchcoat."
 	icon_state = "towntrench"
+	item_state = "hostrench"
+	body_parts_hidden = ARMS
+
+/obj/item/clothing/suit/armor/light/duster/town/leather
+	name = "leather trenchcoat"
+	desc = "A snazzy black trenchcoat, fit for a dragon."
+	icon_state = "leathercoat"
 	item_state = "hostrench"
 	body_parts_hidden = ARMS
 
@@ -1672,6 +1688,13 @@
 	icon = 'icons/fallout/clothing/armored_light.dmi'
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
 
+/obj/item/clothing/suit/armor/light/pilotformal
+	name = "formal pilot's jacket"
+	desc = "An ostentatious jacket decorated with brass metals and gold cloth. It won't do much to protect the wearer, but it does let them style all over their opponents."
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T1, ARMOR_MODIFIER_DOWN_BULLET_T1, ARMOR_MODIFIER_UP_LASER_T2, ARMOR_MODIFIER_UP_ENV_T1)
+	icon_state = "capformal"
+	item_state = "capformal"
+
 /////////////
 // MEDIUM  //
 /////////////
@@ -1698,7 +1721,6 @@
 	name = "medium armor template"
 	//icon = 'icons/fallout/clothing/armored_medium.dmi'
 	//mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_medium.dmi'
-	slowdown = 0.5
 	cold_protection = CHEST|GROIN
 	heat_protection = CHEST|GROIN
 	min_cold_protection_temperature = ARMOR_MIN_TEMP_PROTECT
@@ -1749,6 +1771,7 @@
 	desc = "A car seat leather duster, a timing belt bandolier, and armour plating made from various parts of a car, it surely would weigh the wearer down. Commonly worn by members of the Rustwalkers tribe."
 	icon_state = "rustwalkers_armour"
 	item_state = "rustwalkers_armour"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = CHEST
 
 /obj/item/clothing/suit/armor/medium/tribal/whitelegs
@@ -1756,6 +1779,7 @@
 	desc = "A series of tan and khaki armour plates, held in place with a considerable amount of strapping and possibly duct tape. Commonly worn by members of the White Legs tribe."
 	icon_state = "white_legs_armour"
 	item_state = "white_legs_armour"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = ARMS | LEGS
 
 /obj/item/clothing/suit/armor/medium/tribal/eighties
@@ -1763,6 +1787,7 @@
 	desc = "A ballistic duster with the number 80 stitched onto the back worn over a breastplate made from a motorcycle's engine housing, with kneepads made from stirrups. Worn by the members of the 80s tribe."
 	icon_state = "80s_armour"
 	item_state = "80s_armour"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = ARMS | CHEST
 
 /obj/item/clothing/suit/armor/medium/tribal/deadhorses
@@ -1770,6 +1795,7 @@
 	desc = "A simple leather bandolier and gecko hide chest covering, with an engraved metal pauldron and a set of black leather straps, one holding a shinpad in place. Commonly worn by the members of the Dead Horses tribe."
 	icon_state = "dead_horses_armour"
 	item_state = "dead_horses_armour"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	body_parts_hidden = 0
 
 /obj/item/clothing/suit/armor/medium/tribal/bone
@@ -1777,6 +1803,7 @@
 	desc = "A tribal armor plate, reinforced with leather and a few metal parts."
 	icon_state = "bone_dancer_armor"
 	item_state = "bone_dancer_armor"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	blood_overlay_type = "armor"
 	armor_tokens = list(ARMOR_MODIFIER_UP_MELEE_T1, ARMOR_MODIFIER_UP_DT_T2)
 
@@ -1823,6 +1850,42 @@
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_light.dmi'
 	icon_state = "vest_flak"
 	item_state = "vest_flak"
+
+/obj/item/clothing/suit/armor/medium/vest/polis
+	name = "police jacket"
+	desc = "A sturdy durathread police coat; It's not going to stop anything good but it's better than your undies."
+	icon = 'icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/suit.dmi'
+	mutantrace_variation = STYLE_DIGITIGRADE
+	icon_state = "police_officer"
+	item_state = "police_officer"
+
+/obj/item/clothing/suit/armor/medium/vest/polislt
+	name = "police lieutenant's jacket"
+	desc = "A sturdy durathread police coat; It's not going to stop anything good but it's better than your undies, This one's got silver on it."
+	icon = 'icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/suit.dmi'
+	mutantrace_variation = STYLE_DIGITIGRADE
+	icon_state = "police_lieutenant"
+	item_state = "police_lieutenant"
+
+/obj/item/clothing/suit/armor/medium/vest/polischief
+	name = "police chief's jacket"
+	desc = "A sturdy durathread police coat; It's not going to stop anything good but it's better than your undies, This one's got silver on it."
+	icon = 'icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/suit.dmi'
+	mutantrace_variation = STYLE_DIGITIGRADE
+	icon_state = "police_chief"
+	item_state = "police_chief"
+
+/obj/item/clothing/suit/armor/medium/vest/polissnr
+	name = "police search and rescue jacket"
+	desc = "A sturdy durathread police coat; It's not going to stop anything good but it's better than your undies, This one's got search and rescue markings."
+	icon = 'icons/obj/clothing/suits.dmi'
+	mob_overlay_icon = 'icons/mob/clothing/suit.dmi'
+	mutantrace_variation = STYLE_DIGITIGRADE
+	icon_state = "police_snr"
+	item_state = "police_snr"
 
 /obj/item/clothing/suit/armor/medium/vest/kevlar
 	name = "kevlar vest"
@@ -2220,6 +2283,7 @@
 	desc = "An old military grade pre war combat armor."
 	icon_state = "combat_armor"
 	item_state = "combat_armor"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 5)
 	equip_delay_other = 50
 	max_integrity = 200
@@ -2238,6 +2302,7 @@
 	name = "combat armor"
 	desc = "An old military grade pre war combat armor. Now in dark, and extra-crispy!"
 	color = "#514E4E"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/medium/combat/Initialize()
 	. = ..()
@@ -2254,6 +2319,7 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	icon_state = "combat_armor_mk2"
 	item_state = "combat_armor_mk2"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	salvage_loot = list(/obj/item/stack/crafting/armor_plate = 8)
 	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_MORE_T1 * ARMOR_SLOWDOWN_GLOBAL_MULT
 	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T2, ARMOR_MODIFIER_UP_MELEE_T2, ARMOR_MODIFIER_UP_LASER_T2, ARMOR_MODIFIER_DOWN_ENV_T1, ARMOR_MODIFIER_UP_DT_T3)
@@ -2262,6 +2328,7 @@
 	name = "reinforced combat armor"
 	desc = "A reinforced model based of the pre-war combat armor. Now in dark, light, and smoky barbeque!"
 	color = "#302E2E"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/medium/combat/mk2/remnant
 	name = "remnant combat armor"
@@ -2285,6 +2352,7 @@
 	name = "raider combat armor"
 	desc = "An old set of reinforced combat armor with some parts supplanted with painspike armor. It seems less protective than a mint-condition set of combat armor. Can probably be used to make a better set, though..."
 	item_state = "combat_armor_raider"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	armor_tokens = list(ARMOR_MODIFIER_DOWN_BULLET_T1, ARMOR_MODIFIER_UP_MELEE_T1, ARMOR_MODIFIER_DOWN_LASER_T1, ARMOR_MODIFIER_DOWN_ENV_T1)
 
 /obj/item/clothing/suit/armor/medium/combat/mk2/tribal
@@ -2303,7 +2371,7 @@
 
 /obj/item/clothing/suit/armor/medium/combat/chinese
 	name = "chinese combat armor"
-	desc = "(An uncommon suit of pre-war Chinese combat armor. It's a very basic and straightforward piece of armor that covers the front of the user."
+	desc = "An uncommon suit of pre-war Chinese combat armor. It's a very basic and straightforward piece of armor that covers the front of the user."
 	icon_state = "chicom_armor"
 	item_state = "chicom_armor"
 
@@ -2372,7 +2440,6 @@
 	desc = "An old military grade pre war combat armor. This set has seen better days, weathered by time. The composite plates, meant for bullets and lasers, look sound and intact still. Everything else...uh..."
 	icon_state = "rusted_combat_armor"
 	item_state = "rusted_combat_armor"
-	slowdown = 0.6
 	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T1, ARMOR_MODIFIER_DOWN_ENV_T1, ARMOR_MODIFIER_DOWN_DT_T1)
 
 /obj/item/clothing/suit/armor/medium/combat/environmental
@@ -2429,12 +2496,14 @@
 	desc = "An old degraded pre war combat armor, repainted to the colour scheme of the Brotherhood of Steel."
 	icon_state = "brotherhood_armor"
 	item_state = "brotherhood_armor"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/medium/combat/brotherhood/initiate/mk2
 	name = "reinforced knight armor"
 	desc = "A reinforced set of bracers, greaves, and torso plating of prewar design This one is kitted with additional plates and, repainted to the colour scheme of the Brotherhood of Steel."
 	icon_state = "brotherhood_armor_mk2"
 	item_state = "brotherhood_armor_mk2"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/medium/combat/brotherhood/outcast
 	name = "brotherhood armor" //unused?
@@ -2472,6 +2541,13 @@
 	desc = "An old set of pre-war combat armor, painted black."
 	icon_state = "enclave_new"
 	item_state = "enclave_new"
+
+/obj/item/clothing/suit/armor/medium/pilotcarapace
+	name = "pilot's combat carapace"
+	desc = "A compact, if bulky, set of armor marking the wearer as one of Nash's pilots. The materials used offer solid physical protection, but does little against heat."
+	icon_state = "capcarapace"
+	item_state = "capcarapace"
+	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_UP_MELEE_T2, ARMOR_MODIFIER_DOWN_LASER_T2, ARMOR_MODIFIER_UP_ENV_T1, ARMOR_MODIFIER_UP_DT_T1)
 
 ///////////////////
 // MEDIUM RAIDER //
@@ -2607,7 +2683,6 @@
 	name = "heavy armor template"
 	//icon = 'icons/fallout/clothing/armored_heavy.dmi'
 	//mob_overlay_icon = 'icons/fallout/onmob/clothes/armor_heavy.dmi'
-	slowdown = 1
 	strip_delay = 50
 	equip_delay_other = 50
 	max_integrity = 300
@@ -2655,6 +2730,7 @@
 	mob_overlay_icon = null
 	icon_state = "bone_dancer_armor_heavy"
 	item_state = "bone_dancer_armor_heavy"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	blood_overlay_type = "armor"
 	armor_tokens = list(ARMOR_MODIFIER_UP_MELEE_T2, ARMOR_MODIFIER_DOWN_LASER_T1)
 
@@ -2673,24 +2749,28 @@
 	desc = "A car seat leather duster, a timing belt bandolier, and armour plating made from various parts of a car, it surely would weigh the wearer down. Commonly worn by members of the Rustwalkers tribe."
 	icon_state = "rustwalkers_armour_heavy"
 	item_state = "rustwalkers_armour_heavy"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/heavy/tribal/whitelegs
 	name = "White Legs heavy armour"
 	desc = "A series of tan and khaki armour plates, held in place with a considerable amount of strapping and possibly duct tape. Commonly worn by members of the White Legs tribe."
 	icon_state = "white_legs_armour_heavy"
 	item_state = "white_legs_armour_heavy"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/heavy/tribal/eighties
 	name = "80s heavy armour"
 	desc = "A ballistic duster with the number 80 stitched onto the back worn over a breastplate made from a motorcycle's engine housing, with kneepads made from stirrups. Worn by the members of the 80s tribe."
 	icon_state = "80s_armour_heavy"
 	item_state = "80s_armour_heavy"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/heavy/tribal/deadhorses
 	name = "Dead Horses heavy armour"
 	desc = "A simple leather bandolier and gecko hide chest covering, with an engraved metal pauldron and a set of black leather straps, one holding a shinpad in place. Commonly worn by the members of the Dead Horses tribe."
 	icon_state = "dead_horses_armour_heavy"
 	item_state = "dead_horses_armour_heavy"
+	mutantrace_variation = STYLE_DIGITIGRADE
 
 /obj/item/clothing/suit/armor/heavy/tribal/westernwayfarer
 	name = "Western Wayfarer heavy armor"
@@ -2704,6 +2784,7 @@
 	desc = "A tribal full armor plate, crafted from animal bone, metal and leather. Usually worn by the Bone Dancers"
 	icon_state = "bone_dancer_armor_heavy"
 	item_state = "bone_dancer_armor_heavy"
+	mutantrace_variation = STYLE_DIGITIGRADE
 	blood_overlay_type = "armor"
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
 
@@ -2948,6 +3029,7 @@
 	icon_state = "tribal_power_armor"
 	item_state = "tribal_power_armor"
 	// body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	mutantrace_variation = STYLE_DIGITIGRADE
 	slowdown = ARMOR_SLOWDOWN_SALVAGE * ARMOR_SLOWDOWN_LESS_T3 * ARMOR_SLOWDOWN_GLOBAL_MULT // zooom
 	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T1, ARMOR_MODIFIER_DOWN_BULLET_T1, ARMOR_MODIFIER_DOWN_LASER_T2)
 
@@ -2958,6 +3040,7 @@
 	item_state = "tribal_power_armor"
 	// body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	armor = ARMOR_VALUE_HEAVY
+	mutantrace_variation = STYLE_DIGITIGRADE
 	slowdown = ARMOR_SLOWDOWN_HEAVY * ARMOR_SLOWDOWN_GLOBAL_MULT
 	color = "#b1a687"
 
@@ -3316,7 +3399,7 @@
 	icon_state = "t45bpowerarmor"
 	item_state = "t45bpowerarmor"
 	armor = ARMOR_VALUE_SALVAGE
-	slowdown = ARMOR_SLOWDOWN_SALVAGE * ARMOR_SLOWDOWN_GLOBAL_MULT
+	slowdown =  ARMOR_SLOWDOWN_REPA * ARMOR_SLOWDOWN_GLOBAL_MULT
 	salvaged_type = /obj/item/clothing/suit/armor/heavy/salvaged_pa/t45b
 
 /obj/item/clothing/suit/armor/power_armor/t45b/raider
@@ -3324,6 +3407,9 @@
 	desc = "A monumentously heavy suit of rusty metal and car parts. Either an actual power armor exoskeleton or some home-built substitute sits embedded under all that rust. Is this some attempt at power armor???"
 	icon_state = "raiderpa"
 	item_state = "raiderpa"
+	armor = ARMOR_VALUE_SALVAGE
+	slowdown =  ARMOR_SLOWDOWN_REPA * ARMOR_SLOWDOWN_GLOBAL_MULT
+	mutantrace_variation = STYLE_DIGITIGRADE
 	salvaged_type = /obj/item/clothing/suit/armor/medium/raider/raidermetal
 
 /obj/item/clothing/suit/armor/power_armor/t45d
@@ -3355,6 +3441,15 @@
 	salvaged_type = /obj/item/clothing/suit/armor/heavy/salvaged_pa/t51b
 	armor_tokens = list(ARMOR_MODIFIER_UP_LASER_T1, ARMOR_MODIFIER_UP_DT_T1)
 
+/obj/item/clothing/suit/armor/power_armor/t51b/pony
+	name = "colorful T-51b power armor"
+	desc = "The pinnacle of pre-war technology. Someone's gone and painted a heart on the chest piece."
+	icon = 'icons/obj/clothing/suits.dmi'
+	lefthand_file = 'icons/mob/inhands/clothing_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/clothing_righthand.dmi'
+	icon_state = "t51forpony"
+	item_state = "midwestpa"
+	mutantrace_variation = null
 
 /obj/item/clothing/suit/armor/power_armor/t51b/hardened
 	name = "Hardened T-51b power armor"
@@ -3369,6 +3464,17 @@
 	desc = "The pinnacle of pre-war technology, appropriated by the Brotherhood of Steel. Commonly worn by Head Paladins."
 	icon_state = "t51bpowerarmor_bos"
 	item_state = "t51bpowerarmor_bos"
+
+/obj/item/clothing/suit/armor/power_armor/t45b/hotrod
+	name = "Refurbished T-45b Hotrod power armor"
+	desc = "It's a set of T-45b power armor with a with some of its plating replaced by ablative, fire resistant armor. This set has exhaust pipes piped to the pauldrons, flames erupting from them."
+	icon_state = "t45hotrod"
+	item_state = "t45hotrod"
+	armor = ARMOR_VALUE_SALVAGE
+	slowdown = ARMOR_SLOWDOWN_REPA * ARMOR_SLOWDOWN_GLOBAL_MULT
+	salvaged_type = /obj/item/clothing/suit/armor/heavy/salvaged_pa/t45b/hotrod
+	armor_tokens = list(ARMOR_MODIFIER_UP_FIRE_T3, ARMOR_MODIFIER_DOWN_MELEE_T2, ARMOR_MODIFIER_UP_LASER_T3, )
+
 
 /obj/item/clothing/suit/armor/power_armor/excavator
 	name = "excavator power armor"
@@ -3418,6 +3524,71 @@
 	max_integrity = 250
 	resistance_flags = NONE
 	togglename = "collar"
+
+// Recycled NCR Armor - all over the place in weight class so it goes in its own place
+
+/obj/item/clothing/suit/armor/texaskevlar
+	name = "Texas militia vest"
+	desc = "A slim kevlar vest with a brown, cloth covering. Originally modified by the First Texas Militia, these vests are now scattered across the wasteland since its fall."
+	icon_state = "ncr_kelvar_vest"
+	item_state = "ncr_kelvar_vest"
+	blood_overlay_type = "armor"
+	dog_fashion = /datum/dog_fashion/back
+	armor_tier_desc = ARMOR_CLOTHING_LIGHT
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+	slowdown = ARMOR_SLOWDOWN_LIGHT * ARMOR_SLOWDOWN_LESS_T2 * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_LIGHT
+	armor_tokens = list(ARMOR_MODIFIER_DOWN_MELEE_T1, ARMOR_MODIFIER_UP_BULLET_T2, ARMOR_MODIFIER_DOWN_LASER_T1, ARMOR_MODIFIER_UP_ENV_T2, ARMOR_MODIFIER_UP_DT_T1)
+	body_parts_hidden = CHEST
+
+/obj/item/clothing/suit/armor/texaslight
+	name = "Texas militia armor"
+	desc = "A light vest produced by the First Texas Militia over a century ago. Even now it still provides decent protection with minimal encumbrance."
+	icon_state = "ncr_infantry_vest"
+	item_state = "ncr_infantry_vest"
+	slowdown = ARMOR_SLOWDOWN_LIGHT * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_LIGHT
+	armor_tier_desc = ARMOR_CLOTHING_LIGHT
+	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_DOWN_LASER_T1, ARMOR_MODIFIER_UP_ENV_T1)
+	stiffness = LIGHT_STIFFNESS
+
+/obj/item/clothing/suit/armor/texaslight/mantle
+	name = "mantled Texas militia armor"
+	desc = "A light vest produced by the First Texas Militia over a century ago. This one has some cloth thrown over the shoulder."
+	icon_state = "ncr_standard_mantle"
+	item_state = "ncr_standard_mantle"
+
+/obj/item/clothing/suit/armor/texasmed
+	name = "Texas militia breastplate"
+	desc = "A medium set of armor used by the First Texas Militia. While once famous for their effectiveness in the Battle of Round Rock, these days it's more known for being popular among caravaneers and salvagers."
+	icon_state = "ncr_reinforced_vest"
+	item_state = "ncr_reinforced_vest"
+	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+	slowdown = ARMOR_SLOWDOWN_MEDIUM * ARMOR_SLOWDOWN_LESS_T2 * ARMOR_SLOWDOWN_GLOBAL_MULT
+	armor = ARMOR_VALUE_MEDIUM
+	armor_tier_desc = ARMOR_CLOTHING_MEDIUM
+	stiffness = MEDIUM_STIFFNESS
+	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_DOWN_LASER_T1, ARMOR_MODIFIER_UP_ENV_T1)
+
+/obj/item/clothing/suit/armor/texasmed/mantle
+	name = "mantled Texas militia breastplate"
+	desc = "A medium set of armor used by the First Texas Militia. This one has some cloth thrown over the shoulder."
+	icon_state = "ncr_reinforced_mantle"
+	item_state = "ncr_reinforced_mantle"
+
+/obj/item/clothing/suit/armor/heavy/texasheavy
+	name = "heavy Texas militia armor"
+	desc = "Some of the heaviest armor the First Texas Militia ever fielded. It remains unpopular centuries later for its bulk and heat, though some still swear by its protective capabilities."
+	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_DOWN_LASER_T1, ARMOR_MODIFIER_UP_ENV_T1)
+	mutantrace_variation = 	STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+	icon_state = "ncr_lt_armour"
+	item_state = "ncr_lt_armour"
+
+/obj/item/clothing/suit/armor/heavy/texasheavy/mantle
+	name = "mantled heavy Texas militia armor"
+	desc = "Some of the heaviest armor the First Texas Militia ever fielded. Some madman has thrown a heavy, cloth mantle over one shoulder making the already hot armor even warmer."
+	icon_state = "ncr_lt_armour_mantle"
+	item_state = "ncr_lt_armour_mantle"
 
 //Biosuit complete with shoes (in the item sprite)
 /obj/item/clothing/head/bio_hood
@@ -3495,6 +3666,7 @@
 	name = "reinforced hazard suit"
 	desc = "A CBRN hazard suit that's been paired with a ballistic vest. Surprisingly lightweight for all of its bulk."
 	icon_state = "bio_security"
+	w_class = WEIGHT_CLASS_NORMAL
 	armor_tokens = list(ARMOR_MODIFIER_UP_BULLET_T1, ARMOR_MODIFIER_UP_LASER_T1, ARMOR_MODIFIER_UP_ENV_T4, ARMOR_MODIFIER_UP_DT_T3)
 
 //Janitor's biosuit, grey with purple arms

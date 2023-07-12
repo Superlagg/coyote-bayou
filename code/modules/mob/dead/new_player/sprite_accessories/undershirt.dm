@@ -618,12 +618,72 @@
 	gender = FEMALE
 	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/bowbraalt
+	name = "Bow Bra - Alt"
+	icon_state = "bowbraalt"
+	has_color = TRUE
+	gender = FEMALE
+	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/bowbra
+	name = "Bow Bra"
+	icon_state = "bowbra"
+	has_color = TRUE
+	gender = FEMALE
+	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/bowbraneko
+	name = "Bow Bra - Neko"
+	icon_state = "bowbra_neko"
+	has_color = TRUE
+	gender = FEMALE
+	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/bowbraswimming
+	name = "Bow Bra - Swimming"
+	icon_state = "bowbra_swimming"
+	has_color = TRUE
+	gender = FEMALE
+	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/bowbraswimmingalt
+	name = "Bow Bra Swimming - Alt"
+	icon_state = "bowbra_swimming_alt"
+	has_color = TRUE
+	gender = FEMALE
+	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/shapelypetite
+	name = "Shapely Shirt - Petite"
+	icon_state = "shapely_petite"
+	has_color = TRUE
+	gender = FEMALE
+	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/shapelygirlish
+	name = "Shapely Shirt - Girlish"
+	icon_state = "shapely_girlish"
+	has_color = TRUE
+	gender = FEMALE
+	covers_belly = FALSE
 
+/datum/sprite_accessory/underwear/top/shapelycurvy
+	name = "Shapely Shirt - Curvy"
+	icon_state = "shapely_curvy"
+	has_color = TRUE
+	gender = FEMALE
+	use_sex_mask = FALSE
 
+/datum/sprite_accessory/underwear/top/shapelybusty
+	name = "Shapely Shirt - Busty"
+	icon_state = "shapely_busty"
+	has_color = TRUE
+	gender = FEMALE
+	use_sex_mask = FALSE
 
+/datum/sprite_accessory/underwear/top/shapelybackbreaker
+	name = "Shapely Shirt - Backbreakers"
+	icon_state = "shapely_backbreaker"
+	has_color = TRUE
+	gender = FEMALE
+	use_sex_mask = FALSE

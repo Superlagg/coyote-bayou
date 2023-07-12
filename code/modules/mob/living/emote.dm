@@ -207,6 +207,14 @@
 	wing_time = 10
 */
 
+/datum/emote/living/fchuckle
+	key = "fchuckle"
+	key_third_person = "fchuckles"
+	message = "chuckles."
+	message_param = "chuckles at %t."
+	emote_type = EMOTE_AUDIBLE
+	sound = 'sound/f13effects/sunsetsounds/femalechuckle.ogg'
+
 /datum/emote/living/frown
 	key = "frown"
 	key_third_person = "frowns"
@@ -331,21 +339,7 @@
 	key_third_person = "chitters"
 	message = "chitters."
 	message_param = "chitters at %t."
-
-/datum/emote/living/audible/chitter/get_sound(mob/living/user)
-	. = ..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/human_user = user
-		if(isinsect(human_user))
-			return 'sound/voice/moth/mothchitter.ogg'
-
-
-/datum/emote/living/look
-	key = "look"
-	key_third_person = "looks"
-	message = "looks."
-	key_third_person = "seems to be looking around for something."
-	message = "seems to be looking around for something."
+	sound = 'sound/voice/moth/mothchitter.ogg'
 
 
 /datum/emote/living/nod
@@ -353,6 +347,25 @@
 	key_third_person = "nods"
 	message = "nods."
 	message_param = "nods at %t."
+
+/datum/emote/living/look
+	key = "look"
+	key_third_person = "looks at something."
+	message = "looks at something."
+	message_param = "looks at %t."
+
+/datum/emote/living/nibl
+	key = "nibl"
+	key_third_person = "nibbles on something."
+	message = "nibbles on something."
+	message_param = "nibbles on %t."
+
+/datum/emote/living/fenfrantic
+	key = "fenfrantic"
+	key_third_person = "geckers frantically!"
+	message = "geckers frantically!"
+	message_param = "geckers frantically at %t"
+	sound = 'sound/f13effects/sunsetsounds/fenfrantic.ogg'
 
 /datum/emote/living/nod/run_emote(mob/user, params)
 	. = ..()
@@ -611,7 +624,7 @@
 		to_chat(user, "You cannot send IC messages (muted).")
 		return FALSE
 	else if(!params)
-		var/custom_emote = stripped_multiline_input_or_reflect(user, "Choose an emote to display.", "Custom Emote", null, MAX_MESSAGE_LEN)
+		var/custom_emote = stripped_multiline_input_or_reflect(user, EMOTE_HEADER_TEXT, "Custom Emote", null, MAX_MESSAGE_LEN)
 		if(!custom_emote)
 			return FALSE
 		if(check_invalid(user, custom_emote))
@@ -1065,6 +1078,29 @@
 	key_third_person = "doesn't sound happy!"
 	message = "doesn't sound happy!"
 	sound = 'sound/f13npc/nightstalker/aggro3.ogg'
+
+
+/datum/emote/qrattle
+	key = "qrattle"
+	key_third_person = "rattles their quills worriedly."
+	message = "rattles their quills worridly."
+	sound = 'sound/f13effects/sunsetsounds/qrattle.ogg'
+	sound_volume = 90
+
+/datum/emote/whisker
+	key = "whisker"
+	key_third_person = "twitches their whiskers!"
+	message = "twitches their whiskers!"
+
+/datum/emote/awhisker
+	key = "awhisker"
+	key_third_person = "twitches their whiskers like they're annoyed!"
+	message = "twitches their whiskers like they're annoyed!"
+
+/datum/emote/crinkle
+	key = "crinkle"
+	key_third_person = "crinkles their nose!"
+	message = "crinkles their nose!"
 
 /datum/emote/weh
 	key = "weh"

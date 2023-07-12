@@ -7,6 +7,15 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	icon = 'icons/mob/human.dmi'
 	icon_state = "caucasian_m"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	var/potato = FALSE
+
+/mob/living/carbon/human/twoman
+
+/mob/living/carbon/human/twoman/Initialize()
+	. = ..()
+	underwear = "Nude"
+	undershirt = "Nude"
+	update_body(TRUE)
 
 /mob/living/carbon/human/Initialize()
 	add_verb(src, /mob/living/proc/mob_sleep)
@@ -19,7 +28,7 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 
 	//initialize dna. for spawned humans; overwritten by other code
 	create_dna(src)
-	randomize_human(src)
+	randomize_human(src, TRUE, TRUE)
 	dna.initialize_dna()
 
 	if(dna.species)
@@ -560,6 +569,13 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 	switch(href_list["action"])
 		if("open_sockdrawer")
 			show_underwear_panel()
+		if("toggle_underoverhand")
+			var/datum/preferences/P = client?.prefs
+			if(P)
+				TOGGLE_VAR(P.underwear_overhands)
+				P.save_character()
+				update_body(TRUE)
+				show_underwear_panel()
 		if("update_every_fucking_crotch")
 			if(COOLDOWN_FINISHED(GLOB, crotch_call_cooldown))
 				for(var/mob/living/carbon/human/dic in GLOB.human_list)
@@ -726,6 +742,14 @@ GLOBAL_VAR_INIT(crotch_call_cooldown, 0)
 					?src=[REF(src)];
 					action=socks_color'>
 						[socks_color]
+			</a>"}
+	var/datum/preferences/P = client?.prefs
+	dat += {"<a 
+				class='undies_link'
+				href='
+					?src=[REF(src)];
+					action=toggle_underoverhand'>
+						Worn [P?.underwear_overhands ? "over" : "under"] your hands
 			</a>"}
 	dat += "</td>"
 	dat += "</tr>"

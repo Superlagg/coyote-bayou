@@ -11,6 +11,7 @@
 	flight_y_offset = 9
 	weapon_class = WEAPON_CLASS_RIFLE
 	weapon_weight = GUN_TWO_HAND_ONLY
+	init_recoil = RIFLE_RECOIL(1.5, 1.5)
 
 /obj/item/gun/energy/ionrifle/emp_act(severity)
 	return
@@ -26,6 +27,7 @@
 	flight_y_offset = 11
 	weapon_class = WEAPON_CLASS_NORMAL
 	weapon_weight = GUN_ONE_HAND_ONLY
+	init_recoil = CARBINE_RECOIL(1.5, 1.5)
 
 /obj/item/gun/energy/ionrifle/compact // needs a mob sprite assigned, 5/5/2023; this is intended to be a roundstart pistol in the same tier as the Wattz 1k pistol
 	name = "pulse pistol"
@@ -35,6 +37,7 @@
 	cell_type = /obj/item/stock_parts/cell/ammo/ecp
 	weapon_class = WEAPON_CLASS_NORMAL
 	weapon_weight = GUN_ONE_HAND_AKIMBO
+	init_recoil = HANDGUN_RECOIL(1.5, 1.5)
 
 /obj/item/gun/energy/decloner
 	name = "biological demolecularisor"
@@ -186,6 +189,15 @@
 
 /obj/item/gun/energy/plasmacutter/use(amount)
 	return cell.use(amount * 100)
+
+/obj/item/gun/energy/plasmacutter/use_tool(atom/target, mob/living/user, delay, amount=1, volume=0, datum/callback/extra_checks, skill_gain_mult = STD_USE_TOOL_MULT)
+
+	if(amount)
+		target.add_overlay(GLOB.welding_sparks)
+		. = ..()
+		target.cut_overlay(GLOB.welding_sparks)
+	else
+		. = ..(amount=1)
 
 /obj/item/gun/energy/plasmacutter/adv
 	name = "advanced plasma cutter"

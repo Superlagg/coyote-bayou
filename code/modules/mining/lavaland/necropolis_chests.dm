@@ -50,7 +50,7 @@
 			new /obj/item/borg/upgrade/modkit/lifesteal(src)
 			new /obj/item/bedsheet/cult(src)
 		if(6)
-			new /obj/item/clothing/neck/necklace/memento_mori(src)
+			new /obj/item/organ/regenerative_core/legion(src)
 		if(7)
 			new /obj/item/warp_cube/red(src)
 		if(8)
@@ -536,7 +536,6 @@
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	pass_flags = PASSTABLE
 	damage = 25
-	armour_penetration = 1
 	damage_type = BRUTE
 	hitsound = 'sound/effects/splat.ogg'
 	knockdown = 30

@@ -72,7 +72,6 @@
 	health = 400
 	melee_damage_lower = 35
 	melee_damage_upper = 35
-	armour_penetration = 0.1
 
 
 /mob/living/simple_animal/hostile/centaur/lazy_larry
@@ -103,7 +102,6 @@
 	harm_intent_damage = 8
 	melee_damage_lower = 30
 	melee_damage_upper = 40
-	armour_penetration = 0.1
 
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
 	environment_smash = ENVIRONMENT_SMASH_RWALLS
@@ -132,7 +130,7 @@
 	if(stat)
 		return
 	var/chosen_sound = pick(abom_sounds)
-	playsound(src, chosen_sound, 50, TRUE)
+	playsound(src, chosen_sound, 25, TRUE)
 
 /mob/living/simple_animal/hostile/abomination/Life()
 	..()

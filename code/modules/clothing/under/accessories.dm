@@ -846,3 +846,53 @@
 	name = "green and blue armband"
 	desc = "A fancy armband. This one is green and blue."
 	icon_state = "hydroband"
+
+/obj/item/clothing/accessory/pride
+	name = "A rainbow pin!"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride"
+
+/obj/item/clothing/accessory/pride/bi
+	name = "Bisexual Pride"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride_bi"
+
+/obj/item/clothing/accessory/pride/trans
+	name = "Transexual Pride"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride_trans"
+
+/obj/item/clothing/accessory/pride/ace
+	name = "Asexual Pride"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride_ace"
+
+/obj/item/clothing/accessory/pride/enby
+	name = "Nonbinery Pride"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride_enby"
+
+/obj/item/clothing/accessory/pride/pan
+	name = "Pansexual Pride"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride_pan"
+
+/obj/item/clothing/accessory/pride/lesbian
+	name = "Lesbian Pride"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride_lesbian"
+
+/obj/item/clothing/accessory/pride/intersex
+	name = "Intersex Pride"
+	desc = "A bright pin to wear with pride whereever you go!"
+	icon_state = "pride_intersex"
+
+/obj/item/clothing/accessory/deafpin
+	name = "Deaf Pin"
+	desc = "A bright pin to showcase the wearer having hearing loss."
+	icon_state = "deaf_pin"
+
+/obj/item/clothing/accessory/sheriffvest
+	name = "Cowboy Vest"
+	desc = "A white vest with black splotches. Yeehaw."
+	icon_state = "vest_sheriff"
