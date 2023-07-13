@@ -56,6 +56,8 @@
 #define MERP_AROUSAL_GAIN_FACTOR 1
 #define MERP_AROUSAL_LOSS_FACTOR 1
 
+#define TO_CHAT_MERP(who, words) to_chat(who, "[words]", pref)
+#define MERP_MOAN_SOUND(where, snd, vol, vary) playsound(get_turf(where), "[snd]", vol, vary, soundpref_index = PB_MERP_MOAN_SOUNDS)
 
 /* 
 that combo was

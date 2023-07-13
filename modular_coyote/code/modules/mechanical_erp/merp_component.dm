@@ -54,6 +54,9 @@
 	if(!SSmerp.should_merp(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOB_CLIENT_LOGIN), .proc/setup_merp)
+	RegisterSignal(parent, list(COMSIG_MERP_OPEN_MERP_MENU), .proc/open_menu)
+	RegisterSignal(parent, list(COMSIG_MERP_OPEN_MERPVENTORY), .proc/open_inventory)
+	RegisterSignal(parent, list(COMSIG_MERP_GIVE_MERP_INITIATOR), .proc/give_initiator)
 	RegisterSignal(parent, list(COMSIG_MERP_GIVE_HAND_BIT), .proc/give_merp_item)
 	RegisterSignal(parent, list(COMSIG_MERP_DO_PLAP), .proc/plap)
 	RegisterSignal(parent, list(COMSIG_MERP_GET_PLAPPED), .proc/get_plapped)
@@ -92,6 +95,48 @@
 	for(var/aro in MERP_AROUSAL_BREAKPOINTS)
 		var/datum/merp_arousal/arouse = new(text2num(aro))
 		arousal_datums[aro] = new()
+
+/datum/component/merp/proc/give_merp_initiator()
+	MERP_MASTER
+	if(isanimal(master))
+		var/mob/living/simple_animal/merpimal = master
+		if(!merpimal.dextrous)
+			var/urnotdextrous = "You aren't dextrous enough to MERP!"
+			switch(rand(1,6))
+				if(1)
+					urnotdextrous += " You might break something sensitive!"
+				if(2)
+					urnotdextrous += " Come back when you're a little... mmm... handier."
+				if(3)
+					urnotdextrous += " Maybe you should try again when you're a little more... dextrous."
+				if(4)
+					urnotdextrous += " You can, however, talk about your feelings!"
+				if(5)
+					urnotdextrous += " Maybe you can just be friends?"
+				if(6)
+					urnotdextrous += " You can watch, though!"
+			to_chat(master, span_warning("You aren't dextrous enough to MERP! You might break something sensitive!"))
+			return
+
+	if(user.get_active_held_item())
+		to_chat(user, span_warning("Your hands are too full to go looking for bricks!"))
+		return
+	var/obj/item/ammo_casing/caseless/brick/brick = new(user)
+
+	if(hasPickedUp)
+		brick.throwforce = damageMult / damageNerf
+
+	if(user.put_in_active_hand(brick))
+		hasPickedUp = TRUE
+		damageMult = brick.throwforce
+		if(!timerEnabled)
+			addtimer(CALLBACK(src, .proc/reset_damage), 2.5 SECONDS)
+			timerEnabled = TRUE
+		COOLDOWN_START(src, brick_cooldown, 2.5 SECONDS)
+		to_chat(user, span_notice("You find a nice weighty brick!"))
+	else
+		qdel(brick)
+
 
 /// SEE [modular_coyote\code\modules\mechanical_erp\merp_preferences.dm] for save/load code
 
@@ -198,11 +243,12 @@
 		else
 			wielded = bit.wielded
 	var/merp_message = SSmerp.get_plap_line(master, plappee, user_bit_key, target_bit_key, intent, wielded, quality, ci)
-	if(!merp_message)
+	if(!merp_message) // no message, didnt happen
 		return
-	do_merp_message(span_love("[merp_message]"))
+	do_merp_message(merp_message)
 	var/merp_sound = SSmerp.get_plap_sound(master, plappee, user_bit_key, target_bit_key, intent, wielded, quality, ci)
-	do_merp_sound(merp_sound)
+	if(merp_sound)
+		do_merp_sound(master, plappee, merp_sound)
 
 	var/datum/plap_record/placord = record_plap(master, plappee, user_bit_key, target_bit_key, intent, wielded, quality, ci)
 	SEND_SIGNAL(plappee, COMSIG_MERP_GET_PLAPPED, master, user_bit_key, target_bit_key, intent, wielded, quality, ci)
@@ -235,6 +281,9 @@
 		plapped_records |= placord
 	update_plap_combos(plapper, placord)
 	return TRUE
+
+/datum/component/merp/proc/do_merp_sound(mob/living/plapper, mob/living/plappee, user_bit_key, target_bit_key, intent = INTENT_HELP, wielded = FALSE, quality = MERP_QUALITY_NORMAL, ci = FALSE)
+
 
 /* 
  * Calculates and distributes mutual arousal between the plapper and plappee.
@@ -701,7 +750,33 @@
 	var/moan = pick(moan_list)
 	if(!moan)
 		return
-	playsound(my_owner, moan, 40, TRUE, soundpref_index = PB_MERP_MOAN_SOUNDS)
+	MERP_MOAN_SOUND(my_owner, moan, 75, TRUE)
 	return TRUE
 
+/mob/living/verb/open_merpventory()
+	set name = "MERP Inventory"
+	set desc = "Pull open your drawers and take stock of your MERPIs!"
 
+	SEND_SIGNAL(src, COMSIG_MERP_OPEN_MERPVENTORY)
+
+/mob/living/verb/open_merp_menu()
+	set name = "MERP Menu"
+	set desc = "Open the MERP menu!"
+
+	SEND_SIGNAL(src, COMSIG_MERP_OPEN_MERP_MENU)
+
+/mob/living/verb/give_merp_initiator()
+	set name = "MERP Initiator"
+	set desc = "Give yourself a thing to invite others to your MERP party!"
+
+	SEND_SIGNAL(src, COMSIG_MERP_GIVE_MERP_INITIATOR)
+
+//brick//
+/datum/emote/living/merper
+	key = "letsmerp"
+	key_third_person = "letsmerps"
+	restraint_check = TRUE
+
+/datum/emote/living/carbon/bricker/run_emote(mob/user)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_MERP_GIVE_MERP_INITIATOR)
