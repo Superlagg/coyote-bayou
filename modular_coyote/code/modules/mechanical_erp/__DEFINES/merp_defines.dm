@@ -59,6 +59,8 @@
 #define TO_CHAT_MERP(who, words) to_chat(who, "[words]", pref)
 #define MERP_MOAN_SOUND(where, snd, vol, vary) playsound(get_turf(where), "[snd]", vol, vary, soundpref_index = PB_MERP_MOAN_SOUNDS)
 
+#define MERP_PREFCHECK_BIT(mob, bit) SSprefbreak.allowed_by_prefs(mob, "[MERP_BIT_PREFERENCE]-[bit]") 
+
 /* 
 that combo was
 1	Lame...

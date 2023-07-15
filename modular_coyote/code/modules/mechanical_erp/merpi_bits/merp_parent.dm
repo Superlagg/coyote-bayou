@@ -11,15 +11,15 @@
 	max_reach = 7 // yo my dick is looooooong
 	/// The following are keys to the merpi_bit's dictionary. (get it? dictionary?)
 	var/merp_key = "merp_breasts"
-	var/datum/weakref/owner
-
-/obj/item/merpi_bit/Initialize()
-	. = ..()
-	ADD_TRAIT(src, TRAIT_NO_STORAGE_REMOVE, TRAIT_GENERIC) // its okay, it'll be forced into the owner's inventory
-
+	var/is_private
+	var/is_container
+	var/datum/weakref/plapper
 
 /obj/item/merpi_bit/attackby(obj/item/W, mob/user, params)
-	if(SEND_SIGNAL(user, COMSIG_MERP_USE_MERPI_BIT, W, src)) // Use that, on me
+	var/mob/living/my_owner = owner?.resolve()
+	if(is_container)
+		SSmerp.show_merp_inventory(user, my_owner, merp_key)
+	else if(SEND_SIGNAL(user, COMSIG_MERP_USE_MERPI_BIT, W, src)) // Use that, on me
 		return
 	. = ..()
 
@@ -40,9 +40,10 @@
 	var/mob/living/my_owner = owner?.resolve()
 	if(!my_owner)
 		return
-	if(my_owner != user)
-		return // we'll handle poking parts with your hand later
-	SEND_SIGNAL(user, COMSIG_MERP_GIVE_HAND_BIT, user, merp_key)
+	if(is_container)
+		SSmerp.show_merp_inventory(user, my_owner, merp_key)
+	else
+		SEND_SIGNAL(user, COMSIG_MERP_GIVE_HAND_BIT, user, merp_key)
 
 
 

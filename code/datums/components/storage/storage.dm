@@ -37,6 +37,9 @@
 	/// Max volume we can hold. Applies to [STORAGE_LIMIT_VOLUME]. Auto scaled on New() if unset.
 	var/max_volume
 
+	/// How far away from this storage you can be to see it
+	var/max_reach = 1
+
 	var/emp_shielded = FALSE
 
 	var/silent = FALSE								//whether this makes a message when things are put in.
@@ -330,7 +333,7 @@
 
 /datum/component/storage/proc/check_views()
 	for(var/mob/M in can_see_contents())
-		if(!isobserver(M) && !M.can_reach(parent, STORAGE_VIEW_DEPTH))
+		if(!isobserver(M) && !M.can_reach(parent, STORAGE_VIEW_DEPTH, max_reach))
 			close(M)
 
 /datum/component/storage/proc/emp_act(datum/source, severity)

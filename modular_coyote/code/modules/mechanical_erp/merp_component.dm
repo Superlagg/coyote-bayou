@@ -54,8 +54,6 @@
 	if(!SSmerp.should_merp(parent))
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, list(COMSIG_MOB_CLIENT_LOGIN), .proc/setup_merp)
-	RegisterSignal(parent, list(COMSIG_MERP_OPEN_MERP_MENU), .proc/open_menu)
-	RegisterSignal(parent, list(COMSIG_MERP_OPEN_MERPVENTORY), .proc/open_inventory)
 	RegisterSignal(parent, list(COMSIG_MERP_GIVE_MERP_INITIATOR), .proc/give_initiator)
 	RegisterSignal(parent, list(COMSIG_MERP_GIVE_HAND_BIT), .proc/give_merp_item)
 	RegisterSignal(parent, list(COMSIG_MERP_DO_PLAP), .proc/plap)
@@ -118,25 +116,13 @@
 			to_chat(master, span_warning("You aren't dextrous enough to MERP! You might break something sensitive!"))
 			return
 
-	if(user.get_active_held_item())
-		to_chat(user, span_warning("Your hands are too full to go looking for bricks!"))
+	if(master.get_active_held_item())
+		to_chat(master, span_warning("Your hands are too full to hold any MERPversations!"))
 		return
-	var/obj/item/ammo_casing/caseless/brick/brick = new(user)
-
-	if(hasPickedUp)
-		brick.throwforce = damageMult / damageNerf
-
-	if(user.put_in_active_hand(brick))
-		hasPickedUp = TRUE
-		damageMult = brick.throwforce
-		if(!timerEnabled)
-			addtimer(CALLBACK(src, .proc/reset_damage), 2.5 SECONDS)
-			timerEnabled = TRUE
-		COOLDOWN_START(src, brick_cooldown, 2.5 SECONDS)
-		to_chat(user, span_notice("You find a nice weighty brick!"))
-	else
-		qdel(brick)
-
+	var/obj/item/hand_item/merp_initiator/MERPINIT = new(master)
+	if(!master.put_in_active_hand(MERPINIT))
+		to_chat(master, span_warning("You couldn't get the MERPversationer out?"))
+		qdel(MERPINIT)
 
 /// SEE [modular_coyote\code\modules\mechanical_erp\merp_preferences.dm] for save/load code
 
@@ -176,7 +162,7 @@
 		arouse.express_arousal()
 	return TRUE
 	
-/datum/component/proc/get_arousal_datum()
+/datum/component/merp/proc/get_arousal_datum()
 	MERP_MASTER
 	var/datum/merp_arousal/arouse = LAZYACCESS(arousal_datums, "[MERP_AROUSAL_MIN]")
 	for(var/aro in arousal_datums)
