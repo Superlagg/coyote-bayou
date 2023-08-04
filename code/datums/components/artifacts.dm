@@ -37,6 +37,7 @@
 	var/beatitude = UNCURSED
 	var/override_flags = NONE
 	var/list/scanner_entry = list()
+	var/my_cool_id = "bingus-2-4"
 	COOLDOWN_DECLARE(colorwobble)
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
 
@@ -81,8 +82,8 @@
 /datum/component/artifact/proc/colorwobble(atom/target, orig_color)
 	if(!isatom(target))
 		return
-	var/c_1 = gradient(target.color, color_1, 0.5)
-	var/c_2 = gradient(target.color, color_2, 0.5)
+	var/c_1 = gradient(target.color, color_1, SSartifacts.colorwobble_intensity)
+	var/c_2 = gradient(target.color, color_2, SSartifacts.colorwobble_intensity)
 	animate(target, color = c_1, time = SSartifacts.art_effect_colorwobble_length / 3, easing = CIRCULAR_EASING, flags = ANIMATION_PARALLEL)
 	animate(color = c_2, time = SSartifacts.art_effect_colorwobble_length / 3, easing = CIRCULAR_EASING)
 	animate(color = orig_color, time = SSartifacts.art_effect_colorwobble_length / 3, easing = CIRCULAR_EASING)
@@ -238,6 +239,15 @@
 	total_value /= max(LAZYLEN(effects), 1)
 	return round(total_value, 25)
 
+/datum/component/artifact/proc/get_name_string()
+	SIGNAL_HANDLER
+	ART_MASTER
+	if(!ismob(user))
+		return
+	if (rare_name && rarity == ART_RARITY_RARE)
+		return "The [rare_name]"
+	return "[identified_prefix] "[master.name]" [identified_suffix]"
+
 /datum/component/artifact/proc/get_name(datum/source, mob/user, list/override)
 	SIGNAL_HANDLER
 	ART_MASTER
@@ -306,6 +316,39 @@
 /datum/component/artifact/proc/hi()
 	SIGNAL_HANDLER
 	return TRUE // hi
+
+/datum/component/artifact/proc/get_highest_magnitude()
+	if(!LAZYLEN(effects))
+		return 0
+	var/magnitude = 0
+	for(var/datum/artifact_effect/AE in effects)
+		var/itnitude = AE.get_magnitude()
+		if(isnitude > magnitude)
+			magnitude = itnitude
+	return magnitude
+
+/datum/component/artifact/proc/get_average_magnitude()
+	if(!LAZYLEN(effects))
+		return 0
+	var/magnitude = 0
+	for(var/datum/artifact_effect/AE in effects)
+		magnitude += AE.get_magnitude()
+	return (magnitude / LAZYLEN(effects))
+
+/datum/component/artifact/proc/get_score()
+	if(!LAZYLEN(effects))
+		return 0
+	var/score = 0
+	for(var/datum/artifact_effect/AE in effects)
+		score += AE.get_score()
+	switch(rarity)
+		if(ART_RARITY_COMMON)
+			score *= SSartifacts.common_score_multiplier
+		if(ART_RARITY_UNCOMMON)
+			score *= SSartifacts.uncommon_score_multiplier
+		if(ART_RARITY_RARE)
+			score *= SSartifacts.rare_score_multiplier
+	return round(score)
 
 /datum/component/artifact/proc/read_parameters(datum/source, list/parameters = list())
 	SIGNAL_HANDLER
@@ -387,7 +430,7 @@
 	SIGNAL_HANDLER
 	ART_MASTER
 	update_color()
-	//update_scanner_name()
+	update_scanner_name()
 	INVOKE_ASYNC(src, .proc/floatycool)
 
 /datum/component/artifact/proc/floatycool()
@@ -417,7 +460,7 @@
 	// animate(color = c2, time = 5 SECONDS, easing = CIRCULAR_EASING)
 	// animate(color = c3, time = 5 SECONDS, easing = CIRCULAR_EASING)
 	// animate(color = c4, time = 5 SECONDS, easing = CIRCULAR_EASING)
-/* 
+
 /datum/component/artifact/proc/update_scanner_name()
 	if(!LAZYLEN(effects))
 		scanner_name = list("YANCEY INDIGO FOXTROT FOXTROT 2-3")
@@ -435,7 +478,9 @@
 	if(istype(rep_fx, /datum/artifact_effect))
 		thingname = "[thingname] [rep_fx.get_prefix()]-[rand(1000,9999)]"
 	scanner_name = list("[thingname]")
- */
+	if(my_cool_id == initial(my_cool_id))
+		my_cool_id = "ARTIFACT-[rand(1000000000, 9999999999)]-[rand(1000000000, 9999999999)]-[rand(1000000000, 9999999999)]-[rand(1000000000, 9999999999)]"
+
 /datum/component/artifact/proc/make_unique(datum/source, unique_label) // effects already appplied, now gussy up the itussy
 	SIGNAL_HANDLER
 	ART_MASTER
@@ -527,6 +572,7 @@
 	var/list/overridden = list()
 	var/value = 0
 	var/base_value = 200
+	var/base_score = 10
 	var/last_tick = 0
 
 /datum/artifact_effect/New(obj/item/parent, list/parameters = list())
@@ -773,6 +819,13 @@
 	update_value()
 	return value
 
+/datum/artifact_effect/proc/get_score()
+	update_score()
+	return value
+
+/datum/artifact_effect/proc/update_score()
+	score = round(base_score * get_magnitude())
+
 /datum/artifact_effect/proc/translate_slots()
 	if(!isnull(desired_slots_string))
 		return desired_slots_string
@@ -850,6 +903,7 @@
 /datum/artifact_effect/max_hp_modifier
 	kind = ARTMOD_MAX_HP
 	base_value = 300
+	base_score = 10
 	chance_weight = 1
 	var/hp_change = 0
 	var/equip_message = "You feel stronger."
@@ -1100,6 +1154,7 @@
 	kind = ARTMOD_SPEED
 	base_value = 400
 	chance_weight = 1
+	base_score = 15
 	var/multiplicative_slowdown = 0 // more is slower
 	var/my_unique_id = "bingus"
 	var/equip_message = "You feel faster."
@@ -1225,6 +1280,7 @@
 	var/injured = "%SRC is harming you."
 	var/armor_flag = "melee"
 	var/highest_damage = BRUTE
+	base_score = 5
 	base_value = 400 // it'll do damage anywhere in your inventory, so, should be worth something!
 	allow_dupes = TRUE
 	is_only_harmful = TRUE
@@ -1606,6 +1662,7 @@
 /datum/artifact_effect/passive_damage/healer
 	kind = ARTMOD_PASSIVE_HEAL
 	chance_weight = 1
+	base_score = 20
 	base_value = 400
 	/// Stop healing if their health is below this
 	min_health = 5
@@ -1912,6 +1969,7 @@
 /datum/artifact_effect/stamina
 	kind = ARTMOD_STAMINA
 	chance_weight = 4
+	base_score = 5
 	/// How much to adjust stamina by
 	var/stamina_adjustment = 0
 	/// Cooldown if it stamcrits the user
@@ -2018,6 +2076,7 @@
 	kind = ARTMOD_RADIATION
 	chance_weight = 10
 	base_value = 300
+	base_score = 2
 	var/target_radiation = 0
 	var/radiation_adjustment = 0
 
@@ -2136,6 +2195,7 @@
 	kind = ARTMOD_BLOOD
 	chance_weight = 2
 	base_value = 300
+	base_score = 10
 	/// Target blood amount, if any
 	var/target_blood = 0
 	/// How much to adjust blood by per second
@@ -2243,6 +2303,7 @@
 /datum/artifact_effect/feeder
 	kind = ARTMOD_FEEDER
 	chance_weight = 1
+	base_score = 20
 	base_value = 300
 	/// How much to adjust nutrition by per second
 	var/nutrition_adjustment = 0

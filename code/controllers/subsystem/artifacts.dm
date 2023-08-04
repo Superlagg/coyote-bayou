@@ -19,8 +19,11 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 		ART_RARITY_RARE = 0,
 		ART_RARITY_UNIQUE = 0,
 	)
+	var/colorwobble_intensity = 0.25
 
-	var/spawn_chance = 0.5 // chance for an artifact to spawn per tick
+	var/spawn_delay_low = 3 SECONDS // chance for an artifact to spawn per tick
+	var/spawn_delay_high = 2 MINUTES
+	COOLDOWN_DECLARE(spawn_delay_next)
 	var/use_valid_ball_spawner_chance = 50 // chance for an artifact to use a valid ball spawner
 
 	var/list/buffs_by_rarity = list(
@@ -148,6 +151,13 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	var/fuzzy_time = FALSE
 	var/fuzzy_time_low = 0.9
 	var/fuzzy_time_high = 1.1
+
+	var/common_score_multiplier = 0.5
+	var/uncommon_score_multiplier = 0.75
+	var/rare_score_multiplier = 1
+
+	/// Format: list("ckey" = /datum/artifact_scorecard)
+	var/list/scoreboard = list()
 
 	var/blood_target_good_common_min = BLOOD_VOLUME_SAFE
 	var/blood_target_good_common_max = BLOOD_VOLUME_SAFE
@@ -392,9 +402,12 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 
 	var/list/prefixes_unidentified = list()
 
+	var/list/phonetic_alphabet = list()
+
 	var/art_effect_colorwobble_delay = 6 SECONDS
 	var/art_effect_colorwobble_length = 6 SECONDS
 
+	var/debug_rapid_spawn = FALSE
 	var/debug_easy_identify = FALSE
 	var/debug_insta_identify = FALSE
 	var/debug_spawn_message_admemes = FALSE
@@ -403,7 +416,7 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	populate_affix_lists()
 	populate_effect_lists()
 	populate_artifactibles()
-	if(debug_insta_identify || debug_easy_identify || debug_spawn_message_admemes || spawn_chance > 25)
+	if(debug_insta_identify || debug_easy_identify || debug_spawn_message_admemes || debug_rapid_spawn)
 		to_chat(world, span_phobia("Dan left the debug vars on, point and laugh!"))
 	. = ..()
 
@@ -417,11 +430,11 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	var/aec = (LAZYACCESS(number_of_effects, ART_RARITY_COMMON))
 	var/aeu = (LAZYACCESS(number_of_effects, ART_RARITY_UNCOMMON))
 	var/aer = (LAZYACCESS(number_of_effects, ART_RARITY_RARE))
-	msg = "A:[allarts]([artc]:[artu]:[artr]-P:[plen])/E[alleffects]([aec]:[aeu]:[aer]):-C:[round(cost,0.005)]"
+	msg = "A:[allarts]([artc]:[artu]:[artr]-P:[plen])/E:[alleffects]([aec]:[aeu]:[aer]):-C:[round(cost,0.005)]"
 	return msg
 
 /datum/controller/subsystem/processing/artifacts/fire(resumed = 0)
-	if(prob(spawn_chance))
+	if(COOLDOWN_FINISHED(src, spawn_delay_next))
 		INVOKE_ASYNC(src, .proc/attempt_spawn_artifact)
 	if (!resumed)
 		currentrun = processing.Copy()
@@ -439,6 +452,7 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 			return
 
 /datum/controller/subsystem/processing/artifacts/proc/attempt_spawn_artifact()
+	COOLDOWN_START(src, spawn_delay_next, debug_rapid_spawn ? 1 SECOND : rand(spawn_delay_low, spawn_delay_high))
 	var/turf/put_here = get_artifactible_turf()
 	if(!isturf(put_here))
 		return // shrug
@@ -456,7 +470,6 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	artifactify(chunk, overrides = list(ARTVAR_CRUD_IT_UP = TRUE))
 	if(debug_spawn_message_admemes)
 		message_admins("Spawned [chunk] at [ADMIN_VERBOSEJMP(put_here)].")
-	SEND_SIGNAL(chunk, COMSIG_ITEM_ARTIFACT_FINALIZE)
 
 /datum/controller/subsystem/processing/artifacts/proc/get_artifactible_turf()
 	if(prob(use_valid_ball_spawner_chance))
@@ -555,6 +568,7 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	prefixes_nutrition_bad =  LAZYACCESS(sillystring, "prefixes_nutrition_bad")
 	suffixes_nutrition_good = LAZYACCESS(sillystring, "suffixes_nutrition_good")
 	suffixes_nutrition_bad =  LAZYACCESS(sillystring, "suffixes_nutrition_bad")
+	phonetic_alphabet =       LAZYACCESS(sillystring, "phonetic_alphabet")
 
 /datum/controller/subsystem/processing/artifacts/proc/uniqueify(obj/item/thing, list/overrides = list())
 	if(!isitem(thing))
@@ -614,6 +628,8 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	effectify(thing, overrides)
 	sig_reg(thing)
 	catalogue_artifact(thing, overrides, rarity)
+	SEND_SIGNAL(thing, COMSIG_ITEM_ARTIFACT_FINALIZE)
+
 
 /datum/controller/subsystem/processing/artifacts/proc/effectify(obj/item/thing, list/parameters)
 	SEND_SIGNAL(thing, COMSIG_ITEM_ARTIFACT_READ_PARAMETERS, parameters)
@@ -650,18 +666,23 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 		good_pool -= rolled_effect
 
 /datum/controller/subsystem/processing/artifacts/proc/catalogue_artifact(obj/item/thing, list/effectlist, rarity, unique_tag)
+	if(!thing)
+		CRASH("ARTIFACT CATALOGUER DIDNT HAVE A THING PASSED TO IT WTF")
+	var/datum/component/artifact/art = thing.GetComponent(/datum/component/artifact)
+	if(!art)
+		CRASH("ARTIFACTR DOESNT HAVE A FUCKING ARTIFACT COMPONENT FUCKING FIRE EVERYONE [thing]")
 	if(unique_tag)
 		existing_uniques += "[unique_tag]"
 	number_of_artifacts[rarity] += 1
 	number_of_effects[rarity] += LAZYLEN(effectlist)
-	all_artifacts += WEAKREF(thing)
+	all_artifacts[art.my_cool_id] = WEAKREF(thing)
 	switch(rarity)
 		if(ART_RARITY_COMMON)
-			common_artifacts |= WEAKREF(thing)
+			common_artifacts[art.my_cool_id] = WEAKREF(thing)
 		if(ART_RARITY_UNCOMMON)
-			uncommon_artifacts |= WEAKREF(thing)
+			uncommon_artifacts[art.my_cool_id] = WEAKREF(thing)
 		if(ART_RARITY_RARE)
-			rare_artifacts |= WEAKREF(thing)
+			rare_artifacts[art.my_cool_id] = WEAKREF(thing)
 
 /datum/controller/subsystem/processing/artifacts/proc/sig_reg(obj/item/thing)
 	RegisterSignal(thing, COMSIG_PARENT_PREQDELETED, .proc/artifact_deleted, TRUE)
@@ -669,14 +690,13 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 /datum/controller/subsystem/processing/artifacts/proc/artifact_deleted(obj/item/thing)
 	if(!isitem(thing))
 		CRASH("artifact_deleted() called on non-item! yeah it only works on items.")
-	var/datum/weakref/weakthing = WEAKREF(thing)
-	all_artifacts -= weakthing
-	common_artifacts -= weakthing
-	uncommon_artifacts -= weakthing
-	rare_artifacts -= weakthing
 	var/datum/component/artifact/art = thing.GetComponent(/datum/component/artifact)
 	if(!art)
 		return
+	all_artifacts -= art.my_cool_id
+	common_artifacts -= art.my_cool_id
+	uncommon_artifacts -= art.my_cool_id
+	rare_artifacts -= art.my_cool_id
 	var/rarity = art.rarity
 	var/unique_tag = art.unique_tag
 	var/effect_num = LAZYLEN(art.effects)
@@ -688,6 +708,12 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 		if(istype(AU))
 			AU.num_available = min(AU.num_available + 1, initial(AU.num_available))
 
+/datum/controller/subsystem/processing/artifacts/proc/get_artifact(art_id)
+	if(!art_id)
+		CRASH("get_artifact() called with no art_id")
+	var/datum/weakref/thingref = LAZYACCESS(all_artifacts, art_id)
+	var/obj/item/thing = GET_WEAKREF(thingref)
+	return thing
 
 /datum/controller/subsystem/processing/artifacts/proc/roll_rarity(rarity_class = ART_RARITY_COMMON)
 	var/rareness = ART_RARITY_COMMON
@@ -699,6 +725,43 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 		if(ART_RARITY_RARE)
 			rareness = pickweight(rare_spawner_distribution)
 	return rareness
+
+/datum/controller/subsystem/processing/artifacts/proc/discover_artifact(mob/living/discoverer, art_tag, art_name, score)
+	if(!art_tag || !art_name || !isliving(discoverer))
+		return
+	var/datum/artifact_scorecard/ASC = LAZYACCESS(scorecards, discoverer.ckey)
+	if(!istype(ASC))
+		ASC = new /datum/artifact_scorecard(discoverer)
+		scorecards[discoverer.ckey] = ASC
+	return ASC.add_discovery(art_tag, art_name, score)
+
+///////////////////////////////////////////////////////////////////////////
+/datum/artifact_scorecard
+	var/ckey
+	var/realname = "A plucky explorer"
+	var/list/discovery_ids = list()
+	var/list/discovery_names
+	var/total_score = 0
+
+/datum/artifact_scorecard/New(mob/living/pluck)
+	if(!isliving(pluck))
+		CRASH("ARTIFACT SCORECARD GIVEN A NON LIVING MOB !!!!!!!!!!!!")
+		qdel(src)
+	if(pluck.ckey)
+		ckey = pluck.ckey
+	realname = pluck.real_name
+	if(realname.findtext("unknown"))
+		if(pluck.client)
+			var/client/C = pluck.client
+			realname = C.prefs.real_name // gotcha!
+
+/datum/artifact_scorecard/proc/add_discovery(thing_id, thing_name, score)
+	if(thing_id in discovery_ids)
+		return
+	discovery_ids[thing_id] = score
+	discovery_names += thing_name
+	total_score += score
+	return TRUE
 
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////

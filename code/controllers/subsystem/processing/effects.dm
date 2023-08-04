@@ -24,3 +24,9 @@ PROCESSING_SUBSYSTEM_DEF(effects)
 		return
 	EF.do_effect(source, target, angle, length)
 
+/datum/controller/subsystem/processing/effects/proc/expanding_ring(atom/source, size, time)
+	var/datum/effect_fancy/EF = LAZYACCESS(effect_list, EFFECT_RING_EFFECT)
+	if(!EF)
+		return
+	EF.do_effect(source, size, time)
+
