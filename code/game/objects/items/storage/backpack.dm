@@ -17,7 +17,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
+	slot_flags = INV_SLOTBIT_BACK	//ERROOOOO
 	resistance_flags = NONE
 	max_integrity = 300
 	component_type = /datum/component/storage/concrete/debug_sack/smaller
@@ -30,7 +30,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
+	slot_flags = INV_SLOTBIT_BACK	//ERROOOOO
 	resistance_flags = NONE
 	max_integrity = 300
 	component_type = /datum/component/storage/concrete/debug_sack
@@ -43,7 +43,7 @@
 	lefthand_file = 'icons/mob/inhands/equipment/backpack_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = ITEM_SLOT_BACK	//ERROOOOO
+	slot_flags = INV_SLOTBIT_BACK	//ERROOOOO
 	resistance_flags = NONE
 	max_integrity = 300
 	component_type = /datum/component/storage/concrete/backpack
@@ -82,7 +82,7 @@
 	mob_overlay_icon = 'icons/fallout/onmob/clothes/belt.dmi'
 	icon_state = "spearquiver"
 	item_state = "spearquiver"
-	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	slot_flags = INV_SLOTBIT_BACK|INV_SLOTBIT_BELT
 	component_type = /datum/component/storage/concrete/backpack/spear_quiver
 
 /obj/item/storage/backpack/spearquiver/PopulateContents()
@@ -308,7 +308,7 @@
 	desc = "A grotesque satchel made of sinews and bones."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "goliath_saddle"
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = INV_SLOTBIT_BACK
 
 /obj/item/storage/backpack/satchel/cap
 	name = "captain's satchel"
@@ -666,6 +666,14 @@ obj/item/storage/backpack/duffelbag/syndie/shredderbundle
 	desc = "A light and durable satchel often seen in use by those prone to wandering the wastes, often alone."
 	icon_state = "satchel-trekker"
 	item_state = "satchel-trekker"
+
+/obj/item/storage/backpack/trekker/marinepack
+	name = "UNMC Standard issue backpack"
+	desc = "A standard issued lightweight UNMC backpack. Used in pre-war times, it know finds use by those who equip it. Quite streamline looking too."
+	icon_state = "marinepack"
+	item_state = "marinepack"
+	icon = 'icons/fallout/clothing/belts.dmi'
+	mob_overlay_icon = 'icons/fallout/onmob/backslot_bags.dmi'
 
 /obj/item/storage/backpack/satchel/old
 	name = "old satchel"

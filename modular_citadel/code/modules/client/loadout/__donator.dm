@@ -814,8 +814,9 @@
 	new /obj/item/gun/energy/laser/wattzs(src)
 	new /obj/item/radio/headset/headset_sci(src)
 	new /obj/item/camera/coldwar(src)
-	new /obj/item/gun/ballistic/automatic/pistol/ninemil/m3civ(src)
 	new /obj/item/clothing/ears/headphones(src)
+	new /obj/item/clothing/neck/mantle/bos(src)
+	new /obj/item/clothing/neck/mantle/treasurer(src)
 
 /datum/gear/donator/kits/merek22
 	name = "UNMC Kit"
@@ -823,7 +824,6 @@
 	ckeywhitelist = list("merek2")
 
 /obj/item/storage/box/large/custom_kit/merek22/PopulateContents()
-	new /obj/item/gun/ballistic/automatic/pistol/ninemil/m3civ(src)
 	new /obj/item/gun/ballistic/automatic/p47merek (src)
 	new /obj/item/ammo_box/a556(src)
 	new /obj/item/clothing/suit/armor/medium/merek (src)
@@ -867,6 +867,17 @@
 	new /obj/item/clothing/head/helmet/armyhelmet/heavy(src)
 
 // O
+
+/datum/gear/donator/kits/octanerockwell
+	name = "Baa and squeak loadout"
+	path = /obj/item/storage/box/large/custom_kit/octanerockwell
+	ckeywhitelist = list("octanerockwell")
+
+/obj/item/storage/box/large/custom_kit/octanerockwell/PopulateContents()
+	new /obj/item/gun/ballistic/revolver/Lemat(src)
+	new /obj/item/gun/ballistic/automatic/z34rifle/custom(src)
+	new /obj/item/ammo_box/c9mm(src)
+	new /obj/item/ammo_box/a308(src)
 // P
 
 /obj/item/pet_carrier/eye
