@@ -1,3 +1,6 @@
+#define ARTSCORE_CURRENT_VERSION 1
+#define ARTSCORE_SAVE_DIR "data/artifact_scores/"
+
 #define ART_PROCESS_NEEDS_MOB (1 << 0)
 #define CURSED  -1
 #define UNCURSED 0

@@ -36,7 +36,7 @@
 	var/color_2 = "#FFFFFF"
 	var/beatitude = UNCURSED
 	var/override_flags = NONE
-	var/list/scanner_entry = list()
+	var/scanner_entry = "taco-tuesday-5-5"
 	var/my_cool_id = "bingus-2-4"
 	COOLDOWN_DECLARE(colorwobble)
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
@@ -59,6 +59,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_GET_EXAMINE_NAME, .proc/get_name)
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/get_description)
 	src.rarity = rarity
+	my_cool_id = "ARTIFACT-[rand(1000000000, 9999999999)]-[world.timeofday]-[world.time]"
 
 /// Runs the artifact's main loop. starts when touched by a mob, stops when it doesnt have anything to do
 /datum/component/artifact/process()
@@ -247,7 +248,7 @@
 		return
 	if (rare_name && rarity == ART_RARITY_RARE)
 		return "The [rare_name]"
-	return "[identified_prefix] "[master.name]" [identified_suffix]"
+	return "[identified_prefix] [master.name] [identified_suffix]"
 
 /datum/component/artifact/proc/tabulate_wellability()
 	SIGNAL_HANDLER
@@ -466,9 +467,16 @@
 	// animate(color = c3, time = 5 SECONDS, easing = CIRCULAR_EASING)
 	// animate(color = c4, time = 5 SECONDS, easing = CIRCULAR_EASING)
 
+/datum/component/artifact/proc/get_scanner_name()
+	update_scanner_name()
+	return scanner_name
+
 /datum/component/artifact/proc/update_scanner_name()
 	if(!LAZYLEN(effects))
-		scanner_name = list("YANCEY INDIGO FOXTROT FOXTROT 2-3")
+		scanner_entry = "YANCEY INDIGO FOXTROT FOXTROT 2-3"
+		stack_trace("artifact has no effects")
+		return
+	if(scanner_entry == initial(scanner_entry))
 		return
 	var/num_fx = LAZYLEN(effects)
 	var/average_magnitude = 0
@@ -478,13 +486,12 @@
 	var/ixii = round(1000 * average_magnitude)
 	var/pho_1 = uppertext(pick(SSartifacts.phonetic_alphabet))
 	var/pho_2 = uppertext(pick(SSartifacts.phonetic_alphabet))
-	var/thingname = "[pho_1]-[pho_2]-[num_fx]-\Roman[ixii]"
+	var/thingname = "[pho_1][pho_2]-[num_fx][ixii]-[GLOB.round_id]"
 	var/rep_fx = pick(effects)
 	if(istype(rep_fx, /datum/artifact_effect))
-		thingname = "[thingname] [rep_fx.get_prefix()]-[rand(1000,9999)]"
-	scanner_name = list("[thingname]")
-	if(my_cool_id == initial(my_cool_id))
-		my_cool_id = "ARTIFACT-[rand(1000000000, 9999999999)]-[rand(1000000000, 9999999999)]-[rand(1000000000, 9999999999)]-[rand(1000000000, 9999999999)]"
+		thingname = "[uppertext(rep_fx.get_prefix())]-[thingname]"
+	scanner_entry = "[thingname]"
+	return
 
 /datum/component/artifact/proc/make_unique(datum/source, unique_label) // effects already appplied, now gussy up the itussy
 	SIGNAL_HANDLER

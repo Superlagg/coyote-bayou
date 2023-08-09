@@ -5,16 +5,15 @@
 
 #define ARFI_ACC_LOW 1
 #define ARFI_ACC_LOW_ROUNDTO 50
-#define ARFI_ACC_LOW_SCANTIME (10 SECONDS)
-#define ARFI_ACC_LOW_RESCANTIME (1 SECONDS)
+#define ARFI_ACC_LOW_SCANTIME (1 SECONDS)
+#define ARFI_ACC_LOW_UPGRADE_TIME (5 MINUTES)
 #define ARFI_ACC_MEDIUM 2
 #define ARFI_ACC_MEDIUM_ROUNDTO 10
-#define ARFI_ACC_MEDIUM_SCANTIME (1 MINUTE)
-#define ARFI_ACC_MEDIUM_RESCANTIME (5 SECONDS)
+#define ARFI_ACC_MEDIUM_SCANTIME (10 SECONDS)
+#define ARFI_ACC_MEDIUM_UPGRADE_TIME (10 MINUTES)
 #define ARFI_ACC_HIGH 3
 #define ARFI_ACC_HIGH_ROUNDTO 1
-#define ARFI_ACC_HIGH_SCANTIME (10 MINUTES)
-#define ARFI_ACC_HIGH_RESCANTIME (10 SECONDS)
+#define ARFI_ACC_HIGH_SCANTIME (30 SECONDS)
 #define ARFI_ACC_LVL1_TIME_DIVISOR 1
 #define ARFI_ACC_LVL2_TIME_DIVISOR 2
 #define ARFI_ACC_LVL3_TIME_DIVISOR 5
@@ -33,8 +32,10 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "pinpointer"
 	w_class = WEIGHT_CLASS_SMALL
-	/// format: list("artifact_tag" = /datum/weakref/the_artifact)
+	var/username
+	/// format: list("artifact_tag", "artifact_tag", ...)
 	var/list/catalogued = list()
+	/// format: list("artifact_tag" = /datum/artifact_tracker_data, ...)
 	var/list/memory = list()
 	var/lvl = 1
 	var/unlocked_rarities = ARFI_SEARCH_COMMON
@@ -48,6 +49,7 @@
 	var/list/papers = list()
 	var/max_paper = 5
 	var/start_paper = 5
+	var/ui_top_panel = FALSE
 	COOLDOWN_DECLARE(scan_cooldown)
 
 /obj/item/artifact_finder/Initialize(mapload)
@@ -63,16 +65,16 @@
 	if(currently_scanning)
 		return
 	area_scan(user)
-	if(!current_artifact)
-		return
-	var/datum/weakref/thingy = LAZYACCESS(memory, current_artifact)
-	var/obj/item/arti = GET_WEAKREF(thingy)
-	if(!arti)
-		return
-	var/turf/here = get_turf(src)
-	var/turf/there = get_turf(arti)
-	var/angle = Get_Angle(here, there)
-	angle += rand(-5, 5)
+	// if(!current_artifact)
+	// 	return
+	// var/datum/weakref/thingy = LAZYACCESS(memory, current_artifact)
+	// var/obj/item/arti = GET_WEAKREF(thingy)
+	// if(!arti)
+	// 	return
+	// var/turf/here = get_turf(src)
+	// var/turf/there = get_turf(arti)
+	// var/angle = Get_Angle(here, there)
+	// angle += rand(-5, 5)
 
 /obj/item/artifact_finer/AltClick(mob/user)
 	. = ..()
@@ -132,31 +134,33 @@
 		if(LAZYLEN(found) >= wantnum)
 			break
 	currently_scanning = FALSE
+	return LAZYLEN(found)
+
+/obj/item/artifact_finder/proc/remove_entry(entry)
+	if(!entry || current_artifact == entry)
+		return
+	var/datum/artifact_tracker_data/track = LAZYACCESS(SSartifacts.all_artifacts, entry)
+	if(!track)
+		return
+	track.remove()
+	qdel(track)
+	memory -= entry
 
 /obj/item/artifact_finder/proc/update_entry(entry)
 	if(!entry)
 		return
 	var/datum/artifact_tracker_data/track = LAZYACCESS(SSartifacts.all_artifacts, entry)
-	if(!thing)
+	if(!track)
 		return
 	track.update()
 
-/obj/item/artifact_finder/proc/start_resolve_target(entry, accuracy)
+/obj/item/artifact_finder/proc/enhance(entry)
 	if(!entry)
 		return
 	var/datum/artifact_tracker_data/track = LAZYACCESS(SSartifacts.all_artifacts, entry)
-	if(!thing)
+	if(!track)
 		return
-	track.start_scan(accuracy)
-
-/obj/item/artifact_finder/proc/resolve_target(entry)
-	if(!entry)
-		return
-	var/datum/artifact_tracker_data/track = LAZYACCESS(SSartifacts.all_artifacts, entry)
-	if(!thing)
-		return
-	if(check_scan())
-	track.resolve()
+	return track.enhance()
 
 /obj/item/artifact_finder/ui_data(mob/user)
 	var/list/data = list()
@@ -164,24 +168,40 @@
 	for(var/datum/artifact_tracker_data/ATD in memory)
 		data["memory_data"][ATD.art_tag] = ATD.get_ui_data()
 	data["current"] = current_artifact // is an art_tag
-	data["tool_stats"] = list()
-	data["tool_stats"]["scan_time"] = scan_time
-	data["tool_stats"]["level"] = lvl
-	data["tool_stats"]["max_memory"] = max_memory
-	data["tool_stats"]["can_common"] = CHECK_BITFIELD(unlocked_rarities, ARFI_SEARCH_COMMON)
-	data["tool_stats"]["can_uncommon"] = CHECK_BITFIELD(unlocked_rarities, ARFI_SEARCH_UNCOMMON)
-	data["tool_stats"]["can_rare"] = CHECK_BITFIELD(unlocked_rarities, ARFI_SEARCH_RARE)
-	data["tool_stats"]["scan_common"] = CHECK_BITFIELD(scan_for, ARFI_SEARCH_COMMON)
-	data["tool_stats"]["scan_uncommon"] = CHECK_BITFIELD(scan_for, ARFI_SEARCH_UNCOMMON)
-	data["tool_stats"]["scan_rare"] = CHECK_BITFIELD(scan_for, ARFI_SEARCH_RARE)
-	data["tool_stats"]["paper_left"] = LAZYLEN(papers)
-	data["tool_stats"]["paper_max"] = max_papers
+	data["stats"] = list()
+	data["stats"]["scan_time"] = scan_time
+	data["stats"]["level"] = lvl
+	data["stats"]["max_memory"] = max_memory
+	data["stats"]["can_common"] = CHECK_BITFIELD(unlocked_rarities, ARFI_SEARCH_COMMON)
+	data["stats"]["can_uncommon"] = CHECK_BITFIELD(unlocked_rarities, ARFI_SEARCH_UNCOMMON)
+	data["stats"]["can_rare"] = CHECK_BITFIELD(unlocked_rarities, ARFI_SEARCH_RARE)
+	data["stats"]["scan_common"] = CHECK_BITFIELD(scan_for, ARFI_SEARCH_COMMON)
+	data["stats"]["scan_uncommon"] = CHECK_BITFIELD(scan_for, ARFI_SEARCH_UNCOMMON)
+	data["stats"]["scan_rare"] = CHECK_BITFIELD(scan_for, ARFI_SEARCH_RARE)
+	data["stats"]["paper_left"] = LAZYLEN(papers)
+	data["stats"]["paper_max"] = max_papers
 	return data
 	
+/obj/item/artifact_finder/ui_act(action, params)
+	. = ..()
+	switch(action)
+		if("remove_entry")
+			remove_entry(params["entry"])
+		if("update_entry")
+			update_entry(params["entry"])
+		if("enhance")
+			enhance(params["entry"])
+			
 
 
 
-
+/obj/item/artifact_finder/proc/login_to_artifact_tracker(mob/living/user, username)
+	if(!user)
+		return
+	var/artkey = SSartifacts.tracker_login(user)
+	if(!artkey)
+		return
+	
 
 ///////////////////////////////////////////////
 /datum/artifact_tracker_data

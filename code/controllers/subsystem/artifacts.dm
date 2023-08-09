@@ -159,6 +159,11 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	/// Format: list("ckey" = /datum/artifact_scorecard)
 	var/list/scoreboard = list()
 
+	/// Format: list("artifact key" = /datum/artifact_discovery)
+	var/list/discoveries = list()
+
+	var/list/ckey2username = list()
+
 	var/blood_target_good_common_min = BLOOD_VOLUME_SAFE
 	var/blood_target_good_common_max = BLOOD_VOLUME_SAFE
 	var/blood_target_good_uncommon_min = BLOOD_VOLUME_SAFE
@@ -416,6 +421,7 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	populate_affix_lists()
 	populate_effect_lists()
 	populate_artifactibles()
+	load_saved_leaderboard()
 	if(debug_insta_identify || debug_easy_identify || debug_spawn_message_admemes || debug_rapid_spawn)
 		to_chat(world, span_phobia("Dan left the debug vars on, point and laugh!"))
 	. = ..()
@@ -451,7 +457,9 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 		if(MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/processing/artifacts/proc/spawn_random_artifact(turf/spawn_here, rarity)
+/datum/controller/subsystem/processing/artifacts/proc/spawn_random_artifact(turf/spawn_here, rarity, just_spawn_it)
+	if(!just_spawn_it && !COOLDOWN_FINISHED(src, spawn_delay_next))
+		return
 	COOLDOWN_START(src, spawn_delay_next, debug_rapid_spawn ? 1 SECOND : rand(spawn_delay_low, spawn_delay_high))
 	var/turf/put_here = spawn_here || get_artifactible_turf()
 	if(!isturf(put_here))
@@ -727,42 +735,219 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 			rareness = pickweight(rare_spawner_distribution)
 	return rareness
 
-/datum/controller/subsystem/processing/artifacts/proc/discover_artifact(mob/living/discoverer, art_tag, art_name, score)
-	if(!art_tag || !art_name || !isliving(discoverer))
+/datum/controller/subsystem/processing/artifacts/proc/discover_artifact(mob/living/discoverer, username, obj/item/artimaybe)
+	if(!istype(artimaybe) || !isliving(discoverer) || !username)
 		return
-	var/datum/artifact_scorecard/ASC = LAZYACCESS(scorecards, discoverer.ckey)
-	if(!istype(ASC))
-		ASC = new /datum/artifact_scorecard(discoverer)
-		scorecards[discoverer.ckey] = ASC
-	return ASC.add_discovery(art_tag, art_name, score)
+	var/datum/component/artifact/art = artimaybe.GetComponent(/datum/component/artifact)
+	if(!istype(art))
+		return ARFI_DISC_NOT_ARTIFACT
+	if(art.my_cool_id in discoveries) // already discovered!
+		return ARFI_DISC_ALREADY_DISCOVERED
+	var/datum/artifact_discovery/AD = new /datum/artifact_discovery(discoverer, username, art)
+	discoveries[art.my_cool_id] = AD
+	update_leaderboard(discoverer, AD)
+	return ARFI_DISC_NEW_DISCOVERY
 
+/////////////////////////////
+///// leaderboard stuff /////
+/////////////////////////////
+/datum/controller/subsystem/processing/artifacts/proc/load_saved_leaderboard()
+	/// note, these are listed by username, not ckey or character names
+	var/list/saves = flist("[ARTSCORE_SAVE_DIR]")
+	var/num_saves = 0
+	for(var/fyle in saves)
+		if(!fyle.findtext(".json"))
+			stack_trace("load_saved_leaderboard() found a non-json file in the save directory! [fyle]")
+			continue
+		var/true_fyle = "[ARTSCORE_SAVE_DIR]/[fyle]"
+		var/list/fnj = splittext(fyle, ".")
+		var/raw_save = file2text(true_fyle)
+		var/list/formatted_save = safe_json_decode(raw_save)
+		var/datum/artifact_scorecard/ASC = new /datum/artifact_scorecard(LAZYACCESS(fnj, 1))
+		ASC.load_from_save(formatted_save)
+		scoreboard[ASC.username] = ASC
+		num_saves += 1
+	to_chat(world, span_boldannounce("Loaded [num_saves] artifact save files!"))
+
+/datum/controller/subsystem/processing/artifacts/proc/save_leaderboard()
+	for(var/username in scoreboard)
+		if(!save_score(username))
+			message_admins("Failed to save artifact score for [username]! Yeah their score is probably fucked.")
+			log_game("Score file for [username] is fucked.")
+	log_game("Loaded artifact scores!")
+
+/datum/controller/subsystem/processing/artifacts/proc/update_leaderboard(mob/living/finder, datum/artifact_discovery/AD)
+	if(!istype(AD))
+		CRASH("update_leaderboard() called with non-artifact_discovery datum!!!!!!!!!!!!!!!!!!!!!!!!")
+	var/datum/artifact_scorecard/ASC = LAZYACCESS(scorecards, AD.discoverer_username)
+	if(!istype(ASC))
+		ASC = new /datum/artifact_scorecard(AD.discoverer_username, finder.ckey)
+		scorecards[AD.discoverer_username] = ASC
+	ASC.add_discovery(AD, finder)
+
+/datum/controller/subsystem/processing/artifacts/proc/save_score(username)
+	if(!username)
+		return
+	username = ckey(username)
+	var/folver = "[ARTSCORE_SAVE_DIR]/[username].json"
+	var/backup_folver = "[ARTSCORE_SAVE_DIR]/[GLOB.round_id]/[username].json"
+	var/datum/artifact_scorecard/ASC = LAZYACCESS(scorecards, username)
+	if(!istype(ASC))
+		ASC = new /datum/artifact_scorecard(username)
+		scorecards[username] = ASC
+	var/list/presafe = ASC.get_score_list()
+	if(!LAZYLEN(presafe))
+		CRASH("ARTSCORE: Failed to get score data for [username]")
+	var/save_data = safe_json_encode(presafe)
+	if(!save_data)
+		CRASH("ARTSCORE: Failed to encode score data for [username]")
+	fdel(folver)
+	fdel(backup_folver)
+	text2file(save_data, folver)
+	text2file(save_data, backup_folver)
+	log_game("ARTSCORE: Saved score for [username]")
+	if(debug_save_message_admemes)
+		message_admins("ARTSCORE: Saved score for [username]")
+	return TRUE
+
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 /datum/artifact_scorecard
 	var/ckey
+	var/username
 	var/realname = "A plucky explorer"
-	var/list/discovery_ids = list()
-	var/list/discovery_names
+	/// format: list("[art_unique_id]" = /datum/artifact_discovery)
+	/// THings we found this round
+	var/list/discoveries = list()
+	var/list/total_discoveries = list()
 	var/total_score = 0
+	var/highest_score = 0
+	var/highest_discovery = "Nothing!"
 
-/datum/artifact_scorecard/New(mob/living/pluck)
-	if(!isliving(pluck))
-		CRASH("ARTIFACT SCORECARD GIVEN A NON LIVING MOB !!!!!!!!!!!!")
-		qdel(src)
-	if(pluck.ckey)
-		ckey = pluck.ckey
-	realname = pluck.real_name
-	if(realname.findtext("unknown"))
-		if(pluck.client)
-			var/client/C = pluck.client
-			realname = C.prefs.real_name // gotcha!
+/datum/artifact_scorecard/New(uname, mob/living/finder)
+	. = ..()
+	if(!uname)
+		CRASH("artifact_scorecard/New() called with no username")
+	username = uname
+	if(isliving(finder))
+		realname = finder.real_name
 
-/datum/artifact_scorecard/proc/add_discovery(thing_id, thing_name, score)
-	if(thing_id in discovery_ids)
+/datum/artifact_scorecard/proc/load_from_save(list/save_data)
+	if(!LAZYLEN(save_data))
+		CRASH("load_from_save() called with no save_data")
+	username = ckey(LAZYACCESS(save_data, ARTSCORE_USERNAME))
+	if(!username)
+		CRASH("load_from_save() called with no username")
+	var/list/discoes = LAZYACCESS(save_data, ARTSCORE_DISCOVERIES)
+	if(LAZYLEN(discoes) != 3)
+		CRASH("load_from_save() called with invalid discovery data")
+	total_discoveries[ART_RARITY_COMMON] = LAZYACCESS(discoes, ART_RARITY_COMMON)
+	total_discoveries[ART_RARITY_UNCOMMON] = LAZYACCESS(discoes, ART_RARITY_UNCOMMON)
+	total_discoveries[ART_RARITY_RARE] = LAZYACCESS(discoes, ART_RARITY_RARE)
+	total_score = LAZYACCESS(save_data, ARTSCORE_TOTAL)
+	var/list/highest = LAZYACCESS(save_data, ARTSCORE_HIGHEST)
+	highest_discovery = LAZYACCESS(highest, ARTSCORE_NAME)
+	highest_score = LAZYACCESS(highest, ARTSCORE_SCORE)
+
+/datum/artifact_scorecard/proc/output_save_list()
+	var/list/scorelist = list()
+	/// first, the static stuff
+	scorelist[ARTSCORE_VERSION] = ARTSCORE_CURRENT_VERSION
+	scorelist[ARTSCORE_CKEY] = ckey
+	scorelist[ARTSCORE_USERNAME] = ckey(username)
+	scorelist[ARTSCORE_DISCOVERIES] = list()
+	scorelist[ARTSCORE_DISCOVERIES][ART_RARITY_COMMON] = LAZYACCESS(total_discoveries, ART_RARITY_COMMON)
+	scorelist[ARTSCORE_DISCOVERIES][ART_RARITY_UNCOMMON] = LAZYACCESS(total_discoveries, ART_RARITY_UNCOMMON)
+	scorelist[ARTSCORE_DISCOVERIES][ART_RARITY_RARE] = LAZYACCESS(total_discoveries, ART_RARITY_RARE)
+	scorelist[ARTSCORE_TOTAL] = total_score
+	scorelist[ARTSCORE_HIGHEST] = list()
+	scorelist[ARTSCORE_HIGHEST][ARTSCORE_NAME] = highest_discovery
+	scorelist[ARTSCORE_HIGHEST][ARTSCORE_SCORE] = highest_score
+	/// now the updates from stuff we did this round
+	var/num_common = 0
+	var/num_uncommon = 0
+	var/num_rare = 0
+	for(var/ad_id in discoveries)
+		var/datum/artifact_discovery/AD = LAZYACCESS(discoveries, ad_id)
+		if(!istype(AD))
+			stack_trace("artifact_scorecard/proc/output_save_list() got non-artifact_discovery in discoveries list")
+			continue
+		var/art_rarity = AD.rarity
+		switch(art_rarity)
+			if(ART_RARITY_COMMON)
+				num_common++
+			if(ART_RARITY_UNCOMMON)
+				num_uncommon++
+			if(ART_RARITY_RARE)
+				num_rare++
+	scorelist[ARTSCORE_DISCOVERIES][ART_RARITY_COMMON] += num_common
+	scorelist[ARTSCORE_DISCOVERIES][ART_RARITY_UNCOMMON] += num_uncommon
+	scorelist[ARTSCORE_DISCOVERIES][ART_RARITY_RARE] += num_rare
+	return scorelist
+
+/datum/artifact_scorecard/proc/add_discovery(datum/artifact_discovery/AD, mob/living/finder)
+	if(!istype(AD))
+		CRASH("add_discovery() called with non-artifact_discovery")
+	if(istype(finder))
+		realname = finder.real_name
+	if(AD.thing_id in discoveries)
 		return
-	discovery_ids[thing_id] = score
-	discovery_names += thing_name
-	total_score += score
+	discoveries[AD.thing_id] = AD
+	total_score += AD.score
+	if(AD.score > highest_score)
+		highest_score = AD.score
 	return TRUE
+
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+/datum/artifact_discovery
+	var/thing_id
+	var/thing_coolname
+	var/thing_truename
+	var/score
+	var/rarity
+	var/magnitude
+	var/discoverer_username
+	var/discoverer_realname
+	var/discoverer_ckey
+
+/datum/artifact_discovery/New(mob/living/finder, username, datum/component/artifact/art)
+	if(!isliving(finder))
+		CRASH("ARTIFACT DISCOVERY GIVEN A NON LIVING MOB !!!!!!!!!!!!")
+		qdel(src)
+	if(!istype(art))
+		CRASH("ARTIFACT DISCOVERY GIVEN A NON ARTIFACT !!!!!!!!!!!!")
+	discoverer_username = username
+	discoverer_realname = finder.real_name
+	discoverer_ckey = finder.ckey
+	thing_id = art.my_cool_id
+	thing_coolname = art.get_scanner_name()
+	thing_truename = art.get_name_string()
+	score = art.tabulate_value()
+	rarity = art.rarity
+	magnitude = art.get_average_magnitude()
+	SSartifacts.discoveries[thing_id] = src
+	SSartifacts.update_leaderboard(finder, src)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
