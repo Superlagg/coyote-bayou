@@ -36,7 +36,7 @@
 	var/color_2 = "#FFFFFF"
 	var/beatitude = UNCURSED
 	var/override_flags = NONE
-	var/scanner_entry = "taco-tuesday-5-5"
+	var/artifact_truename = "taco-tuesday-5-5"
 	var/my_cool_id = "bingus-2-4"
 	COOLDOWN_DECLARE(colorwobble)
 	dupe_mode = COMPONENT_DUPE_UNIQUE_PASSARGS
@@ -244,8 +244,6 @@
 /datum/component/artifact/proc/get_name_string()
 	SIGNAL_HANDLER
 	ART_MASTER
-	if(!ismob(user))
-		return
 	if (rare_name && rarity == ART_RARITY_RARE)
 		return "The [rare_name]"
 	return "[identified_prefix] [master.name] [identified_suffix]"
@@ -329,7 +327,7 @@
 	var/magnitude = 0
 	for(var/datum/artifact_effect/AE in effects)
 		var/itnitude = AE.get_magnitude()
-		if(isnitude > magnitude)
+		if(itnitude > magnitude)
 			magnitude = itnitude
 	return magnitude
 
@@ -473,15 +471,15 @@
 
 /datum/component/artifact/proc/update_scanner_name()
 	if(!LAZYLEN(effects))
-		scanner_entry = "YANCEY INDIGO FOXTROT FOXTROT 2-3"
+		artifact_truename = "YANCEY INDIGO FOXTROT FOXTROT 2-3"
 		stack_trace("artifact has no effects")
 		return
-	if(scanner_entry == initial(scanner_entry))
+	if(artifact_truename == initial(artifact_truename))
 		return
 	var/num_fx = LAZYLEN(effects)
 	var/average_magnitude = 0
 	for(var/datum/artifact_effect/effect in effects)
-		average_magnitude += effect.magnitude
+		average_magnitude += effect.get_magnitude()
 	average_magnitude /= max(num_fx, 1)
 	var/ixii = round(1000 * average_magnitude)
 	var/pho_1 = uppertext(pick(SSartifacts.phonetic_alphabet))
@@ -490,7 +488,7 @@
 	var/rep_fx = pick(effects)
 	if(istype(rep_fx, /datum/artifact_effect))
 		thingname = "[uppertext(rep_fx.get_prefix())]-[thingname]"
-	scanner_entry = "[thingname]"
+	artifact_truename = "[thingname]"
 	return
 
 /datum/component/artifact/proc/make_unique(datum/source, unique_label) // effects already appplied, now gussy up the itussy

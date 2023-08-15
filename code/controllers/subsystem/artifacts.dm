@@ -162,6 +162,11 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	/// Format: list("artifact key" = /datum/artifact_discovery)
 	var/list/discoveries = list()
 
+	var/list/leaderboard_by_score = list()
+	var/list/leaderboard_by_highest = list()
+	var/list/leaderboard_by_discoveries = list()
+	var/list/leaderboard_by_name = list()
+
 	var/list/ckey2username = list()
 
 	var/blood_target_good_common_min = BLOOD_VOLUME_SAFE
@@ -747,6 +752,14 @@ PROCESSING_SUBSYSTEM_DEF(artifacts)
 	discoveries[art.my_cool_id] = AD
 	update_leaderboard(discoverer, AD)
 	return ARFI_DISC_NEW_DISCOVERY
+
+/datum/controller/subsystem/processing/artifacts/proc/is_discovered(art_tag)
+	if(!art_tag)
+		return FALSE
+	var/datum/artifact_discovery/AD = LAZYACCESS(discoveries, art_tag)
+	if(!istype(AD))
+		return FALSE
+	return AD.discoverer_username
 
 /////////////////////////////
 ///// leaderboard stuff /////

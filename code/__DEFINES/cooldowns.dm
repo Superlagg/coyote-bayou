@@ -73,7 +73,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 /// holds a progress thing that'll only count up when told to count up. //////////////////////////////
 /// mainly for things that are supposed to take a certain amount of time under certain conditions. ///
-/datum/counter_holder
+/datum/counter_holder // surprise it barely fuckin works
 	var/last_tick = 0
 	var/progress = 0
 	var/target_time = 0

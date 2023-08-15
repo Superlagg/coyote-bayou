@@ -267,37 +267,6 @@
 	return span_robot(msg_out.Join("<br>"))
 
 
-/obj/item/pinpointer/validball_finder/proc/z2text(turf/hereturf)
-	if(!hereturf)
-		return "!!UNKNOWN!!"
-	if(!isturf(hereturf))
-		hereturf = get_turf(hereturf)
-		if(!isturf(hereturf))
-			return "??UNKNOWN??"
-	switch(hereturf.z)
-		if(Z_LEVEL_GARLAND)
-			return "Garland City - Common"
-		if(Z_LEVEL_REDLICK_UPPER)
-			return "Ashdown - Common"
-		if(Z_LEVEL_TRANSIT)
-			return "Moving along Rail Route 14-2 Delta"
-		if(Z_LEVEL_CENTCOM)
-			return "Somewhere far away~"
-		if(Z_LEVEL_NASH_UNDERGROUND)
-			return "Nash Wastes - Underground"
-		if(Z_LEVEL_NASH_COMMON)
-			return "Nash Wastes - Common"
-		if(Z_LEVEL_NASH_LVL2)
-			return "Nash Wastes - Second Story"
-		if(Z_LEVEL_NASH_LVL3)
-			return "Nash Wastes - Third Story"
-		if(Z_LEVEL_REDWATER)
-			return "Southern Wastes - Common"
-		if(Z_LEVEL_REDLICK)
-			return "Northern Wastes - Common"
-		else
-			return "~!UNKNOWN!~"
-
 /obj/item/pinpointer/validball_finder/proc/local_coords(turf/hereturf)
 	if(!hereturf)
 		return "!!UNKNOWN!!"
