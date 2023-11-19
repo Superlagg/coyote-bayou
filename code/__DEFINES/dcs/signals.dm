@@ -199,6 +199,8 @@
 #define COMSIG_ENTER_AREA "enter_area" 						//from base of area/Entered(): (/area)
 #define COMSIG_EXIT_AREA "exit_area" 							//from base of area/Exited(): (/area)
 
+#define COMSIG_MOUSEDOWN "mousedown"								//from base of atom/Click(): (location, control, params, mob/user)
+#define COMSIG_MOUSEUP "mouseup"								//from base of atom/Click(): (location, control, params, mob/user)
 #define COMSIG_CLICK "atom_click"								//from base of atom/Click(): (location, control, params, mob/user)
 #define COMSIG_CLICK_SHIFT "shift_click"						//from base of atom/ShiftClick(): (/mob), return flags also used by other signals.
 	#define COMPONENT_ALLOW_EXAMINATE 1

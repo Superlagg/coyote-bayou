@@ -493,6 +493,7 @@
 #include "code\datums\components\butchering.dm"
 #include "code\datums\components\caltrop.dm"
 #include "code\datums\components\chasm.dm"
+#include "code\datums\components\click_beam.dm"
 #include "code\datums\components\combat_mode.dm"
 #include "code\datums\components\connect_containers.dm"
 #include "code\datums\components\connect_loc_behalf.dm"

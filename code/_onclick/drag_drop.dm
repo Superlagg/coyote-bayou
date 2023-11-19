@@ -38,6 +38,8 @@ GLOBAL_VAR_INIT(use_experimental_clickdrag_thing, TRUE)
 
 
 /client/MouseDown(object, location, control, params)
+	if(mob && SEND_SIGNAL(mob, COMSIG_MOUSEDOWN, object, location, control, params) & COMPONENT_NO_MOUSEDOWN)
+		return
 	if (mouse_down_icon)
 		mouse_pointer_icon = mouse_down_icon
 	var/delay = mob.CanMobAutoclick(object, location, params)
@@ -52,6 +54,8 @@ GLOBAL_VAR_INIT(use_experimental_clickdrag_thing, TRUE)
 		active_mousedown_item.onMouseDown(object, location, params, mob)
 
 /client/MouseUp(object, location, control, params)
+	if(mob && SEND_SIGNAL(mob, COMSIG_MOUSEUP, object, location, control, params) & COMPONENT_NO_MOUSEUP)
+		return
 	if (mouse_up_icon)
 		mouse_pointer_icon = mouse_up_icon
 	selected_target[1] = null
