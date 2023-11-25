@@ -654,3 +654,41 @@
 #define CURRENT_LIVING_ANTAGS	"living_antags_list"
 #define CURRENT_DEAD_PLAYERS	"dead_players_list"
 #define CURRENT_OBSERVERS		"current_observers_list"
+
+#define PHYSMOD_BRUTE             "brute_mod"
+#define PHYSMOD_BURN              "burn_mod"
+#define PHYSMOD_TOX               "tox_mod"
+#define PHYSMOD_OXY               "oxy_mod"
+#define PHYSMOD_CLONE             "clone_mod"
+#define PHYSMOD_STAMINA           "stamina_mod"
+#define PHYSMOD_BRAIN             "brain_mod"
+#define PHYSMOD_PRESSURE          "pressure_mod"
+#define PHYSMOD_HEAT              "heat_mod"
+#define PHYSMOD_COLD              "cold_mod"
+#define PHYSMOD_DAMAGE_RESISTANCE "damage_resistance"
+#define PHYSMOD_SIEMENS_COEFF     "siemens_coeff"
+#define PHYSMOD_STUN              "stun_mod"
+#define PHYSMOD_BLEED             "bleed_mod"
+#define PHYSMOD_HUNGER            "hunger_mod"
+#define PHYSMOD_DO_AFTER_SPEED    "do_after_speed"
+#define PHYSMOD_ALL_OF_EM list(\
+	PHYSMOD_BRUTE = brute_modifiers,\
+	PHYSMOD_BURN = burn_modifiers,\
+	PHYSMOD_TOX = tox_modifiers,\
+	PHYSMOD_OXY = oxy_modifiers,\
+	PHYSMOD_CLONE = clone_modifiers,\
+	PHYSMOD_STAMINA = stamina_modifiers,\
+	PHYSMOD_BRAIN = brain_modifiers,\
+	PHYSMOD_PRESSURE = pressure_modifiers,\
+	PHYSMOD_HEAT = heat_modifiers,\
+	PHYSMOD_COLD = cold_modifiers,\
+	PHYSMOD_DAMAGE_RESISTANCE = damage_resistanceifiers,\
+	PHYSMOD_SIEMENS_COEFF = siemens_coeffifiers,\
+	PHYSMOD_STUN = stun_modifiers,\
+	PHYSMOD_BLEED = bleed_modifiers,\
+	PHYSMOD_HUNGER = hunger_modifiers,\
+	PHYSMOD_DO_AFTER_SPEED = do_after_speedifiers,\
+)
+
+
+

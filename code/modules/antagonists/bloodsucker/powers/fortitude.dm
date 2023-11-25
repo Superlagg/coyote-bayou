@@ -27,8 +27,8 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		fortitude_resist = max(0.3, 0.7 - level_current * 0.1)
-		H.physiology.brute_mod *= fortitude_resist
-		H.physiology.burn_mod *= fortitude_resist
+		H.physiology.add_brute_mod(fortitude_resist, 0, "bloodsucker_fortitude")
+		H.physiology.add_burn_mod(fortitude_resist, 0, "bloodsucker_fortitude")
 	was_running = (user.m_intent == MOVE_INTENT_RUN)
 	if(was_running)
 		user.toggle_move_intent()
@@ -58,8 +58,8 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	H.physiology.brute_mod /= fortitude_resist
-	H.physiology.burn_mod /= fortitude_resist
+	H.physiology.remove_brute_mod("bloodsucker_fortitude")
+	H.physiology.remove_burn_mod("bloodsucker_fortitude")
 	if(was_running && user.m_intent == MOVE_INTENT_WALK)
 		user.toggle_move_intent()
 
