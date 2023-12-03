@@ -417,6 +417,7 @@
 	. = TRUE
 	if(istype(M,/mob/living))
 		var/mob/living/living_prey = M
+		living_prey.SetAllImmobility(10 SECONDS, TRUE, TRUE)
 		SEND_SIGNAL(src, COMSIG_VORE_STOP_SOUNDS, living_prey)
 		if(owner && SEND_SIGNAL(living_prey, COMSIG_VORE_ABSORBED_STATE))
 			SEND_SIGNAL(living_prey, COMSIG_VORE_ABSORBED_STATE, FALSE) // sets absorbtion state to FALSE
