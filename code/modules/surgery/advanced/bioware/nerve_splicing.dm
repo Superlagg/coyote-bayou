@@ -34,7 +34,7 @@
 	mod_type = BIOWARE_NERVES
 /datum/bioware/spliced_nerves/on_gain()
 	..()
-	owner.physiology.stun_mod *= 0.5
+	owner.physiology.add_modifier(PHYSMOD_STUN, "spliced_nerves", 0.5) //more stamina
 /datum/bioware/spliced_nerves/on_lose()
 	..()
-	owner.physiology.stun_mod *= 2
+	owner.physiology.remove_modifier("spliced_nerves")

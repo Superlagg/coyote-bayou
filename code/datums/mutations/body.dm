@@ -222,12 +222,12 @@
 /datum/mutation/human/fire/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.physiology.burn_mod *= 0.5
+	owner.physiology.add_modifier(PHYSMOD_BURN, "fire_mutant_burn", 0.5, 0)
 
 /datum/mutation/human/fire/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.physiology.burn_mod *= 2
+	owner.physiology.remove_modifier("fire_mutant_burn")
 
 /datum/mutation/human/insulated
 	name = "Insulated"

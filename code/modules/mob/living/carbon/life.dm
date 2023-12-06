@@ -572,8 +572,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(stuttering)
 		stuttering = max(stuttering-1, 0)
 
-	if(slurring || drunkenness)
-		slurring = max(slurring-1,0,drunkenness)
+	if(slurring)
+		slurring = max(slurring-1,0)
 
 	if(cultslurring)
 		cultslurring = max(cultslurring-1, 0)
@@ -603,13 +603,14 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	jitteriness = max(jitteriness - (drunkenness * 0.2), 0)
 	/// stumbling
 	var/am_resiliant = HAS_TRAIT(src, TRAIT_ALCOHOL_TOLERANCE)
+	if(drunkenness > DRUNK_THRESHOLD_SLURRING)
 	if(drunkenness > DRUNK_THRESHOLD_STUMBLE)
 		var/to_confuse = round(drunkenness * 0.2) * (am_resiliant ? 0.2 : 1)
 		confused = clamp(to_confuse, 0, am_resiliant ? 5 : 30)
 	/// obnoxious screen wobbling
 	if(drunkenness > DRUNK_THRESHOLD_WOBBLE)
 		var/to_wobble = round(drunkenness * 0.4) * (am_resiliant ? 0.2 : 1)
-		Dizzy(drunkness * 0.4)
+		Dizzy(drunkenness * 0.4)
 	// puking
 	if(drunkenness > DRUNK_THRESHOLD_PUKE)
 		var/vom_chance = round(drunkenness * 0.2) * (am_resiliant ? 0.2 : 1)
@@ -619,17 +620,17 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			else
 				vomit()
 	// blurred vision
-	if(drunkenness > DRUNK_THRESHOLD_BLUR && !is_resiliant)
+	if(drunkenness > DRUNK_THRESHOLD_BLUR && !am_resiliant)
 		blur_eyes(round(drunkenness * 0.2))
 	// passing out
-	if(drunkenness > DRUNK_THRESHOLD_PASSOUT && !is_resiliant)
+	if(drunkenness > DRUNK_THRESHOLD_PASSOUT && !am_resiliant)
 		if(prob(drunkenness * 0.05) && !IsSleeping()) // 5% chance of passing out at 100 drunk
 			Sleeping(drunkenness * 2)
 	// drain bamage
-	if(drunkenness > DRUNK_THRESHOLD_BRAIN && !is_resiliant)
+	if(drunkenness > DRUNK_THRESHOLD_BRAIN && !am_resiliant)
 		adjustOrganLoss(ORGAN_SLOT_BRAIN, drunkenness * 0.01, 80)
 	// toxin damage
-	if(drunkenness > DRUNK_THRESHOLD_TOXIN && !is_resiliant)
+	if(drunkenness > DRUNK_THRESHOLD_TOXIN && !am_resiliant)
 		if(drunkenness > DRUNK_THRESHOLD_DEADLY_TOXIN)
 			adjustToxLoss(drunkenness * 0.1)
 		else if(toxloss < 50 && health > 0)

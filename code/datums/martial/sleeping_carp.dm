@@ -147,8 +147,8 @@
 	ADD_TRAIT(H, TRAIT_NODISMEMBER, SLEEPING_CARP_TRAIT)
 	ADD_TRAIT(H, TRAIT_NODRUGS, SLEEPING_CARP_TRAIT)
 	ADD_TRAIT(H, TRAIT_MARTIAL_A, SLEEPING_CARP_TRAIT)
-	H.physiology.stamina_mod *= 0.5 //You take less stamina damage overall, but you do not reduce the damage from stun batons
-	H.physiology.stun_mod *= 0.3 //for those rare stuns
+	H.physiology.add_modifier(PHYSMOD_STAMINA, "scarp_stam", 0.3) //more stamina
+	H.physiology.add_modifier(PHYSMOD_STUN, "scarp_stun", 0.5) //better stun resistance
 	//H.physiology.pressure_mod *= 0.3 //go hang out with carp
 	//H.physiology.cold_mod *= 0.3 //cold mods are different to burn mods, they do stack however
 	//H.physiology.heat_mod *= 2 //this is mostly so sleeping carp has a viable weakness. Cooking them alive. Setting them on fire and heating them will be their biggest weakness. The reason for this is....filet jokes.
@@ -161,11 +161,11 @@
 	REMOVE_TRAIT(H, TRAIT_NODISMEMBER, SLEEPING_CARP_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_NODRUGS, SLEEPING_CARP_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_MARTIAL_A, SLEEPING_CARP_TRAIT)
-	H.physiology.stamina_mod = initial(H.physiology.stamina_mod)
-	H.physiology.stun_mod = initial(H.physiology.stun_mod)
-	H.physiology.pressure_mod = initial(H.physiology.pressure_mod) //no more carpies
-	H.physiology.cold_mod = initial(H.physiology.cold_mod)
-	H.physiology.heat_mod = initial(H.physiology.heat_mod)
+	H.physiology.remove_modifier("scarp_stam")
+	H.physiology.remove_modifier("scarp_stun")
+	// H.physiology.pressure_mod = initial(H.physiology.pressure_mod) //no more carpies
+	// H.physiology.cold_mod = initial(H.physiology.cold_mod)
+	// H.physiology.heat_mod = initial(H.physiology.heat_mod)
 
 	H.faction -= "carp" //:(
 

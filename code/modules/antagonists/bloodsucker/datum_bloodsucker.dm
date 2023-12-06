@@ -198,10 +198,10 @@
 		var/mob/living/carbon/human/H = owner.current
 		var/datum/species/S = H.dna.species
 		// Make Changes
-		H.physiology.add_brute_modifier(0.8, 0, "bloodsucker")
-		H.physiology.add_cold_modifier(0, 0, "bloodsucker")
-		H.physiology.add_stun_modifier(0.5, 0, "bloodsucker")
-		H.physiology.add_siemens_coeff(0.75, 0, "bloodsucker") 	//base electrocution coefficient  1
+		H.physiology.add_modifier(PHYSMOD_BRUTE, "bloodsucker_brute", 0.8, 0         )
+		H.physiology.add_modifier(PHYSMOD_COLD, "bloodsucker_cold", 0, 0            )
+		H.physiology.add_modifier(PHYSMOD_STUN, "bloodsucker_stun", 0.5, 0          )
+		H.physiology.add_modifier(PHYSMOD_SIEMENS_COEFF, "bloodsucker_siemens_coeff", 0.75, 0) 	//base electrocution coefficient  1
 		S.punchdamagelow += 1       //lowest possible punch damage   0
 		S.punchdamagehigh += 1      //highest possible punch damage	 9
 		if(istype(H) && owner.assigned_role == "Clown")

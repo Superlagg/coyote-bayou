@@ -255,13 +255,14 @@
 	. = ..()
 	if(!istype(L))
 		return
-	L.physiology.siemens_coeff *= 2
+	L.physiology.add_modifier(PHYSMOD_SIEMENS_COEFF, "teslium_buzz", 2) //more stamina
+
 
 /datum/reagent/teslium/on_mob_end_metabolize(mob/living/carbon/human/L)
 	. = ..()
 	if(!istype(L))
 		return
-	L.physiology.siemens_coeff *= 0.5
+	L.physiology.remove_modifier("teslium_buzz")
 
 /datum/reagent/teslium/energized_jelly
 	name = "Energized Jelly"

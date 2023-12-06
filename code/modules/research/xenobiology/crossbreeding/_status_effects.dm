@@ -285,13 +285,13 @@ datum/status_effect/rebreathing/tick()
 /datum/status_effect/metalcookie/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.brute_mod *= 0.9
+		H.physiology.add_modifier(PHYSMOD_BRUTE, "metal_c00kie_brute", 0.9, 0)
 	return ..()
 
 /datum/status_effect/metalcookie/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.brute_mod /= 0.9
+		H.physiology.remove_modifier("metal_c00kie_brute")
 	return ..()
 
 /datum/status_effect/sparkcookie
@@ -337,13 +337,13 @@ datum/status_effect/rebreathing/tick()
 /datum/status_effect/timecookie/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H
-		H.physiology.do_after_speed *= 0.95
+		H.physiology.add_modifier(PHYSMOD_BLEED, "timecookie_doafter", 0.95) //more stamina
 	return ..()
 
 /datum/status_effect/timecookie/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H
-		H.physiology.do_after_speed /= 0.95
+		H.physiology.remove_modifier("timecookie_doafter")
 	return ..()
 
 /datum/status_effect/lovecookie
@@ -441,13 +441,13 @@ datum/status_effect/rebreathing/tick()
 /datum/status_effect/adamantinecookie/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.burn_mod *= 0.9
+		H.physiology.add_modifier(PHYSMOD_BURN, "adamantine_c00kie_brute", 0.9, 0)
 	return ..()
 
 /datum/status_effect/adamantinecookie/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.burn_mod /= 0.9
+		H.physiology.remove_modifier("adamantine_c00kie_brute")
 	return ..()
 
 ///////////////////////////////////////////////////////
@@ -649,13 +649,13 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/silver/on_apply()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.hunger_mod *= 0.8 //20% buff
+		H.physiology.add_modifier(PHYSMOD_HUNGER, "stable_silver_hunger", 0.8) //more stamina
 	return ..()
 
 /datum/status_effect/stabilized/silver/on_remove()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.physiology.hunger_mod /= 0.8
+		H.physiology.remove_modifier("stable_silver_hunger")
 	return ..()
 
 //Bluespace has an icon because it's kinda active.

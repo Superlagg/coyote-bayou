@@ -119,14 +119,14 @@
 	ADD_TRAIT(H, TRAIT_NOGUNS, RAGING_BOAR_TRAIT)
 	ADD_TRAIT(H, TRAIT_AUTO_CATCH_ITEM, RAGING_BOAR_TRAIT)
 	ADD_TRAIT(H, TRAIT_MARTIAL_A, RAGING_BOAR_TRAIT)
-	H.physiology.stamina_mod *= 0.5 //more stamina
-	H.physiology.stun_mod *= 0.5 //better stun resistance
+	H.physiology.add_modifier(PHYSMOD_STAMINA, "boar_stam", 0.3) //more stamina
 
 /datum/martial_art/raging_boar/on_remove(mob/living/carbon/human/H)
 	. = ..()
 	//deftswitch.Remove(H)
 	//sidekick.Remove(H)
 	qdel(H?.GetComponent(/datum/component/tackler/simple))
+	H.physiology.remove_modifier("boar_stam")
 
 	REMOVE_TRAIT(H, TRAIT_NOGUNS, RAGING_BOAR_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_AUTO_CATCH_ITEM, RAGING_BOAR_TRAIT)

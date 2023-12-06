@@ -10,13 +10,13 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 0.5
+		H.physiology.add_modifier(PHYSMOD_STUN, "nano_nerves", 0.5) //more stamina
 
 /datum/nanite_program/nervous/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.stun_mod *= 2
+		H.physiology.remove_modifier("nano_nerves")
 
 /datum/nanite_program/adrenaline
 	name = "Adrenaline Burst"
@@ -81,13 +81,13 @@
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 0.1
+		H.physiology.add_modifier(PHYSMOD_BLEED, "threaded_veins", 0.25) //more stamina
 
 /datum/nanite_program/coagulating/disable_passive_effect()
 	. = ..()
 	if(ishuman(host_mob))
 		var/mob/living/carbon/human/H = host_mob
-		H.physiology.bleed_mod *= 10
+		H.physiology.remove_modifier("threaded_veins")
 
 /datum/nanite_program/conductive
 	name = "Electric Conduction"

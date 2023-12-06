@@ -689,6 +689,48 @@
 	PHYSMOD_HUNGER = hunger_modifiers,\
 	PHYSMOD_DO_AFTER_SPEED = do_after_speedifiers,\
 )
+/// Based off a 100 softcap and 200 hardcap
+/// effects start at zero at the threshold, and scale up to the softcap
+/// they'll be uncapped past the softcap ;)
+
+#define DRUNK_SOFTCAP 100
+#define DRUNK_HARDCAP 200
+
+#define DRUNK_THRESHOLD_SLURRING 15
+#define DRUNK_SLURRING_MAX 50
+#define DRUNK_SLURRING_RATIO 0.5
+
+#define DRUNK_THRESHOLD_STUMBLE 30
+#define DRUNK_STUMBLE_MAX 75
+#define DRUNK_STUMBLE_RATIO 0.5
+
+#define DRUNK_THRESHOLD_WOBBLE
+#define DRUNK_WOBBLE_MAX
+#define DRUNK_WOBBLE_RATIO
+
+#define DRUNK_THRESHOLD_PUKE 50
+#define DRUNK_PUKE_MAX 25
+#define DRUNK_PUKE_RATIO 0.1
+
+#define DRUNK_THRESHOLD_BLUR
+#define DRUNK_BLUR_MAX
+#define DRUNK_BLUR_RATIO
+
+#define DRUNK_THRESHOLD_PASSOUT
+#define DRUNK_PASSOUT_MAX
+#define DRUNK_PASSOUT_RATIO
+
+#define DRUNK_THRESHOLD_BRAIN
+#define DRUNK_BRAIN_MAX
+#define DRUNK_BRAIN_RATIO
+
+#define DRUNK_THRESHOLD_TOXIN
+#define DRUNK_TOXIN_MAX
+#define DRUNK_TOXIN_RATIO
+
+#define DRUNK_THRESHOLD_DEADLY_TOXIN
+#define DRUNK_DEADLY_TOXIN_MAX
+#define DRUNK_DEADLY_TOXIN_RATIO
 
 
 

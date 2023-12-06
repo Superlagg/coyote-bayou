@@ -39,7 +39,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(HAS_TRAIT(C, TRAIT_NO_ALCOHOL))
 		C.adjustToxLoss((boozepwr/25)*REM,forced = TRUE)
 	var/drunk_add = (sqrt(volume) * boozepwr * ALCOHOL_RATE)
-	var/drunkenness_ratio = drunkenness / boozepwr
+	var/drunkenness_ratio = C.drunkenness / boozepwr
 	var/curve_multiplier = (((1 - (drunkenness_ratio - 1)) ** 2) / (C.drunkenness > boozepwr * sqrt(volume) ? 2 : 1))
 	C.drunkenness += (drunk_add * curve_multiplier)
 	if(SSmobs.debug_drunkenness)

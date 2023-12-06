@@ -589,7 +589,7 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.physiology)
-			H.physiology.stamina_mod *= 0.5
+			H.physiology.add_modifier(PHYSMOD_STAMINA, "sk00ma_stam", 0.5) //more stamina
 		if(H.dna && H.dna.species)
 			H.dna.species.punchdamagehigh += 4
 			H.dna.species.punchdamagelow  += 4
@@ -602,11 +602,10 @@
 		..()
 		return
 	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/skooma)
-	L.action_cooldown_mod *= 0.5
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.physiology)
-			H.physiology.stamina_mod *= 2
+			H.physiology.remove_modifier("sk00ma_stam")
 		if(H.dna && H.dna.species)
 			H.dna.species.punchdamagehigh -= 4
 			H.dna.species.punchdamagelow -= 4

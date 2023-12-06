@@ -1832,8 +1832,8 @@
 		gave_damage_resist = TRUE
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.physiology?.brute_mod *= 0.5
-			H.physiology?.burn_mod *= 0.5
+			H.physiology.add_modifier(PHYSMOD_BRUTE, "adrenaline_administered", 0.5, 0)
+			H.physiology.add_modifier(PHYSMOD_BURN, "adrenaline_administered", 0.5, 0)
 
 
 /datum/reagent/medicine/adrenaline/on_mob_end_metabolize(mob/living/L)
@@ -1849,8 +1849,8 @@
 		removed_damage_resist = TRUE
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.physiology?.brute_mod *= 2
-			H.physiology?.burn_mod *= 2
+			H.physiology.remove_modifier("adrenaline_administered")
+			H.physiology.remove_modifier("adrenaline_administered")
 	..()
 
 /datum/reagent/medicine/adrenaline/on_mob_life(mob/living/carbon/M as mob)

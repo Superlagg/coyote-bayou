@@ -146,8 +146,8 @@
 	ADD_TRAIT(H, TRAIT_AUTO_CATCH_ITEM, TRAIT_BERSERKER)
 	ADD_TRAIT(H, TRAIT_BERSERKER, TRAIT_BERSERKER)
 	ADD_TRAIT(H, TRAIT_MARTIAL_A, TRAIT_BERSERKER)
-	H.physiology.stamina_mod *= 0.3 //more stamina
-	H.physiology.stun_mod *= 0.3 //better stun resistance
+	H.physiology.add_modifier(PHYSMOD_STAMINA, "berserk_stam", 0.3) //more stamina
+	H.physiology.add_modifier(PHYSMOD_STUN, "berserk_stun", 0.3) //better stun resistance
 
 
 /datum/martial_art/berserker/on_remove(mob/living/carbon/human/H)
@@ -158,8 +158,8 @@
 	REMOVE_TRAIT(H, TRAIT_BERSERKER, BERSERKER_TRAIT)
 	REMOVE_TRAIT(H, TRAIT_AUTO_CATCH_ITEM, TRAIT_BERSERKER)
 	REMOVE_TRAIT(H, TRAIT_MARTIAL_A, TRAIT_BERSERKER)
-	H.physiology.stamina_mod = initial(H.physiology.stamina_mod)
-	H.physiology.stun_mod = initial(H.physiology.stun_mod)
+	H.physiology.remove_modifier("berserk_stam")
+	H.physiology.remove_modifier("berserk_stun")
 
 /mob/living/carbon/human/proc/berserker_blows_help()
 	set name = "Recall Teachings"

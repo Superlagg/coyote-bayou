@@ -34,7 +34,7 @@
 	mod_type = BIOWARE_CIRCULATION
 /datum/bioware/threaded_veins/on_gain()
 	..()
-	owner.physiology.bleed_mod *= 0.25
+	owner.physiology.add_modifier(PHYSMOD_BLEED, "threaded_veins", 0.25) //more stamina
 /datum/bioware/threaded_veins/on_lose()
 	..()
-	owner.physiology.bleed_mod *= 4
+	owner.physiology.remove_modifier("threaded_veins")

@@ -92,19 +92,20 @@
 				newletter = "oo"
 			else if(lowerletter == "c")
 				newletter = "k"
-		if(rand(1,100) <= strength * 0.25)
+		if(strength > 25 && rand(1,100) <= strength * 0.25)
 			if(newletter == " ")
 				newletter = "...huuuhhh..."
 			else if(newletter == ".")
 				newletter = " *BURP*."
-		switch(rand(1,100) <= strength * 0.5)
-			if(1)
-				newletter += "'"
-			if(10)
-				newletter += "[newletter]"
-			if(20)
-				newletter += "[newletter][newletter]"
-		. += "[newletter]"
+		if(strength > 35 && rand(1,100) <= strength * 0.35)
+			switch(rand(1,100) * (1-(strength/100)))
+				if(1)
+					newletter += "'"
+				if(10)
+					newletter += "[newletter]"
+				if(20)
+					newletter += "[newletter][newletter]"
+			. += "[newletter]"
 	return sanitize(.)
 
 /// Makes you talk like you got cult stunned, which is slurring but with some dark messages
