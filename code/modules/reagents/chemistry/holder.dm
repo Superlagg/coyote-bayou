@@ -864,7 +864,7 @@
 		var/obj/item/reagent_containers/RC = my_atom
 		RC.temp_check()
 
-/datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, other_purity = 1, other_pH, no_react = 0, ignore_pH = FALSE)
+/datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, other_purity = 1, other_pH, no_react = 0, ignore_pH = FALSE, logit = TRUE)
 
 	if(!isnum(amount) || !amount)
 		return FALSE
@@ -968,7 +968,7 @@
 
 
 	if(isliving(my_atom))
-		R.on_mob_add(my_atom, amount)
+		R.on_mob_add(my_atom, amount, logit)
 	update_total()
 	if(my_atom)
 		my_atom.on_reagent_change(ADD_REAGENT)

@@ -163,12 +163,13 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		holder.remove_reagent(type, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
 
 // Called when this reagent is first added to a mob
-/datum/reagent/proc/on_mob_add(mob/living/L, amount)
+/datum/reagent/proc/on_mob_add(mob/living/L, amount, logit = TRUE)
 	if(!iscarbon(L))
 		return
 	var/mob/living/carbon/M = L
 	var/turf/T = get_turf(M)
-	log_reagent("MOB ADD: on_mob_add(): [key_name(M)] at [AREACOORD(T)] - [volume] of [type] with [purity] purity")
+	if(logit)
+		log_reagent("MOB ADD: on_mob_add(): [key_name(M)] at [AREACOORD(T)] - [volume] of [type] with [purity] purity")
 	if (purity == 1)
 		return
 	if(cached_purity == 1)

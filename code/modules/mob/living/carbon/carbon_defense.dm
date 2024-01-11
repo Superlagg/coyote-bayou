@@ -352,6 +352,7 @@
 			else
 				friendly_check = TRUE
 				if(HAS_TRAIT(M, TRAIT_HEADPAT_SLUT))
+					SEND_SIGNAL(M, COMSIG_MOB_HEADPAT, src)
 					M.visible_message(span_notice("[M] gives [src] a pat on the head to make [p_them()] feel better!"), \
 								span_notice("You give [src] a pat on the head to make [p_them()] feel better!"), target = src,
 								target_message = span_notice("[M] gives you a pat on the head to make you feel better!"))

@@ -46,7 +46,7 @@
 						"songer" = player.real_name,
 						"kind" = song.name,
 					)
-					R.add_reagent(/datum/reagent/medicine/music, 1, payload)
+					R.add_reagent(/datum/reagent/medicine/music, 1, payload, logit = FALSE) // spams poor andy's logs :c
 		tune_time_left -= wait
 	else
 		tune_time_left = 0

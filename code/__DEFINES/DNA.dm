@@ -160,6 +160,7 @@
 #define ORGAN_SLOT_LEFT_ARM_AUG "l_arm_device"
 #define ORGAN_SLOT_STOMACH "stomach"
 #define ORGAN_SLOT_STOMACH_AID "stomach_aid"
+#define ORGAN_SLOT_HEADPAT_RECEPTOR "headpat_receptor"
 #define ORGAN_SLOT_SODIE_ORGAN "sodie_organ"
 #define ORGAN_SLOT_BREATHING_TUBE "breathing_tube"
 #define ORGAN_SLOT_EARS "ears"
