@@ -680,6 +680,8 @@ SUBSYSTEM_DEF(experience)
 	var/verbing = "Calling 1-800-IMC-ODER"
 	var/readme_file = "default_readme.txt"
 	var/kind = XP_DEFAULT
+	/// used to return which kind of XP this is, for sublvl stuff
+	var/group_flags = NONE
 	var/lvl = 0
 	/// All the XP we have in total
 	var/total_xp = 0
@@ -691,7 +693,9 @@ SUBSYSTEM_DEF(experience)
 	var/next_level_xp = 0
 	/// The minimum XP for this current level
 	var/this_level_base_xp = 0
-	var/max_level = 1000
+	/// EXP table, for quick xp2lvl lookups
+	var/list/xp_table = list()
+	var/max_level = 300
 	var/uid
 	var/c_key
 
@@ -723,6 +727,7 @@ SUBSYSTEM_DEF(experience)
 	if(defer)
 		return
 	load_from_disk()
+	setup_xp_table()
 
 /*
  * Gets the filepath for the EXP data
@@ -895,13 +900,27 @@ SUBSYSTEM_DEF(experience)
 	// 	if(total_xp <= LAZYACCESS(the_save, "total_xp"))
 	// 		return FALSE // We haven't gained any XP, don't save
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+/// ACTUAL XP MANAGEMENT ///////////////////////////////////
+
+/// Sets up the XP table
+/// this is XP to GET TO the NEXT lvl
+/datum/exp/proc/setup_xp_table()
+	xp_table.Cut()
+	xp_table.len = max_lvl
+	for(var/i in 1 to max_level) // lists start at 1
+		xp_table += xp2lvl(i)
+
 /// Takes the total XP we had saved, and figures out what level we are
 /// Also sets the current XP to the amount we have left over
 /// Assumes a base level of 0
 /// Used only for loading from prefs
 /datum/exp/proc/recalc_level(loud = TRUE)
-	for(var/i in 0 to max_level)
-		var/needed_xp = xp2lvl(i)
+	var/new_lvl = 0
+	var/old_lvl = lvl
+	for(var/i in 1 to max_level)
+		var/needed_xp = get_xp_for_next_lvl(i)
 		if(needed_xp < total_xp)
 			continue
 		var/new_lvl = i - 1
@@ -1045,21 +1064,10 @@ SUBSYSTEM_DEF(experience)
 		return 0 // they're not a mob, so something wrnt wrong!!
 	var/killed_them = data[XP_PVE_MOB_KILLED]
 	var/damage_dealt = data[XP_PVE_MOB_DAMAGE]
-	var/amount = amount
-	var/my_lvl = get_lvl()
-	var/their_lvl = them.level
-	var/their_xp = killed_them ? them.exp_for_kill : them.exp_per_damage
-	/// okay we want to reward players for fighting mobs around their level, for evil artificial difficulty mindgame trappage
-	/// so, we're gonna do a little math!
-	/// if they're within 2 levels of us, we're gonna give them full XP
-	/// if they're more than that, we're gonna give them less XP
-	/// if they're more than 5 levels above us, we're gonna give them very little XP
-	var/level_diff = abs(their_lvl - my_lvl)
-	if(level_diff > 5)
-		amount = amount * 0.1
-	else if(level_diff > 2)
-		amount = amount * 0.5
-	
+	var/newamount = amount * them.xp_mod
+	if(newamount < 1)
+		newamount = 1
+	return newamount
 
 /datum/exp/pvp
 	name = "PvP"
