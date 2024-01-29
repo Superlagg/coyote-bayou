@@ -17,6 +17,7 @@ SUBSYSTEM_DEF(experience)
 	wait = 5 MINUTES
 	priority = FIRE_PRIORITY_XP
 
+	/// format: list("uid1" = /datum/exp_holder, "uid2" = /datum/exp_holder, ...)
 	var/list/all_lvls = list()
 
 	var/list/uids_associated_with_ckey = list()
@@ -51,6 +52,48 @@ SUBSYSTEM_DEF(experience)
 			load_wave(TRUE) // okay we're good to go now!
 		return
 	save_loaded_exp()
+
+/datum/controller/subsystem/experience/proc/adjust_xp(mob/master, uid, amount, list/data = list())
+	if(!master)
+		return
+	if(!master.client)
+		return
+	if(!uid)
+		uid = get_active_uid(master.client?.ckey)
+		if(!uid)
+			return
+	var/datum/exp_holder/my_holder = LAZYACCESS(all_lvls, uid)
+	if(!my_holder)
+		return
+	my_holder.adjust_xp(key, amount, data)
+
+/datum/controller/subsystem/experience/proc/get_xp(mob/master, uid, key)
+	if(!master)
+		return
+	if(!master.client)
+		return
+	if(!uid)
+		uid = get_active_uid(master.client?.ckey)
+		if(!uid)
+			return
+	var/datum/exp_holder/my_holder = LAZYACCESS(all_lvls, uid)
+	if(!my_holder)
+		return
+	return my_holder.get_xp(key)
+
+/datum/controller/subsystem/experience/proc/get_lvl(mob/master, uid, key)
+	if(!master)
+		return
+	if(!master.client)
+		return
+	if(!uid)
+		uid = get_active_uid(master.client?.ckey)
+		if(!uid)
+			return
+	var/datum/exp_holder/my_holder = LAZYACCESS(all_lvls, uid)
+	if(!my_holder)
+		return
+	return my_holder.get_lvl(key)
 
 /datum/controller/subsystem/experience/proc/proceed_if_ready_or_testing(mykey)
 	if(filesystem_is_okay)
@@ -493,9 +536,13 @@ SUBSYSTEM_DEF(experience)
 	message_admins("XP QC OK! =3")
 	return TRUE
 
+//////////////////////////////////////////////////////////////////
+/// EXPERIENCE DATA MANAGEMENT ///////////////////////////////////=========================3312
+//////////////////////////////////////////////////////////////////
+
 //////////////////////////
 /// EXP data management ///
-//////////////////////////
+//////////////////////////21
 /// Holder of EXP data ///
 /datum/exp_holder
 	/// UID of the player this belongs to
@@ -522,6 +569,26 @@ SUBSYSTEM_DEF(experience)
 /datum/exp_holder/proc/Destroy(force, ...)
 	QDEL_LIST_ASSOC_VAL(lvls)
 	. = ..()
+
+/datum/exp_holder/proc/adjust_xp(key, amount, list/data = list())
+	var/datum/exp/my_xp = LAZYACCESS(lvls, key)
+	if(!my_xp)
+		return
+	my_xp.adjust_xp(amount, data)
+
+/datum/exp_holder/proc/get_xp(key)
+	var/datum/exp/my_xp = LAZYACCESS(lvls, key)
+	if(!my_xp)
+		return
+	return my_xp.get_xp()
+
+/datum/exp_holder/proc/get_lvl(key)
+	var/datum/exp/my_xp = LAZYACCESS(lvls, key)
+	if(!my_xp)
+		return
+	return my_xp.get_lvl()
+
+
 
 /datum/exp_holder/proc/get_master_file(backup = FALSE)
 	var/r00t = SSexperience.get_character_directory(c_key, uid, backup)
@@ -614,10 +681,15 @@ SUBSYSTEM_DEF(experience)
 	var/readme_file = "default_readme.txt"
 	var/kind = XP_DEFAULT
 	var/lvl = 0
+	/// All the XP we have in total
 	var/total_xp = 0
+	/// The XP we have for this current level
 	var/current_xp = 0
+	/// The highest XP we've ever had in this XP
 	var/highest_xp = 0
+	/// The XP we need to get to the next level
 	var/next_level_xp = 0
+	/// The minimum XP for this current level
 	var/this_level_base_xp = 0
 	var/max_level = 1000
 	var/uid
@@ -709,7 +781,7 @@ SUBSYSTEM_DEF(experience)
  * Like recaculating the level from the total XP
  */
 /datum/exp/proc/post_load(list/xpdata, announce = TRUE)
-	if(check_level(FALSE))
+	if(recalc_level(FALSE))
 		to_chat(ckey2client(c_key), span_notice("Sucessfully loaded [name] EXP data! [prob(5) ? "=3" : ""]"))
 
 /*
@@ -827,7 +899,7 @@ SUBSYSTEM_DEF(experience)
 /// Also sets the current XP to the amount we have left over
 /// Assumes a base level of 0
 /// Used only for loading from prefs
-/datum/exp/proc/check_level(loud = TRUE)
+/datum/exp/proc/recalc_level(loud = TRUE)
 	for(var/i in 0 to max_level)
 		var/needed_xp = xp2lvl(i)
 		if(needed_xp < total_xp)
@@ -855,10 +927,12 @@ SUBSYSTEM_DEF(experience)
 
 /// functional things for levelling up
 /datum/exp/proc/on_lvl_up(new_lvl, num_levels, loud = TRUE)
+	SSexperience.save_character(c_key, uid, TRUE)
 	// override me!
 
 /// functional things for levelling down
 /datum/exp/proc/on_lvl_down(new_lvl, num_levels, loud = TRUE)
+	SSexperience.save_character(c_key, uid, TRUE)
 	// override me!
 
 /// Alerts the player that they have levelled up or down
@@ -890,13 +964,45 @@ SUBSYSTEM_DEF(experience)
 /datum/exp/proc/adjust_xp(amount, list/data = list())
 	if(amount == 0)
 		return
-	total_xp += amount
+	total_xp += adjusted_amount(amount, data)
 	current_xp = total_xp - this_level_base_xp
 	if(amount > 0)
 		on_gain_xp(amount, data)
 	else
 		on_lose_xp(amount, data)
-	check_level()
+	check_level_change(amount, data)
+	return TRUE
+
+/// Override with your own code to modify the amount of XP gained based on data
+/// amount is the amount of XP gained
+/// data is the data passed in from adjust_xp
+/datum/exp/proc/adjusted_amount(amount, list/data = list())
+	return amount
+
+/// Checks if we've levelled up or down
+/datum/exp/proc/check_level_change()
+	if(current_xp >= next_level_xp)
+		var/num_levels = 0
+		while(current_xp >= next_level_xp)
+			num_levels++
+			lvl++
+			current_xp -= next_level_xp
+			next_level_xp = xp2lvl(lvl + 1)
+			this_level_base_xp = xp2lvl(lvl)
+		on_lvl_up(lvl, num_levels)
+		alert_lvl_change(lvl, num_levels)
+		return TRUE
+	else if(current_xp < 0)
+		var/num_levels = 0
+		while(current_xp < 0)
+			num_levels--
+			lvl--
+			current_xp += this_level_base_xp
+			next_level_xp = xp2lvl(lvl + 1)
+			this_level_base_xp = xp2lvl(lvl)
+		on_lvl_down(lvl, num_levels)
+		alert_lvl_change(lvl, num_levels)
+		return TRUE
 
 /// Override with your own code to do something when you gain XP
 /// amount is the amount of XP gained
@@ -907,12 +1013,53 @@ SUBSYSTEM_DEF(experience)
 /datum/exp/proc/on_lose_xp(amount, list/data = list())
 	// override me!
 
+/// Gets the current XP
+/datum/exp/proc/get_xp()
+	return current_xp
+
+/// Gets the current level
+/datum/exp/proc/get_lvl()
+	return lvl
+
+/// Gets the total XP
+/datum/exp/proc/get_total_xp()
+	return total_xp
+
+/// Gets our mob
+/datum/exp/proc/get_mob()
+	return ckey2mob(c_key)
+
 /datum/exp/pve
 	name = "PvE"
 	verbing = "Assailing wildlife"
 	readme_file = "pve_readme.txt"
 	kind = XP_PVE
-	max_level = 1000
+	max_level = 1000 // 1000 levels of PvE, thats a lot of levels
+
+/datum/exp/pve/adjusted_amount(amount, list/data)
+	var/mob/living/me = get_mob()
+	if(!me || !me.client) // no offline XP farms, this aint minecraft
+		return 0 // sadly
+	var/mob/living/simple_animal/them = data[XP_PVE_MOB_TARGET]
+	if(!isanimal(them))
+		return 0 // they're not a mob, so something wrnt wrong!!
+	var/killed_them = data[XP_PVE_MOB_KILLED]
+	var/damage_dealt = data[XP_PVE_MOB_DAMAGE]
+	var/amount = amount
+	var/my_lvl = get_lvl()
+	var/their_lvl = them.level
+	var/their_xp = killed_them ? them.exp_for_kill : them.exp_per_damage
+	/// okay we want to reward players for fighting mobs around their level, for evil artificial difficulty mindgame trappage
+	/// so, we're gonna do a little math!
+	/// if they're within 2 levels of us, we're gonna give them full XP
+	/// if they're more than that, we're gonna give them less XP
+	/// if they're more than 5 levels above us, we're gonna give them very little XP
+	var/level_diff = abs(their_lvl - my_lvl)
+	if(level_diff > 5)
+		amount = amount * 0.1
+	else if(level_diff > 2)
+		amount = amount * 0.5
+	
 
 /datum/exp/pvp
 	name = "PvP"

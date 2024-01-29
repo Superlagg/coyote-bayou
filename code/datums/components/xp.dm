@@ -14,10 +14,6 @@
 /// make any hard references at all!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 /datum/component/xp
-	var/list/lvl_data = list()
-
-	var/list/kills = list() // coming soon!
-
 	var/client_loaded = FALSE
 	var/my_ckey
 
