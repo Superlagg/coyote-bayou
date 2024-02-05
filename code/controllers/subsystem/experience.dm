@@ -823,10 +823,7 @@ SUBSYSTEM_DEF(experience)
 	savedata["kind"] = kind
 	savedata["type"] = type
 	savedata["total_xp"] = total_xp
-	savedata["current_xp"] = current_xp
 	savedata["highest_xp"] = highest_xp
-	savedata["next_level_xp"] = next_level_xp
-	savedata["this_level_base_xp"] = this_level_base_xp
 	savedata["lvl"] = lvl
 	savedata["currentround"] = currentround
 	savedata["last_updated"] = last_updated
@@ -910,49 +907,39 @@ SUBSYSTEM_DEF(experience)
 	xp_table.Cut()
 	xp_table.len = max_lvl
 	for(var/i in 1 to max_level) // lists start at 1
-		xp_table += xp2lvl(i)
+		xp_table += xp2lvl(i) // and so do we
 
 /// Takes the total XP we had saved, and figures out what level we are
 /// Also sets the current XP to the amount we have left over
-/// Assumes a base level of 0
+/// Assumes a base level of 1
 /// Used only for loading from prefs
-/datum/exp/proc/recalc_level(loud = TRUE)
-	var/new_lvl = 0
-	var/old_lvl = lvl
+/datum/exp/proc/load_level()
+	var/lvl_to_be = 1
 	for(var/i in 1 to max_level)
-		var/needed_xp = get_xp_for_next_lvl(i)
-		if(needed_xp < total_xp)
-			continue
-		var/new_lvl = i - 1
-		current_xp = total_xp - xp2lvl(new_lvl)
-		next_level_xp = xp2lvl(lvl + 1)
-		this_level_base_xp = needed_xp
-		var/num_levels = new_lvl - lvl
-		lvl = new_lvl
-		if(num_levels > 0)
-			on_lvl_up(new_lvl, num_levels, loud)
-			alert_lvl_change(new_lvl, num_levels, loud)
-		else if(num_levels < 0)
-			on_lvl_down(new_lvl, num_levels, loud)
-			alert_lvl_change(new_lvl, num_levels, loud)
-		return
+		if(xp2lvl(i) > total_xp)
+			break
+		lvl_to_be = i
+	lvl = lvl_to_be
+	setup_leveled_stuff()
+
+/// Do various things this thing is supposed to do after we load our XP stuff
+/datum/exp/proc/setup_leveled_stuff()
+	return // override me!
 
 /// Override with your own xp -> level code
 /// takes in a level, returns the minimum amount of xp needed to be that level
-/datum/exp/proc/xp2lvl(lvl)
-	lvl = clamp(lvl, 0, max_level)
-	var/out = lvl * lvl * 100
-	return out
+/datum/exp/proc/xp2lvl(lvl = 1)
+	return LAZYACCESS(xp_table, lvl)
 
 /// functional things for levelling up
 /datum/exp/proc/on_lvl_up(new_lvl, num_levels, loud = TRUE)
 	SSexperience.save_character(c_key, uid, TRUE)
-	// override me!
+	// parent me!
 
 /// functional things for levelling down
 /datum/exp/proc/on_lvl_down(new_lvl, num_levels, loud = TRUE)
 	SSexperience.save_character(c_key, uid, TRUE)
-	// override me!
+	// parent me!
 
 /// Alerts the player that they have levelled up or down
 /datum/exp/proc/alert_lvl_change(new_lvl, num_levels, loud = TRUE)
@@ -981,15 +968,13 @@ SUBSYSTEM_DEF(experience)
 /// Adjusts the current XP by the amount given
 /// can make it negative to remove XP
 /datum/exp/proc/adjust_xp(amount, list/data = list())
-	if(amount == 0)
-		return
-	total_xp += adjusted_amount(amount, data)
-	current_xp = total_xp - this_level_base_xp
-	if(amount > 0)
-		on_gain_xp(amount, data)
-	else
-		on_lose_xp(amount, data)
-	check_level_change(amount, data)
+	var/experien = adjusted_amount(amount, data)
+	total_xp += experien
+	if(experien > 0)
+		on_gain_xp(experien, data)
+	else if(experien < 0)
+		on_lose_xp(experien, data)
+	check_level_change(experien, data)
 	return TRUE
 
 /// Override with your own code to modify the amount of XP gained based on data
@@ -1000,27 +985,25 @@ SUBSYSTEM_DEF(experience)
 
 /// Checks if we've levelled up or down
 /datum/exp/proc/check_level_change()
-	if(current_xp >= next_level_xp)
-		var/num_levels = 0
-		while(current_xp >= next_level_xp)
-			num_levels++
-			lvl++
-			current_xp -= next_level_xp
-			next_level_xp = xp2lvl(lvl + 1)
-			this_level_base_xp = xp2lvl(lvl)
-		on_lvl_up(lvl, num_levels)
-		alert_lvl_change(lvl, num_levels)
+	if(total_xp >= get_next_lvl_base_xp()) // we've reached the next level, but by how much?
+		for(var/i in lvl to max_level)
+			if(total_xp > xp2lvl(i + 1))
+				continue
+			var/num_levels = i - lvl
+			lvl = i
+			on_lvl_up(i, num_levels)
+			alert_lvl_change(i, num_levels)
+			break
 		return TRUE
-	else if(current_xp < 0)
-		var/num_levels = 0
-		while(current_xp < 0)
-			num_levels--
-			lvl--
-			current_xp += this_level_base_xp
-			next_level_xp = xp2lvl(lvl + 1)
-			this_level_base_xp = xp2lvl(lvl)
-		on_lvl_down(lvl, num_levels)
-		alert_lvl_change(lvl, num_levels)
+	if(total_xp < get_this_lvl_base_xp()) // we've unreached the next level, but by how much?
+		for(var/i in 1 to lvl)
+			if(total_xp < xp2lvl(i))
+				continue
+			var/num_levels = lvl - i
+			lvl = i
+			on_lvl_down(i, num_levels)
+			alert_lvl_change(i, num_levels)
+			break
 		return TRUE
 
 /// Override with your own code to do something when you gain XP
@@ -1044,6 +1027,17 @@ SUBSYSTEM_DEF(experience)
 /datum/exp/proc/get_total_xp()
 	return total_xp
 
+/datum/exp/proc/get_current_level_xp()
+	return total_xp - xp2lvl(lvl)
+
+/// Gets the base XP for our current level
+/datum/exp/proc/get_this_lvl_base_xp()
+	return xp2lvl(lvl)
+
+/// Gets the base XP for our next level
+/datum/exp/proc/get_next_lvl_base_xp()
+	return xp2lvl(lvl + 1)
+
 /// Gets our mob
 /datum/exp/proc/get_mob()
 	return ckey2mob(c_key)
@@ -1055,6 +1049,13 @@ SUBSYSTEM_DEF(experience)
 	kind = XP_PVE
 	max_level = 1000 // 1000 levels of PvE, thats a lot of levels
 
+/*
+ * PvE XP Adjustment
+ * Mobs have an XP worth, which is given out to players based on the damage they deal
+ * Dealing damage to a mob gives you a portion of that XP, based on the damage dealt vs the mob's health
+ * So if you deal 10 damage to a 100 HP mob, you get 10% of the XP
+ * ooh wait, mobs have a number on them, dealing damage gives you stuff from that number
+ */
 /datum/exp/pve/adjusted_amount(amount, list/data)
 	var/mob/living/me = get_mob()
 	if(!me || !me.client) // no offline XP farms, this aint minecraft
@@ -1062,11 +1063,13 @@ SUBSYSTEM_DEF(experience)
 	var/mob/living/simple_animal/them = data[XP_PVE_MOB_TARGET]
 	if(!isanimal(them))
 		return 0 // they're not a mob, so something wrnt wrong!!
-	var/killed_them = data[XP_PVE_MOB_KILLED]
 	var/damage_dealt = data[XP_PVE_MOB_DAMAGE]
-	var/newamount = amount * them.xp_mod
+	var/mob_max_health = max(them.maxHealth, 1)
+	var/multiplier = min(damage_dealt / mob_max_health, 1)
+	var/mob_xp_worth = them.xp * them.xp_mod
+	var/newamount = multiplier * mob_xp_worth
 	if(newamount < 1)
-		newamount = 1
+		newamount = 0 // ill chip your damage
 	return newamount
 
 /datum/exp/pvp
