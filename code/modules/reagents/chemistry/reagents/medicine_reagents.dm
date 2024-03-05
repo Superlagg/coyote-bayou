@@ -2038,7 +2038,6 @@
 	color = "#FF0E00"
 	blood_threshold = BLOOD_VOLUME_SAFE
 	blood_regen = 10
-	bleed_mult = 0.000001
 	effective_blood_multiplier = 15
 	effective_blood_max = 1000
 

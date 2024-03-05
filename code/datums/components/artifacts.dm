@@ -1779,7 +1779,7 @@
 		if(d_brute > 0)
 			d_brute = -d_brute
 		target.adjustBruteLoss(
-			(d_brute * mult * dr),
+			max(d_brute * mult * dr, DAMAGE_PRECISION),
 			TRUE,
 			FALSE,
 		)
@@ -1787,7 +1787,7 @@
 		if(d_burn > 0)
 			d_burn = -d_burn
 		target.adjustFireLoss(
-			(d_burn * mult * dr),
+			max(d_burn * mult * dr, DAMAGE_PRECISION),
 			TRUE,
 			FALSE,
 		)
@@ -1795,7 +1795,7 @@
 		if(d_toxin > 0)
 			d_toxin = -d_toxin
 		target.adjustToxLoss(
-			(d_toxin * mult * dr),
+			max(d_toxin * mult * dr, DAMAGE_PRECISION),
 			TRUE,
 			FALSE,
 			TRUE
@@ -1804,14 +1804,14 @@
 		if(d_oxy > 0)
 			d_oxy = -d_oxy
 		target.adjustOxyLoss(
-			(d_oxy * mult * dr),
+			max(d_oxy * mult * dr, DAMAGE_PRECISION),
 			TRUE,
 		)
 	if(d_clone)
 		if(d_clone > 0)
 			d_clone = -d_clone
 		target.adjustCloneLoss(
-			(d_clone * mult * dr),
+			max(d_clone * mult * dr, DAMAGE_PRECISION),
 			TRUE,
 		)
 	if(d_brain)

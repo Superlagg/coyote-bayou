@@ -14,6 +14,8 @@
 #define SODIEHEAL_HEAL_PER_TIER 0.075 // heal per tier per second
 #define SODIE_MSG_COOLDOWN 30 SECONDS
 
+/// The Sodie spelling is important
+
 /obj/item/organ/sodie_organ
 	name = "Gibb's organ"
 	desc = "A thick spongy liver-like mass that spans across the abdomens of heavy sodie users, forming a blood-corpuscular osmotic membrane capable of transphosphorylating metasucroglycoglycolides found in your average sodie with acetoacetic acid into High Molecular Weight 7-4-Hydroxyanyl-3-Prenyl-Ribotolic acid (HMW4H3PR+) via a modified Dip-Kelly 4-Hydroxy-3-Prenyl-Ribose-5-Phosphate Reductase (HPR5PR) Electron Shunt Pathway. Or something. At any rate, it processes sodie into a slow, steady source of healing."

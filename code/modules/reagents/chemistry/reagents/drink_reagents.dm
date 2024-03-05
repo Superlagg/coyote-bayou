@@ -949,7 +949,7 @@
 
 /datum/reagent/consumable/caramelshake
 	name = "Caramel Shake"
-	description = "A aramel flavored milkshake. Your teeth hurt looking at it."
+	description = "A caramel flavored milkshake. Your teeth hurt looking at it."
 	color = "#E17C00"
 	quality = DRINK_GOOD
 	nutriment_factor = 10 * REAGENTS_METABOLISM
@@ -959,7 +959,7 @@
 	glass_desc = "A caramel flavored milkshake."
 	value = REAGENT_VALUE_COMMON
 	canbrew = TRUE
-	sodie_tier = SODIE_TIER_4 // I really like milkshakes
+	sodie_tier = SODIE_TIER_3 // I really like milkshakes
 	sodie_heal_brute = SODIE_BRUTE(SODIE_TIER_4, SODIE_HEALRANK_HIGH)
 	sodie_heal_burn =  SODIE_BURN( SODIE_TIER_4, SODIE_HEALRANK_MED)
 	sodie_heal_toxin = SODIE_TOXIN(SODIE_TIER_4, SODIE_HEALRANK_MED)
