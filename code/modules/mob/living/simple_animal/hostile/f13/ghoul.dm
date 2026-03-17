@@ -4,6 +4,7 @@
 
 //Base ghoul
 /mob/living/simple_animal/hostile/ghoul
+	bounty = 8
 	name = "feral walker"
 	desc = "A ghoul that has lost its mind and become aggressive."
 	icon = 'icons/fallout/mobs/humans/ghouls.dmi'
@@ -120,8 +121,6 @@
 	
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.0, 3.2, 3.6, 3.8, 4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(30, 35, 40, 40, 40, 40, 41),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),
@@ -154,6 +153,7 @@
 
 // ghoul Reaver
 /mob/living/simple_animal/hostile/ghoul/reaver
+	bounty = 12
 	name = "feral walker skirmisher"
 	desc = "A ghoul that has lost its mind and become aggressive. This one is strapped with metal armor, and appears far stronger."
 	icon_state = "ghoulreaver"
@@ -184,8 +184,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(200, 200, 200, 255, 255, 255),
-		MOB_SPEED_LIST(3.6, 3.8, 4, 4.2, 4.4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(41, 45, 50, 50, 50, 50, 51),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),
@@ -265,6 +263,7 @@
 
 //Legendary ghoul
 /mob/living/simple_animal/hostile/ghoul/legendary
+	bounty = 50
 	name = "legendary walker"
 	desc = "A ghoul that has lost its mind and become aggressive. This one has exceptionally large, bulging muscles. It looks quite strong."
 	icon_state = "glowinghoul"
@@ -297,6 +296,7 @@
 
 //Glowing ghoul
 /mob/living/simple_animal/hostile/ghoul/glowing
+	bounty = 15
 	name = "feral walker rad-shaman"
 	desc = "A feral ghoul that has absorbed massive amounts of radiation, causing them to glow in the dark and radiate constantly."
 	icon_state = "glowinghoul"
@@ -329,8 +329,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.0, 3.2, 3.6, 3.8, 4, 4.2),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(38, 40, 42, 44),
 		MOB_RETREAT_DISTANCE_LIST(0, 2, 4),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(50),
@@ -436,8 +434,6 @@
 	loot_drop_amount = 4
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.6, 3.8, 4, 4.2, 4.4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(30, 35, 40, 40, 40, 40, 41),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),
@@ -476,8 +472,6 @@
 	loot_drop_amount = 5
 	variation_list = list(
 		MOB_COLOR_VARIATION(150, 150, 150, 255, 255, 255),
-		MOB_SPEED_LIST(3.6, 3.8, 4, 4.2, 4.4),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(10),
 		MOB_HEALTH_LIST(30, 35, 40, 40, 40, 40, 41),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 1),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(5),

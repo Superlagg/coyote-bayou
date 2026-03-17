@@ -45,6 +45,7 @@ ATTACHMENTS
 	var/fire_sound = "gunshot"
 	/// Time it takes between drawing the gun and shooting the gun
 	var/draw_time = null
+	block_parry_data = /datum/block_parry_data/bokken
 
 	var/clumsy_check = TRUE
 	var/obj/item/ammo_casing/chambered = null
@@ -338,6 +339,7 @@ ATTACHMENTS
 	playsound(src, dryfire_sound, 30, 1)
 	update_firemode()
 	update_icon()
+	user.ReloadGun()
 
 /obj/item/gun/proc/shoot_live_shot(mob/living/user, pointblank = FALSE, mob/pbtarget, message = 1, stam_cost = 0, obj/item/projectile/P, casing_sound)
 	if(stam_cost && istype(user)) //CIT CHANGE - makes gun recoil cause staminaloss

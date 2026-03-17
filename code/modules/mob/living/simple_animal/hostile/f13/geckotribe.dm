@@ -96,11 +96,10 @@
 	can_ghost_into = TRUE // not a bad idea at all
 	desc_short = "Short, angry, and as confused as they are tasty."
 	desc_important = "Still in development! Report wierdness on the discord!"
+	bounty = 5
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(30, 35, 40, 45),
 		MOB_RETREAT_DISTANCE_LIST(3, 5, 7),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -141,6 +140,7 @@
 	minimum_distance = 0
 	aggro_vision_range = 4
 	vision_range = 4
+	bounty = 1
 
 
 	faction = list("gecko", "critter-friend")
@@ -164,8 +164,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(10, 15, 20),
 		MOB_RETREAT_DISTANCE_LIST(3, 5, 7),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -181,6 +179,7 @@
 
 //gecko with a spear. will bravely defend its home
 /mob/living/simple_animal/hostile/gecko/tribal/warrior
+	bounty = 10
 	name = "gecko warrior"
 	desc = "A large mutated reptile that has learned the basics of tool usage. This one has a bone spear."
 	icon_state = "gekko_tribe_warrior"
@@ -281,8 +280,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(30, 35, 40, 45),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 3, 5, 7, 9),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -292,6 +289,7 @@
 
 //gecko with a bow. will bravely defend its home
 /mob/living/simple_animal/hostile/gecko/tribal/hunter // oh I love that game!
+	bounty = 10
 	name = "gecko hunter"
 	desc = "A large mutated reptile that has learned the basics of tool usage. This one has a bone spear."
 	icon_state = "gekko_tribe_bowman"
@@ -397,8 +395,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(30, 35, 40, 45),
 		MOB_RETREAT_DISTANCE_LIST(0, 1, 3, 5, 7, 9),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(80),
@@ -426,6 +422,7 @@
 
 //gecko priest. only fights in self defense, but drops meds when killed, and heals nearby geckos
 /mob/living/simple_animal/hostile/gecko/tribal/shaman
+	bounty = 20
 	name = "gecko shaman"
 	desc = "A large mutated reptile that has learned the basics of tool usage. This one has pouches of herbs"
 	icon_state = "gekko_tribe_shaman"
@@ -531,8 +528,6 @@
 
 	variation_list = list(
 		MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(30, 35, 40, 45),
 		MOB_RETREAT_DISTANCE_LIST(3, 5, 7),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -550,6 +545,7 @@
 
 //gecko boss fight. is peaceful till provoked, then summons and ressurects geckos to fight you
 /mob/living/simple_animal/hostile/gecko/tribal/head_shaman
+	bounty = 200
 	name = "gecko head shaman"
 	desc = "A large mutated reptile that has learned the basics of tool usage. This one is dressed regally and wields a staff."
 	icon_state = "gekko_tribe_shaman"
@@ -662,8 +658,6 @@
 
 	variation_list = list(
 		//MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(200),
 		MOB_RETREAT_DISTANCE_LIST(3, 5, 7),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),
@@ -708,6 +702,7 @@
 	return BULLET_ACT_HIT
 
 /mob/living/simple_animal/hostile/gecko/tribal/chieftain
+	bounty = 300
 	name = "gecko chieftan"
 	desc = "A large mutated reptile that has learned the basics of tool usage. This one is dressed regally and looks fierce."
 	icon_state = "gekko_tribe_leader"
@@ -822,8 +817,6 @@
 
 	variation_list = list(
 		//MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(3000),
 		MOB_RETREAT_DISTANCE_LIST(0, 0, 0, 3, 3),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(65),
@@ -874,6 +867,7 @@
 
 
 /mob/living/simple_animal/hostile/gecko/tribal/head_shaman/small_shaman
+	bounty = 50
 	name = "gecko tribe small shaman"
 	desc = "A large mutated reptile that has learned the basics of tool usage. This one is dressed regally and wields a staff."
 	icon_state = "gekko_tribe_shaman"
@@ -984,8 +978,6 @@
 
 	variation_list = list(
 		//MOB_COLOR_VARIATION(50, 50, 50, 255, 255, 255),
-		MOB_SPEED_LIST(3, 3.2, 3.4, 3.6),
-		MOB_SPEED_CHANGE_PER_TURN_CHANCE(50),
 		MOB_HEALTH_LIST(75),
 		MOB_RETREAT_DISTANCE_LIST(3, 5, 7),
 		MOB_RETREAT_DISTANCE_CHANGE_PER_TURN_CHANCE(100),

@@ -202,12 +202,13 @@ GLOBAL_LIST_INIT(plant_type_weighted, list(
 	"tree" = 10,
 ))
 
-/turf/open/indestructible/ground/outside/dirthole
-	name = "Dirt hole"
-	icon_state = "dirthole"
-	desc = "A dirt hole."
-	slowdown = 1
-	flags_1 = ADJACENCIES_OVERLAY
+// /turf/open/indestructible/ground/outside/dirthole
+// 	name = "Dirt hole"
+// 	icon_state = "dirthole"
+// 	desc = "A dirt hole."
+// 	slowdown = 1
+// 	flags_1 = ADJACENCIES_OVERLAY
+// 	greeble = OUTSIDE_JUNK_DISTRIBUTION
 
 /turf/open/indestructible/ground/outside/river
 	name = "river"
@@ -469,7 +470,7 @@ GLOBAL_LIST_INIT(salvage_spawn_list, list(
 	))
 
 GLOBAL_LIST_INIT(nest_spawn_list, list(
-	/obj/effect/decal/cleanable/dirt/dust = 5,
+	/obj/effect/decal/cleanable/dirt/dust = 15,
 	/obj/structure/nest/gecko = 5,
 	/obj/structure/nest/radroach = 5,
 	/obj/structure/nest/molerat = 5,
@@ -488,6 +489,7 @@ GLOBAL_LIST_INIT(junk_type_weighted, list(
 	desc = "A dirt hole."
 	slowdown = 2
 	flags_1 = ADJACENCIES_OVERLAY
+	greeble = "plant"
 
 /turf/open/indestructible/ground/outside/river
 	name = "river"
@@ -892,6 +894,46 @@ GLOBAL_LIST_INIT(junk_type_weighted, list(
 	name = "grass"
 	icon = 'icons/fallout/turfs/civfloor.dmi'
 	icon_state = "grass_dark"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow1"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow/two
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow2"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow/three
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow3"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow/four
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow4"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow/five
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow5"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow/six
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow6"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow/seven
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow7"
+
+/turf/open/indestructible/ground/outside/civ/grassdark/snow/eight
+	name = "grass"
+	icon = 'icons/fallout/turfs/civfloor.dmi'
+	icon_state = "grass_dark_snow8"
 
 /turf/open/indestructible/ground/outside/civ/grass0
 	name = "grass"

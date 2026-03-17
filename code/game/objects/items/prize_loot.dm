@@ -105,7 +105,7 @@
 		. += "[src] appears to be unlocked."
 	if(fragile)
 		. += "There are cracks, [src] may crumble from any sudden movements."
-	if(user.client.prefs.special_p >= 8)
+	if(user.client.prefs.stat_perception >= 8)
 		if(trapped)
 			. += "The lock looks tampered with."
 		. += "There [prize_amount > 1 ? "are" : "is"] [prize_amount] [prize_amount > 1 ? "objects" : "object"]."
@@ -162,7 +162,7 @@
 			return
 
 		var/success_after_tier = max(100 - (lock_tier * 20), 0) //the higher the lock tier, the harder it is, down to a max of 0
-		var/success_after_skill = min((user.client.prefs.special_p * 5) + success_after_tier, 100) //the higher the persons perception, the better, up to a max of 100, with 50 added
+		var/success_after_skill = min((user.client.prefs.stat_perception * 5) + success_after_tier, 100) //the higher the persons perception, the better, up to a max of 100, with 50 added
 		if(!prob(success_after_skill))
 			to_chat(user, span_warning("You fail to pick [src]."))
 			return
@@ -524,9 +524,9 @@
 	prize_amount = 2
 	locked = TRUE
 
-/obj/item/locked_box/misc/crafting/advanced/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_craft_advanced)
-	. = ..()
+// /obj/item/locked_box/misc/crafting/advanced/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_craft_advanced)
+// 	. = ..()
 
 /obj/item/locked_box/misc/resource
 	easy_naming = "resource "
@@ -602,9 +602,9 @@
 	locked = TRUE
 	lock_tier = 3
 
-/obj/item/locked_box/misc/skillbook/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_skillbook)
-	. = ..()
+// /obj/item/locked_box/misc/skillbook/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_skillbook)
+// 	. = ..()
 
 /obj/item/locked_box/misc/attachments
 	easy_naming = "attachment "
@@ -624,20 +624,20 @@
 /obj/item/locked_box/misc/blueprints/tier1
 	lock_tier = 2
 
-/obj/item/locked_box/misc/blueprints/tier1/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_t1_blueprint)
-	. = ..()
+// /obj/item/locked_box/misc/blueprints/tier1/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_t1_blueprint)
+// 	. = ..()
 
-/obj/item/locked_box/misc/blueprints/tier2
-	lock_tier = 3
+// /obj/item/locked_box/misc/blueprints/tier2
+// 	lock_tier = 3
 
-/obj/item/locked_box/misc/blueprints/tier2/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_t2_blueprint)
-	. = ..()
+// /obj/item/locked_box/misc/blueprints/tier2/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_t2_blueprint)
+// 	. = ..()
 
-/obj/item/locked_box/misc/blueprints/tier3
-	lock_tier = 4
+// /obj/item/locked_box/misc/blueprints/tier3
+// 	lock_tier = 4
 
-/obj/item/locked_box/misc/blueprints/tier3/initialize_prizes()
-	global_loot_lists = list(GLOB.loot_t3_blueprint)
-	. = ..()
+// /obj/item/locked_box/misc/blueprints/tier3/initialize_prizes()
+// 	global_loot_lists = list(GLOB.loot_t3_blueprint)
+// 	. = ..()

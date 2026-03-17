@@ -196,6 +196,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	var/backstab_multiplier = 1.15 
 	var/shadow = FALSE
 
+	var/hud_type = null
+	var/list/hudwhere
+
 /obj/item/Initialize()
 
 	if(attack_verb)
@@ -570,6 +573,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 		. = ITEM_RELOCATED_BY_DROPPED
 	user?.update_equipment_speed_mods()
 	remove_hud_actions(user)
+	if(hud_type && istype(user))
+		var/datum/atom_hud/H = GLOB.huds[hud_type]
+		H.remove_hud_from(user)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -622,6 +628,15 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	user.update_equipment_speed_mods()
 	if(user.get_active_held_item() != src && user.get_inactive_held_item() != src)
 		unwield(user)
+	if(hud_type)
+		if(slot in hudwhere)
+			var/datum/atom_hud/H = GLOB.huds[hud_type]
+			H.add_hud_to(user)
+		else
+			if(istype(user))
+				var/datum/atom_hud/H = GLOB.huds[hud_type]
+				H.remove_hud_from(user)
+
 
 //Overlays for the worn overlay so you can overlay while you overlay
 //eg: ammo counters, primed grenade flashing, etc.
@@ -1306,7 +1321,27 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 /obj/item/attack(mob/living/M, mob/living/user, attackchain_flags = NONE, damage_multiplier = 1, damage_override)
 	// Check if the user is behind the target
 	if(get_dir(user, M) == M.dir && isliving(M))
-		damage_multiplier = backstab_multiplier // Apply the backstab multiplier
+		var/int_mod = 1
+		switch(user.get_stat(STAT_INTELLIGENCE)) // COOLSTAT IMPLEMENTATION: INTELLIGENCE
+			if(0, 1)
+				int_mod = -1 // lol
+			if(2)
+				int_mod = 1
+			if(3)
+				int_mod = 1
+			if(4)
+				int_mod = 1
+			if(5)
+				int_mod = 1
+			if(6)
+				int_mod = 1.1
+			if(7)
+				int_mod = 1.25
+			if(8)
+				int_mod = 1.50
+			if(9)
+				int_mod = 1.75
+		damage_multiplier = (backstab_multiplier * int_mod) // Apply the backstab multiplier
 		playsound(user.loc, 'sound/effects/dismember.ogg', 50, 1, -1) // Play a backstab sound
 		to_chat(user, "<span class='notice'>You backstab [M]!</span>")
 	. = ..()
@@ -1327,3 +1362,21 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if(!LAZYLEN(tableplacesound))
 		return
 	playsound(src, safepick(tableplacesound), volume, TRUE)
+
+/obj/item/emp_act(severity)
+	. = ..()
+	if(obj_flags & EMAGGED || . & EMP_PROTECT_SELF)
+		return
+	obj_flags |= EMAGGED
+	desc = "[desc] The display is flickering slightly."
+
+/obj/item/emag_act(mob/user)
+	. = ..()
+	if(obj_flags & EMAGGED)
+		return
+	obj_flags |= EMAGGED
+	to_chat(user, span_warning("PZZTTPFFFT"))
+	desc = "[desc] The display is flickering slightly."
+	return TRUE
+
+
