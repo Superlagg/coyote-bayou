@@ -3,7 +3,7 @@ import sys
 import os
 import pathlib
 import shutil
-from collections.abc import namedtuple
+from collections import namedtuple
 
 Settings = namedtuple('Settings', ['map_folder', 'tgm'])
 MapsToRun = namedtuple('MapsToRun', ['files', 'indices'])

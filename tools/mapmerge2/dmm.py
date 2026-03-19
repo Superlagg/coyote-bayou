@@ -3,7 +3,7 @@
 import io
 import bidict
 import random
-from collections.abc import namedtuple
+from collections import namedtuple
 
 TGM_HEADER = "//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE"
 ENCODING = 'utf-8'
