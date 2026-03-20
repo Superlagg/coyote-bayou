@@ -264,7 +264,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 	setup_mob_armor_values()
 	if (islist(mob_armor))
 		var/list/armor_list = mob_armor
-		mob_armor = getArmor(arglist(armor_list))
+		mob_armor = getArmorFromList(armor_list)
 	else if (!mob_armor)
 		mob_armor = getArmor()
 	else if (!istype(mob_armor, /datum/armor))
@@ -1492,8 +1492,7 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 		return
 	if(length(mob_armor_tokens) < 1)
 		return // all done!
-	var/list/armorlist = alist(mob_armor)
-	
+	var/list/armorlist = mob_armor
 	for(var/list/token in mob_armor_tokens)
 		for(var/modifier in token)
 			switch(GLOB.armor_token_operation_legend[modifier])
@@ -1503,7 +1502,6 @@ GLOBAL_LIST_EMPTY(playmob_cooldowns)
 					armorlist[modifier] = max(armorlist[modifier] + token[modifier], 0)
 				else
 					continue
-	mob_armor = armorlist
 
 /// compiles the mob's armor description
 /mob/living/simple_animal/proc/setup_mob_armor_description()

@@ -84,7 +84,7 @@
 	
 	if (!islist(armor))
 		return // if it doesn't even have an armor datum, don't try to apply tokens to it
-	var/list/armorlist = alist(armor)
+	var/list/armorlist = armor
 	for(var/list/token in armor_tokens)
 		for(var/modifier in token)
 			switch(GLOB.armor_token_operation_legend[modifier])
@@ -94,7 +94,6 @@
 					armorlist[modifier] = max(armorlist[modifier] + token[modifier], 0)
 				else
 					continue
-	armor = armorlist
 
 /obj/item/clothing/MouseDrop(atom/over_object)
 	. = ..()
