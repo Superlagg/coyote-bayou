@@ -1940,7 +1940,7 @@ GLOBAL_LIST_INIT(security_expert, list(
 	lose_text = span_danger("You no longer have any desires of changing at will.")
 	medical_record_text = "Patient appears to be wild, in some form or another."
 	locked = FALSE
-	disabled = TRUE // its so, so broken in so, so many ways
+	disabled = FALSE // It might be broken but its our special kind of broken
 	var/obj/effect/proc_holder/spell/targeted/shapeshift/wildshape
 
 
